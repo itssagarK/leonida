@@ -1,0 +1,129 @@
+/* THE LEONIDA WIRE — DESIGN SYSTEM TOKENS */
+
+:root {
+  /* Color Palette: Wire-Room Charcoal & Hot Leonida Sunset */
+  --bg-primary: #0A0B0E;
+  --bg-surface: #12141A;
+  --bg-elevated: #191C24;
+  --bg-card: #15171F;
+  --bg-paper: #F3ECE1;
+  --bg-paper-dark: #E2D7C5;
+
+  /* Text & Ink */
+  --text-primary: #F4F5F7;
+  --text-secondary: #B4BAC7;
+  --text-muted: #72798A;
+  --text-dark: #111215;
+  --text-paper-muted: #5A544A;
+
+  /* Hot Sunset Accent Palette */
+  --accent-magenta: #FF2E63;
+  --accent-coral: #FF4D6D;
+  --accent-sunset: #FF7556;
+  --accent-amber: #FFB84D;
+  --accent-gold: #FFC048;
+  --gradient-sunset: linear-gradient(135deg, #FF4D6D 0%, #FF7556 50%, #FFB84D 100%);
+  --gradient-sunset-hot: linear-gradient(90deg, #FF2E63 0%, #FF4D6D 50%, #FFA438 100%);
+  --gradient-wire-dark: linear-gradient(180deg, #161820 0%, #0D0E13 100%);
+  --gradient-scanline: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+
+  /* Status Stamp Tints */
+  --stamp-red: #E63946;
+  --stamp-amber: #F77F00;
+  --stamp-yellow: #FFD166;
+  --stamp-green: #06D6A0;
+  --stamp-blue: #118AB2;
+
+  /* Redaction & Evidence Motifs */
+  --redaction-black: #000000;
+  --border-evidence: 1px dashed rgba(255, 184, 77, 0.45);
+  --border-evidence-strong: 2px dashed #FF7556;
+  --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
+  --border-medium: 1px solid rgba(255, 255, 255, 0.16);
+  --border-bold: 2px solid #FF4D6D;
+  --border-rule: 3px solid #2B2F3D;
+
+  /* Typography */
+  --font-masthead: 'Zilla Slab', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Shadows & Glow */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.7);
+  --glow-sunset: 0 0 25px rgba(255, 77, 109, 0.35);
+  --glow-amber: 0 0 20px rgba(255, 184, 77, 0.3);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.25s ease-in-out;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Base Headings & Links */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-masthead);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--accent-amber);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-coral);
+}
+
+/* Custom Scrollbar for Teletype Feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #252834;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-coral);
+}
+
+/* Selection Color */
+::selection {
+  background: var(--accent-coral);
+  color: #FFFFFF;
+}

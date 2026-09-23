@@ -1,0 +1,105 @@
+.wire-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  outline: none;
+  user-select: none;
+  text-decoration: none;
+}
+
+.wire-button:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 2px;
+}
+
+/* SIZES */
+.wire-button--sm {
+  padding: 6px 14px;
+  font-size: 12px;
+}
+
+.wire-button--md {
+  padding: 12px 24px;
+  font-size: 13px;
+}
+
+.wire-button--lg {
+  padding: 16px 36px;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+}
+
+/* VARIANTS */
+.wire-button--primary {
+  background: var(--gradient-sunset);
+  color: #0A0B0E;
+  border: 1px solid #FFA438;
+  box-shadow: 0 4px 14px rgba(255, 77, 109, 0.35);
+  font-weight: 800;
+}
+
+.wire-button--primary:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 77, 109, 0.5);
+}
+
+.wire-button--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.wire-button--secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.wire-button--secondary:hover:not(:disabled) {
+  background: var(--bg-elevated);
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+}
+
+.wire-button--evidence {
+  background: rgba(18, 20, 26, 0.95);
+  color: var(--accent-amber);
+  border: 1px dashed var(--accent-amber);
+}
+
+.wire-button--evidence:hover:not(:disabled) {
+  background: var(--accent-amber);
+  color: #0A0B0E;
+  border-style: solid;
+}
+
+.wire-button--danger {
+  background: var(--stamp-red);
+  color: #FFFFFF;
+}
+
+.wire-button--danger:hover:not(:disabled) {
+  filter: brightness(1.15);
+}
+
+.wire-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.8);
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.wire-button__icon {
+  display: inline-flex;
+  align-items: center;
+}

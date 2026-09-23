@@ -1,0 +1,337 @@
+.wire-case-intro {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* Nav Breadcrumbs */
+.wire-case-intro__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: var(--space-sm);
+}
+
+.wire-case-intro__back-link {
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: color var(--transition-fast);
+}
+
+.wire-case-intro__back-link:hover {
+  color: var(--accent-coral);
+}
+
+.wire-case-intro__dossier-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wire-case-intro__switcher-label {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.wire-case-intro__switcher-btn {
+  padding: 4px 10px;
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-secondary);
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.wire-case-intro__switcher-btn.is-active {
+  background: var(--accent-amber);
+  color: #0A0B0E;
+  border-color: #FFA438;
+}
+
+/* Header */
+.wire-case-intro__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.wire-case-intro__meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.wire-case-intro__loc {
+  color: var(--accent-amber);
+  font-weight: 600;
+}
+
+.wire-case-intro__timestamp {
+  color: var(--text-muted);
+}
+
+.wire-case-intro__reset-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-coral);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 2px 6px;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.wire-case-intro__reset-btn:hover {
+  background: rgba(255, 77, 109, 0.15);
+  text-decoration: underline;
+}
+
+.wire-case-intro__title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin-top: 4px;
+}
+
+.wire-case-intro__subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.6vw, 15px);
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  max-width: 800px;
+}
+
+/* Gauge Progression Bar */
+.wire-case-intro__gauge {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.wire-case-intro__gauge-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wire-case-intro__gauge-num {
+  font-family: var(--font-masthead);
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--accent-coral);
+  line-height: 1;
+}
+
+.wire-case-intro__gauge-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.wire-case-intro__gauge-label strong {
+  color: #FFFFFF;
+}
+
+.wire-case-intro__gauge-nodes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.wire-gauge-node {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+}
+
+.wire-gauge-node__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.wire-gauge-node.is-original {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+}
+
+.wire-gauge-node.is-witness {
+  border-color: rgba(255, 77, 109, 0.4);
+  color: var(--accent-coral);
+}
+
+.wire-gauge-node.is-player.is-pending {
+  border: 1px dashed var(--accent-amber);
+  color: var(--accent-amber);
+}
+
+.wire-gauge-node.is-player.is-complete {
+  background: rgba(6, 214, 160, 0.15);
+  border: 1px solid var(--stamp-green);
+  color: var(--stamp-green);
+}
+
+.wire-gauge-arrow {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* Preview Card */
+.wire-case-intro__preview-card {
+  background: #000000;
+  border: 2px solid #242834;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+}
+
+.wire-case-intro__preview-header {
+  background: #11131A;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.wire-case-intro__preview-tag {
+  color: var(--accent-amber);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.wire-case-intro__preview-viewport {
+  position: relative;
+  width: 100%;
+  max-height: 480px;
+  overflow: hidden;
+  background-color: #07080B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wire-case-intro__preview-img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+.wire-case-intro__preview-overlay-stamp {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  pointer-events: none;
+}
+
+.wire-case-intro__preview-caption-panel {
+  background: var(--bg-surface);
+  padding: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.wire-case-intro__caption-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.wire-case-intro__caption-author {
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.wire-case-intro__caption-text {
+  font-family: var(--font-masthead);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: #FFFFFF;
+  font-style: italic;
+}
+
+.wire-case-intro__caption-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.wire-case-intro__tools-label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.wire-tool-pill {
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* Actions Section */
+.wire-case-intro__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+.wire-case-intro__actions-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  max-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .wire-case-intro__gauge {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wire-case-intro__gauge-nodes {
+    flex-wrap: wrap;
+  }
+}

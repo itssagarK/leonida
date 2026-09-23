@@ -1,0 +1,74 @@
+.wire-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  user-select: none;
+}
+
+.wire-divider--space-sm {
+  margin: var(--space-sm) 0;
+}
+.wire-divider--space-md {
+  margin: var(--space-md) 0;
+}
+.wire-divider--space-lg {
+  margin: var(--space-lg) 0;
+}
+.wire-divider--space-xl {
+  margin: var(--space-xl) 0;
+}
+
+.wire-divider__line {
+  flex: 1;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.wire-divider--solid .wire-divider__line {
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.wire-divider--double .wire-divider__line {
+  height: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+}
+
+.wire-divider--dashed .wire-divider__line {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.3) 0,
+    rgba(255, 255, 255, 0.3) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  height: 1px;
+}
+
+.wire-divider--evidence .wire-divider__line {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent-coral) 0,
+    var(--accent-coral) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  height: 2px;
+}
+
+.wire-divider__label {
+  padding: 0 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.wire-divider--evidence .wire-divider__label {
+  color: var(--accent-coral);
+}

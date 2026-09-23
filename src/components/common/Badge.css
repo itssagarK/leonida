@@ -1,0 +1,119 @@
+.wire-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 0;
+  line-height: 1;
+  user-select: none;
+}
+
+.wire-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* SIZES */
+.wire-badge--sm {
+  font-size: 10px;
+  padding: 3px 6px;
+  border-width: 1px;
+}
+
+.wire-badge--md {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-width: 1px;
+}
+
+.wire-badge--lg {
+  font-size: 13px;
+  padding: 8px 16px;
+  border-width: 2px;
+}
+
+/* VARIANTS */
+.wire-badge--default {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.wire-badge--developing {
+  background: rgba(255, 77, 109, 0.15);
+  color: var(--accent-coral);
+  border: 1px solid var(--accent-coral);
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+}
+
+.wire-badge--developing .wire-badge__dot {
+  animation: badge-pulse 1.4s infinite ease-in-out;
+}
+
+.wire-badge--wire {
+  background: var(--accent-amber);
+  color: #0A0B0E;
+  border: 1px solid #FF9F1C;
+  font-weight: 800;
+}
+.wire-badge--wire .wire-badge__dot {
+  background-color: #0A0B0E;
+}
+
+.wire-badge--verified {
+  background: rgba(6, 214, 160, 0.12);
+  color: var(--stamp-green);
+  border: 1px solid var(--stamp-green);
+}
+
+.wire-badge--disputed {
+  background: rgba(247, 127, 0, 0.15);
+  color: var(--stamp-amber);
+  border: 1px solid var(--stamp-amber);
+}
+
+.wire-badge--legend {
+  background: rgba(255, 46, 99, 0.18);
+  color: #FF5470;
+  border: 1px solid #FF5470;
+}
+
+.wire-badge--fabrication {
+  background: rgba(230, 57, 70, 0.2);
+  color: var(--stamp-red);
+  border: 2px solid var(--stamp-red);
+}
+
+/* STAMP STYLE */
+.wire-badge--stamp {
+  font-family: var(--font-masthead);
+  letter-spacing: 0.15em;
+  font-weight: 900;
+  padding: 6px 14px;
+  border: 3px double currentColor;
+  box-shadow: 0 0 0 1px currentColor, 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  text-align: center;
+}
+.wire-badge--stamp .wire-badge__dot {
+  display: none;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
