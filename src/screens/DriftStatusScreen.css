@@ -1,382 +1,499 @@
-.wire-drift-status {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+.wire-drift {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-8);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-4);
 }
 
-.wire-drift-status__nav {
+/* Top Navigation Bar */
+.wire-drift__topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
   font-family: var(--font-mono);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: var(--space-sm);
+  font-size: 11px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: var(--space-2);
 }
 
-.wire-drift-status__back-link {
-  color: var(--text-muted);
+.wire-drift__back-link {
+  color: var(--accent-amber);
   font-weight: 700;
+  text-decoration: none;
   letter-spacing: 0.08em;
+  transition: color var(--transition-fast);
 }
 
-.wire-drift-status__back-link:hover {
-  color: var(--accent-coral);
+.wire-drift__back-link:hover {
+  color: var(--accent-amber-light);
 }
 
-.wire-drift-status__chain-indicator {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.wire-drift__case-tag {
   color: var(--text-secondary);
 }
 
-.wire-drift-status__chain-indicator strong {
+.wire-drift__case-tag strong {
   color: var(--accent-amber);
 }
 
-.wire-drift-status__sep {
+.wire-drift__sep {
+  margin: 0 8px;
   color: rgba(255, 255, 255, 0.2);
 }
 
-.wire-drift-status__header {
+/* Header */
+.wire-drift__header {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-1);
 }
 
-.wire-drift-status__badge-row {
+.wire-drift__badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.wire-drift__chain-stages {
+  color: var(--text-muted);
+}
+
+.wire-drift__title {
+  font-family: var(--font-masthead);
+  font-size: clamp(26px, 3.8vw, 38px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.wire-drift__lead {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 860px;
+}
+
+.wire-drift__unsealed-alert {
+  margin-top: var(--space-2);
+  padding: 12px 16px;
+  background-color: var(--accent-amber-subtle);
+  border: 1px solid var(--accent-amber-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wire-drift__unsealed-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-amber);
+}
+
+/* ======================================================== */
+/* CENTRAL DRIFT SCORE & HERO                               */
+/* ======================================================== */
+.wire-drift-hero {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-4);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-4);
+  align-items: center;
+}
+
+.wire-drift-hero__score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-3);
+  background-color: #07080B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wire-drift-hero__metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.wire-drift-hero__number {
+  font-family: var(--font-masthead);
+  font-size: clamp(48px, 6vw, 68px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent-gold);
+}
+
+.wire-drift-hero__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.wire-drift-hero__stamp-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.wire-drift-hero__stamp-caption {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.wire-drift-hero__explanation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.wire-drift-hero__tone {
+  font-family: var(--font-masthead);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.wire-drift-hero__details {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ======================================================== */
+/* HORIZONTAL PROGRESSION STRIP                             */
+/* ======================================================== */
+.wire-drift-progression {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--space-3);
+}
+
+.wire-progression-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wire-progression-step--active {
+  border-color: var(--accent-amber-border);
+  background-color: var(--accent-amber-subtle);
+}
+
+.wire-progression-step__badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--accent-amber);
+  letter-spacing: 0.1em;
+}
+
+.wire-progression-step__title {
+  font-family: var(--font-masthead);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.wire-progression-step__desc {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.wire-progression-arrow {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 14px;
+  user-select: none;
+}
+
+/* ======================================================== */
+/* BREAKDOWN FACTORS & LEXICAL FORENSICS                    */
+/* ======================================================== */
+.wire-drift-breakdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.wire-breakdown-card {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.wire-breakdown-card__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 16px;
+  background-color: #11141B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.wire-drift-status__case-id {
+.wire-breakdown-card__header h3 {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-amber);
-  font-weight: 700;
-}
-
-.wire-drift-status__title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  letter-spacing: -0.02em;
-  color: #FFFFFF;
-}
-
-.wire-drift-status__desc {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 820px;
-}
-
-.wire-drift-status__lock-banner {
-  background: rgba(255, 77, 109, 0.12);
-  border: 2px dashed var(--accent-coral);
-  padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  align-items: flex-start;
-  margin: var(--space-sm) 0;
-}
-
-.wire-drift-status__lock-tag {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent-coral);
   font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.wire-drift-status__lock-banner p {
-  font-family: var(--font-mono);
-  font-size: 13px;
+  letter-spacing: 0.1em;
   color: var(--text-primary);
-  line-height: 1.5;
 }
 
-/* BIG STAMPED VERDICT HERO */
-.wire-drift-verdict {
-  background: #090B10;
-  border: 2px solid #2B2F3D;
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  align-items: center;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  overflow: hidden;
-}
-
-.wire-drift-verdict__stamp-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: var(--space-xl);
-  background: #11141E;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  min-height: 220px;
-  text-align: center;
-}
-
-.wire-drift-verdict__stamp {
-  font-size: 1.5rem !important;
-  padding: 10px 22px !important;
-}
-
-.wire-drift-verdict__stamp-sub {
+.wire-breakdown-card__tag {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.15em;
   color: var(--text-muted);
 }
 
-.wire-drift-verdict__score-panel {
-  padding: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.wire-drift-verdict__meter-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-}
-
-.wire-drift-verdict__score-val {
-  font-family: var(--font-masthead);
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: var(--accent-coral);
-  line-height: 1;
-}
-
-.wire-drift-verdict__score-lbl {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
-  letter-spacing: 0.12em;
-  font-weight: 700;
-}
-
-.wire-drift-verdict__tone {
-  font-family: var(--font-masthead);
-  font-size: 1.25rem;
-  color: #FFFFFF;
-  font-style: italic;
-  line-height: 1.35;
-}
-
-.wire-drift-verdict__explanation {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* METRICS & LEXICAL FORENSICS */
-.wire-drift-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-lg);
-}
-
-.wire-drift-metrics__col {
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.wire-drift-metrics__col h3 {
-  font-size: 1.15rem;
-  color: var(--accent-amber);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: var(--space-xs);
-  letter-spacing: 0.05em;
-}
-
-.wire-drift-factor-list {
+.wire-breakdown-card__factors {
+  padding: 14px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 12px;
 }
 
-.wire-drift-factor {
+.wire-breakdown-factor {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  font-family: var(--font-mono);
+  font-size: 12px;
   padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.wire-drift-factor__name {
+.wire-factor-name {
   color: var(--text-secondary);
 }
 
-.wire-drift-factor__val {
-  color: var(--accent-coral);
+.wire-factor-val {
+  color: var(--accent-amber);
   font-weight: 700;
 }
 
-.wire-drift-keywords-section {
+/* Lexical Forensics */
+.wire-breakdown-card__lexical {
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 14px;
+}
+
+.wire-lexical-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wire-lexical-label {
   font-family: var(--font-mono);
-  font-size: 11px;
-}
-
-.wire-drift-kw-tag {
+  font-size: 10px;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
-  font-weight: 700;
-  display: block;
-  margin-bottom: 6px;
 }
 
-.wire-drift-kw-none {
-  color: var(--stamp-red);
-  font-style: italic;
-}
-
-.wire-drift-pills {
+.wire-lexical-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
 .wire-drift-pill {
-  padding: 3px 8px;
+  font-family: var(--font-mono);
   font-size: 11px;
-  border: 1px solid transparent;
+  padding: 3px 8px;
+  border-radius: 0;
+  text-transform: uppercase;
 }
 
 .wire-drift-pill--retained {
-  background: rgba(6, 214, 160, 0.12);
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.35);
   color: var(--stamp-green);
-  border-color: rgba(6, 214, 160, 0.3);
 }
 
 .wire-drift-pill--mutated {
-  background: rgba(255, 77, 109, 0.12);
-  color: var(--accent-coral);
-  border-color: rgba(255, 77, 109, 0.3);
+  background-color: rgba(230, 57, 86, 0.1);
+  border: 1px solid rgba(230, 57, 86, 0.35);
+  color: var(--accent-crimson);
 }
 
-/* FILED SUMMARY CARD */
-.wire-drift-summary {
-  background: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: var(--shadow-lg);
-}
-
-.wire-drift-summary__header {
-  background: #11141D;
-  padding: 10px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.wire-drift-empty {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-secondary);
-  font-weight: 700;
-}
-
-.wire-drift-summary__body {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: var(--space-lg);
-  padding: var(--space-lg);
-}
-
-.wire-drift-summary__img-wrap {
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  background: #000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.wire-drift-summary__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.wire-drift-summary__meta {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  justify-content: center;
-}
-
-.wire-drift-summary__byline {
-  font-family: var(--font-mono);
-  font-size: 12px;
   color: var(--text-muted);
-}
-
-.wire-drift-summary__byline strong {
-  color: var(--accent-amber);
-}
-
-.wire-drift-summary__quote {
-  font-family: var(--font-masthead);
-  font-size: 1.3rem;
-  color: #FFFFFF;
-  line-height: 1.4;
   font-style: italic;
 }
 
-.wire-drift-summary__note {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  border-top: 1px dashed rgba(255, 255, 255, 0.08);
-  padding-top: 8px;
-}
-
-/* ACTIONS */
-.wire-drift-status__actions {
+/* ======================================================== */
+/* FILED EVIDENCE RECORD SUMMARY CARD                       */
+/* ======================================================== */
+.wire-drift-summary-card {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-lg);
-  padding: var(--space-md) 0;
 }
 
-.wire-drift-status__sub-actions {
+.wire-drift-summary-card__header {
   display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: #11141B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.wire-summary-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent-amber);
+}
+
+.wire-drift-summary-card__body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.wire-drift-summary-card__thumb-box {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #07080B;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wire-drift-summary-card__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wire-drift-summary-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wire-summary-byline {
+  display: flex;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.wire-summary-label {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.wire-summary-val {
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.wire-summary-quote {
+  font-family: var(--font-masthead);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.wire-summary-baseline-comp {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.wire-summary-baseline-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ======================================================== */
+/* ACTION FOOTER                                            */
+/* ======================================================== */
+.wire-drift__action-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+}
+
+.wire-drift__sub-buttons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Responsive */
 @media (max-width: 860px) {
-  .wire-drift-verdict {
+  .wire-drift-hero {
     grid-template-columns: 1fr;
   }
-  .wire-drift-verdict__stamp-container {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .wire-drift-progression {
+    flex-direction: column;
+    align-items: stretch;
   }
-  .wire-drift-metrics {
+
+  .wire-progression-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+  }
+
+  .wire-drift-breakdown-grid {
     grid-template-columns: 1fr;
   }
-  .wire-drift-summary__body {
+
+  .wire-drift-summary-card__body {
     grid-template-columns: 1fr;
+  }
+
+  .wire-drift__action-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wire-drift__sub-buttons {
+    flex-direction: column;
   }
 }

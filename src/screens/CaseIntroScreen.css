@@ -1,10 +1,9 @@
 .wire-case-intro {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-8);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-4);
 }
 
 /* Nav Breadcrumbs */
@@ -12,21 +11,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 11px;
   font-family: var(--font-mono);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: var(--space-2);
 }
 
 .wire-case-intro__back-link {
-  color: var(--text-muted);
+  color: var(--accent-amber);
   font-weight: 700;
   letter-spacing: 0.08em;
   transition: color var(--transition-fast);
+  text-decoration: none;
 }
 
 .wire-case-intro__back-link:hover {
-  color: var(--accent-coral);
+  color: var(--accent-amber-light);
 }
 
 .wire-case-intro__dossier-switcher {
@@ -43,23 +43,30 @@
 .wire-case-intro__switcher-btn {
   padding: 4px 10px;
   background: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--text-secondary);
   font-weight: 700;
+  font-size: 11px;
+  text-decoration: none;
   transition: all var(--transition-fast);
+}
+
+.wire-case-intro__switcher-btn:hover {
+  border-color: var(--accent-amber);
+  color: var(--text-primary);
 }
 
 .wire-case-intro__switcher-btn.is-active {
   background: var(--accent-amber);
-  color: #0A0B0E;
-  border-color: #FFA438;
+  color: #090A0D;
+  border-color: var(--accent-gold);
 }
 
 /* Header */
 .wire-case-intro__header {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-1);
 }
 
 .wire-case-intro__meta-strip {
@@ -67,8 +74,9 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
+  font-size: 11px;
   font-family: var(--font-mono);
+  margin-bottom: 4px;
 }
 
 .wire-case-intro__loc {
@@ -80,10 +88,16 @@
   color: var(--text-muted);
 }
 
+.wire-case-intro__status-action-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .wire-case-intro__reset-btn {
   background: transparent;
   border: none;
-  color: var(--accent-coral);
+  color: var(--accent-crimson);
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
@@ -94,36 +108,36 @@
 }
 
 .wire-case-intro__reset-btn:hover {
-  background: rgba(255, 77, 109, 0.15);
+  background: var(--accent-crimson-subtle);
   text-decoration: underline;
 }
 
 .wire-case-intro__title {
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: #FFFFFF;
-  margin-top: 4px;
+  font-family: var(--font-masthead);
+  font-size: clamp(26px, 3.8vw, 38px);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.15;
 }
 
 .wire-case-intro__subtitle {
   font-family: var(--font-mono);
-  font-size: clamp(12px, 1.6vw, 15px);
+  font-size: 13px;
   color: var(--text-secondary);
-  letter-spacing: 0.05em;
-  max-width: 800px;
+  line-height: 1.5;
+  max-width: 820px;
 }
 
-/* Gauge Progression Bar */
+/* Evidentiary Chain Gauge */
 .wire-case-intro__gauge {
-  background: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--space-md) var(--space-lg);
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--space-2) var(--space-3);
 }
 
 .wire-case-intro__gauge-stat {
@@ -134,22 +148,17 @@
 
 .wire-case-intro__gauge-num {
   font-family: var(--font-masthead);
-  font-size: 2.4rem;
+  font-size: 28px;
   font-weight: 900;
-  color: var(--accent-coral);
+  color: var(--accent-amber);
   line-height: 1;
 }
 
 .wire-case-intro__gauge-label {
   font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-secondary);
-  text-transform: uppercase;
+  font-size: 11px;
   letter-spacing: 0.08em;
-}
-
-.wire-case-intro__gauge-label strong {
-  color: #FFFFFF;
+  color: var(--text-secondary);
 }
 
 .wire-case-intro__gauge-nodes {
@@ -165,37 +174,39 @@
   align-items: center;
   gap: 6px;
   padding: 4px 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-gauge-node__dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: currentColor;
+  background: var(--text-muted);
 }
 
-.wire-gauge-node.is-original {
-  border-color: rgba(255, 255, 255, 0.3);
-  color: var(--text-primary);
+.wire-gauge-node.is-original .wire-gauge-node__dot {
+  background: var(--stamp-green);
 }
 
-.wire-gauge-node.is-witness {
-  border-color: rgba(255, 77, 109, 0.4);
-  color: var(--accent-coral);
-}
-
-.wire-gauge-node.is-player.is-pending {
-  border: 1px dashed var(--accent-amber);
-  color: var(--accent-amber);
+.wire-gauge-node.is-witness .wire-gauge-node__dot {
+  background: var(--accent-amber);
 }
 
 .wire-gauge-node.is-player.is-complete {
-  background: rgba(6, 214, 160, 0.15);
-  border: 1px solid var(--stamp-green);
-  color: var(--stamp-green);
+  border-color: var(--stamp-green);
+  background: rgba(16, 185, 129, 0.1);
+}
+.wire-gauge-node.is-player.is-complete .wire-gauge-node__dot {
+  background: var(--stamp-green);
+}
+
+.wire-gauge-node.is-player.is-pending {
+  border-color: var(--accent-crimson);
+  border-style: dashed;
+}
+.wire-gauge-node.is-player.is-pending .wire-gauge-node__dot {
+  background: var(--accent-crimson);
 }
 
 .wire-gauge-arrow {
@@ -205,20 +216,19 @@
 
 /* Preview Card */
 .wire-case-intro__preview-card {
-  background: #000000;
-  border: 2px solid #242834;
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-lg);
 }
 
 .wire-case-intro__preview-header {
-  background: #11131A;
-  padding: 10px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  background: #11141B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -226,50 +236,49 @@
 .wire-case-intro__preview-tag {
   color: var(--accent-amber);
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 
 .wire-case-intro__preview-viewport {
   position: relative;
   width: 100%;
-  max-height: 480px;
-  overflow: hidden;
-  background-color: #07080B;
+  max-height: 520px;
+  background: #050608;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .wire-case-intro__preview-img {
-  width: 100%;
-  height: 440px;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 520px;
+  object-fit: contain;
   display: block;
-  transition: filter 0.3s ease;
 }
 
 .wire-case-intro__preview-overlay-stamp {
   position: absolute;
-  top: 20px;
-  right: 24px;
+  top: 16px;
+  right: 16px;
   pointer-events: none;
 }
 
 .wire-case-intro__preview-caption-panel {
+  padding: var(--space-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: var(--bg-surface);
-  padding: var(--space-lg);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
 }
 
 .wire-case-intro__caption-meta {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
 }
 
 .wire-case-intro__caption-author {
@@ -277,61 +286,53 @@
   font-weight: 700;
 }
 
+.wire-case-intro__caption-time {
+  color: var(--text-muted);
+}
+
 .wire-case-intro__caption-text {
   font-family: var(--font-masthead);
-  font-size: 1.35rem;
-  line-height: 1.4;
-  color: #FFFFFF;
+  font-size: 18px;
   font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin-bottom: 12px;
 }
 
 .wire-case-intro__caption-tools {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  margin-top: 6px;
-  font-size: 11px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .wire-case-intro__tools-label {
-  color: var(--text-muted);
   font-family: var(--font-mono);
-  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
 }
 
 .wire-tool-pill {
-  padding: 2px 8px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
 }
 
-/* Actions Section */
+/* Actions Row */
 .wire-case-intro__actions {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
-  text-align: center;
-  padding: var(--space-md) 0;
-}
-
-.wire-case-intro__actions-hint {
-  font-size: 12px;
-  color: var(--text-muted);
-  max-width: 600px;
+  gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
-  .wire-case-intro__gauge {
+  .wire-case-intro__actions {
     flex-direction: column;
-    align-items: flex-start;
-  }
-  .wire-case-intro__gauge-nodes {
-    flex-wrap: wrap;
+    align-items: stretch;
   }
 }

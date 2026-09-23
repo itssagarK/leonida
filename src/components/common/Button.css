@@ -2,11 +2,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: var(--space-1);
   font-family: var(--font-mono);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   border-radius: 0;
   cursor: pointer;
   position: relative;
@@ -15,6 +15,7 @@
   outline: none;
   user-select: none;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .wire-button:focus-visible {
@@ -25,70 +26,80 @@
 /* SIZES */
 .wire-button--sm {
   padding: 6px 14px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .wire-button--md {
-  padding: 12px 24px;
-  font-size: 13px;
+  padding: 10px 22px;
+  font-size: 12px;
 }
 
 .wire-button--lg {
-  padding: 16px 36px;
-  font-size: 15px;
+  padding: 14px 32px;
+  font-size: 14px;
   letter-spacing: 0.12em;
 }
 
 /* VARIANTS */
 .wire-button--primary {
-  background: var(--gradient-sunset);
-  color: #0A0B0E;
-  border: 1px solid #FFA438;
-  box-shadow: 0 4px 14px rgba(255, 77, 109, 0.35);
+  background: var(--accent-amber);
+  color: #090A0D;
+  border: 1px solid var(--accent-gold);
+  box-shadow: 0 2px 8px rgba(212, 154, 50, 0.25);
   font-weight: 800;
 }
 
 .wire-button--primary:hover:not(:disabled) {
-  filter: brightness(1.1);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 77, 109, 0.5);
+  background: var(--accent-amber-light);
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(212, 154, 50, 0.4);
 }
 
 .wire-button--primary:active:not(:disabled) {
   transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(212, 154, 50, 0.2);
 }
 
 .wire-button--secondary {
   background: var(--bg-surface);
   color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .wire-button--secondary:hover:not(:disabled) {
   background: var(--bg-elevated);
   border-color: var(--accent-amber);
   color: var(--accent-amber);
+  transform: translateY(-1px);
+}
+
+.wire-button--secondary:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .wire-button--evidence {
-  background: rgba(18, 20, 26, 0.95);
+  background: rgba(18, 20, 28, 0.95);
   color: var(--accent-amber);
   border: 1px dashed var(--accent-amber);
 }
 
 .wire-button--evidence:hover:not(:disabled) {
   background: var(--accent-amber);
-  color: #0A0B0E;
+  color: #090A0D;
   border-style: solid;
+  transform: translateY(-1px);
 }
 
 .wire-button--danger {
-  background: var(--stamp-red);
+  background: var(--accent-crimson);
   color: #FFFFFF;
+  border: 1px solid #FF5C77;
 }
 
 .wire-button--danger:hover:not(:disabled) {
   filter: brightness(1.15);
+  transform: translateY(-1px);
 }
 
 .wire-button:disabled {

@@ -4,8 +4,6 @@ import { getCaseById, getEffectiveChain, getAllCases } from '../data/cases';
 import { getCaseProgress, clearCaseProgress } from '../utils/storage';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
-import Divider from '../components/common/Divider';
-import RedactionBar from '../components/common/RedactionBar';
 import './CaseIntroScreen.css';
 
 export default function CaseIntroScreen() {
@@ -24,7 +22,6 @@ export default function CaseIntroScreen() {
     return () => window.removeEventListener('wire_progress_updated', handleProgressChange);
   }, []);
 
-  // The latest version currently at the head of the chain
   const latestLink = fullChain[fullChain.length - 1];
   const witnessCount = caseObj.chain.length;
   const hasPlayerEdited = Boolean(playerProgress && playerProgress.playerLink);
@@ -37,14 +34,14 @@ export default function CaseIntroScreen() {
   };
 
   return (
-    <div className="wire-case-intro">
+    <div className="wire-case-intro wire-page-container">
       {/* Top Dossier Breadcrumb Navigation */}
       <div className="wire-case-intro__nav">
-        <Link to="/" className="wire-case-intro__back-link">
-          &larr; RETURN TO WIRE ARCHIVE
+        <Link to="/cases" className="wire-case-intro__back-link">
+          ← BACK TO CASE FILES
         </Link>
         <div className="wire-case-intro__dossier-switcher">
-          <span className="wire-case-intro__switcher-label">DOSSIER FILE:</span>
+          <span className="wire-case-intro__switcher-label">DOSSIER:</span>
           {allCases.map((c) => (
             <Link
               key={c.id}
@@ -63,10 +60,10 @@ export default function CaseIntroScreen() {
       <header className="wire-case-intro__header">
         <div className="wire-case-intro__meta-strip">
           <Badge variant="wire">{caseObj.caseNumber}</Badge>
-          <span className="wire-case-intro__loc">{caseObj.location}</span>
+          <span className="wire-case-intro__loc">SCENE: {caseObj.location}</span>
           <span className="wire-case-intro__timestamp">{caseObj.dateLogged}</span>
           {hasPlayerEdited ? (
-            <>
+            <div className="wire-case-intro__status-action-row">
               <Badge variant="verified" stamp rotate={-2}>
                 PLAYER SUBMISSION ON FILE
               </Badge>
@@ -75,11 +72,11 @@ export default function CaseIntroScreen() {
                 className="wire-case-intro__reset-btn"
                 title="Reset this case to initial witness state"
               >
-                [&#8634; RESET THIS CASE]
+                [RESET THIS CASE]
               </button>
-            </>
+            </div>
           ) : (
-            <Badge variant="developing" stamp rotate={-3}>
+            <Badge variant="disputed" stamp rotate={-2}>
               EVIDENCE DRIFT ACTIVE
             </Badge>
           )}
@@ -87,8 +84,6 @@ export default function CaseIntroScreen() {
 
         <h1 className="wire-case-intro__title">{caseObj.title}</h1>
         <p className="wire-case-intro__subtitle">{caseObj.subtitle}</p>
-
-        <Divider variant="dashed" spacing="sm" />
       </header>
 
       {/* Evidentiary Chain Progression Gauge */}
@@ -96,29 +91,29 @@ export default function CaseIntroScreen() {
         <div className="wire-case-intro__gauge-stat">
           <span className="wire-case-intro__gauge-num">{witnessCount}</span>
           <div className="wire-case-intro__gauge-label">
-            <strong>WITNESSES</strong> HAVE ALREADY SHAPED THIS STORY
+            WITNESS EDITS LOGGED IN CUSTODY CHAIN
           </div>
         </div>
 
         <div className="wire-case-intro__gauge-nodes">
           <div className="wire-gauge-node is-original">
             <span className="wire-gauge-node__dot" />
-            <span className="wire-gauge-node__text">Raw Negative</span>
+            <span className="wire-gauge-node__text">Raw Record</span>
           </div>
           {caseObj.chain.map((link, idx) => (
             <React.Fragment key={link.id}>
-              <span className="wire-gauge-arrow">&rarr;</span>
+              <span className="wire-gauge-arrow">→</span>
               <div className="wire-gauge-node is-witness">
                 <span className="wire-gauge-node__dot" />
                 <span className="wire-gauge-node__text">Witness #{idx + 1}</span>
               </div>
             </React.Fragment>
           ))}
-          <span className="wire-gauge-arrow">&rarr;</span>
+          <span className="wire-gauge-arrow">→</span>
           <div className={`wire-gauge-node is-player ${hasPlayerEdited ? 'is-complete' : 'is-pending'}`}>
             <span className="wire-gauge-node__dot" />
             <span className="wire-gauge-node__text">
-              {hasPlayerEdited ? 'Your Filed Edit' : 'Your Turn'}
+              {hasPlayerEdited ? 'Your Filed Edit' : 'Your Link'}
             </span>
           </div>
         </div>
@@ -128,9 +123,9 @@ export default function CaseIntroScreen() {
       <div className="wire-case-intro__preview-card">
         <div className="wire-case-intro__preview-header">
           <span className="wire-case-intro__preview-tag">
-            [CURRENT WIRE STATE // CHAIN-HEAD VERSION]
+            CURRENT CHAIN-HEAD // EVIDENCE BUFFER
           </span>
-          <Badge variant="fabrication" size="sm">
+          <Badge variant={latestLink.isPlayerSubmission ? 'verified' : 'disputed'} size="sm">
             {latestLink.isPlayerSubmission ? 'PLAYER REPORT' : `WITNESS #${latestLink.step}`}
           </Badge>
         </div>
@@ -152,8 +147,8 @@ export default function CaseIntroScreen() {
           )}
 
           <div className="wire-case-intro__preview-overlay-stamp">
-            <Badge variant="disputed" stamp rotate={4} size="lg">
-              HOT WIRE HEAD
+            <Badge variant="wire" stamp rotate={3} size="md">
+              LATEST CLAIM
             </Badge>
           </div>
         </div>
@@ -161,15 +156,15 @@ export default function CaseIntroScreen() {
         <div className="wire-case-intro__preview-caption-panel">
           <div className="wire-case-intro__caption-meta">
             <span className="wire-case-intro__caption-author">
-              {latestLink.author} ({latestLink.handle}) &bull; {latestLink.role}
+              {latestLink.author} ({latestLink.handle}) • {latestLink.role}
             </span>
             <span className="wire-case-intro__caption-time">{latestLink.timestamp}</span>
           </div>
           <p className="wire-case-intro__caption-text">
-            &ldquo;{latestLink.caption}&rdquo;
+            “{latestLink.caption}”
           </p>
           <div className="wire-case-intro__caption-tools">
-            <span className="wire-case-intro__tools-label">APPLIED MANIPULATIONS:</span>
+            <span className="wire-case-intro__tools-label">APPLIED MUTATIONS:</span>
             {latestLink.toolsUsed.map((tool, idx) => (
               <span key={idx} className="wire-tool-pill">
                 {tool}
@@ -185,15 +180,19 @@ export default function CaseIntroScreen() {
           variant="primary"
           size="lg"
           onClick={() => navigate(`/case/${caseObj.id}/custody`)}
-          icon={<span>&gt;&gt;</span>}
+          icon={<span>→</span>}
         >
-          OPEN CUSTODY LOG &bull; INSPECT DIFF SLIDER
+          OPEN CUSTODY LOG &amp; SCRUB SLIDER
         </Button>
 
-        <p className="wire-case-intro__actions-hint">
-          Inspect how each witness mutated the claim before filing your own version in the{' '}
-          <RedactionBar revealsOnHover classified>React Image Editor</RedactionBar>.
-        </p>
+        <Button
+          variant="secondary"
+          size="lg"
+          onClick={() => navigate(`/case/${caseObj.id}/edit`)}
+          icon={<span>✎</span>}
+        >
+          ADD YOUR LINK (EDITOR)
+        </Button>
       </div>
     </div>
   );

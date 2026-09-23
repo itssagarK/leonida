@@ -1,0 +1,180 @@
+.wire-navbar {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  backdrop-filter: blur(8px);
+}
+
+.wire-navbar__inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+/* Brand */
+.wire-navbar__brand-group {
+  display: flex;
+  align-items: center;
+}
+
+.wire-navbar__brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1.1;
+}
+
+.wire-navbar__brand-name {
+  font-family: var(--font-masthead);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.wire-navbar__brand:hover .wire-navbar__brand-name {
+  color: var(--accent-amber);
+}
+
+.wire-navbar__brand-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+}
+
+/* Navigation Links */
+.wire-navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.wire-navbar__link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: var(--space-1) 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.wire-navbar__link:hover {
+  color: var(--text-primary);
+}
+
+.wire-navbar__link--active {
+  color: var(--accent-amber);
+}
+
+.wire-navbar__link--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--accent-amber);
+}
+
+/* Status / Active Case Group */
+.wire-navbar__status-group {
+  display: flex;
+  align-items: center;
+}
+
+.wire-navbar__system-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.wire-navbar__system-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
+.wire-navbar__case-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: var(--accent-amber-subtle);
+  border: 1px solid var(--accent-amber-border);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  transition: all var(--transition-fast);
+}
+
+.wire-navbar__case-badge:hover {
+  background-color: rgba(212, 154, 50, 0.2);
+  border-color: var(--accent-amber);
+}
+
+.wire-navbar__case-label {
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.wire-navbar__case-val {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .wire-navbar__inner {
+    height: 50px;
+    padding: 0 var(--space-2);
+  }
+
+  .wire-navbar__brand-name {
+    font-size: 15px;
+  }
+
+  .wire-navbar__brand-sub {
+    display: none;
+  }
+
+  .wire-navbar__nav {
+    gap: var(--space-2);
+  }
+
+  .wire-navbar__link {
+    font-size: 11px;
+  }
+
+  .wire-navbar__system-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .wire-navbar__nav .wire-navbar__link:not(:first-child) {
+    display: none;
+  }
+}

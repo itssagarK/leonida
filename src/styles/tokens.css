@@ -1,54 +1,71 @@
-/* THE LEONIDA WIRE — DESIGN SYSTEM TOKENS */
+/* THE LEONIDA WIRE — REFINED DESIGN SYSTEM TOKENS */
 
 :root {
-  /* Color Palette: Wire-Room Charcoal & Hot Leonida Sunset */
-  --bg-primary: #0A0B0E;
-  --bg-surface: #12141A;
-  --bg-elevated: #191C24;
-  --bg-card: #15171F;
+  /* Color Palette: Forensic Dark & Muted Amber Wire-Room */
+  --bg-base: #090A0D;
+  --bg-primary: #090A0D;
+  --bg-surface: #0F1117;
+  --bg-elevated: #151821;
+  --bg-card: #12141C;
+  --bg-card-hover: #171A24;
+  --bg-panel: #0D0F14;
   --bg-paper: #F3ECE1;
-  --bg-paper-dark: #E2D7C5;
 
-  /* Text & Ink */
-  --text-primary: #F4F5F7;
-  --text-secondary: #B4BAC7;
-  --text-muted: #72798A;
-  --text-dark: #111215;
-  --text-paper-muted: #5A544A;
+  /* Typography Colors: Warm Ivory Primary & Muted Tones */
+  --text-primary: #F4EFE6;
+  --text-secondary: #B2B7C4;
+  --text-muted: #6C7280;
+  --text-dark: #0D0E12;
+  --text-gold: #D49A32;
 
-  /* Hot Sunset Accent Palette */
-  --accent-magenta: #FF2E63;
-  --accent-coral: #FF4D6D;
-  --accent-sunset: #FF7556;
-  --accent-amber: #FFB84D;
-  --accent-gold: #FFC048;
-  --gradient-sunset: linear-gradient(135deg, #FF4D6D 0%, #FF7556 50%, #FFB84D 100%);
-  --gradient-sunset-hot: linear-gradient(90deg, #FF2E63 0%, #FF4D6D 50%, #FFA438 100%);
-  --gradient-wire-dark: linear-gradient(180deg, #161820 0%, #0D0E13 100%);
-  --gradient-scanline: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  /* Accent: Muted Amber / Gold (Evidence, Metadata, Primary Actions) */
+  --accent-amber: #D49A32;
+  --accent-gold: #E5A93C;
+  --accent-amber-light: #F7C668;
+  --accent-amber-subtle: rgba(212, 154, 50, 0.12);
+  --accent-amber-border: rgba(212, 154, 50, 0.35);
 
-  /* Status Stamp Tints */
-  --stamp-red: #E63946;
-  --stamp-amber: #F77F00;
-  --stamp-yellow: #FFD166;
-  --stamp-green: #06D6A0;
-  --stamp-blue: #118AB2;
+  /* Controlled Crimson / Magenta (Warnings, Manipulation, Critical State) */
+  --accent-crimson: #E63956;
+  --accent-coral: #E63956;
+  --accent-magenta: #D62846;
+  --accent-crimson-subtle: rgba(230, 57, 86, 0.12);
+  --accent-crimson-border: rgba(230, 57, 86, 0.35);
 
-  /* Redaction & Evidence Motifs */
-  --redaction-black: #000000;
-  --border-evidence: 1px dashed rgba(255, 184, 77, 0.45);
-  --border-evidence-strong: 2px dashed #FF7556;
-  --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
-  --border-medium: 1px solid rgba(255, 255, 255, 0.16);
-  --border-bold: 2px solid #FF4D6D;
-  --border-rule: 3px solid #2B2F3D;
+  /* Subtle Editorial Cyan / Blue (Technical & Diagnostic Info) */
+  --accent-cyan: #38B2AC;
+  --accent-cyan-subtle: rgba(56, 178, 172, 0.12);
+  --accent-cyan-border: rgba(56, 178, 172, 0.3);
+
+  /* Status Stamps */
+  --stamp-green: #10B981;
+  --stamp-amber: #D49A32;
+  --stamp-legend: #D946EF;
+  --stamp-red: #E63956;
+
+  /* Borders & Rules */
+  --border-subtle: 1px solid rgba(255, 255, 255, 0.07);
+  --border-medium: 1px solid rgba(255, 255, 255, 0.12);
+  --border-evidence: 1px dashed rgba(212, 154, 50, 0.35);
+  --border-evidence-strong: 1px solid rgba(212, 154, 50, 0.6);
+  --border-alert: 1px solid rgba(230, 57, 86, 0.5);
 
   /* Typography */
-  --font-masthead: 'Zilla Slab', Georgia, 'Times New Roman', serif;
-  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  --font-masthead: 'Zilla Slab', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Spacing Scale */
+  /* 8px Spacing Scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+
+  /* Legacy Aliases */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -57,15 +74,17 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
 
-  /* Shadows & Glow */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.7);
-  --glow-sunset: 0 0 25px rgba(255, 77, 109, 0.35);
-  --glow-amber: 0 0 20px rgba(255, 184, 77, 0.3);
+  /* Shadows & Depth */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.85);
 
   /* Transitions */
   --transition-fast: 0.15s ease-out;
-  --transition-normal: 0.25s ease-in-out;
+  --transition-normal: 0.22s ease-in-out;
+
+  /* Layout Container */
+  --container-max-width: 1320px;
 }
 
 *, *::before, *::after {
@@ -75,10 +94,10 @@
 }
 
 html, body {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-base);
   color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -86,13 +105,20 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Base Headings & Links */
+/* Page Container */
+.wire-page-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3) var(--space-8);
+  width: 100%;
+}
+
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-masthead);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   font-weight: 700;
   color: var(--text-primary);
-  text-transform: uppercase;
 }
 
 a {
@@ -102,10 +128,10 @@ a {
 }
 
 a:hover {
-  color: var(--accent-coral);
+  color: var(--accent-amber-light);
 }
 
-/* Universal Accessible Focus Outlines & Form Resets */
+/* Universal Accessible Focus */
 :focus-visible {
   outline: 2px solid var(--accent-amber);
   outline-offset: 2px;
@@ -117,25 +143,34 @@ button, input, textarea, select {
   color: inherit;
 }
 
-/* Custom Scrollbar for Teletype Feel */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: #252834;
+  background: #1C202B;
   border-radius: 0;
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-coral);
+  background: var(--accent-amber);
 }
 
 /* Selection Color */
 ::selection {
-  background: var(--accent-coral);
+  background: rgba(212, 154, 50, 0.35);
   color: #FFFFFF;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

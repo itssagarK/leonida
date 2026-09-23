@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import GrainOverlay from './components/common/GrainOverlay';
 import TickerHeader from './components/common/TickerHeader';
+import Navbar from './components/common/Navbar';
 import LandingScreen from './screens/LandingScreen';
 import CaseListScreen from './screens/CaseListScreen';
 import CaseIntroScreen from './screens/CaseIntroScreen';
@@ -18,6 +19,9 @@ export default function App() {
 
       {/* Global wire-service ticker across all despatches */}
       <TickerHeader />
+
+      {/* Persistent classified desk navigation */}
+      <Navbar />
 
       <main className="wire-app-content">
         <Routes>

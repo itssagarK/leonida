@@ -82,7 +82,7 @@ export default function CustodyLogScreen() {
   };
 
   return (
-    <div className="wire-custody">
+    <div className="wire-custody wire-page-container">
       {/* Top Ledger Navigation */}
       <div className="wire-custody__nav">
         <Link to={`/case/${caseObj.id}`} className="wire-custody__back-link">

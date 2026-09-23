@@ -1,13 +1,13 @@
 .wire-ticker {
   display: flex;
   align-items: center;
-  height: 38px;
+  height: 36px;
   background-color: #07080B;
-  border-bottom: 1px solid rgba(255, 77, 109, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   user-select: none;
   position: relative;
   z-index: 100;
@@ -17,23 +17,25 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--gradient-sunset-hot);
-  color: #0A0B0E;
+  background: var(--bg-surface);
+  color: var(--accent-amber);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0 16px;
   height: 100%;
   font-weight: 800;
   white-space: nowrap;
   flex-shrink: 0;
   z-index: 2;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
 }
 
 .wire-ticker__rec-dot {
-  width: 7px;
-  height: 7px;
-  background-color: #0A0B0E;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-crimson);
   border-radius: 50%;
-  animation: ticker-blink 1s infinite alternate ease-in-out;
+  box-shadow: 0 0 6px var(--accent-crimson);
+  animation: ticker-blink 1.2s infinite alternate ease-in-out;
 }
 
 .wire-ticker__track-wrapper {
@@ -47,7 +49,7 @@
 .wire-ticker__track {
   display: inline-flex;
   white-space: nowrap;
-  animation: ticker-slide 32s linear infinite;
+  animation: ticker-slide 34s linear infinite;
 }
 
 .wire-ticker__track:hover {
@@ -63,7 +65,7 @@
 }
 
 .wire-ticker__bullet {
-  color: var(--accent-coral);
+  color: var(--accent-amber);
   font-size: 8px;
 }
 
@@ -82,7 +84,7 @@
     transform: scale(1.1);
   }
   100% {
-    opacity: 0.2;
+    opacity: 0.3;
     transform: scale(0.8);
   }
 }

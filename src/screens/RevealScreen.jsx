@@ -6,7 +6,6 @@ import { computeDrift } from '../lib/driftEngine';
 import { getAbsoluteImageUrl } from '../utils/imageHelpers';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
-import Divider from '../components/common/Divider';
 import './RevealScreen.css';
 
 export default function RevealScreen() {
@@ -82,29 +81,29 @@ export default function RevealScreen() {
       }
 
       // Background
-      ctx.fillStyle = '#0A0B0E';
+      ctx.fillStyle = '#090A0D';
       ctx.fillRect(0, 0, width, height);
 
       // Border rule
-      ctx.strokeStyle = '#2B2F3D';
-      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#D49A32';
+      ctx.lineWidth = 3;
       ctx.strokeRect(16, 16, width - 32, height - 32);
 
       // Top banner
-      ctx.fillStyle = '#12141C';
+      ctx.fillStyle = '#11141B';
       ctx.fillRect(16, 16, width - 32, 70);
 
-      ctx.fillStyle = '#FF4D6D';
-      ctx.font = 'bold 24px Georgia, serif';
-      ctx.fillText('THE LEONIDA WIRE // EVIDENTIARY DOSSIER', 36, 56);
+      ctx.fillStyle = '#F4EFE6';
+      ctx.font = 'bold 22px Georgia, serif';
+      ctx.fillText('THE LEONIDA WIRE // OFFICIAL EVIDENTIARY DOSSIER', 36, 56);
 
-      ctx.fillStyle = '#FFB84D';
-      ctx.font = 'bold 13px "Courier New", monospace';
+      ctx.fillStyle = '#D49A32';
+      ctx.font = 'bold 12px "Courier New", monospace';
       ctx.fillText(`${caseObj.caseNumber} • ${caseObj.location}`, width - 420, 48);
 
-      ctx.fillStyle = '#8E95A5';
+      ctx.fillStyle = '#A0A7B5';
       ctx.font = '11px "Courier New", monospace';
-      ctx.fillText(`STATUS: ${driftResult.status.label} (${driftResult.score}% DRIFT)`, width - 420, 68);
+      ctx.fillText(`VERDICT: ${driftResult.status.label} (${driftResult.score}% DRIFT)`, width - 420, 68);
 
       // Helper to load image
       const loadImage = (src) => {
@@ -136,11 +135,11 @@ export default function RevealScreen() {
       const yImg = 130;
 
       // Left Image Box
-      ctx.fillStyle = '#161922';
+      ctx.fillStyle = '#11141B';
       ctx.fillRect(36, yImg - 30, colW, 30);
-      ctx.fillStyle = '#06D6A0';
+      ctx.fillStyle = '#10B981';
       ctx.font = 'bold 12px "Courier New", monospace';
-      ctx.fillText('ORIGINAL BASELINE // RAW NEGATIVE', 46, yImg - 10);
+      ctx.fillText('ORIGINAL BASELINE // THE RAW TRUTH', 46, yImg - 10);
 
       ctx.drawImage(origImg, 36, yImg, colW, imgH);
       ctx.strokeStyle = 'rgba(255,255,255,0.15)';
@@ -148,57 +147,57 @@ export default function RevealScreen() {
       ctx.strokeRect(36, yImg, colW, imgH);
 
       // Left Caption
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'italic 16px Georgia, serif';
-      wrapText(ctx, `"${caseObj.originalCaption}"`, 36, yImg + imgH + 30, colW, 22);
+      ctx.fillStyle = '#F4EFE6';
+      ctx.font = 'italic 15px Georgia, serif';
+      wrapText(ctx, `"${caseObj.originalCaption}"`, 36, yImg + imgH + 28, colW, 22);
 
-      ctx.fillStyle = '#8E95A5';
+      ctx.fillStyle = '#A0A7B5';
       ctx.font = '11px "Courier New", monospace';
       ctx.fillText(`SOURCE: ${caseObj.originalPhotographer}`, 36, yImg + imgH + 110);
 
       // Draw Right Column: Final Filed Report
       const xRight = 624;
-      ctx.fillStyle = '#161922';
+      ctx.fillStyle = '#11141B';
       ctx.fillRect(xRight, yImg - 30, colW, 30);
-      ctx.fillStyle = '#FF4D6D';
+      ctx.fillStyle = '#E63956';
       ctx.font = 'bold 12px "Courier New", monospace';
-      ctx.fillText(`FINAL REPORT // ${finalStep.author}`, xRight + 10, yImg - 10);
+      ctx.fillText(`FINAL TRANSMISSION // WHAT THE PUBLIC SAW`, xRight + 10, yImg - 10);
 
       ctx.drawImage(finalImg, xRight, yImg, colW, imgH);
-      ctx.strokeStyle = 'rgba(255, 77, 109, 0.4)';
+      ctx.strokeStyle = 'rgba(230, 57, 86, 0.4)';
       ctx.lineWidth = 2;
       ctx.strokeRect(xRight, yImg, colW, imgH);
 
       // Right Caption
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'italic 16px Georgia, serif';
-      wrapText(ctx, `"${finalStep.caption}"`, xRight, yImg + imgH + 30, colW, 22);
+      ctx.fillStyle = '#F4EFE6';
+      ctx.font = 'italic 15px Georgia, serif';
+      wrapText(ctx, `"${finalStep.caption}"`, xRight, yImg + imgH + 28, colW, 22);
 
-      ctx.fillStyle = '#FFB84D';
+      ctx.fillStyle = '#D49A32';
       ctx.font = 'bold 11px "Courier New", monospace';
       ctx.fillText(`BYLINE: ${finalStep.author} (Link #${fullChain.length})`, xRight, yImg + imgH + 110);
 
       // Big Stamped Verdict in Center Bottom
-      ctx.fillStyle = '#0D0E14';
+      ctx.fillStyle = '#090A0D';
       ctx.fillRect(width / 2 - 180, height - 120, 360, 60);
-      ctx.strokeStyle = driftResult.status.variant === 'fabrication' ? '#E63946' : '#FFB84D';
-      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#D49A32';
+      ctx.lineWidth = 2;
       ctx.strokeRect(width / 2 - 180, height - 120, 360, 60);
 
-      ctx.fillStyle = driftResult.status.variant === 'fabrication' ? '#E63946' : '#FFB84D';
-      ctx.font = 'bold 22px Georgia, serif';
+      ctx.fillStyle = '#D49A32';
+      ctx.font = 'bold 20px Georgia, serif';
       ctx.textAlign = 'center';
       ctx.fillText(driftResult.status.label, width / 2, height - 88);
 
       ctx.font = 'bold 11px "Courier New", monospace';
-      ctx.fillStyle = '#FFFFFF';
+      ctx.fillStyle = '#F4EFE6';
       ctx.fillText(`COMPUTED TRUTH DRIFT: ${driftResult.score}%`, width / 2, height - 70);
 
       // Footer
       ctx.textAlign = 'left';
-      ctx.fillStyle = '#555C6E';
+      ctx.fillStyle = '#6C7280';
       ctx.font = '10px "Courier New", monospace';
-      ctx.fillText('LEONIDA WIRE INVESTIGATIVE BUREAU // PRODUCED WITH @UNLAYER/REACT-IMAGE-EDITOR', 36, height - 26);
+      ctx.fillText('LEONIDA WIRE INVESTIGATIVE BUREAU // POWERED BY @UNLAYER/REACT-IMAGE-EDITOR', 36, height - 26);
 
       // Trigger download
       const dataUrl = canvas.toDataURL('image/png');
@@ -220,11 +219,11 @@ export default function RevealScreen() {
   };
 
   return (
-    <div className="wire-reveal">
+    <div className="wire-reveal wire-page-container">
       {/* Top Nav */}
       <div className="wire-reveal__nav">
         <Link to="/cases" className="wire-reveal__back-link">
-          &larr; RETURN TO DOSSIER ARCHIVE
+          ← RETURN TO CASE FILES
         </Link>
         <div className="wire-reveal__case-stat">
           <span>EXPOSED CASE: <strong>{caseObj.caseNumber}</strong></span>
@@ -239,45 +238,160 @@ export default function RevealScreen() {
       <header className="wire-reveal__header">
         <div className="wire-reveal__badge-row">
           <Badge variant="wire">LEONIDA WIRE INVESTIGATION EXPOSED</Badge>
-          <span className="wire-reveal__archive-ref">CERTIFIED AUDIT #EX-2026</span>
+          <span className="wire-reveal__archive-ref">AUDIT CERTIFICATE #EX-2026</span>
         </div>
 
         <h1 className="wire-reveal__title">
-          THE COMPLETE CHAIN OF DISTORTION
+          THE WIRE IS EXPOSED
         </h1>
 
         <p className="wire-reveal__desc">
-          Follow the descent from the raw baseline negative to the final published story.
-          Witness how each alteration, filter, and speculative caption pulled the truth
-          further from reality.
+          Compare the unvarnished raw truth against what the public was led to believe. 
+          Inspect the full chain of distortion, review what changed, and export your 
+          certified evidentiary dossier.
         </p>
-
-        <Divider variant="evidence" spacing="md" />
 
         {!hasPlayerEdited && (
           <div className="wire-reveal__lock-banner">
             <div className="wire-reveal__lock-tag">
-              [!] CASE EXPOSURE INCOMPLETE &bull; AWAITING YOUR REPORT
+              [!] CASE EXPOSURE INCOMPLETE • AWAITING YOUR REPORT
             </div>
             <p>
-              You are viewing an unsealed witness file. The React Image Editor is the essential mechanism
-              for advancing this story. To officially seal the chain and download your certified
-              dossier, you must forge your link in the editor first.
+              You are viewing an unsealed witness file. File your link in the React Image Editor 
+              to officially seal the wire and enable full evidentiary certification.
             </p>
             <Button
               variant="primary"
-              size="md"
+              size="sm"
               onClick={() => navigate(`/case/${caseObj.id}/edit`)}
-              icon={<span>&gt;&gt;</span>}
+              icon={<span>→</span>}
             >
-              LAUNCH REACT IMAGE EDITOR &bull; ADD YOUR LINK
+              LAUNCH IMAGE EDITOR • ADD YOUR LINK
             </Button>
           </div>
         )}
       </header>
 
+      {/* SIDE-BY-SIDE: THE RAW TRUTH vs. WHAT THE PUBLIC SAW */}
+      <section className="wire-reveal__comparison-section" aria-label="Split Photographic Comparison">
+        <div className="wire-reveal__comp-header">
+          <h2 className="wire-reveal__comp-title">FORENSIC COMPARISON</h2>
+          <Badge
+            variant={driftResult.status.variant}
+            stamp
+            rotate={-2}
+            size="md"
+          >
+            {driftResult.status.label}
+          </Badge>
+        </div>
+
+        <div className="wire-reveal__comp-grid">
+          {/* Left: Original */}
+          <div className="wire-comp-card wire-comp-card--original">
+            <div className="wire-comp-card__tag">
+              <span className="wire-comp-dot wire-comp-dot--green" />
+              <span>THE RAW TRUTH</span>
+            </div>
+
+            <div className="wire-comp-card__img-wrap">
+              <img
+                src={caseObj.originalImage}
+                alt="The Raw Truth"
+                className="wire-comp-card__img"
+              />
+              <div className="wire-comp-card__stamp-pos">
+                <Badge variant="verified" stamp rotate={-3} size="sm">
+                  ORIGINAL
+                </Badge>
+              </div>
+            </div>
+
+            <div className="wire-comp-card__body">
+              <span className="wire-comp-card__byline">SOURCE: {rawStep.author}</span>
+              <p className="wire-comp-card__caption">&ldquo;{rawStep.caption}&rdquo;</p>
+              <div className="wire-comp-card__verdict-strip">
+                <span>VERIFIED FACTUAL RECORD</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Center Drift Meter Indicator */}
+          <div className="wire-comp-divider">
+            <div className="wire-comp-drift-circle">
+              <span className="wire-comp-drift-val">{driftResult.score}%</span>
+              <span className="wire-comp-drift-lbl">DRIFT</span>
+            </div>
+          </div>
+
+          {/* Right: Final */}
+          <div className="wire-comp-card wire-comp-card--final">
+            <div className="wire-comp-card__tag">
+              <span className="wire-comp-dot wire-comp-dot--red" />
+              <span>WHAT THE PUBLIC SAW</span>
+            </div>
+
+            <div className="wire-comp-card__img-wrap">
+              <img
+                src={finalStep.imageDataUrl || caseObj.originalImage}
+                alt="What the public saw"
+                className="wire-comp-card__img"
+                style={{ filter: finalStep.imageDataUrl ? 'none' : (finalStep.filterStyle || 'none') }}
+              />
+              <div className="wire-comp-card__stamp-pos">
+                <Badge variant="fabrication" stamp rotate={3} size="sm">
+                  FINAL MUTATION
+                </Badge>
+              </div>
+            </div>
+
+            <div className="wire-comp-card__body">
+              <span className="wire-comp-card__byline">BYLINE: {finalStep.author}</span>
+              <p className="wire-comp-card__caption">&ldquo;{finalStep.caption}&rdquo;</p>
+              <div className="wire-comp-card__verdict-strip wire-comp-card__verdict-strip--alert">
+                <span>RATING: {driftResult.status.label}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* "WHAT CHANGED?" MUTATION TAGS */}
+      <section className="wire-reveal__changes-section" aria-label="What Changed">
+        <div className="wire-changes-card">
+          <div className="wire-changes-card__header">
+            <h3>WHAT CHANGED?</h3>
+            <span className="wire-changes-card__sub">[CUMULATIVE MUTATION AUDIT]</span>
+          </div>
+
+          <div className="wire-changes-card__body">
+            <div className="wire-changes-row">
+              <span className="wire-changes-label">PHOTOGRAPHIC MANIPULATION:</span>
+              <div className="wire-changes-tags">
+                <span className="wire-mutation-tag">Color Grading Shift</span>
+                <span className="wire-mutation-tag">Contrast &amp; Shadow Distortion</span>
+                <span className="wire-mutation-tag">Focal Crop &amp; Re-framing</span>
+                {finalStep.isPlayer && (
+                  <span className="wire-mutation-tag wire-mutation-tag--highlight">
+                    Player React Image Editor Layer
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="wire-changes-row">
+              <span className="wire-changes-label">NARRATIVE DIVERGENCE:</span>
+              <p className="wire-changes-narrative">
+                From a factual incident log ({caseObj.baselineTags.join(', ')}) into a sensationalized 
+                public dispatch featuring {driftResult.mutatedWords.slice(0, 4).join(', ') || 'exaggerated claims'}.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CHRONOLOGICAL UNROLLED CHAIN SEQUENCE */}
-      <section className="wire-reveal__sequence">
+      <section className="wire-reveal__sequence" aria-label="Full Custody Chronicle">
         <div className="wire-reveal__sequence-header">
           <h2>STEP-BY-STEP CUSTODY CHRONICLE</h2>
           <span className="wire-reveal__seq-count">[{chainSequence.length} RECORDED LINKS]</span>
@@ -356,97 +470,14 @@ export default function RevealScreen() {
         </div>
       </section>
 
-      {/* SIDE-BY-SIDE: ORIGINAL TRUTH vs. FINAL WIRE */}
-      <section className="wire-reveal__comparison-section">
-        <div className="wire-reveal__comp-header">
-          <h2>FORENSIC COMPARISON: RAW TRUTH vs. PUBLIC WIRE</h2>
-          <Badge
-            variant={driftResult.status.variant}
-            stamp
-            rotate={-2}
-            size="md"
-          >
-            {driftResult.status.label}
-          </Badge>
-        </div>
-
-        <div className="wire-reveal__comp-grid">
-          {/* Left: Original */}
-          <div className="wire-comp-card wire-comp-card--original">
-            <div className="wire-comp-card__tag">
-              <span className="wire-comp-dot wire-comp-dot--green" />
-              <span>THE RAW TRUTH (NEGATIVE)</span>
-            </div>
-
-            <div className="wire-comp-card__img-wrap">
-              <img
-                src={caseObj.originalImage}
-                alt="Original photo"
-                className="wire-comp-card__img"
-              />
-              <div className="wire-comp-card__stamp-pos">
-                <Badge variant="verified" stamp rotate={-3} size="sm">
-                  ORIGINAL
-                </Badge>
-              </div>
-            </div>
-
-            <div className="wire-comp-card__body">
-              <span className="wire-comp-card__byline">{rawStep.author}</span>
-              <p className="wire-comp-card__caption">&ldquo;{rawStep.caption}&rdquo;</p>
-              <div className="wire-comp-card__verdict-strip">
-                <span>VERIFIABLE FACTUAL DATA</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Center Drift Meter Indicator */}
-          <div className="wire-comp-divider">
-            <div className="wire-comp-drift-circle">
-              <span className="wire-comp-drift-val">{driftResult.score}%</span>
-              <span className="wire-comp-drift-lbl">DRIFT</span>
-            </div>
-          </div>
-
-          {/* Right: Final */}
-          <div className="wire-comp-card wire-comp-card--final">
-            <div className="wire-comp-card__tag">
-              <span className="wire-comp-dot wire-comp-dot--red" />
-              <span>WHAT THE PUBLIC BELIEVED</span>
-            </div>
-
-            <div className="wire-comp-card__img-wrap">
-              <img
-                src={finalStep.imageDataUrl || caseObj.originalImage}
-                alt="Final mutated image"
-                className="wire-comp-card__img"
-              />
-              <div className="wire-comp-card__stamp-pos">
-                <Badge variant="fabrication" stamp rotate={4} size="sm">
-                  FINAL MUTATION
-                </Badge>
-              </div>
-            </div>
-
-            <div className="wire-comp-card__body">
-              <span className="wire-comp-card__byline">{finalStep.author} (You)</span>
-              <p className="wire-comp-card__caption">&ldquo;{finalStep.caption}&rdquo;</p>
-              <div className="wire-comp-card__verdict-strip wire-comp-card__verdict-strip--alert">
-                <span>RATING: {driftResult.status.label}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* DOWNLOAD DOSSIER ACTION & REPLAY BUTTONS */}
-      <section className="wire-reveal__actions-section">
+      <section className="wire-reveal__actions-section" aria-label="Dossier Export and Actions">
         <div className="wire-reveal__download-card">
           <div className="wire-reveal__download-info">
             <h3>DOWNLOAD YOUR WIRE DOSSIER</h3>
             <p>
-              Export a composite evidence sheet containing the side-by-side photographic
-              comparison, captions, and the certified drift verdict rendered into a single
+              Export a composite evidence sheet containing the side-by-side photographic 
+              comparison, captions, and the certified drift verdict rendered into a single 
               shareable image via the browser Canvas engine.
             </p>
           </div>
@@ -456,7 +487,7 @@ export default function RevealScreen() {
             size="lg"
             onClick={handleDownloadWire}
             disabled={isGeneratingDownload || !hasPlayerEdited}
-            icon={<span>&#11123;</span>}
+            icon={<span>↓</span>}
           >
             {isGeneratingDownload
               ? 'COMPOSITING DOSSIER...'
@@ -468,29 +499,35 @@ export default function RevealScreen() {
 
         {downloadSuccess && (
           <div className="wire-reveal__download-toast">
-            <span>&#10003;</span> EVIDENTIARY DOSSIER DOWNLOADED SUCCESSFULLY!
+            <span>✓</span> EVIDENTIARY DOSSIER DOWNLOADED SUCCESSFULLY!
           </div>
         )}
 
         <div className="wire-reveal__nav-footer">
-          <Link to="/cases">
-            <Button variant="secondary" size="md">
-              &larr; PLAY ANOTHER CASE
-            </Button>
-          </Link>
-          <Link to={`/case/${caseObj.id}/custody`}>
-            <Button variant="evidence" size="md">
-              INSPECT CUSTODY SCRUBBER AGAIN
-            </Button>
-          </Link>
-          <Link to="/">
-            <Button variant="secondary" size="md">
-              WIRE FRONT PAGE
-            </Button>
-          </Link>
+          <Button 
+            variant="primary" 
+            size="md" 
+            onClick={() => navigate('/cases')}
+            icon={<span>→</span>}
+          >
+            INVESTIGATE NEXT WIRE
+          </Button>
+
+          <Button 
+            variant="secondary" 
+            size="md" 
+            onClick={() => navigate(`/case/${caseObj.id}/custody`)}
+          >
+            SCRUB CUSTODY LOG AGAIN
+          </Button>
+
           {hasPlayerEdited && (
-            <Button variant="danger" size="md" onClick={handleResetThisCase}>
-              &#8634; RESET THIS CASE
+            <Button 
+              variant="evidence" 
+              size="md" 
+              onClick={handleResetThisCase}
+            >
+              RESET THIS CASE
             </Button>
           )}
         </div>

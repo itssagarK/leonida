@@ -4,7 +4,6 @@ import { getAllCases, getEffectiveChain } from '../data/cases';
 import { getCaseProgress } from '../utils/storage';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
-import Divider from '../components/common/Divider';
 import './CaseListScreen.css';
 
 export default function CaseListScreen() {
@@ -12,95 +11,122 @@ export default function CaseListScreen() {
   const cases = getAllCases();
 
   return (
-    <div className="wire-caselist">
-      {/* Top Breadcrumb */}
-      <div className="wire-caselist__nav">
-        <Link to="/" className="wire-caselist__back-link">
-          &larr; RETURN TO WIRE MASTHEAD
+    <div className="wire-caselist wire-page-container">
+      {/* Top Breadcrumb & Metadata */}
+      <div className="wire-caselist__topbar">
+        <Link to="/" className="wire-caselist__back">
+          ← BACK TO WIRE DESPATCH
         </Link>
-        <span className="wire-caselist__filter-tag">EVIDENTIARY ARCHIVE // 2 CASES UNSEALED</span>
+        <span className="wire-caselist__secure-tag">
+          EVIDENTIARY ARCHIVE // 2 CASES UNSEALED
+        </span>
       </div>
 
-      {/* Header */}
+      {/* Screen Title & Description */}
       <header className="wire-caselist__header">
-        <div className="wire-caselist__badge-row">
-          <Badge variant="wire">LEONIDA WIRE DOSSIERS</Badge>
-          <span className="wire-caselist__freq">SECURE FREQ 94.7 MHz</span>
+        <div className="wire-caselist__header-badge">
+          <Badge variant="wire">LEONIDA EVIDENCE ARCHIVE</Badge>
+          <span className="wire-caselist__header-freq">CLASSIFIED CHANNEL 94.7</span>
         </div>
-        <h1 className="wire-caselist__title">ACTIVE WIRE INVESTIGATIONS</h1>
-        <p className="wire-caselist__desc">
-          Select an active evidentiary dossier. Each case contains a baseline photograph that has
-          been successively distorted by multiple witnesses. Open the custody log, review the
-          distortion slider, and submit your link to expose the wire.
+        <h1 className="wire-caselist__title">ACTIVE EVIDENCE DOSSIERS</h1>
+        <p className="wire-caselist__lead">
+          Select an evidentiary folder to inspect witness claims, review the custody chain, 
+          and file your visual edit with the React Image Editor.
         </p>
-        <Divider variant="solid" spacing="md" />
       </header>
 
-      {/* Case Grid */}
-      <div className="wire-caselist__grid">
-        {cases.map((c) => {
+      {/* Evidence Folders Grid */}
+      <div className="wire-caselist__folders">
+        {cases.map((c, index) => {
           const progress = getCaseProgress(c.id);
           const fullChain = getEffectiveChain(c, progress);
           const hasPlayerFiled = Boolean(progress && progress.playerLink);
           const latestLink = fullChain[fullChain.length - 1];
+          const estTime = index === 0 ? 'EST. TIME: ~3 MIN' : 'EST. TIME: ~4 MIN';
+          const difficulty = index === 0 ? 'DIFFICULTY: MODERATE' : 'DIFFICULTY: HIGH DRIFT';
 
           return (
-            <div
+            <article
               key={c.id}
-              className="wire-case-card"
+              className="wire-folder"
               onClick={() => navigate(`/case/${c.id}`)}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate(`/case/${c.id}`);
+                }
+              }}
+              role="button"
+              aria-label={`Open case ${c.caseNumber}: ${c.title}`}
             >
-              {/* Image Preview */}
-              <div className="wire-case-card__thumb-wrap">
-                <img
-                  src={latestLink.imageDataUrl || c.originalImage}
-                  alt={c.title}
-                  className="wire-case-card__img"
-                  style={{ filter: latestLink.imageDataUrl ? 'none' : (latestLink.filterStyle || 'none') }}
-                />
-                <div className="wire-case-card__thumb-tag">
-                  {hasPlayerFiled ? (
-                    <Badge variant="verified" stamp rotate={-2}>
-                      REPORT FILED
-                    </Badge>
-                  ) : (
-                    <Badge variant="disputed" stamp rotate={3}>
-                      {c.chain.length} WITNESS LINKS
-                    </Badge>
-                  )}
-                </div>
+              {/* Folder Tab */}
+              <div className="wire-folder__tab">
+                <span className="wire-folder__tab-num">{c.caseNumber}</span>
+                <span className="wire-folder__tab-cat">{c.category}</span>
               </div>
 
-              {/* Info Body */}
-              <div className="wire-case-card__body">
-                <div className="wire-case-card__meta">
-                  <span className="wire-case-card__num">{c.caseNumber}</span>
-                  <span className="wire-case-card__loc">{c.location}</span>
+              {/* Folder Content Container */}
+              <div className="wire-folder__content">
+                {/* Visual Thumbnail */}
+                <div className="wire-folder__thumb-box">
+                  <img
+                    src={latestLink.imageDataUrl || c.originalImage}
+                    alt={c.title}
+                    className="wire-folder__thumb-img"
+                    style={{ filter: latestLink.imageDataUrl ? 'none' : (latestLink.filterStyle || 'none') }}
+                    loading="lazy"
+                  />
+                  <div className="wire-folder__thumb-overlay">
+                    <Badge 
+                      variant={hasPlayerFiled ? 'verified' : 'disputed'} 
+                      size="sm"
+                      stamp
+                    >
+                      {hasPlayerFiled ? 'FILED' : 'UNRESOLVED'}
+                    </Badge>
+                  </div>
+                  <div className="wire-folder__thumb-corner wire-folder__thumb-corner--tl" />
+                  <div className="wire-folder__thumb-corner wire-folder__thumb-corner--br" />
                 </div>
 
-                <h2 className="wire-case-card__title">{c.title}</h2>
-                <p className="wire-case-card__subtitle">{c.subtitle}</p>
+                {/* Details Body */}
+                <div className="wire-folder__body">
+                  <div className="wire-folder__meta-row">
+                    <span className="wire-folder__evidence-count">
+                      {fullChain.length} EVIDENCE {fullChain.length === 1 ? 'LINK' : 'LINKS'}
+                    </span>
+                    <span className="wire-folder__sep">•</span>
+                    <span className="wire-folder__metric">{difficulty}</span>
+                    <span className="wire-folder__sep">•</span>
+                    <span className="wire-folder__metric">{estTime}</span>
+                  </div>
 
-                <div className="wire-case-card__latest-claim">
-                  <span className="wire-case-card__claim-label">HEAD CLAIM:</span>
-                  <p>&ldquo;{latestLink.caption}&rdquo;</p>
-                </div>
+                  <h2 className="wire-folder__title">{c.title}</h2>
+                  <p className="wire-folder__summary">{c.subtitle}</p>
 
-                <div className="wire-case-card__footer">
-                  <span className="wire-case-card__timestamp">{c.dateLogged}</span>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate(`/case/${c.id}`);
-                    }}
-                  >
-                    INSPECT DOSSIER &rarr;
-                  </Button>
+                  <div className="wire-folder__location-row">
+                    <span className="wire-folder__loc-label">SCENE:</span>
+                    <span className="wire-folder__loc-val">{c.location}</span>
+                  </div>
+
+                  {/* Primary CTA */}
+                  <div className="wire-folder__action">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/case/${c.id}`);
+                      }}
+                      icon={<span>→</span>}
+                    >
+                      OPEN CASE
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
