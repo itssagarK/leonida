@@ -190,8 +190,8 @@ In many web applications, an image editor is a decorative utility or an auxiliar
 ### Installation
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/the-leonida-wire.git
-cd the-leonida-wire
+git clone https://github.com/itssagarK/leonida.git
+cd leonida
 
 # 2. Install project dependencies
 npm install
