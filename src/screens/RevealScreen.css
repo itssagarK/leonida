@@ -348,6 +348,63 @@
   line-height: 1.5;
 }
 
+/* Public Narrative vs The Record Split */
+.wire-narrative-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.wire-narrative-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wire-narrative-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wire-narrative-tag--public {
+  color: var(--accent-crimson);
+}
+
+.wire-narrative-tag--record {
+  color: var(--stamp-green);
+}
+
+.wire-narrative-quote {
+  font-family: var(--font-masthead);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.45;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 8px 12px;
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.wire-narrative-col:first-child .wire-narrative-quote {
+  border-left-color: var(--accent-crimson);
+}
+
+.wire-narrative-col:last-child .wire-narrative-quote {
+  border-left-color: var(--stamp-green);
+}
+
+@media (max-width: 680px) {
+  .wire-narrative-split {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ======================================================== */
 /* STEP-BY-STEP CHRONICLE TIMELINE                          */
 /* ======================================================== */

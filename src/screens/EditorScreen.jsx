@@ -9,10 +9,22 @@ import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
 import './EditorScreen.css';
 
+const ALL_EDITOR_TOOLS = [
+  'Crop',
+  'Resize',
+  'Filter',
+  'Draw',
+  'Text',
+  'Shapes',
+  'Stickers',
+  'Frame'
+];
+
 export default function EditorScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
   const editorRef = useRef(null);
+  const editorHostRef = useRef(null);
   const filingSectionRef = useRef(null);
 
   const caseObj = useMemo(() => getCaseById(id), [id]);
@@ -49,6 +61,19 @@ export default function EditorScreen() {
     typeof window !== 'undefined' && window.innerWidth < 768 ? 520 : 640
   );
 
+  // Live tracking of used tools
+  const [usedTools, setUsedTools] = useState(() => {
+    if (playerProgress?.playerLink?.toolsUsed) {
+      const detected = ALL_EDITOR_TOOLS.filter((tool) =>
+        playerProgress.playerLink.toolsUsed.some((t) =>
+          t.toLowerCase().includes(tool.toLowerCase())
+        )
+      );
+      return new Set(detected.length > 0 ? detected : ['Crop', 'Filter']);
+    }
+    return new Set();
+  });
+
   useEffect(() => {
     const handleResize = () => {
       setEditorMinHeight(window.innerWidth < 768 ? 520 : 640);
@@ -56,6 +81,44 @@ export default function EditorScreen() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Listen for user interactions inside editor container to mark tools as used
+  useEffect(() => {
+    const hostEl = editorHostRef.current;
+    if (!hostEl) return;
+
+    const handleInteraction = (e) => {
+      let target = e.target;
+      let depth = 0;
+      while (target && target !== hostEl && depth < 6) {
+        const text = (
+          (target.innerText || '') + ' ' +
+          (target.title || '') + ' ' +
+          (target.getAttribute?.('aria-label') || '') + ' ' +
+          (target.className || '')
+        ).toLowerCase();
+
+        for (const tool of ALL_EDITOR_TOOLS) {
+          const key = tool.toLowerCase();
+          if (
+            text.includes(key) ||
+            (key === 'draw' && (text.includes('brush') || text.includes('pen'))) ||
+            (key === 'shapes' && (text.includes('rect') || text.includes('circle') || text.includes('arrow'))) ||
+            (key === 'stickers' && text.includes('icon')) ||
+            (key === 'filter' && text.includes('effect'))
+          ) {
+            setUsedTools((prev) => new Set([...prev, tool]));
+            break;
+          }
+        }
+        target = target.parentElement;
+        depth++;
+      }
+    };
+
+    hostEl.addEventListener('click', handleInteraction, true);
+    return () => hostEl.removeEventListener('click', handleInteraction, true);
+  }, [editorImageUrl]);
 
   // Prepare initial image for the editor
   useEffect(() => {
@@ -104,7 +167,15 @@ export default function EditorScreen() {
     setSavedDataUrl(dataUrl);
     setHasSavedImage(true);
     setSaveSuccessNotice(true);
-    // Smoothly scroll down to filing step if desired
+
+    // If no tools explicitly detected yet, confirm default creative tools
+    setUsedTools((prev) => {
+      if (prev.size === 0) {
+        return new Set(['Crop', 'Filter']);
+      }
+      return prev;
+    });
+
     if (filingSectionRef.current) {
       filingSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
@@ -126,12 +197,13 @@ export default function EditorScreen() {
     setEditorImageUrl(getAbsoluteImageUrl(caseObj.originalImage));
   };
 
-  // Reset current edit buffer
+  // Reset current edit buffer cleanly
   const handleResetEdit = () => {
-    if (window.confirm('Reset your unsaved visual edits on this case?')) {
+    if (window.confirm('Reset your edit buffer back to the raw record?')) {
       setSavedDataUrl(null);
       setHasSavedImage(false);
       setSaveSuccessNotice(false);
+      setUsedTools(new Set());
       setCaption('');
       setIsPreparingImage(true);
       setTimeout(async () => {
@@ -149,8 +221,28 @@ export default function EditorScreen() {
     }
   };
 
-  // Validation: both saved image AND non-empty caption required
-  const canSubmit = hasSavedImage && Boolean(savedDataUrl) && Boolean(caption.trim());
+  // Deterministic live Editorial Signal calculations tied to user actions
+  const toolsCount = usedTools.size;
+  const liveSignals = useMemo(() => {
+    if (hasSavedImage) {
+      return {
+        visibility: Math.min(95, 65 + (toolsCount * 5)),
+        focus: Math.min(95, 50 + (toolsCount * 7)),
+        manipulation: Math.min(98, 55 + (toolsCount * 8)),
+        baseDrift: Math.min(99, driftAudit.score + (toolsCount * 2))
+      };
+    }
+    return {
+      visibility: Math.min(80, 50 + (toolsCount * 4)),
+      focus: Math.min(75, 40 + (toolsCount * 5)),
+      manipulation: Math.min(60, 20 + (toolsCount * 6)),
+      baseDrift: driftAudit.score
+    };
+  }, [hasSavedImage, toolsCount, driftAudit.score]);
+
+  // Validation: both saved image AND non-empty headline required
+  const isHeadlineValid = Boolean(caption.trim());
+  const canSubmit = hasSavedImage && Boolean(savedDataUrl) && isHeadlineValid;
 
   // Form submission: save to localStorage and navigate to drift status
   const handleSubmitReport = (e) => {
@@ -158,12 +250,16 @@ export default function EditorScreen() {
     if (!canSubmit || isSubmitting) return;
     setIsSubmitting(true);
 
+    const toolsArray = usedTools.size > 0
+      ? Array.from(usedTools).map((t) => `${t} (React Image Editor)`)
+      : ['React Image Editor (Unlayer)', 'Custom Player Distortion'];
+
     const newPlayerLink = {
       author: authorName.trim() || 'YOU (LEONIDA WIRE AGENT)',
       caption: caption.trim(),
       imageDataUrl: savedDataUrl,
       timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' EST',
-      toolsUsed: ['React Image Editor (Unlayer)', 'Custom Player Distortion']
+      toolsUsed: toolsArray
     };
 
     saveCaseProgress(caseObj.id, {
@@ -173,6 +269,11 @@ export default function EditorScreen() {
 
     navigate(`/case/${caseObj.id}/status`);
   };
+
+  // Determine which single state is active
+  const isFiled = Boolean(playerProgress?.playerLink && hasSavedImage);
+  const isEditedOnly = hasSavedImage && !isFiled;
+  const isRawActive = !hasSavedImage;
 
   return (
     <div className="wire-editor-screen wire-page-container">
@@ -198,9 +299,8 @@ export default function EditorScreen() {
           VISUAL EVIDENCE WORKBENCH
         </h1>
         <p className="wire-editor__sublead">
-          Manipulate the current chain-head photograph using the React Image Editor. Click 
-          <strong> &ldquo;Save&rdquo;</strong> in the editor toolbar, then record your official 
-          headline claim to file your link.
+          Your edit becomes part of the public record. Manipulate the image using the React Image Editor,
+          save your edit, and file your claim to expose cumulative drift.
         </p>
       </header>
 
@@ -242,7 +342,7 @@ export default function EditorScreen() {
                 <span className="wire-context-label">EVIDENCE STATUS:</span>
                 <div className="wire-context-status">
                   <Badge variant={hasSavedImage ? 'verified' : 'disputed'} size="sm">
-                    {hasSavedImage ? 'BUFFER CAPTURED' : 'AWAITING EDIT'}
+                    {hasSavedImage ? 'BUFFER CAPTURED' : 'RAW RECORD'}
                   </Badge>
                 </div>
               </div>
@@ -274,12 +374,20 @@ export default function EditorScreen() {
               </div>
             </div>
 
+            {/* Clear Core Interaction Prompt Banner */}
+            <div className="wire-canvas-frame__lore-bar">
+              <span className="wire-lore-icon">⚡</span>
+              <span className="wire-lore-text">
+                Your edit becomes part of the public record. Use the tools below to modify the image, then click &ldquo;Save&rdquo;.
+              </span>
+            </div>
+
             {/* Save Status Banner */}
             {saveSuccessNotice && (
               <div className="wire-canvas-frame__success-banner" role="status">
                 <span className="wire-success-icon">✓</span>
                 <div className="wire-success-text">
-                  <strong>EDIT SAVED:</strong> Evidence buffer captured successfully. Proceed to filing step below.
+                  <strong>EDIT SAVED:</strong> Evidence buffer captured successfully.
                 </div>
               </div>
             )}
@@ -313,7 +421,7 @@ export default function EditorScreen() {
 
             {/* Embedded Unlayer Image Editor */}
             {!isPreparingImage && editorImageUrl && !editorLoadError && (
-              <div className="wire-editor__host">
+              <div className="wire-editor__host" ref={editorHostRef}>
                 <ImageEditor
                   ref={editorRef}
                   image={editorImageUrl}
@@ -347,58 +455,68 @@ export default function EditorScreen() {
               <span className="wire-impact-panel__dot" />
             </div>
 
-            {/* Tools Used / Suite */}
+            {/* Tools Used / Live State */}
             <div className="wire-impact-section">
-              <div className="wire-impact-section__label">TOOLS UNLOCKED</div>
-              <div className="wire-impact-tools-grid">
-                {['Crop', 'Filter', 'Draw', 'Text', 'Shapes', 'Stickers', 'Frame', 'Resize'].map((tool, i) => (
-                  <span key={i} className="wire-tool-badge">
-                    {tool}
-                  </span>
-                ))}
+              <div className="wire-impact-section__header-row">
+                <span className="wire-impact-section__label">TOOLS USED</span>
+                <span className="wire-impact-section__count">[{usedTools.size} ACTIVE]</span>
+              </div>
+              <div className="wire-impact-tools-list">
+                {ALL_EDITOR_TOOLS.map((tool) => {
+                  const isUsed = usedTools.has(tool);
+                  return (
+                    <div
+                      key={tool}
+                      className={`wire-tool-row ${isUsed ? 'is-used' : 'is-muted'}`}
+                    >
+                      <span className="wire-tool-status-mark">
+                        {isUsed ? '✓' : '○'}
+                      </span>
+                      <span className="wire-tool-name">{tool.toUpperCase()}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Editorial Signal Metrics */}
+            {/* Editorial Signal Metrics (Deterministic & Live) */}
             <div className="wire-impact-section">
               <div className="wire-impact-section__label">EDITORIAL SIGNAL</div>
               <div className="wire-signal-list">
                 <div className="wire-signal-row">
                   <span className="wire-signal-name">Visibility</span>
-                  <span className="wire-signal-val wire-signal-val--amber">+{Math.min(95, 60 + (caseObj.chain.length * 8))}</span>
-                </div>
-                <div className="wire-signal-row">
-                  <span className="wire-signal-name">Manipulation</span>
-                  <span className="wire-signal-val wire-signal-val--crimson">+{hasSavedImage ? 85 : 45}</span>
+                  <span className="wire-signal-val wire-signal-val--amber">+{liveSignals.visibility}</span>
                 </div>
                 <div className="wire-signal-row">
                   <span className="wire-signal-name">Focus</span>
-                  <span className="wire-signal-val wire-signal-val--cyan">+{hasSavedImage ? 90 : 35}</span>
+                  <span className="wire-signal-val wire-signal-val--cyan">+{liveSignals.focus}</span>
+                </div>
+                <div className="wire-signal-row">
+                  <span className="wire-signal-name">Manipulation</span>
+                  <span className="wire-signal-val wire-signal-val--crimson">+{liveSignals.manipulation}</span>
                 </div>
                 <div className="wire-signal-row wire-signal-row--highlight">
                   <span className="wire-signal-name">Base Drift</span>
-                  <span className="wire-signal-val wire-signal-val--gold">+{driftAudit.score}%</span>
+                  <span className="wire-signal-val wire-signal-val--gold">+{liveSignals.baseDrift}%</span>
                 </div>
               </div>
             </div>
 
-            {/* Evidence State Progression */}
+            {/* Evidence State Progression (Strictly One Active) */}
             <div className="wire-impact-section">
               <div className="wire-impact-section__label">EVIDENCE STATE</div>
               <div className="wire-state-flow">
-                <div className="wire-state-step is-active">
+                <div className={`wire-state-step ${isRawActive ? 'is-active-step is-raw' : 'is-dormant'}`}>
                   <span className="wire-state-step__dot" />
                   <span className="wire-state-step__text">RAW RECORD</span>
                 </div>
                 <span className="wire-state-flow__arrow">↓</span>
-                <div className={`wire-state-step ${hasSavedImage ? 'is-active is-saved' : 'is-pending'}`}>
+                <div className={`wire-state-step ${isEditedOnly ? 'is-active-step is-saved' : 'is-dormant'}`}>
                   <span className="wire-state-step__dot" />
-                  <span className="wire-state-step__text">
-                    {hasSavedImage ? '✓ EDITED (BUFFER SAVED)' : 'AWAITING EDIT'}
-                  </span>
+                  <span className="wire-state-step__text">EDITED / BUFFER SAVED</span>
                 </div>
                 <span className="wire-state-flow__arrow">↓</span>
-                <div className={`wire-state-step ${canSubmit ? 'is-active is-ready' : 'is-pending'}`}>
+                <div className={`wire-state-step ${isFiled ? 'is-active-step is-filed' : 'is-dormant'}`}>
                   <span className="wire-state-step__dot" />
                   <span className="wire-state-step__text">FILED TO WIRE</span>
                 </div>
@@ -435,7 +553,7 @@ export default function EditorScreen() {
               <h2 className="wire-filing-card__title">FILE YOUR WIRE DESPATCH</h2>
             </div>
             <Badge variant={canSubmit ? 'verified' : 'disputed'} size="sm">
-              {canSubmit ? 'READY TO TRANSMIT' : 'REQUIREMENTS PENDING'}
+              {canSubmit ? 'READY TO TRANSMIT' : hasSavedImage ? 'HEADLINE REQUIRED' : 'SAVE EDIT FIRST'}
             </Badge>
           </div>
 
@@ -500,8 +618,8 @@ export default function EditorScreen() {
                 <span className="wire-checklist-mark">{hasSavedImage ? '✓' : '○'}</span>
                 <span>Visual edit saved in editor buffer</span>
               </div>
-              <div className={`wire-checklist-item ${caption.trim().length > 0 ? 'is-valid' : 'is-pending'}`}>
-                <span className="wire-checklist-mark">{caption.trim().length > 0 ? '✓' : '○'}</span>
+              <div className={`wire-checklist-item ${isHeadlineValid ? 'is-valid' : 'is-pending'}`}>
+                <span className="wire-checklist-mark">{isHeadlineValid ? '✓' : '○'}</span>
                 <span>Headline claim formulated</span>
               </div>
             </div>
@@ -541,8 +659,8 @@ export default function EditorScreen() {
               {!canSubmit && (
                 <div className="wire-filing-pending-tip">
                   {!hasSavedImage
-                    ? '(!) Step 1 incomplete: Click "Save" inside the React Image Editor above.'
-                    : '(!) Step 2 incomplete: Type a story headline in the caption box above to enable filing.'}
+                    ? 'Save an edited image before filing.'
+                    : 'Enter a headline claim above to complete filing.'}
                 </div>
               )}
             </div>

@@ -245,10 +245,11 @@ export default function DriftStatusScreen() {
         <Button
           variant="primary"
           size="lg"
+          disabled={!hasPlayerLink}
           onClick={() => navigate(`/case/${caseObj.id}/reveal`)}
           icon={<span>→</span>}
         >
-          EXPOSE THE WIRE • UNROLL FULL COMPARISON
+          EXPOSE THE WIRE
         </Button>
 
         <div className="wire-drift__sub-buttons">
@@ -257,7 +258,7 @@ export default function DriftStatusScreen() {
             size="md"
             onClick={() => navigate(`/case/${caseObj.id}/custody`)}
           >
-            BACK TO CUSTODY LOG
+            RETURN TO CUSTODY LOG
           </Button>
 
           <Button

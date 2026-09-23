@@ -149,11 +149,11 @@ export default function RevealScreen() {
       // Left Caption
       ctx.fillStyle = '#F4EFE6';
       ctx.font = 'italic 15px Georgia, serif';
-      wrapText(ctx, `"${caseObj.originalCaption}"`, 36, yImg + imgH + 28, colW, 22);
+      const nextYLeft = wrapText(ctx, `"${caseObj.originalCaption}"`, 36, yImg + imgH + 26, colW, 20, 3);
 
       ctx.fillStyle = '#A0A7B5';
       ctx.font = '11px "Courier New", monospace';
-      ctx.fillText(`SOURCE: ${caseObj.originalPhotographer}`, 36, yImg + imgH + 110);
+      ctx.fillText(`SOURCE: ${caseObj.originalPhotographer}`, 36, Math.max(nextYLeft + 10, yImg + imgH + 95));
 
       // Draw Right Column: Final Filed Report
       const xRight = 624;
@@ -171,11 +171,11 @@ export default function RevealScreen() {
       // Right Caption
       ctx.fillStyle = '#F4EFE6';
       ctx.font = 'italic 15px Georgia, serif';
-      wrapText(ctx, `"${finalStep.caption}"`, xRight, yImg + imgH + 28, colW, 22);
+      const nextYRight = wrapText(ctx, `"${finalStep.caption}"`, xRight, yImg + imgH + 26, colW, 20, 3);
 
       ctx.fillStyle = '#D49A32';
       ctx.font = 'bold 11px "Courier New", monospace';
-      ctx.fillText(`BYLINE: ${finalStep.author} (Link #${fullChain.length})`, xRight, yImg + imgH + 110);
+      ctx.fillText(`BYLINE: ${finalStep.author} (Link #${fullChain.length})`, xRight, Math.max(nextYRight + 10, yImg + imgH + 95));
 
       // Big Stamped Verdict in Center Bottom
       ctx.fillStyle = '#090A0D';
@@ -356,35 +356,47 @@ export default function RevealScreen() {
         </div>
       </section>
 
-      {/* "WHAT CHANGED?" MUTATION TAGS */}
+      {/* "WHAT CHANGED?" MUTATION TAGS & NARRATIVE DIVERGENCE */}
       <section className="wire-reveal__changes-section" aria-label="What Changed">
         <div className="wire-changes-card">
           <div className="wire-changes-card__header">
             <h3>WHAT CHANGED?</h3>
-            <span className="wire-changes-card__sub">[CUMULATIVE MUTATION AUDIT]</span>
+            <span className="wire-changes-card__sub">[CUMULATIVE FORENSIC AUDIT]</span>
           </div>
 
           <div className="wire-changes-card__body">
+            {/* Compact Mutation Tags */}
             <div className="wire-changes-row">
-              <span className="wire-changes-label">PHOTOGRAPHIC MANIPULATION:</span>
+              <span className="wire-changes-label">APPLIED MUTATION TAGS:</span>
               <div className="wire-changes-tags">
-                <span className="wire-mutation-tag">Color Grading Shift</span>
-                <span className="wire-mutation-tag">Contrast &amp; Shadow Distortion</span>
-                <span className="wire-mutation-tag">Focal Crop &amp; Re-framing</span>
-                {finalStep.isPlayer && (
-                  <span className="wire-mutation-tag wire-mutation-tag--highlight">
-                    Player React Image Editor Layer
+                {(finalStep.toolsUsed && finalStep.toolsUsed.length > 0
+                  ? finalStep.toolsUsed.map((t) => t.replace(/[^a-zA-Z]/g, '').toUpperCase())
+                  : ['CROP', 'FILTER', 'TEXT', 'DISTORTION']
+                ).filter((tag) => tag && !tag.includes('REACTIMAGEEDITOR') && !tag.includes('UNLAYER')).map((tag, i) => (
+                  <span key={i} className="wire-mutation-tag">
+                    {tag}
                   </span>
-                )}
+                ))}
+                <span className="wire-mutation-tag">SATURATION</span>
+                <span className="wire-mutation-tag">RE-FRAMING</span>
               </div>
             </div>
 
-            <div className="wire-changes-row">
-              <span className="wire-changes-label">NARRATIVE DIVERGENCE:</span>
-              <p className="wire-changes-narrative">
-                From a factual incident log ({caseObj.baselineTags.join(', ')}) into a sensationalized 
-                public dispatch featuring {driftResult.mutatedWords.slice(0, 4).join(', ') || 'exaggerated claims'}.
-              </p>
+            {/* Public Narrative vs The Record */}
+            <div className="wire-narrative-split">
+              <div className="wire-narrative-col">
+                <span className="wire-narrative-tag wire-narrative-tag--public">PUBLIC NARRATIVE:</span>
+                <blockquote className="wire-narrative-quote">
+                  &ldquo;{finalStep.caption}&rdquo;
+                </blockquote>
+              </div>
+
+              <div className="wire-narrative-col">
+                <span className="wire-narrative-tag wire-narrative-tag--record">THE RECORD:</span>
+                <blockquote className="wire-narrative-quote">
+                  &ldquo;{caseObj.originalCaption}&rdquo;
+                </blockquote>
+              </div>
             </div>
           </div>
         </div>
@@ -493,7 +505,7 @@ export default function RevealScreen() {
               ? 'COMPOSITING DOSSIER...'
               : !hasPlayerEdited
               ? 'FILE IN IMAGE EDITOR TO UNLOCK EXPORT'
-              : 'DOWNLOAD YOUR WIRE IMAGE'}
+              : 'DOWNLOAD YOUR WIRE DOSSIER'}
           </Button>
         </div>
 
@@ -507,18 +519,18 @@ export default function RevealScreen() {
           <Button 
             variant="primary" 
             size="md" 
-            onClick={() => navigate('/cases')}
-            icon={<span>→</span>}
+            onClick={() => navigate(`/case/${caseObj.id}`)}
+            icon={<span>←</span>}
           >
-            INVESTIGATE NEXT WIRE
+            RETURN TO CASE
           </Button>
 
           <Button 
             variant="secondary" 
             size="md" 
-            onClick={() => navigate(`/case/${caseObj.id}/custody`)}
+            onClick={() => navigate('/cases')}
           >
-            SCRUB CUSTODY LOG AGAIN
+            INVESTIGATE NEXT WIRE
           </Button>
 
           {hasPlayerEdited && (
@@ -537,11 +549,12 @@ export default function RevealScreen() {
 }
 
 /**
- * Helper to wrap text cleanly within canvas boundaries
+ * Helper to wrap text cleanly within canvas boundaries without overflow
  */
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 4) {
   const words = text.split(' ');
   let line = '';
+  let lineCount = 1;
 
   for (let n = 0; n < words.length; n++) {
     const testLine = line + words[n] + ' ';
@@ -549,12 +562,18 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
     const testWidth = metrics.width;
 
     if (testWidth > maxWidth && n > 0) {
+      if (lineCount >= maxLines) {
+        ctx.fillText(line.trim() + '...', x, y);
+        return y + lineHeight;
+      }
       ctx.fillText(line, x, y);
       line = words[n] + ' ';
       y += lineHeight;
+      lineCount++;
     } else {
       line = testLine;
     }
   }
   ctx.fillText(line, x, y);
+  return y + lineHeight;
 }

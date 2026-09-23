@@ -238,6 +238,27 @@
   letter-spacing: 0.1em;
 }
 
+/* Lore Notice on Canvas Frame */
+.wire-canvas-frame__lore-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: rgba(212, 154, 50, 0.08);
+  border-bottom: 1px solid rgba(212, 154, 50, 0.2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-amber);
+}
+
+.wire-lore-icon {
+  font-size: 12px;
+}
+
+.wire-lore-text {
+  letter-spacing: 0.04em;
+}
+
 /* Success Banner Right on Canvas Frame */
 .wire-canvas-frame__success-banner {
   display: flex;
@@ -387,6 +408,12 @@
   gap: 8px;
 }
 
+.wire-impact-section__header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .wire-impact-section__label {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -396,20 +423,51 @@
   text-transform: uppercase;
 }
 
-.wire-impact-tools-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
-}
-
-.wire-tool-badge {
+.wire-impact-section__count {
   font-family: var(--font-mono);
   font-size: 10px;
-  padding: 4px 6px;
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary);
-  text-align: center;
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+/* Tools Used List (Used vs Muted) */
+.wire-impact-tools-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.wire-tool-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  transition: all var(--transition-fast);
+}
+
+.wire-tool-row.is-used {
+  background-color: rgba(212, 154, 50, 0.12);
+  border-color: rgba(212, 154, 50, 0.35);
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.wire-tool-row.is-used .wire-tool-status-mark {
+  color: var(--stamp-green);
+  font-weight: 900;
+}
+
+.wire-tool-row.is-muted {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+}
+
+.wire-tool-row.is-muted .wire-tool-status-mark {
+  opacity: 0.5;
 }
 
 /* Signals List */
@@ -461,7 +519,7 @@
   font-weight: 800;
 }
 
-/* Evidence State Flow */
+/* Evidence State Flow (Strictly One Active) */
 .wire-state-flow {
   display: flex;
   flex-direction: column;
@@ -480,9 +538,9 @@
   gap: 8px;
   width: 100%;
   padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all var(--transition-fast);
 }
 
 .wire-state-step__dot {
@@ -492,21 +550,32 @@
   background: currentColor;
 }
 
-.wire-state-step.is-active {
-  color: var(--text-primary);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.wire-state-step.is-saved {
-  color: var(--stamp-green);
-  border-color: var(--stamp-green);
-  background: rgba(16, 185, 129, 0.08);
-}
-
-.wire-state-step.is-ready {
+/* Single Active State Styling */
+.wire-state-step.is-active-step.is-raw {
   color: var(--accent-amber);
   border-color: var(--accent-amber);
   background: var(--accent-amber-subtle);
+  font-weight: 700;
+}
+
+.wire-state-step.is-active-step.is-saved {
+  color: var(--stamp-green);
+  border-color: var(--stamp-green);
+  background: rgba(16, 185, 129, 0.12);
+  font-weight: 700;
+}
+
+.wire-state-step.is-active-step.is-filed {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  background: rgba(229, 169, 60, 0.15);
+  font-weight: 800;
+}
+
+.wire-state-step.is-dormant {
+  color: var(--text-muted);
+  opacity: 0.45;
+  border-color: transparent;
 }
 
 .wire-state-flow__arrow {
@@ -747,13 +816,16 @@
     grid-template-columns: 1fr;
   }
 
-  .wire-editor__zone-left,
-  .wire-editor__zone-right {
-    order: 2;
+  .wire-editor__zone-left {
+    order: 1;
   }
 
   .wire-editor__zone-center {
-    order: 1;
+    order: 2;
+  }
+
+  .wire-editor__zone-right {
+    order: 3;
   }
 
   .wire-filing-form__grid {
