@@ -32,7 +32,10 @@ export function renderFilteredImageToDataUrl(imageUrl, filterStyle = 'none') {
     }
 
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    const resolvedUrl = getAbsoluteImageUrl(imageUrl);
+    if (!resolvedUrl.startsWith('data:')) {
+      img.crossOrigin = 'anonymous';
+    }
 
     img.onload = () => {
       try {

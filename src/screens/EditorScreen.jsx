@@ -40,6 +40,7 @@ export default function EditorScreen() {
   const [editorLoadError, setEditorLoadError] = useState(false);
   const [editorLoadSuccess, setEditorLoadSuccess] = useState(false);
   const [saveToast, setSaveToast] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [editorMinHeight, setEditorMinHeight] = useState(
     typeof window !== 'undefined' && window.innerWidth < 640 ? 500 : 620
   );
@@ -128,7 +129,8 @@ export default function EditorScreen() {
   // Form submission: save to localStorage and navigate to drift status
   const handleSubmitReport = (e) => {
     e.preventDefault();
-    if (!canSubmit) return;
+    if (!canSubmit || isSubmitting) return;
+    setIsSubmitting(true);
 
     const newPlayerLink = {
       author: authorName.trim() || 'YOU (LEONIDA WIRE AGENT)',
@@ -250,7 +252,8 @@ export default function EditorScreen() {
               onLoadError={handleEditorLoadError}
               onLoad={() => setEditorLoadSuccess(true)}
               onError={(err) => {
-                console.warn('[Leonida Wire] Editor runtime notice:', err);
+                console.warn('[Leonida Wire] Editor runtime error:', err);
+                setEditorLoadError(true);
               }}
             />
           </div>
@@ -346,10 +349,10 @@ export default function EditorScreen() {
               type="submit"
               variant="primary"
               size="lg"
-              disabled={!canSubmit}
+              disabled={!canSubmit || isSubmitting}
               icon={<span>&gt;&gt;</span>}
             >
-              FILE YOUR EDIT &bull; EXPOSE WIRE DRIFT
+              {isSubmitting ? 'TRANSMITTING REPORT...' : 'FILE YOUR EDIT • EXPOSE WIRE DRIFT'}
             </Button>
 
             {!canSubmit && (

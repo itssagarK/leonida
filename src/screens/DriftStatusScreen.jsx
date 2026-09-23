@@ -52,12 +52,28 @@ export default function DriftStatusScreen() {
           TRUTH DRIFT ANALYSIS // REPORT CERTIFIED
         </h1>
 
-        <p className="wire-drift-status__desc">
-          The Leonida Wire evidentiary engine has audited your filed report against the archival baseline.
-          Here is how severely the original truth was warped across the unbroken chain of custody.
-        </p>
-
         <Divider variant="evidence" spacing="md" />
+
+        {!hasPlayerLink && (
+          <div className="wire-drift-status__lock-banner">
+            <div className="wire-drift-status__lock-tag">
+              [!] CASE AUDIT INCOMPLETE &bull; AWAITING YOUR REPORT
+            </div>
+            <p>
+              This case has not yet been sealed. The React Image Editor is the only way to advance
+              the wire and complete the chain of custody. File your visual edit to unlock your
+              certified drift verdict.
+            </p>
+            <Button
+              variant="primary"
+              size="md"
+              onClick={() => navigate(`/case/${caseObj.id}/edit`)}
+              icon={<span>&gt;&gt;</span>}
+            >
+              LAUNCH REACT IMAGE EDITOR &bull; ADD YOUR LINK
+            </Button>
+          </div>
+        )}
       </header>
 
       {/* BIG STAMPED VERDICT HERO */}

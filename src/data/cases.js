@@ -117,11 +117,34 @@ export function getAllCases() {
 }
 
 /**
- * Returns a case by its ID.
+ * Returns a case by its ID, supporting aliases like '1', '2', 'case-1', 'case-2'.
+ * Always falls back safely to the first case to prevent deep-route crashes.
  * @param {string} id
  */
 export function getCaseById(id) {
-  return INITIAL_CASES.find((c) => c.id === id) || INITIAL_CASES[0];
+  if (!id) return INITIAL_CASES[0];
+  const cleanId = String(id).toLowerCase().trim();
+
+  // Exact ID match (e.g. 'case-01')
+  const exact = INITIAL_CASES.find((c) => c.id.toLowerCase() === cleanId);
+  if (exact) return exact;
+
+  // Numeric shorthand match (e.g. '1', 'case-1', 'case1')
+  if (cleanId === '1' || cleanId === 'case-1' || cleanId === 'case1') {
+    return INITIAL_CASES[0];
+  }
+  if (cleanId === '2' || cleanId === 'case-2' || cleanId === 'case2') {
+    return INITIAL_CASES[1] || INITIAL_CASES[0];
+  }
+
+  // Substring or caseNumber match (e.g. '01-A')
+  const partial = INITIAL_CASES.find(
+    (c) => c.id.toLowerCase().includes(cleanId) || c.caseNumber.toLowerCase().includes(cleanId)
+  );
+  if (partial) return partial;
+
+  // Ultimate fallback to prevent crashes on invalid routes
+  return INITIAL_CASES[0];
 }
 
 /**

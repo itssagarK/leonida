@@ -75,6 +75,32 @@
   max-width: 820px;
 }
 
+.wire-drift-status__lock-banner {
+  background: rgba(255, 77, 109, 0.12);
+  border: 2px dashed var(--accent-coral);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  margin: var(--space-sm) 0;
+}
+
+.wire-drift-status__lock-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-coral);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.wire-drift-status__lock-banner p {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
 /* BIG STAMPED VERDICT HERO */
 .wire-drift-verdict {
   background: #090B10;

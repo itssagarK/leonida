@@ -110,7 +110,9 @@ export default function RevealScreen() {
       const loadImage = (src) => {
         return new Promise((resolve, reject) => {
           const img = new Image();
-          img.crossOrigin = 'anonymous';
+          if (!src.startsWith('data:')) {
+            img.crossOrigin = 'anonymous';
+          }
           img.onload = () => resolve(img);
           img.onerror = () => reject(new Error('Failed to load image for export: ' + src));
           img.src = src;
@@ -251,6 +253,27 @@ export default function RevealScreen() {
         </p>
 
         <Divider variant="evidence" spacing="md" />
+
+        {!hasPlayerEdited && (
+          <div className="wire-reveal__lock-banner">
+            <div className="wire-reveal__lock-tag">
+              [!] CASE EXPOSURE INCOMPLETE &bull; AWAITING YOUR REPORT
+            </div>
+            <p>
+              You are viewing an unsealed witness file. The React Image Editor is the essential mechanism
+              for advancing this story. To officially seal the chain and download your certified
+              dossier, you must forge your link in the editor first.
+            </p>
+            <Button
+              variant="primary"
+              size="md"
+              onClick={() => navigate(`/case/${caseObj.id}/edit`)}
+              icon={<span>&gt;&gt;</span>}
+            >
+              LAUNCH REACT IMAGE EDITOR &bull; ADD YOUR LINK
+            </Button>
+          </div>
+        )}
       </header>
 
       {/* CHRONOLOGICAL UNROLLED CHAIN SEQUENCE */}
@@ -432,10 +455,14 @@ export default function RevealScreen() {
             variant="primary"
             size="lg"
             onClick={handleDownloadWire}
-            disabled={isGeneratingDownload}
+            disabled={isGeneratingDownload || !hasPlayerEdited}
             icon={<span>&#11123;</span>}
           >
-            {isGeneratingDownload ? 'COMPOSITING DOSSIER...' : 'DOWNLOAD YOUR WIRE IMAGE'}
+            {isGeneratingDownload
+              ? 'COMPOSITING DOSSIER...'
+              : !hasPlayerEdited
+              ? 'FILE IN IMAGE EDITOR TO UNLOCK EXPORT'
+              : 'DOWNLOAD YOUR WIRE IMAGE'}
           </Button>
         </div>
 
