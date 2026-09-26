@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   height: 36px;
-  background-color: #07080B;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #FFFFFF;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
   font-family: var(--font-mono);
   font-size: 11px;
@@ -11,22 +11,23 @@
   user-select: none;
   position: relative;
   z-index: 100;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .wire-ticker__badge {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--bg-surface);
+  background: #FFFFFF;
   color: var(--accent-amber);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
   padding: 0 16px;
   height: 100%;
   font-weight: 800;
   white-space: nowrap;
   flex-shrink: 0;
   z-index: 2;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.03);
 }
 
 .wire-ticker__rec-dot {
@@ -34,7 +35,7 @@
   height: 6px;
   background-color: var(--accent-crimson);
   border-radius: 50%;
-  box-shadow: 0 0 6px var(--accent-crimson);
+  box-shadow: 0 0 6px rgba(239, 35, 84, 0.5);
   animation: ticker-blink 1.2s infinite alternate ease-in-out;
 }
 

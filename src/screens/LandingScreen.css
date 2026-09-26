@@ -24,7 +24,7 @@
 
 .wire-landing__folio-sep {
   color: var(--accent-amber);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 /* Hero Section with Broadsheet Load Reveal */
@@ -60,6 +60,7 @@
   background-color: var(--accent-amber-subtle);
   border: 1px solid var(--accent-amber-border);
   display: inline-block;
+  font-weight: 700;
 }
 
 /* 2-Column Editorial Spread: Masthead Left & 3D Evidence Desk Right */
@@ -82,9 +83,9 @@
 .wire-landing__hero-3d-box {
   width: 100%;
   height: 480px;
-  background: #090A0D;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: var(--shadow-deep);
+  background: #EAEBF0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-paper);
   position: relative;
   overflow: hidden;
 }
@@ -108,7 +109,6 @@
   color: var(--text-primary);
   margin-bottom: var(--space-2);
   text-transform: uppercase;
-  text-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
 }
 
 .wire-landing__subtitle {
@@ -126,21 +126,21 @@
   width: 100%;
   max-width: 860px;
   border-top: 2px solid var(--accent-amber);
-  border-bottom: 1px solid rgba(212, 154, 50, 0.4);
+  border-bottom: 1px solid rgba(217, 119, 6, 0.35);
   height: 6px;
   margin: var(--space-1) auto var(--space-4);
 }
 
 /* Editorial Memorandum Dossier */
 .wire-landing__epigraph-box {
-  background-color: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-left: 4px solid var(--accent-amber);
   padding: var(--space-4);
   margin-bottom: var(--space-5);
   width: 100%;
   text-align: left;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   position: relative;
 }
 
@@ -148,7 +148,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   padding-bottom: 8px;
   margin-bottom: var(--space-3);
   font-family: var(--font-mono);
@@ -178,7 +178,7 @@
   font-style: italic;
   font-weight: 700;
   line-height: 1.35;
-  color: var(--accent-gold);
+  color: #0F1115;
   margin-bottom: var(--space-3);
 }
 
@@ -200,7 +200,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   padding-top: var(--space-2);
   font-family: var(--font-mono);
   font-size: 10px;
@@ -279,24 +279,26 @@
 }
 
 .wire-landing__card {
-  background-color: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   padding: var(--space-3);
   position: relative;
   transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .wire-landing__card:hover {
-  border-color: rgba(255, 255, 255, 0.28);
+  border-color: rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
   box-shadow: var(--shadow-paper);
 }
 
 .wire-landing__card--highlight {
   border-color: var(--accent-amber-border);
-  background-color: #12151E;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.06);
 }
 
 .wire-landing__card--highlight:hover {
@@ -345,7 +347,7 @@
 
 .wire-landing__card-foot {
   margin-top: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   padding-top: 8px;
 }
 
@@ -379,8 +381,9 @@
   justify-content: center;
   gap: var(--space-3);
   padding: 10px var(--space-4);
-  background-color: #0A0C11;
-  border: 1px dashed rgba(212, 154, 50, 0.25);
+  background-color: #FFFFFF;
+  border: 1px dashed rgba(217, 119, 6, 0.35);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -411,8 +414,9 @@
   justify-content: center;
   gap: var(--space-3);
   padding: var(--space-2) var(--space-4);
-  background-color: #07080B;
-  border: var(--border-subtle);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -455,7 +459,7 @@
 }
 
 .wire-landing__status-sep {
-  color: rgba(255, 255, 255, 0.15);
+  color: rgba(0, 0, 0, 0.15);
   font-size: 6px;
 }
 

@@ -1,51 +1,56 @@
-/* THE LEONIDA WIRE — REFINED DESIGN SYSTEM TOKENS (PREMIUM EDITORIAL NOIR) */
+/* THE LEONIDA WIRE — PETER TARKA ARCHITECTURAL LIGHT SYSTEM (GTA VICE CITY MODERN) */
 
 :root {
   /* ======================================================== */
-  /* COLOR SYSTEM: STRICT 2-ACCENT TERMINAL PALETTE           */
-  /* Base: Near-Black | Accent 1: Amber/Gold | Accent 2: Crimson */
+  /* COLOR SYSTEM: ARCHITECTURAL LIGHT & SUN-DRENCHED ACCENTS */
+  /* Directus.io inspired concrete/stone neutrals + Vice accents */
   /* ======================================================== */
-  --bg-base: #0A0B0E;
-  --bg-primary: #0A0B0E;
-  --bg-surface: #101217;
-  --bg-elevated: #161922;
-  --bg-card: #12141A;
-  --bg-card-hover: #191C25;
-  --bg-panel: #0D0F14;
-  --bg-paper: #F3ECE1;
+  --bg-base: #F0F1F4;
+  --bg-primary: #F0F1F4;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F8F9FA;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FBFBFC;
+  --bg-panel: #EAEBF0;
+  --bg-paper: #FFFFFF;
 
-  /* Typography Colors: Warm Ivory Primary & Grayscale Secondary */
-  --text-primary: #F5EFE6;
-  --text-secondary: #B4B9C7;
-  --text-muted: #656C7D;
-  --text-dark: #0A0B0E;
-  --text-gold: #DDA236;
+  /* Typography Colors: Deep Crisp Carbon Primary & Architectural Greys */
+  --text-primary: #0F1115;
+  --text-secondary: #4A5060;
+  --text-muted: #7E8597;
+  --text-dark: #0F1115;
+  --text-gold: #B47209;
 
-  /* Signature Accent: Muted Amber / Gold (Teletype Cursor, Evidence, Actions) */
-  --accent-amber: #D49A32;
-  --accent-gold: #E5A93C;
-  --accent-amber-light: #F7C668;
-  --accent-amber-subtle: rgba(212, 154, 50, 0.10);
-  --accent-amber-border: rgba(212, 154, 50, 0.35);
+  /* Signature Accent: Sun-Drenched Vice Amber / Gold */
+  --accent-amber: #D97706;
+  --accent-gold: #E29314;
+  --accent-amber-light: #F59E0B;
+  --accent-amber-subtle: rgba(217, 119, 6, 0.08);
+  --accent-amber-border: rgba(217, 119, 6, 0.32);
 
-  /* Secondary Accent: Danger Crimson (ONLY for Drift, Fabrication & Warnings) */
-  --accent-crimson: #E63956;
-  --accent-coral: #E63956;
-  --accent-magenta: #D62846;
-  --accent-crimson-subtle: rgba(230, 57, 86, 0.10);
-  --accent-crimson-border: rgba(230, 57, 86, 0.35);
+  /* Secondary Accent: Vice Neon Coral / Crimson (Drift, Danger & Warnings) */
+  --accent-crimson: #EF2354;
+  --accent-coral: #EF2354;
+  --accent-magenta: #E11D48;
+  --accent-crimson-subtle: rgba(239, 35, 84, 0.08);
+  --accent-crimson-border: rgba(239, 35, 84, 0.32);
 
-  /* Greyscale Borders & Rules (Shadow & Border, Not Gradients) */
-  --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
-  --border-medium: 1px solid rgba(255, 255, 255, 0.14);
-  --border-evidence: 1px dashed rgba(212, 154, 50, 0.35);
-  --border-evidence-strong: 1px solid rgba(212, 154, 50, 0.6);
-  --border-alert: 1px solid rgba(230, 57, 86, 0.5);
+  /* Vice Coastal Accent: Lagoon Cyan */
+  --accent-cyan: #0098A6;
+  --accent-cyan-subtle: rgba(0, 152, 166, 0.08);
+
+  /* Greyscale Architectural Borders (Clean 1px Hairlines) */
+  --border-subtle: 1px solid rgba(0, 0, 0, 0.08);
+  --border-medium: 1px solid rgba(0, 0, 0, 0.14);
+  --border-evidence: 1px dashed rgba(217, 119, 6, 0.4);
+  --border-evidence-strong: 1px solid rgba(217, 119, 6, 0.75);
+  --border-alert: 1px solid rgba(239, 35, 84, 0.45);
 
   /* Status Stamps */
   --stamp-verified: var(--accent-gold);
   --stamp-amber: var(--accent-amber);
   --stamp-red: var(--accent-crimson);
+  --stamp-cyan: var(--accent-cyan);
 
   /* ======================================================== */
   /* TYPOGRAPHY SCALE                                         */
@@ -74,12 +79,12 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
 
-  /* Mechanical Shadows (Depth via Sharp Layering) */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.7);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.85);
-  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.95);
-  --shadow-paper: 0 8px 24px -4px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
-  --shadow-lift: 0 14px 32px -4px rgba(0, 0, 0, 0.9), 0 4px 10px rgba(212, 154, 50, 0.08);
+  /* Architectural Studio Shadows (Soft Peter Tarka Contact & Elevation) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
+  --shadow-paper: 0 8px 24px -4px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-lift: 0 16px 36px -4px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(217, 119, 6, 0.08);
 
   /* Procedural & Mechanical Easing Curves */
   --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);
@@ -103,8 +108,8 @@
 html, body {
   background-color: var(--bg-base);
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 20px 20px;
+    radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 14px;
@@ -138,7 +143,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-amber-light);
+  color: var(--accent-gold);
 }
 
 /* Universal Accessible Focus */
@@ -157,15 +162,15 @@ button, input, textarea, select {
 .wire-oxford-rule {
   border: none;
   border-top: 2px solid var(--accent-amber);
-  border-bottom: 1px solid rgba(212, 154, 50, 0.35);
+  border-bottom: 1px solid rgba(217, 119, 6, 0.3);
   height: 5px;
   margin: var(--space-2) 0;
   width: 100%;
 }
 
 .wire-oxford-rule--subtle {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   height: 4px;
 }
 
@@ -218,15 +223,15 @@ button, input, textarea, select {
 @keyframes systemLivePulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    box-shadow: 0 0 0 0 rgba(239, 35, 84, 0.7);
   }
   70% {
     transform: scale(1.05);
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 6px rgba(239, 35, 84, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 0 rgba(239, 35, 84, 0);
   }
 }
 
@@ -239,7 +244,7 @@ button, input, textarea, select {
   background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1C202B;
+  background: #D0D3DC;
   border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -248,8 +253,8 @@ button, input, textarea, select {
 
 /* Selection Color */
 ::selection {
-  background: rgba(212, 154, 50, 0.35);
-  color: #FFFFFF;
+  background: rgba(217, 119, 6, 0.25);
+  color: #0F1115;
 }
 
 /* Reduced Motion */

@@ -42,16 +42,16 @@
 
 /* VARIANTS */
 .wire-badge--default {
-  background: rgba(255, 255, 255, 0.05);
+  background: #EAEBF0;
   color: var(--text-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .wire-badge--developing {
   background: var(--accent-crimson-subtle);
   color: var(--accent-crimson);
   border: 1px solid var(--accent-crimson);
-  box-shadow: 0 0 10px rgba(230, 57, 86, 0.3);
+  box-shadow: 0 0 8px rgba(239, 35, 84, 0.15);
 }
 
 .wire-badge--developing .wire-badge__dot {
@@ -59,25 +59,25 @@
 }
 
 .wire-badge--wire {
-  background: var(--accent-amber);
-  color: #0A0B0E;
-  border: 1px solid var(--accent-gold);
+  background: #0F1115;
+  color: #FFFFFF;
+  border: 1px solid #0F1115;
   font-weight: 800;
 }
 .wire-badge--wire .wire-badge__dot {
-  background-color: #0A0B0E;
+  background-color: #FFFFFF;
 }
 
 .wire-badge--verified {
-  background: var(--accent-amber-subtle);
-  color: var(--stamp-verified);
-  border: 1px solid var(--stamp-verified);
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--text-gold);
+  border: 1px solid var(--accent-gold);
 }
 
 .wire-badge--disputed {
-  background: var(--accent-amber-subtle);
-  color: var(--stamp-amber);
-  border: 1px solid var(--stamp-amber);
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--accent-amber);
+  border: 1px solid var(--accent-amber);
 }
 
 .wire-badge--legend {
@@ -88,8 +88,8 @@
 
 .wire-badge--fabrication {
   background: var(--accent-crimson-subtle);
-  color: var(--stamp-red);
-  border: 2px solid var(--stamp-red);
+  color: var(--accent-crimson);
+  border: 2px solid var(--accent-crimson);
 }
 
 /* STAMP STYLE */
@@ -99,7 +99,7 @@
   font-weight: 900;
   padding: 6px 14px;
   border: 3px double currentColor;
-  box-shadow: 0 0 0 1px currentColor, 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: inline-block;
   text-align: center;
 }

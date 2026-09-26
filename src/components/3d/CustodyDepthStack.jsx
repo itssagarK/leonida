@@ -44,10 +44,10 @@ function createStagePlateTab(title, subtitle, isRaw, isPlayer) {
   canvas.height = 80;
   const ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = '#0B0D12';
+  ctx.fillStyle = '#FFFFFF';
   ctx.fillRect(0, 0, 512, 80);
 
-  const strokeColor = isPlayer ? '#E63956' : isRaw ? '#4A90E2' : '#D49A32';
+  const strokeColor = isPlayer ? '#EF2354' : isRaw ? '#0098A6' : '#D97706';
   ctx.strokeStyle = strokeColor;
   ctx.lineWidth = 3;
   ctx.strokeRect(3, 3, 506, 74);
@@ -56,7 +56,7 @@ function createStagePlateTab(title, subtitle, isRaw, isPlayer) {
   ctx.font = 'bold 26px "Courier New", monospace';
   ctx.fillText(title, 20, 36);
 
-  ctx.fillStyle = '#C8CFDC';
+  ctx.fillStyle = '#4A5060';
   ctx.font = 'bold 18px "Courier New", monospace';
   ctx.fillText(subtitle.substring(0, 30).toUpperCase(), 20, 64);
 
@@ -144,11 +144,11 @@ function DepthStagePlane({
 
   const borderColor = isActive
     ? stage.isPlayerSubmission
-      ? '#E63956'
-      : '#E5A93C'
+      ? '#EF2354'
+      : '#E29314'
     : hovered
-    ? '#D49A32'
-    : '#4A5060';
+    ? '#D97706'
+    : '#A0A6B5';
 
   const edgesGeo = useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(2.28, 1.48, 0.005)), []);
 
@@ -176,24 +176,24 @@ function DepthStagePlane({
           <meshBasicMaterial
             key="with-tex"
             map={texture}
-            color={isActive ? '#FFFFFF' : hovered ? '#CBD2E0' : '#454854'}
+            color={isActive ? '#FFFFFF' : hovered ? '#E2E6ED' : '#969CA8'}
           />
         ) : (
-          <meshBasicMaterial key="no-tex" color="#141720" />
+          <meshBasicMaterial key="no-tex" color="#EAEBF0" />
         )}
       </mesh>
 
       {/* Backing Mounting Plate */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[2.28, 1.48, 0.02]} />
-        <meshBasicMaterial color="#0A0C10" />
+        <meshBasicMaterial color="#FFFFFF" />
       </mesh>
 
       {/* Plate Border */}
       <lineSegments geometry={edgesGeo} position={[0, 0, 0.025]}>
         <lineBasicMaterial
           color={borderColor}
-          opacity={isActive ? 1.0 : hovered ? 0.8 : 0.25}
+          opacity={isActive ? 1.0 : hovered ? 0.8 : 0.3}
           transparent
         />
       </lineSegments>
@@ -226,10 +226,10 @@ function CustodyStackScene({
   return (
     <group ref={groupRef}>
       {/* Lighting */}
-      <ambientLight intensity={0.65} color="#D0D8E8" />
-      <directionalLight position={[0, 3.5, 4.0]} intensity={3.2} color="#FFF5DB" />
-      <pointLight position={[-3.5, 1.5, 2.0]} intensity={1.6} color="#FFD488" />
-      <pointLight position={[3.5, 1.5, 2.0]} intensity={1.6} color="#FFD488" />
+      <ambientLight intensity={0.85} color="#ECEEF2" />
+      <directionalLight position={[0, 3.5, 4.0]} intensity={3.5} color="#FFFFFF" />
+      <pointLight position={[-3.5, 1.5, 2.0]} intensity={1.6} color="#FFF5DB" />
+      <pointLight position={[3.5, 1.5, 2.0]} intensity={1.6} color="#FFF5DB" />
 
       {/* Render depth stack */}
       {timelineStates.map((stage, idx) => (
@@ -246,10 +246,10 @@ function CustodyStackScene({
       {/* Ground Contact Shadow for Active Stage */}
       <ContactShadows
         position={[0, -0.92, 0.5]}
-        opacity={0.85}
+        opacity={0.65}
         scale={3.8}
         blur={1.8}
-        color="#030406"
+        color="#1A1C22"
       />
     </group>
   );
@@ -268,7 +268,7 @@ export default function CustodyDepthStack({
         height: '480px',
         position: 'relative',
         userSelect: 'none',
-        background: '#07080A',
+        background: '#EAEBF0',
       }}
     >
       <Canvas
@@ -291,12 +291,13 @@ export default function CustodyDepthStack({
           right: '16px',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: 'var(--accent-amber, #D49A32)',
+          color: 'var(--accent-amber, #D97706)',
           letterSpacing: '0.12em',
           pointerEvents: 'none',
-          background: 'rgba(8, 9, 12, 0.88)',
+          background: 'rgba(255, 255, 255, 0.92)',
           padding: '4px 12px',
-          border: '1px solid rgba(212, 154, 50, 0.3)',
+          border: '1px solid rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         }}
       >
         [ 3D CUSTODY DEPTH STACK // CLICK ANY EVIDENCE STAGE TO FOCUS ]

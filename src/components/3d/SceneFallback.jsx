@@ -11,12 +11,12 @@ export default function SceneFallback({ label = 'INITIALIZING 3D EVIDENCE ENVIRO
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#0A0B0E',
-        color: 'var(--accent-amber, #D49A32)',
+        background: '#EAEBF0',
+        color: 'var(--accent-amber, #D97706)',
         fontFamily: 'var(--font-mono, monospace)',
         fontSize: '11px',
         letterSpacing: '0.14em',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        border: '1px solid rgba(0, 0, 0, 0.08)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -25,8 +25,8 @@ export default function SceneFallback({ label = 'INITIALIZING 3D EVIDENCE ENVIRO
         style={{
           width: '32px',
           height: '32px',
-          border: '2px solid rgba(212, 154, 50, 0.25)',
-          borderTopColor: 'var(--accent-amber, #D49A32)',
+          border: '2px solid rgba(217, 119, 6, 0.25)',
+          borderTopColor: 'var(--accent-amber, #D97706)',
           borderRadius: '50%',
           animation: 'spin 0.8s linear infinite',
           marginBottom: '16px',
@@ -37,7 +37,7 @@ export default function SceneFallback({ label = 'INITIALIZING 3D EVIDENCE ENVIRO
         style={{
           marginTop: '6px',
           fontSize: '9px',
-          color: 'var(--text-muted, #656C7D)',
+          color: 'var(--text-muted, #7E8597)',
         }}
       >
         HARDWARE ACCELERATED WEBGL // PBR SHADERS

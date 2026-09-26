@@ -21,26 +21,26 @@
 .wire-divider__line {
   flex: 1;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .wire-divider--solid .wire-divider__line {
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .wire-divider--double .wire-divider__line {
   height: 4px;
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(0, 0, 0, 0.16);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background: transparent;
 }
 
 .wire-divider--dashed .wire-divider__line {
   background: repeating-linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.3) 0,
-    rgba(255, 255, 255, 0.3) 6px,
+    rgba(0, 0, 0, 0.16) 0,
+    rgba(0, 0, 0, 0.16) 6px,
     transparent 6px,
     transparent 12px
   );

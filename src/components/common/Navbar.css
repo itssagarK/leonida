@@ -1,10 +1,12 @@
 .wire-navbar {
-  background-color: var(--bg-surface);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   z-index: 90;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
 }
 
 .wire-navbar__inner {
@@ -50,6 +52,7 @@
   letter-spacing: 0.12em;
   color: var(--accent-amber);
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 /* Navigation Links */
@@ -77,6 +80,7 @@
 
 .wire-navbar__link--active {
   color: var(--accent-amber);
+  font-weight: 700;
 }
 
 .wire-navbar__link--active::after {
@@ -100,8 +104,8 @@
   align-items: center;
   gap: 8px;
   padding: 4px 10px;
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #F8F9FA;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -131,7 +135,7 @@
 }
 
 .wire-navbar__case-badge:hover {
-  background-color: rgba(212, 154, 50, 0.2);
+  background-color: rgba(217, 119, 6, 0.16);
   border-color: var(--accent-amber);
 }
 

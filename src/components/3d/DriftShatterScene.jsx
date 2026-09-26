@@ -75,7 +75,7 @@ function FractureShard({ initialPos, initialRot, driftFactor }) {
   return (
     <mesh ref={meshRef} position={initialPos} rotation={initialRot}>
       <tetrahedronGeometry args={[0.075, 0]} />
-      <meshBasicMaterial color="#E63956" />
+      <meshBasicMaterial color="#EF2354" />
     </mesh>
   );
 }
@@ -130,6 +130,10 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
+      {/* Ambient and daylight architectural studio lights */}
+      <ambientLight intensity={0.9} color="#ECEEF2" />
+      <directionalLight position={[0, 3.0, 4.0]} intensity={3.5} color="#FFFFFF" />
+
       {/* LEFT HALF: THE RAW ARCHIVAL RECORD */}
       <group ref={leftPlateRef} position={[-0.74, 0, 0]}>
         {/* Archival Photographic Print */}
@@ -138,20 +142,20 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
           {leftTexture ? (
             <meshBasicMaterial key="left-tex" map={leftTexture} />
           ) : (
-            <meshBasicMaterial key="left-notex" color="#CDB686" />
+            <meshBasicMaterial key="left-notex" color="#EAEBF0" />
           )}
         </mesh>
         {/* Backing Mounting Slab */}
         <mesh position={[0, 0, 0]}>
           <boxGeometry args={[1.46, 1.66, 0.02]} />
-          <meshBasicMaterial color="#10131A" />
+          <meshBasicMaterial color="#FFFFFF" />
         </mesh>
         {/* Photo Mount Border */}
         <lineSegments
           geometry={useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(1.46, 1.66, 0.005)), [])}
           position={[0, 0, 0.025]}
         >
-          <lineBasicMaterial color="#D49A32" opacity={0.85} transparent />
+          <lineBasicMaterial color="#D97706" opacity={0.85} transparent />
         </lineSegments>
       </group>
 
@@ -163,13 +167,13 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
           {rightTexture ? (
             <meshBasicMaterial key="right-tex" map={rightTexture} />
           ) : (
-            <meshBasicMaterial key="right-notex" color="#D8C28E" />
+            <meshBasicMaterial key="right-notex" color="#EAEBF0" />
           )}
         </mesh>
         {/* Backing Mounting Slab */}
         <mesh position={[0, 0, 0]}>
           <boxGeometry args={[1.46, 1.66, 0.02]} />
-          <meshBasicMaterial color="#10131A" />
+          <meshBasicMaterial color="#FFFFFF" />
         </mesh>
         {/* Tamper Border */}
         <lineSegments
@@ -177,7 +181,7 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
           position={[0, 0, 0.025]}
         >
           <lineBasicMaterial
-            color={driftScore > 65 ? '#E63956' : '#E5A93C'}
+            color={driftScore > 65 ? '#EF2354' : '#E29314'}
             opacity={0.9}
             transparent
           />
@@ -189,7 +193,7 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
         <mesh position={[0, 0, 0.03]} scale={[0.025 + driftFactor * 0.03, 1.7, 1]}>
           <planeGeometry args={[1, 1]} />
           <meshBasicMaterial
-            color="#E63956"
+            color="#EF2354"
             transparent
             opacity={Math.min(0.95, driftFactor * 1.2)}
           />
@@ -209,10 +213,10 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
 
       <ContactShadows
         position={[0, -0.95, 0]}
-        opacity={0.7}
+        opacity={0.55}
         scale={3.8}
         blur={1.6}
-        color="#040507"
+        color="#1A1C22"
       />
     </group>
   );
@@ -236,7 +240,7 @@ export default function DriftShatterScene({
         width: '100%',
         height: '460px',
         position: 'relative',
-        background: '#090A0D',
+        background: '#EAEBF0',
         userSelect: 'none',
       }}
     >
@@ -266,11 +270,12 @@ export default function DriftShatterScene({
           left: '16px',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: 'var(--text-secondary, #B4B9C7)',
+          color: 'var(--text-secondary, #4A5060)',
           letterSpacing: '0.1em',
-          background: 'rgba(10, 11, 14, 0.85)',
+          background: 'rgba(255, 255, 255, 0.92)',
           padding: '4px 10px',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
+          border: '1px solid rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
           pointerEvents: 'none',
         }}
       >
@@ -284,11 +289,12 @@ export default function DriftShatterScene({
           right: '16px',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: driftScore > 70 ? 'var(--accent-crimson, #E63956)' : 'var(--accent-amber, #D49A32)',
+          color: driftScore > 70 ? 'var(--accent-crimson, #EF2354)' : 'var(--accent-amber, #D97706)',
           letterSpacing: '0.1em',
-          background: 'rgba(10, 11, 14, 0.85)',
+          background: 'rgba(255, 255, 255, 0.92)',
           padding: '4px 10px',
           border: `1px solid ${driftScore > 70 ? 'var(--accent-crimson)' : 'var(--accent-amber)'}`,
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
           pointerEvents: 'none',
         }}
       >
@@ -303,13 +309,14 @@ export default function DriftShatterScene({
           transform: 'translateX(-50%)',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '10px',
-          color: 'var(--accent-amber, #D49A32)',
+          color: 'var(--accent-amber, #D97706)',
           letterSpacing: '0.12em',
           pointerEvents: 'none',
-          opacity: 0.9,
-          background: 'rgba(10, 11, 14, 0.75)',
-          padding: '2px 8px',
-          border: '1px solid rgba(212, 154, 50, 0.3)',
+          opacity: 0.95,
+          background: 'rgba(255, 255, 255, 0.92)',
+          padding: '4px 12px',
+          border: '1px solid rgba(217, 119, 6, 0.3)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         }}
       >
         [ 3D VOLUMETRIC FRACTURE // MOVE CURSOR TO INSPECT SEAM ]

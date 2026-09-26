@@ -265,7 +265,7 @@ export default function CaseFoldersDesk({ cases, onSelectCase }) {
         height: '460px',
         position: 'relative',
         userSelect: 'none',
-        background: '#090A0D',
+        background: '#EAEBF0',
       }}
     >
       <Canvas
@@ -288,12 +288,13 @@ export default function CaseFoldersDesk({ cases, onSelectCase }) {
           right: '16px',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: 'var(--accent-amber, #D49A32)',
+          color: 'var(--accent-amber, #D97706)',
           letterSpacing: '0.12em',
           pointerEvents: 'none',
-          background: 'rgba(10, 11, 14, 0.8)',
+          background: 'rgba(255, 255, 255, 0.92)',
           padding: '4px 10px',
-          border: '1px solid rgba(212, 154, 50, 0.3)',
+          border: '1px solid rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         }}
       >
         [ 3D EVIDENCE DESK // CLICK FOLDER TO LIFT & OPEN ]

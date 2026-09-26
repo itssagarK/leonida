@@ -59,7 +59,7 @@ function SculpturalEvidenceSlab({ onSelect }) {
           normalScale={new THREE.Vector2(0.2, 0.2)}
           roughness={0.7}
           metalness={0.06}
-          color="#DEC792"
+          color="#E6D3A3"
         />
       </mesh>
 
@@ -67,9 +67,9 @@ function SculpturalEvidenceSlab({ onSelect }) {
       <mesh position={[0.1, 0.028, 0.05]} rotation={[0, 0.04, 0]}>
         <boxGeometry args={[2.1, 0.015, 1.5]} />
         <meshStandardMaterial
-          roughness={0.35}
-          metalness={0.08}
-          color="#FAF4EB"
+          roughness={0.3}
+          metalness={0.05}
+          color="#FFFFFF"
         />
       </mesh>
 
@@ -79,7 +79,7 @@ function SculpturalEvidenceSlab({ onSelect }) {
         <meshStandardMaterial
           roughness={0.7}
           metalness={0.05}
-          color="#C9B078"
+          color="#D4BC82"
         />
       </mesh>
 
@@ -98,7 +98,7 @@ function SculpturalEvidenceSlab({ onSelect }) {
             normalScale={new THREE.Vector2(0.25, 0.25)}
             roughness={0.7}
             metalness={0.06}
-            color="#E4CF9C"
+            color="#EEDCB0"
           />
         </mesh>
       </group>
@@ -107,9 +107,9 @@ function SculpturalEvidenceSlab({ onSelect }) {
       <mesh position={[-0.9, 0.055, -0.7]} rotation={[0, 0.2, 0]} castShadow>
         <torusGeometry args={[0.08, 0.015, 16, 32, Math.PI * 1.6]} />
         <meshStandardMaterial
-          color="#DDA236"
-          metalness={0.95}
-          roughness={0.15}
+          color="#D97706"
+          metalness={0.9}
+          roughness={0.2}
         />
       </mesh>
     </group>
@@ -121,28 +121,28 @@ function SculpturalVoidScene({ onSelect }) {
 
   return (
     <>
-      {/* Peter Tarka Architectural Key Beam: High-Angle Focused Spotlight */}
+      {/* Peter Tarka Architectural Daylight Key Light */}
       <spotLight
         position={[2.8, 5.0, 3.0]}
-        angle={0.6}
+        angle={0.65}
         penumbra={0.8}
-        intensity={6.5}
-        color="#FFF0D0"
+        intensity={5.0}
+        color="#FFFFFF"
         castShadow
         shadow-mapSize={[1024, 1024]}
         shadow-bias={-0.0005}
       />
 
-      {/* Soft Noir Cyan-Slate Rim Light */}
+      {/* Soft Sky Fill Light */}
       <directionalLight
         position={[-3.8, 2.5, -2.5]}
-        intensity={1.8}
-        color="#4A7599"
+        intensity={1.5}
+        color="#D9E6F2"
       />
 
-      {/* Warm Ground Fill */}
-      <pointLight position={[0, 2.0, 1.5]} intensity={2.0} color="#FFDCA8" />
-      <ambientLight intensity={0.65} color="#181D26" />
+      {/* Warm Sun Rim */}
+      <pointLight position={[0, 2.2, 1.8]} intensity={1.8} color="#FFF2DC" />
+      <ambientLight intensity={0.9} color="#ECEEF2" />
 
       {/* 3D Floating Evidence Slab */}
       <SculpturalEvidenceSlab onSelect={onSelect} />
@@ -150,26 +150,26 @@ function SculpturalVoidScene({ onSelect }) {
       {/* Realistic Soft Contact Shadow */}
       <ContactShadows
         position={[0, -0.015, 0]}
-        opacity={0.85}
+        opacity={0.6}
         scale={4.8}
-        blur={1.8}
+        blur={1.6}
         far={2}
-        color="#030406"
+        color="#1A1C22"
       />
 
-      {/* Darkroom Plinth / Ground Plane */}
+      {/* Architectural Studio Plinth / Ground Plane */}
       <mesh position={[0, -0.025, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[14, 12]} />
         <meshStandardMaterial
           map={deskTexture}
           roughness={0.85}
-          metalness={0.15}
+          metalness={0.05}
         />
       </mesh>
 
       {/* Subtle Postprocessing */}
       <EffectComposer disableNormalPass multisampling={0}>
-        <Bloom luminanceThreshold={0.88} intensity={0.3} />
+        <Bloom luminanceThreshold={0.92} intensity={0.2} />
       </EffectComposer>
     </>
   );
@@ -184,6 +184,7 @@ export default function HeroEvidenceDesk({ onSelectFolder }) {
         minHeight: '440px',
         position: 'relative',
         userSelect: 'none',
+        background: '#EAEBF0',
       }}
     >
       <Canvas
@@ -202,14 +203,15 @@ export default function HeroEvidenceDesk({ onSelectFolder }) {
           transform: 'translateX(-50%)',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: 'var(--accent-amber, #D49A32)',
+          color: 'var(--accent-amber, #D97706)',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
           pointerEvents: 'none',
-          opacity: 0.85,
-          background: 'rgba(8, 9, 12, 0.85)',
+          opacity: 0.95,
+          background: 'rgba(255, 255, 255, 0.92)',
           padding: '4px 12px',
-          border: '1px solid rgba(212, 154, 50, 0.3)',
+          border: '1px solid rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         }}
       >
         [ 3D VOLUMETRIC DOSSIER // CURSOR PARALLAX ACTIVE ]

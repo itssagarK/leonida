@@ -41,18 +41,18 @@ function createTabTexture(caseNum, title) {
   canvas.height = 96;
   const ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = '#0E1118';
+  ctx.fillStyle = '#FFFFFF';
   ctx.fillRect(0, 0, 512, 96);
 
-  ctx.strokeStyle = '#D49A32';
+  ctx.strokeStyle = '#D97706';
   ctx.lineWidth = 3;
   ctx.strokeRect(3, 3, 506, 90);
 
-  ctx.fillStyle = '#D49A32';
+  ctx.fillStyle = '#D97706';
   ctx.font = 'bold 32px "Courier New", monospace';
   ctx.fillText(caseNum, 24, 45);
 
-  ctx.fillStyle = '#F5EFE6';
+  ctx.fillStyle = '#0F1115';
   ctx.font = 'bold 22px "Courier New", monospace';
   ctx.fillText(title.substring(0, 24).toUpperCase(), 24, 76);
 
@@ -136,23 +136,23 @@ function DepthImagePlane({
           <meshBasicMaterial
             key="with-tex"
             map={photoTexture}
-            color={isDimmed && !hovered ? '#606470' : '#FFFFFF'}
+            color={isDimmed && !hovered ? '#A6ACBA' : '#FFFFFF'}
           />
         ) : (
-          <meshBasicMaterial key="no-tex" color="#1E2330" />
+          <meshBasicMaterial key="no-tex" color="#EAEBF0" />
         )}
       </mesh>
 
       {/* Backing Mounting Frame Plate */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[2.18, 1.48, 0.02]} />
-        <meshBasicMaterial color="#0C0E14" />
+        <meshBasicMaterial color="#FFFFFF" />
       </mesh>
 
       {/* High-Contrast Gold Border */}
       <lineSegments geometry={useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(2.18, 1.48, 0.005)), [])} position={[0, 0, 0.025]}>
         <lineBasicMaterial
-          color={isActive || hovered ? '#E5A93C' : '#D49A32'}
+          color={isActive || hovered ? '#E29314' : '#D97706'}
           opacity={isActive || hovered ? 1.0 : isDimmed ? 0.35 : 0.75}
           transparent
         />
@@ -167,10 +167,10 @@ function DepthImagePlane({
       {/* Contact Shadow Under Image Plane */}
       <ContactShadows
         position={[0, -0.9, 0]}
-        opacity={isDimmed ? 0.25 : isActive || hovered ? 0.9 : 0.6}
+        opacity={isDimmed ? 0.25 : isActive || hovered ? 0.7 : 0.45}
         scale={3.6}
         blur={1.6}
-        color="#030406"
+        color="#1A1C22"
       />
     </group>
   );
@@ -192,10 +192,10 @@ function GalleryScene({ cases, activeId, onSelectCase }) {
   return (
     <group ref={groupRef}>
       {/* Architectural Lighting (Peter Tarka inspired) */}
-      <ambientLight intensity={0.7} color="#D8DFEE" />
-      <directionalLight position={[0, 3.5, 4.0]} intensity={3.0} color="#FFF4D8" />
-      <pointLight position={[-3.0, 1.0, 2.5]} intensity={1.5} color="#FFD080" />
-      <pointLight position={[3.0, 1.0, 2.5]} intensity={1.5} color="#FFD080" />
+      <ambientLight intensity={0.9} color="#ECEEF2" />
+      <directionalLight position={[0, 3.5, 4.0]} intensity={3.5} color="#FFFFFF" />
+      <pointLight position={[-3.0, 1.0, 2.5]} intensity={1.5} color="#FFF5DB" />
+      <pointLight position={[3.0, 1.0, 2.5]} intensity={1.5} color="#FFF5DB" />
 
       {/* Render depth-sorted evidence planes */}
       {cases.map((c, idx) => {
@@ -237,7 +237,7 @@ export default function CaseGalleryWall({ cases, onSelectCase }) {
         height: '460px',
         position: 'relative',
         userSelect: 'none',
-        background: '#07080A',
+        background: '#EAEBF0',
       }}
     >
       <Canvas
@@ -259,12 +259,13 @@ export default function CaseGalleryWall({ cases, onSelectCase }) {
           right: '16px',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: 'var(--accent-amber, #D49A32)',
+          color: 'var(--accent-amber, #D97706)',
           letterSpacing: '0.12em',
           pointerEvents: 'none',
-          background: 'rgba(8, 9, 12, 0.85)',
+          background: 'rgba(255, 255, 255, 0.92)',
           padding: '4px 12px',
-          border: '1px solid rgba(212, 154, 50, 0.3)',
+          border: '1px solid rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         }}
       >
         [ 3D DEPTH GALLERY // HOVER TO FOCUS • CLICK TO ENTER ]

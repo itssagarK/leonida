@@ -13,7 +13,7 @@
   align-items: center;
   font-size: 11px;
   font-family: var(--font-mono);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   padding-bottom: var(--space-2);
 }
 
@@ -26,7 +26,7 @@
 }
 
 .wire-custody__back-link:hover {
-  color: var(--accent-amber-light);
+  color: var(--accent-gold);
 }
 
 .wire-custody__case-ref {
@@ -105,20 +105,20 @@
 
 /* SCRUBBER STAGE */
 .wire-custody__stage {
-  background: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: var(--shadow-lg);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
 }
 
 .wire-custody__scrub-controls {
-  background: #11141E;
+  background: #F8F9FA;
   padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -149,12 +149,12 @@
 
 /* Range Slider */
 .wire-custody__slider-wrapper {
-  background: #0B0D13;
+  background: #F0F1F4;
   padding: 18px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .wire-custody__slider-ticks {
@@ -176,11 +176,11 @@
 
 .wire-custody__tick:hover {
   color: var(--accent-amber);
-  border-color: rgba(212, 154, 50, 0.4);
+  border-color: rgba(217, 119, 6, 0.4);
 }
 
 .wire-custody__tick.is-active {
-  color: #08090C;
+  color: #FFFFFF;
   background: var(--accent-amber);
   border-color: var(--accent-gold);
 }
@@ -191,8 +191,8 @@
   appearance: none;
   width: 100%;
   height: 8px;
-  background: #181C26;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #D8DADC;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
   outline: none;
   cursor: ew-resize;
@@ -204,10 +204,10 @@
   width: 24px;
   height: 24px;
   background: var(--accent-amber);
-  border: 2px solid #08090C;
+  border: 2px solid #FFFFFF;
   border-radius: 0;
   cursor: ew-resize;
-  box-shadow: 0 0 10px rgba(212, 154, 50, 0.8), 0 2px 6px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.6), 0 2px 4px rgba(0, 0, 0, 0.15);
   transition: transform 0.1s ease;
 }
 
@@ -220,10 +220,10 @@
   width: 24px;
   height: 24px;
   background: var(--accent-amber);
-  border: 2px solid #08090C;
+  border: 2px solid #FFFFFF;
   border-radius: 0;
   cursor: ew-resize;
-  box-shadow: 0 0 10px rgba(212, 154, 50, 0.8);
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
 }
 
 .wire-custody__scrub-endpoints {
@@ -241,7 +241,7 @@
   position: relative;
   width: 100%;
   height: 480px;
-  background: #040507;
+  background: #EAEBF0;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -256,12 +256,12 @@
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.25) 0px,
-    rgba(0, 0, 0, 0.25) 1px,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
     transparent 1px,
     transparent 3px
   );
-  opacity: var(--drift-grain-opacity, 0.04);
+  opacity: var(--drift-grain-opacity, 0.02);
   pointer-events: none;
   z-index: 3;
   transition: opacity 250ms var(--ease-mechanical);
@@ -276,8 +276,8 @@
 
 /* Chromatic aberration effect when degraded */
 .wire-custody__viewport.is-drift-degraded .wire-custody__viewport-img {
-  filter: drop-shadow(calc(-1 * var(--drift-aberration, 2px)) 0 0 rgba(230, 57, 86, 0.4))
-          drop-shadow(var(--drift-aberration, 2px) 0 0 rgba(212, 154, 50, 0.4));
+  filter: drop-shadow(calc(-1 * var(--drift-aberration, 2px)) 0 0 rgba(239, 35, 84, 0.35))
+          drop-shadow(var(--drift-aberration, 2px) 0 0 rgba(217, 119, 6, 0.35));
 }
 
 .wire-custody__viewport-stamp {
@@ -296,8 +296,9 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  background: rgba(10, 11, 14, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   padding: 6px 12px;
   font-family: var(--font-mono);
   font-size: 10px;
@@ -321,12 +322,12 @@
 
 /* Scrub Meta Panel */
 .wire-custody__scrub-meta-panel {
-  background: var(--bg-surface);
+  background: #FFFFFF;
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .wire-custody__scrub-witness-bar {
@@ -410,7 +411,7 @@
 
 .wire-custody__cta-card {
   width: 100%;
-  background: #11141E;
+  background: #FFFFFF;
   border: 1px solid var(--accent-amber-border);
   padding: var(--space-4);
   display: flex;
@@ -418,7 +419,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .wire-custody__cta-info {
@@ -460,7 +461,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   padding-bottom: var(--space-1);
 }
 
@@ -485,25 +486,26 @@
 }
 
 .wire-ledger-entry {
-  background: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   padding: var(--space-3);
   cursor: pointer;
   transition: all var(--transition-fast);
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .wire-ledger-entry:hover {
-  background: #141722;
-  border-color: rgba(255, 255, 255, 0.2);
+  background: #FBFBFC;
+  border-color: rgba(0, 0, 0, 0.18);
 }
 
 .wire-ledger-entry.is-active-entry {
   border-left: 4px solid var(--accent-amber);
-  background: #141724;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  background: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .wire-ledger-entry__head {
@@ -571,7 +573,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
   padding-top: 6px;
   margin-top: 4px;
   font-family: var(--font-mono);
