@@ -250,6 +250,7 @@ export default function RevealScreen() {
           Inspect the full chain of distortion, review what changed, and export your 
           certified evidentiary dossier.
         </p>
+        <div className="wire-oxford-rule" aria-hidden="true" />
 
         {!hasPlayerEdited && (
           <div className="wire-reveal__lock-banner">
@@ -294,7 +295,7 @@ export default function RevealScreen() {
               <span>THE RAW TRUTH</span>
             </div>
 
-            <div className="wire-comp-card__img-wrap">
+            <div className="wire-comp-card__img-wrap wire-corner-reticles">
               <img
                 src={caseObj.originalImage}
                 alt="The Raw Truth"
@@ -331,7 +332,7 @@ export default function RevealScreen() {
               <span>WHAT THE PUBLIC SAW</span>
             </div>
 
-            <div className="wire-comp-card__img-wrap">
+            <div className="wire-comp-card__img-wrap wire-corner-reticles">
               <img
                 src={finalStep.imageDataUrl || caseObj.originalImage}
                 alt="What the public saw"
@@ -445,7 +446,7 @@ export default function RevealScreen() {
                 </div>
 
                 <div className="wire-reveal-step__grid">
-                  <div className="wire-reveal-step__img-wrap">
+                  <div className="wire-reveal-step__img-wrap wire-corner-reticles">
                     {step.imageDataUrl ? (
                       <img
                         src={step.imageDataUrl}

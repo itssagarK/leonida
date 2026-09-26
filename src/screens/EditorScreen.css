@@ -482,16 +482,56 @@
 
 .wire-signal-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 3px;
   font-family: var(--font-mono);
   font-size: 11px;
 }
 
+.wire-signal-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.wire-signal-meter {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.wire-signal-meter-fill {
+  height: 100%;
+  transition: width 0.3s ease-out;
+}
+
+.wire-signal-meter-fill--amber {
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 6px rgba(212, 154, 50, 0.6);
+}
+
+.wire-signal-meter-fill--cyan {
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 6px rgba(56, 178, 172, 0.6);
+}
+
+.wire-signal-meter-fill--crimson {
+  background-color: var(--accent-crimson);
+  box-shadow: 0 0 6px rgba(230, 57, 86, 0.6);
+}
+
+.wire-signal-meter-fill--gold {
+  background-color: var(--accent-gold);
+  box-shadow: 0 0 8px rgba(229, 169, 60, 0.8);
+}
+
 .wire-signal-row--highlight {
-  padding-top: 4px;
+  padding-top: 6px;
   margin-top: 4px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
   font-weight: 700;
 }
 

@@ -18,7 +18,7 @@ export default function CaseListScreen() {
           ← BACK TO WIRE DESPATCH
         </Link>
         <span className="wire-caselist__secure-tag">
-          EVIDENTIARY ARCHIVE // 2 CASES UNSEALED
+          EVIDENTIARY ARCHIVE // 2 UNRESTRICTED DOSSIERS
         </span>
       </div>
 
@@ -26,12 +26,13 @@ export default function CaseListScreen() {
       <header className="wire-caselist__header">
         <div className="wire-caselist__header-badge">
           <Badge variant="wire">LEONIDA EVIDENCE ARCHIVE</Badge>
-          <span className="wire-caselist__header-freq">CLASSIFIED CHANNEL 94.7</span>
+          <span className="wire-caselist__header-freq">CLASSIFIED REPOSITORY // SECTOR 04</span>
         </div>
         <h1 className="wire-caselist__title">ACTIVE EVIDENCE DOSSIERS</h1>
+        <div className="wire-oxford-rule" aria-hidden="true" />
         <p className="wire-caselist__lead">
-          Select an evidentiary folder to inspect witness claims, review the custody chain, 
-          and file your visual edit with the React Image Editor.
+          Select an evidentiary folder to review raw police negatives, audit the chain of witness 
+          tampering, and mount the image into the <strong>React Image Editor</strong> to file your transmission.
         </p>
       </header>
 
@@ -42,8 +43,8 @@ export default function CaseListScreen() {
           const fullChain = getEffectiveChain(c, progress);
           const hasPlayerFiled = Boolean(progress && progress.playerLink);
           const latestLink = fullChain[fullChain.length - 1];
-          const estTime = index === 0 ? 'EST. TIME: ~3 MIN' : 'EST. TIME: ~4 MIN';
-          const difficulty = index === 0 ? 'DIFFICULTY: MODERATE' : 'DIFFICULTY: HIGH DRIFT';
+          const estTime = index === 0 ? '~3 MIN READ' : '~4 MIN READ';
+          const difficulty = index === 0 ? 'MODERATE DRIFT' : 'HIGH VOLATILITY';
 
           return (
             <article
@@ -60,23 +61,31 @@ export default function CaseListScreen() {
               role="button"
               aria-label={`Open case ${c.caseNumber}: ${c.title}`}
             >
-              {/* Folder Tab */}
-              <div className="wire-folder__tab">
-                <span className="wire-folder__tab-num">{c.caseNumber}</span>
-                <span className="wire-folder__tab-cat">{c.category}</span>
+              {/* Folder Tab with Paperclip & Seal */}
+              <div className="wire-folder__tab-row">
+                <div className="wire-folder__tab">
+                  <span className="wire-folder__paperclip" aria-hidden="true">📎</span>
+                  <span className="wire-folder__tab-num">{c.caseNumber}</span>
+                  <span className="wire-folder__tab-cat">{c.category}</span>
+                </div>
+                <div className="wire-folder__tape">
+                  {hasPlayerFiled ? 'CERTIFIED FILED' : 'RESTRICTED EVIDENCE'}
+                </div>
               </div>
 
               {/* Folder Content Container */}
               <div className="wire-folder__content">
-                {/* Visual Thumbnail */}
-                <div className="wire-folder__thumb-box">
-                  <img
-                    src={latestLink.imageDataUrl || c.originalImage}
-                    alt={c.title}
-                    className="wire-folder__thumb-img"
-                    style={{ filter: latestLink.imageDataUrl ? 'none' : (latestLink.filterStyle || 'none') }}
-                    loading="lazy"
-                  />
+                {/* Visual Thumbnail Archival Mount */}
+                <div className="wire-folder__thumb-box wire-corner-reticles">
+                  <div className="wire-folder__thumb-matte">
+                    <img
+                      src={latestLink.imageDataUrl || c.originalImage}
+                      alt={c.title}
+                      className="wire-folder__thumb-img"
+                      style={{ filter: latestLink.imageDataUrl ? 'none' : (latestLink.filterStyle || 'none') }}
+                      loading="lazy"
+                    />
+                  </div>
                   <div className="wire-folder__thumb-overlay">
                     <Badge 
                       variant={hasPlayerFiled ? 'verified' : 'disputed'} 
@@ -86,8 +95,9 @@ export default function CaseListScreen() {
                       {hasPlayerFiled ? 'FILED' : 'UNRESOLVED'}
                     </Badge>
                   </div>
-                  <div className="wire-folder__thumb-corner wire-folder__thumb-corner--tl" />
-                  <div className="wire-folder__thumb-corner wire-folder__thumb-corner--br" />
+                  <div className="wire-folder__docket-stamp">
+                    REG. #{c.id.toUpperCase()}
+                  </div>
                 </div>
 
                 {/* Details Body */}
@@ -97,7 +107,7 @@ export default function CaseListScreen() {
                       {fullChain.length} EVIDENCE {fullChain.length === 1 ? 'LINK' : 'LINKS'}
                     </span>
                     <span className="wire-folder__sep">•</span>
-                    <span className="wire-folder__metric">{difficulty}</span>
+                    <span className="wire-folder__metric wire-folder__metric--volatility">{difficulty}</span>
                     <span className="wire-folder__sep">•</span>
                     <span className="wire-folder__metric">{estTime}</span>
                   </div>
@@ -106,7 +116,7 @@ export default function CaseListScreen() {
                   <p className="wire-folder__summary">{c.subtitle}</p>
 
                   <div className="wire-folder__location-row">
-                    <span className="wire-folder__loc-label">SCENE:</span>
+                    <span className="wire-folder__loc-label">INCIDENT SCENE:</span>
                     <span className="wire-folder__loc-val">{c.location}</span>
                   </div>
 
@@ -121,8 +131,11 @@ export default function CaseListScreen() {
                       }}
                       icon={<span>→</span>}
                     >
-                      OPEN CASE
+                      INSPECT DOSSIER
                     </Button>
+                    <span className="wire-folder__subaction-label">
+                      {hasPlayerFiled ? 'VIEW FILED RECORD' : 'REVIEW CUSTODY & EDIT'}
+                    </span>
                   </div>
                 </div>
               </div>

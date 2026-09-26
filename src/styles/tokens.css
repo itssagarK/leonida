@@ -1,41 +1,41 @@
-/* THE LEONIDA WIRE — REFINED DESIGN SYSTEM TOKENS */
+/* THE LEONIDA WIRE — REFINED DESIGN SYSTEM TOKENS (DESIGN.MD CONTRACT) */
 
 :root {
   /* Color Palette: Forensic Dark & Muted Amber Wire-Room */
-  --bg-base: #090A0D;
-  --bg-primary: #090A0D;
-  --bg-surface: #0F1117;
-  --bg-elevated: #151821;
-  --bg-card: #12141C;
-  --bg-card-hover: #171A24;
-  --bg-panel: #0D0F14;
+  --bg-base: #08090C;
+  --bg-primary: #08090C;
+  --bg-surface: #0E1017;
+  --bg-elevated: #151822;
+  --bg-card: #11141C;
+  --bg-card-hover: #181B26;
+  --bg-panel: #0D0F15;
   --bg-paper: #F3ECE1;
 
   /* Typography Colors: Warm Ivory Primary & Muted Tones */
-  --text-primary: #F4EFE6;
-  --text-secondary: #B2B7C4;
-  --text-muted: #6C7280;
+  --text-primary: #F5EFE6;
+  --text-secondary: #B4B9C7;
+  --text-muted: #636B7B;
   --text-dark: #0D0E12;
-  --text-gold: #D49A32;
+  --text-gold: #DDA236;
 
   /* Accent: Muted Amber / Gold (Evidence, Metadata, Primary Actions) */
   --accent-amber: #D49A32;
-  --accent-gold: #E5A93C;
+  --accent-gold: #E8A838;
   --accent-amber-light: #F7C668;
   --accent-amber-subtle: rgba(212, 154, 50, 0.12);
-  --accent-amber-border: rgba(212, 154, 50, 0.35);
+  --accent-amber-border: rgba(212, 154, 50, 0.38);
 
   /* Controlled Crimson / Magenta (Warnings, Manipulation, Critical State) */
   --accent-crimson: #E63956;
   --accent-coral: #E63956;
   --accent-magenta: #D62846;
   --accent-crimson-subtle: rgba(230, 57, 86, 0.12);
-  --accent-crimson-border: rgba(230, 57, 86, 0.35);
+  --accent-crimson-border: rgba(230, 57, 86, 0.38);
 
   /* Subtle Editorial Cyan / Blue (Technical & Diagnostic Info) */
   --accent-cyan: #38B2AC;
   --accent-cyan-subtle: rgba(56, 178, 172, 0.12);
-  --accent-cyan-border: rgba(56, 178, 172, 0.3);
+  --accent-cyan-border: rgba(56, 178, 172, 0.32);
 
   /* Status Stamps */
   --stamp-green: #10B981;
@@ -44,8 +44,8 @@
   --stamp-red: #E63956;
 
   /* Borders & Rules */
-  --border-subtle: 1px solid rgba(255, 255, 255, 0.07);
-  --border-medium: 1px solid rgba(255, 255, 255, 0.12);
+  --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
+  --border-medium: 1px solid rgba(255, 255, 255, 0.14);
   --border-evidence: 1px dashed rgba(212, 154, 50, 0.35);
   --border-evidence-strong: 1px solid rgba(212, 154, 50, 0.6);
   --border-alert: 1px solid rgba(230, 57, 86, 0.5);
@@ -76,8 +76,8 @@
 
   /* Shadows & Depth */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
-  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.85);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.75);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.9);
 
   /* Transitions */
   --transition-fast: 0.15s ease-out;
@@ -95,6 +95,10 @@
 
 html, body {
   background-color: var(--bg-base);
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(8, 9, 12, 0.98), rgba(8, 9, 12, 1));
+  background-size: 24px 24px, 100% 100%;
   color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 14px;
@@ -141,6 +145,51 @@ button, input, textarea, select {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
+}
+
+/* Tactile Utility: Oxford Double-Rule */
+.wire-oxford-rule {
+  border: none;
+  border-top: 2px solid var(--accent-amber);
+  border-bottom: 1px solid rgba(212, 154, 50, 0.4);
+  height: 5px;
+  margin: var(--space-2) 0;
+  width: 100%;
+}
+
+.wire-oxford-rule--subtle {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  height: 4px;
+}
+
+/* Tactile Utility: Corner Reticles for Archival Photo Mounts */
+.wire-corner-reticles {
+  position: relative;
+}
+
+.wire-corner-reticles::before,
+.wire-corner-reticles::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.wire-corner-reticles::before {
+  top: 6px;
+  left: 6px;
+  border-top: 2px solid var(--accent-amber);
+  border-left: 2px solid var(--accent-amber);
+}
+
+.wire-corner-reticles::after {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 2px solid var(--accent-amber);
+  border-right: 2px solid var(--accent-amber);
 }
 
 /* Custom Scrollbar */

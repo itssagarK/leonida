@@ -21,6 +21,19 @@ Experience the complete investigative workflow live on Vercel:
 
 ---
 
+## Interface & Workflow Showcase
+
+| Stage | Visual Preview | Description |
+| :--- | :--- | :--- |
+| **01 — Masthead & Pipeline** | <img src="./screenshots/landing_updated.png" width="700" alt="Landing Masthead" /> | Newspaper front-page masthead, memorandum, and connected pipeline. |
+| **02 — Case Dossiers** | <img src="./screenshots/cases_updated.png" width="700" alt="Case Dossiers" /> | Tactile Manila evidence folders, paperclips, and archival photo mounts. |
+| **03 — Custody Scrubber** | <img src="./screenshots/custody_updated.png" width="700" alt="Custody Scrubber" /> | Interactive timeline scrubber and teletype chain-of-custody ledger. |
+| **04 — React Image Editor** | <img src="./screenshots/edit_updated.png" width="700" alt="React Image Editor Workbench" /> | 3-Zone workbench with live VU-meter signals and Unlayer editor suite. |
+| **05 — Drift Analysis** | <img src="./screenshots/status_updated.png" width="700" alt="Truth Drift Analysis" /> | Narrative decay calculations, breakdown weights, and lexical forensics. |
+| **06 — Wire Reveal & Export** | <img src="./screenshots/reveal_updated.png" width="700" alt="Wire Reveal & Dossier Export" /> | Split-screen raw record vs. public claim with client-side canvas dossier export. |
+
+---
+
 ## Overview
 
 ### What The Leonida Wire Is

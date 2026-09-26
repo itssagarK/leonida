@@ -86,7 +86,7 @@ export default function CustodyLogScreen() {
       {/* Top Ledger Navigation */}
       <div className="wire-custody__nav">
         <Link to={`/case/${caseObj.id}`} className="wire-custody__back-link">
-          &larr; BACK TO CASE INTRO
+          ← BACK TO CASE INTRO
         </Link>
         <div className="wire-custody__case-ref">
           <span>CASE: <strong>{caseObj.caseNumber}</strong></span>
@@ -98,7 +98,7 @@ export default function CustodyLogScreen() {
               className="wire-custody__reset-link"
               title="Clear your filed report and reset this case"
             >
-              [&#8634; RESET THIS CASE]
+              [↺ RESET THIS CASE]
             </button>
           )}
         </div>
@@ -113,6 +113,7 @@ export default function CustodyLogScreen() {
           </span>
         </div>
         <h1 className="wire-custody__title">EVIDENTIARY DRIFT SCRUBBER</h1>
+        <div className="wire-oxford-rule" aria-hidden="true" />
         <p className="wire-custody__desc">
           Drag the scrubber below to examine how each successive witness altered the photograph
           and warped the narrative from the raw archival negative to the current wire state.
@@ -165,13 +166,13 @@ export default function CustodyLogScreen() {
           />
 
           <div className="wire-custody__scrub-endpoints">
-            <span>&larr; RAW ORIGINAL NEGATIVE</span>
-            <span>LATEST WIRE MUTATION &rarr;</span>
+            <span>← RAW ORIGINAL NEGATIVE</span>
+            <span>LATEST WIRE MUTATION →</span>
           </div>
         </div>
 
         {/* Live Scrubber Image Viewport */}
-        <div className="wire-custody__viewport">
+        <div className="wire-custody__viewport wire-corner-reticles">
           {activeState.imageDataUrl ? (
             <img
               src={activeState.imageDataUrl}
@@ -213,13 +214,13 @@ export default function CustodyLogScreen() {
               {activeState.handle && (
                 <span className="wire-custody__witness-handle"> ({activeState.handle})</span>
               )}
-              <span className="wire-custody__witness-role"> &bull; {activeState.role}</span>
+              <span className="wire-custody__witness-role"> • {activeState.role}</span>
             </div>
             <span className="wire-custody__witness-time">{activeState.timestamp}</span>
           </div>
 
           <p className="wire-custody__scrub-caption">
-            &ldquo;{activeState.caption}&rdquo;
+            “{activeState.caption}”
           </p>
 
           <div className="wire-custody__scrub-distortion">
@@ -254,7 +255,7 @@ export default function CustodyLogScreen() {
               variant="primary"
               size="lg"
               onClick={() => navigate(hasPlayerEdited ? `/case/${caseObj.id}/status` : `/case/${caseObj.id}/edit`)}
-              icon={<span>&gt;&gt;</span>}
+              icon={<span>→</span>}
             >
               {hasPlayerEdited ? 'VIEW DRIFT STATUS & VERDICT' : 'ADD YOUR LINK • LAUNCH EDITOR'}
             </Button>
@@ -303,7 +304,7 @@ export default function CustodyLogScreen() {
                     SOURCE: <strong>{st.author}</strong> ({st.role})
                   </div>
                   <blockquote className="wire-ledger-entry__quote">
-                    &ldquo;{st.caption}&rdquo;
+                    “{st.caption}”
                   </blockquote>
                   <div className="wire-ledger-entry__audit">
                     <span className="wire-ledger-entry__drift-tag">DRIFT:</span> {st.distortionNote}
@@ -314,7 +315,7 @@ export default function CustodyLogScreen() {
                   <span className="wire-ledger-entry__tools">
                     MODS: {st.toolsUsed.join(' // ')}
                   </span>
-                  <span className="wire-ledger-entry__sync-hint">CLICK TO VIEW IN SCRUBBER &uarr;</span>
+                  <span className="wire-ledger-entry__sync-hint">CLICK TO VIEW IN SCRUBBER ↑</span>
                 </div>
               </div>
 

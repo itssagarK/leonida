@@ -302,6 +302,7 @@ export default function EditorScreen() {
           Your edit becomes part of the public record. Manipulate the image using the React Image Editor,
           save your edit, and file your claim to expose cumulative drift.
         </p>
+        <div className="wire-oxford-rule" aria-hidden="true" />
       </header>
 
       {/* THREE-ZONE WORKBENCH LAYOUT */}
@@ -479,25 +480,60 @@ export default function EditorScreen() {
               </div>
             </div>
 
-            {/* Editorial Signal Metrics (Deterministic & Live) */}
+            {/* Editorial Signal Metrics (Deterministic & Live with Analog Meters) */}
             <div className="wire-impact-section">
-              <div className="wire-impact-section__label">EDITORIAL SIGNAL</div>
+              <div className="wire-impact-section__label">EDITORIAL SIGNAL METRICS</div>
               <div className="wire-signal-list">
                 <div className="wire-signal-row">
-                  <span className="wire-signal-name">Visibility</span>
-                  <span className="wire-signal-val wire-signal-val--amber">+{liveSignals.visibility}</span>
+                  <div className="wire-signal-meta">
+                    <span className="wire-signal-name">Visibility</span>
+                    <span className="wire-signal-val wire-signal-val--amber">+{liveSignals.visibility}</span>
+                  </div>
+                  <div className="wire-signal-meter">
+                    <div 
+                      className="wire-signal-meter-fill wire-signal-meter-fill--amber" 
+                      style={{ width: `${Math.min(100, Math.max(10, liveSignals.visibility))}%` }} 
+                    />
+                  </div>
                 </div>
+
                 <div className="wire-signal-row">
-                  <span className="wire-signal-name">Focus</span>
-                  <span className="wire-signal-val wire-signal-val--cyan">+{liveSignals.focus}</span>
+                  <div className="wire-signal-meta">
+                    <span className="wire-signal-name">Focus</span>
+                    <span className="wire-signal-val wire-signal-val--cyan">+{liveSignals.focus}</span>
+                  </div>
+                  <div className="wire-signal-meter">
+                    <div 
+                      className="wire-signal-meter-fill wire-signal-meter-fill--cyan" 
+                      style={{ width: `${Math.min(100, Math.max(10, liveSignals.focus))}%` }} 
+                    />
+                  </div>
                 </div>
+
                 <div className="wire-signal-row">
-                  <span className="wire-signal-name">Manipulation</span>
-                  <span className="wire-signal-val wire-signal-val--crimson">+{liveSignals.manipulation}</span>
+                  <div className="wire-signal-meta">
+                    <span className="wire-signal-name">Manipulation</span>
+                    <span className="wire-signal-val wire-signal-val--crimson">+{liveSignals.manipulation}</span>
+                  </div>
+                  <div className="wire-signal-meter">
+                    <div 
+                      className="wire-signal-meter-fill wire-signal-meter-fill--crimson" 
+                      style={{ width: `${Math.min(100, Math.max(10, liveSignals.manipulation))}%` }} 
+                    />
+                  </div>
                 </div>
+
                 <div className="wire-signal-row wire-signal-row--highlight">
-                  <span className="wire-signal-name">Base Drift</span>
-                  <span className="wire-signal-val wire-signal-val--gold">+{liveSignals.baseDrift}%</span>
+                  <div className="wire-signal-meta">
+                    <span className="wire-signal-name">Base Drift</span>
+                    <span className="wire-signal-val wire-signal-val--gold">+{liveSignals.baseDrift}%</span>
+                  </div>
+                  <div className="wire-signal-meter">
+                    <div 
+                      className="wire-signal-meter-fill wire-signal-meter-fill--gold" 
+                      style={{ width: `${Math.min(100, Math.max(10, liveSignals.baseDrift))}%` }} 
+                    />
+                  </div>
                 </div>
               </div>
             </div>

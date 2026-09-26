@@ -53,6 +53,7 @@ export default function DriftStatusScreen() {
           Forensic measurement of factual narrative decay between the baseline crime-scene 
           negative and the final headline filed to the Leonida wire.
         </p>
+        <div className="wire-oxford-rule" aria-hidden="true" />
 
         {!hasPlayerLink && (
           <div className="wire-drift__unsealed-alert">
@@ -211,7 +212,7 @@ export default function DriftStatusScreen() {
         </div>
 
         <div className="wire-drift-summary-card__body">
-          <div className="wire-drift-summary-card__thumb-box">
+          <div className="wire-drift-summary-card__thumb-box wire-corner-reticles">
             <img
               src={playerLink.imageDataUrl || caseObj.originalImage}
               alt="Transmitted report"

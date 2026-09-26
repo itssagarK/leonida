@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -16,7 +16,7 @@
 .wire-caselist__back {
   color: var(--accent-amber);
   text-decoration: none;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-weight: 700;
   transition: color var(--transition-fast);
 }
@@ -27,7 +27,7 @@
 
 .wire-caselist__secure-tag {
   color: var(--text-muted);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
 }
 
 /* Screen Header */
@@ -45,50 +45,56 @@
 .wire-caselist__header-freq {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   color: var(--text-muted);
 }
 
 .wire-caselist__title {
   font-family: var(--font-masthead);
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(30px, 4.5vw, 44px);
   font-weight: 900;
   color: var(--text-primary);
   margin-bottom: var(--space-1);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
 }
 
 .wire-caselist__lead {
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--text-secondary);
-  max-width: 780px;
+  max-width: 820px;
+}
+
+.wire-caselist__lead strong {
+  color: var(--text-primary);
 }
 
 /* Folders Grid */
 .wire-caselist__folders {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(580px, 1fr));
   gap: var(--space-4);
 }
 
-/* Evidence Folder Card */
+/* Physical Evidence Folder Card */
 .wire-folder {
   background-color: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   cursor: pointer;
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   outline: none;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-sm);
 }
 
 .wire-folder:hover {
   border-color: var(--accent-amber-border);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 154, 50, 0.08);
 }
 
 .wire-folder:focus-visible {
@@ -96,46 +102,86 @@
   outline-offset: 3px;
 }
 
-/* Physical Folder Tab */
-.wire-folder__tab {
+/* Tab Row & Manila Tab */
+.wire-folder__tab-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #12151D;
+  background-color: #0A0C12;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 12px;
+}
+
+.wire-folder__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #171A24;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
   padding: 8px 16px;
   font-family: var(--font-mono);
   font-size: 11px;
+  margin-top: 4px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.wire-folder__paperclip {
+  font-size: 14px;
+  opacity: 0.8;
+  transform: rotate(-15deg);
 }
 
 .wire-folder__tab-num {
   font-weight: 800;
   color: var(--accent-amber);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
 }
 
 .wire-folder__tab-cat {
   color: var(--text-muted);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-size: 10px;
+}
+
+.wire-folder__tape {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--accent-crimson);
+  background-color: var(--accent-crimson-subtle);
+  border: 1px dashed var(--accent-crimson-border);
+  padding: 3px 8px;
+  text-transform: uppercase;
 }
 
 /* Folder Content */
 .wire-folder__content {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 240px 1fr;
   padding: var(--space-3);
   gap: var(--space-3);
+  background-color: var(--bg-surface);
 }
 
-/* Thumbnail Box */
+/* Thumbnail Archival Mount Box */
 .wire-folder__thumb-box {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background-color: #06070A;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #050608;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px;
+}
+
+.wire-folder__thumb-matte {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
 }
 
 .wire-folder__thumb-img {
@@ -143,40 +189,33 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease, filter 0.35s ease;
 }
 
 .wire-folder:hover .wire-folder__thumb-img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .wire-folder__thumb-overlay {
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 2;
+  z-index: 5;
 }
 
-/* Forensic Photo Corners */
-.wire-folder__thumb-corner {
+.wire-folder__docket-stamp {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  pointer-events: none;
-}
-
-.wire-folder__thumb-corner--tl {
-  top: 4px;
-  left: 4px;
-  border-top: 2px solid var(--accent-amber);
-  border-left: 2px solid var(--accent-amber);
-}
-
-.wire-folder__thumb-corner--br {
-  bottom: 4px;
-  right: 4px;
-  border-bottom: 2px solid var(--accent-amber);
-  border-right: 2px solid var(--accent-amber);
+  bottom: 8px;
+  left: 8px;
+  background-color: rgba(8, 9, 12, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  z-index: 5;
 }
 
 /* Folder Body */
@@ -193,13 +232,18 @@
   gap: 6px;
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
-  margin-bottom: var(--space-1);
+  margin-bottom: 6px;
 }
 
 .wire-folder__evidence-count {
   color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.wire-folder__metric--volatility {
+  color: var(--accent-gold);
   font-weight: 700;
 }
 
@@ -209,7 +253,7 @@
 
 .wire-folder__title {
   font-family: var(--font-masthead);
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 800;
   line-height: 1.25;
   color: var(--text-primary);
@@ -219,7 +263,7 @@
 .wire-folder__summary {
   font-family: var(--font-mono);
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-secondary);
   margin-bottom: var(--space-2);
 }
@@ -230,11 +274,15 @@
   font-family: var(--font-mono);
   font-size: 11px;
   margin-bottom: var(--space-3);
+  padding: 4px 8px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .wire-folder__loc-label {
-  color: var(--text-muted);
-  font-weight: 600;
+  color: var(--accent-amber);
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .wire-folder__loc-val {
@@ -243,11 +291,21 @@
 
 .wire-folder__action {
   margin-top: auto;
-  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.wire-folder__subaction-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
 }
 
 /* Responsive */
-@media (max-width: 680px) {
+@media (max-width: 720px) {
   .wire-caselist__folders {
     grid-template-columns: 1fr;
   }
@@ -257,6 +315,6 @@
   }
 
   .wire-folder__thumb-box {
-    max-height: 200px;
+    max-height: 220px;
   }
 }

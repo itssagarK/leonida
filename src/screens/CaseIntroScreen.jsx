@@ -41,7 +41,7 @@ export default function CaseIntroScreen() {
           ← BACK TO CASE FILES
         </Link>
         <div className="wire-case-intro__dossier-switcher">
-          <span className="wire-case-intro__switcher-label">DOSSIER:</span>
+          <span className="wire-case-intro__switcher-label">ACTIVE DOSSIER:</span>
           {allCases.map((c) => (
             <Link
               key={c.id}
@@ -61,6 +61,7 @@ export default function CaseIntroScreen() {
         <div className="wire-case-intro__meta-strip">
           <Badge variant="wire">{caseObj.caseNumber}</Badge>
           <span className="wire-case-intro__loc">SCENE: {caseObj.location}</span>
+          <span className="wire-case-intro__sep">•</span>
           <span className="wire-case-intro__timestamp">{caseObj.dateLogged}</span>
           {hasPlayerEdited ? (
             <div className="wire-case-intro__status-action-row">
@@ -84,6 +85,7 @@ export default function CaseIntroScreen() {
 
         <h1 className="wire-case-intro__title">{caseObj.title}</h1>
         <p className="wire-case-intro__subtitle">{caseObj.subtitle}</p>
+        <div className="wire-oxford-rule" aria-hidden="true" />
       </header>
 
       {/* Evidentiary Chain Progression Gauge */}
@@ -122,15 +124,20 @@ export default function CaseIntroScreen() {
       {/* Current Chain-Head Image Preview Card */}
       <div className="wire-case-intro__preview-card">
         <div className="wire-case-intro__preview-header">
-          <span className="wire-case-intro__preview-tag">
-            CURRENT CHAIN-HEAD // EVIDENCE BUFFER
-          </span>
+          <div className="wire-case-intro__preview-tag-group">
+            <span className="wire-case-intro__preview-tag">
+              CURRENT CHAIN-HEAD // EVIDENCE BUFFER
+            </span>
+            <span className="wire-case-intro__preview-sensor">
+              SENSOR: 35MM ARCHIVAL FRAME
+            </span>
+          </div>
           <Badge variant={latestLink.isPlayerSubmission ? 'verified' : 'disputed'} size="sm">
             {latestLink.isPlayerSubmission ? 'PLAYER REPORT' : `WITNESS #${latestLink.step}`}
           </Badge>
         </div>
 
-        <div className="wire-case-intro__preview-viewport">
+        <div className="wire-case-intro__preview-viewport wire-corner-reticles">
           {latestLink.imageDataUrl ? (
             <img
               src={latestLink.imageDataUrl}
@@ -176,23 +183,29 @@ export default function CaseIntroScreen() {
 
       {/* Bottom Dispatch Actions */}
       <div className="wire-case-intro__actions">
-        <Button
-          variant="primary"
-          size="lg"
-          onClick={() => navigate(`/case/${caseObj.id}/custody`)}
-          icon={<span>→</span>}
-        >
-          OPEN CUSTODY LOG &amp; SCRUB SLIDER
-        </Button>
+        <div className="wire-case-intro__action-group">
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => navigate(`/case/${caseObj.id}/custody`)}
+            icon={<span>→</span>}
+          >
+            OPEN CUSTODY LOG &amp; SCRUB SLIDER
+          </Button>
+          <span className="wire-case-intro__action-sub">AUDIT SUCCESSIVE WITNESS EDITS</span>
+        </div>
 
-        <Button
-          variant="secondary"
-          size="lg"
-          onClick={() => navigate(`/case/${caseObj.id}/edit`)}
-          icon={<span>✎</span>}
-        >
-          ADD YOUR LINK (EDITOR)
-        </Button>
+        <div className="wire-case-intro__action-group">
+          <Button
+            variant="secondary"
+            size="lg"
+            onClick={() => navigate(`/case/${caseObj.id}/edit`)}
+            icon={<span>✎</span>}
+          >
+            ADD YOUR LINK (REACT IMAGE EDITOR)
+          </Button>
+          <span className="wire-case-intro__action-sub">MOUNT EVIDENCE INTO WORKBENCH</span>
+        </div>
       </div>
     </div>
   );
