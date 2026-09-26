@@ -96,9 +96,9 @@
 
 /* Explicit @unlayer/react-image-editor Spotlight Callout */
 .wire-editor__unlayer-callout {
-  background: rgba(0, 240, 255, 0.04);
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+  background: var(--accent-lime-subtle);
+  border: 1px solid var(--accent-lime-border);
+  box-shadow: 0 0 20px rgba(212, 255, 0, 0.05);
   padding: 14px 18px;
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   text-transform: uppercase;
 }
 
@@ -121,8 +121,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: var(--accent-cyan);
-  box-shadow: 0 0 8px var(--accent-cyan-glow);
+  background-color: var(--accent-lime);
+  box-shadow: 0 0 8px var(--accent-lime-glow);
 }
 
 .wire-unlayer-callout__body {
@@ -162,10 +162,10 @@
 }
 
 .wire-unlayer-tool-pill.is-active {
-  background: rgba(0, 240, 255, 0.12);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  box-shadow: 0 0 8px var(--accent-cyan-glow);
+  background: var(--accent-lime-subtle);
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+  box-shadow: 0 0 8px var(--accent-lime-glow);
 }
 
 /* ======================================================== */
@@ -269,10 +269,10 @@
 .wire-context-tag {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   background: var(--bg-elevated);
   padding: 2px 6px;
-  border: 1px solid rgba(0, 240, 255, 0.2);
+  border: 1px solid var(--accent-lime-border);
 }
 
 /* ZONE 2 (CENTER): IMAGE EDITOR CANVAS */
@@ -284,15 +284,15 @@
 
 .wire-canvas-frame {
   background-color: var(--bg-card);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  box-shadow: var(--shadow-paper), 0 0 24px rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--accent-lime-border);
+  box-shadow: var(--shadow-paper), 0 0 24px rgba(212, 255, 0, 0.08);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle cyan ambient lighting overlay */
+/* Subtle lime ambient lighting overlay */
 .wire-canvas-frame::before {
   content: "";
   position: absolute;
@@ -300,7 +300,7 @@
   left: 0;
   right: 0;
   height: 240px;
-  background: radial-gradient(ellipse at 50% -20%, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% -20%, rgba(212, 255, 0, 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 1;
 }
@@ -359,11 +359,11 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background-color: rgba(0, 240, 255, 0.06);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  background-color: var(--accent-lime-subtle);
+  border-bottom: 1px solid var(--accent-lime-border);
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   position: relative;
   z-index: 2;
 }
@@ -382,14 +382,14 @@
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  background-color: rgba(0, 240, 255, 0.12);
-  border-bottom: 2px solid var(--accent-cyan);
-  border-left: 4px solid var(--accent-cyan);
+  background-color: var(--accent-lime-subtle);
+  border-bottom: 2px solid var(--accent-lime);
+  border-left: 4px solid var(--accent-lime);
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   animation: stampIn 250ms var(--ease-stamp) forwards;
-  box-shadow: 0 0 16px var(--accent-cyan-glow);
+  box-shadow: 0 0 16px var(--accent-lime-glow);
   position: relative;
   z-index: 2;
 }
@@ -426,8 +426,8 @@
 .wire-loading-spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(0, 240, 255, 0.2);
-  border-top-color: var(--accent-cyan);
+  border: 3px solid rgba(212, 255, 0, 0.2);
+  border-top-color: var(--accent-lime);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -442,14 +442,14 @@
 /* Error panel */
 .wire-editor__error-panel {
   padding: var(--space-4);
-  background-color: rgba(255, 0, 127, 0.08);
-  border: 1px solid var(--accent-pink);
+  background-color: var(--accent-danger-subtle);
+  border: 1px solid var(--accent-danger);
   margin: var(--space-3);
   text-align: center;
 }
 
 .wire-editor__error-panel h3 {
-  color: var(--accent-pink);
+  color: var(--accent-danger);
   margin-bottom: var(--space-1);
 }
 
@@ -574,15 +574,15 @@
 }
 
 .wire-tool-row.is-used {
-  background-color: rgba(0, 240, 255, 0.12);
-  border-color: rgba(0, 240, 255, 0.45);
-  color: var(--accent-cyan);
+  background-color: var(--accent-lime-subtle);
+  border-color: var(--accent-lime-border);
+  color: var(--accent-lime);
   font-weight: 700;
-  box-shadow: 0 0 6px var(--accent-cyan-glow);
+  box-shadow: 0 0 6px var(--accent-lime-glow);
 }
 
 .wire-tool-row.is-used .wire-tool-status-mark {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-weight: 900;
 }
 
@@ -725,26 +725,26 @@
 }
 
 .wire-state-step.is-active-step.is-raw {
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-  background: rgba(0, 240, 255, 0.1);
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+  background: var(--accent-lime-subtle);
   font-weight: 700;
 }
 
 .wire-state-step.is-active-step.is-saved {
-  color: var(--accent-amber);
-  border-color: var(--accent-amber);
-  background: rgba(245, 158, 11, 0.12);
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+  background: var(--accent-lime-subtle);
   font-weight: 700;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.25);
+  box-shadow: 0 0 8px var(--accent-lime-glow);
 }
 
 .wire-state-step.is-active-step.is-filed {
-  color: var(--accent-pink);
-  border-color: var(--accent-pink);
-  background: rgba(255, 0, 127, 0.15);
+  color: var(--accent-danger);
+  border-color: var(--accent-danger);
+  background: var(--accent-danger-subtle);
   font-weight: 800;
-  box-shadow: 0 0 10px var(--accent-pink-glow);
+  box-shadow: 0 0 10px var(--accent-danger-glow);
 }
 
 .wire-state-step.is-dormant {
@@ -774,8 +774,8 @@
 
 .wire-filing-card {
   background-color: var(--bg-card);
-  border: 1px solid rgba(255, 0, 127, 0.35);
-  box-shadow: var(--shadow-md), 0 0 20px rgba(255, 0, 127, 0.06);
+  border: 1px solid var(--accent-lime-border);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(212, 255, 0, 0.06);
 }
 
 .wire-filing-card__header {
@@ -854,8 +854,8 @@
 }
 
 .wire-form-input:focus, .wire-form-textarea:focus {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.25);
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 2px var(--accent-lime-border);
 }
 
 .wire-form-input--readonly {
@@ -890,7 +890,7 @@
 }
 
 .wire-checklist-item.is-valid {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-weight: 700;
 }
 
@@ -904,8 +904,8 @@
   align-items: center;
   gap: var(--space-3);
   padding: 12px;
-  background-color: rgba(0, 240, 255, 0.05);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background-color: var(--accent-lime-subtle);
+  border: 1px solid var(--accent-lime-border);
 }
 
 .wire-filing-preview-thumb-box {
@@ -913,9 +913,9 @@
   width: 90px;
   height: 68px;
   flex-shrink: 0;
-  border: 1px solid rgba(0, 240, 255, 0.35);
+  border: 1px solid var(--accent-lime-border);
   overflow: hidden;
-  background-color: #080A0F;
+  background-color: var(--bg-base);
 }
 
 .wire-filing-preview-thumb {

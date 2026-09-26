@@ -51,7 +51,7 @@
   background: var(--accent-crimson-subtle);
   color: var(--accent-crimson);
   border: 1px solid var(--accent-crimson);
-  box-shadow: 0 0 8px rgba(239, 35, 84, 0.15);
+  box-shadow: 0 0 8px var(--accent-danger-glow);
 }
 
 .wire-badge--developing .wire-badge__dot {
@@ -69,15 +69,15 @@
 }
 
 .wire-badge--verified {
-  background: rgba(217, 119, 6, 0.08);
-  color: var(--text-gold);
-  border: 1px solid var(--accent-gold);
+  background: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
 }
 
 .wire-badge--disputed {
-  background: rgba(217, 119, 6, 0.08);
-  color: var(--accent-amber);
-  border: 1px solid var(--accent-amber);
+  background: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
 }
 
 .wire-badge--legend {
@@ -92,47 +92,47 @@
   border: 2px solid var(--accent-crimson);
 }
 
-/* GTA VI & Neon Accents */
+/* Hazard & Accent Badges */
 .wire-badge--pink,
 .wire-badge--magenta {
-  background: var(--accent-magenta-subtle);
-  color: var(--accent-pink);
-  border: 1px solid var(--accent-pink);
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.25);
+  background: var(--accent-danger-subtle);
+  color: var(--accent-danger);
+  border: 1px solid var(--accent-danger);
+  box-shadow: 0 0 10px var(--accent-danger-glow);
 }
 
 .wire-badge--purple {
-  background: var(--accent-purple-subtle);
-  color: var(--accent-purple);
-  border: 1px solid var(--accent-purple-border);
+  background: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime-border);
 }
 
 .wire-badge--cyan {
-  background: var(--accent-cyan-subtle);
-  color: var(--accent-cyan);
-  border: 1px solid var(--accent-cyan);
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+  background: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
+  box-shadow: 0 0 10px var(--accent-lime-glow);
 }
 
 .wire-badge--coral {
-  background: var(--accent-coral-subtle);
-  color: var(--accent-coral);
-  border: 1px solid var(--accent-coral-border);
+  background: var(--accent-danger-subtle);
+  color: var(--accent-danger);
+  border: 1px solid var(--accent-danger-border);
 }
 
 .wire-badge--mint {
-  background: var(--accent-mint-subtle);
-  color: var(--accent-mint);
-  border: 1px solid var(--accent-mint-border);
+  background: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime-border);
 }
 
 .wire-badge--wanted {
-  background: rgba(255, 0, 127, 0.18);
+  background: var(--accent-danger-subtle);
   color: #FFFFFF;
-  border: 1px solid var(--accent-pink);
+  border: 1px solid var(--accent-danger);
   font-family: var(--font-gta);
   letter-spacing: 0.14em;
-  box-shadow: 0 0 12px rgba(255, 0, 127, 0.3);
+  box-shadow: 0 0 12px var(--accent-danger-glow);
 }
 
 /* STAMP STYLE */

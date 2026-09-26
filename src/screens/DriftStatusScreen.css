@@ -109,10 +109,10 @@
   grid-template-columns: 320px 1fr;
   gap: var(--space-4);
   background-color: var(--bg-card);
-  border: 1px solid rgba(0, 240, 255, 0.25);
+  border: 1px solid var(--accent-lime-border);
   padding: var(--space-4);
   align-items: center;
-  box-shadow: var(--shadow-paper), 0 0 20px rgba(0, 240, 255, 0.05);
+  box-shadow: var(--shadow-paper), 0 0 20px rgba(212, 255, 0, 0.05);
 }
 
 .wire-drift-hero__score-box {
@@ -237,9 +237,9 @@
 }
 
 .wire-progression-step--active {
-  border-color: var(--accent-cyan);
-  background-color: rgba(0, 240, 255, 0.08);
-  box-shadow: 0 0 10px var(--accent-cyan-glow);
+  border-color: var(--accent-lime);
+  background-color: var(--accent-lime-subtle);
+  box-shadow: 0 0 10px var(--accent-lime-glow);
 }
 
 .wire-progression-step__badge {

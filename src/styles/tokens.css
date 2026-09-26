@@ -1,80 +1,99 @@
-/* THE LEONIDA WIRE — GTA VI VICE CITY NOIR SYSTEM (AUTHENTIC NEAR-BLACK & NEON VICE ACCENTS) */
+/* THE LEONIDA WIRE — INDUSTRIAL HAZARD NOIR SYSTEM */
+/* Signature Accents: Bold Lime-Yellow (#D4FF00) & Bright Orange-Red (#FF4D00) */
+/* Base: Authentic Near-Black (#0A0B0E) & Off-White (#E8E8E8) */
 
 :root {
   /* ======================================================== */
-  /* COLOR SYSTEM: GTA VI VICE CITY NEAR-BLACK NOIR BASE      */
-  /* Signature Accents: Hot Magenta (#FF007F) & Cyber Cyan   */
+  /* COLOR SYSTEM: NEAR-BLACK INDUSTRIAL NOIR BASE             */
   /* ======================================================== */
-  --bg-base: #08090C;
-  --bg-primary: #08090C;
-  --bg-surface: #0E1016;
-  --bg-elevated: #151822;
-  --bg-card: #11131A;
-  --bg-card-hover: #181C26;
-  --bg-panel: #0B0D13;
-  --bg-paper: #121520;
+  --bg-base: #0A0B0E;
+  --bg-primary: #0A0B0E;
+  --bg-surface: #111317;
+  --bg-elevated: #161820;
+  --bg-card: #12141A;
+  --bg-card-hover: #191B24;
+  --bg-panel: #0E1015;
+  --bg-paper: #13151D;
 
-  /* Typography Colors: Pure White Primary & High-Contrast Greys */
-  --text-primary: #FFFFFF;
-  --text-secondary: #9BA5B8;
-  --text-muted: #5D667A;
-  --text-dark: #08090C;
-  --text-gold: #F59E0B;
-  --text-pink: #FF007F;
-  --text-cyan: #00F0FF;
+  /* Typography Colors: Off-White Primary & High-Contrast Greys */
+  --text-primary: #E8E8E8;
+  --text-secondary: #A3A3A3;
+  --text-muted: #666666;
+  --text-dark: #0A0B0E;
+  --text-gold: #D4FF00;
+  --text-pink: #FF4D00;
+  --text-cyan: #D4FF00;
+  --text-lime: #D4FF00;
+  --text-hazard: #D4FF00;
+  --text-danger: #FF4D00;
 
-  /* GTA VI Core Signature Accent 1: Hot Vice Magenta / Neon Pink */
-  --accent-pink: #FF007F;
-  --accent-magenta: #FF007F;
-  --accent-coral: #FF007F;
-  --accent-crimson: #FF007F;
-  --accent-pink-glow: rgba(255, 0, 127, 0.45);
-  --accent-magenta-subtle: rgba(255, 0, 127, 0.12);
-  --accent-magenta-border: rgba(255, 0, 127, 0.45);
-  --accent-coral-subtle: rgba(255, 0, 127, 0.12);
-  --accent-coral-border: rgba(255, 0, 127, 0.45);
-  --accent-crimson-subtle: rgba(255, 0, 127, 0.12);
-  --accent-crimson-border: rgba(255, 0, 127, 0.45);
+  /* ======================================================== */
+  /* SIGNATURE PRIMARY ACCENT: BOLD LIME-YELLOW (#D4FF00)     */
+  /* Used for CTAs, Highlights, Active States & Drift Stamp   */
+  /* ======================================================== */
+  --accent-lime: #D4FF00;
+  --accent-primary: #D4FF00;
+  --accent-amber: #D4FF00;
+  --accent-gold: #D4FF00;
+  --accent-amber-light: #E2FF4D;
+  --accent-cyan: #D4FF00;
+  --accent-cyan-light: #E2FF4D;
+  --accent-purple: #D4FF00;
+  --accent-purple-light: #E2FF4D;
+  --accent-mint: #D4FF00;
+  --accent-mint-light: #E2FF4D;
 
-  /* GTA VI Core Signature Accent 2: Vice Cyber Cyan / Electric Teal */
-  --accent-cyan: #00F0FF;
-  --accent-cyan-light: #5CE1E6;
-  --accent-cyan-glow: rgba(0, 240, 255, 0.45);
-  --accent-cyan-subtle: rgba(0, 240, 255, 0.10);
-  --accent-cyan-border: rgba(0, 240, 255, 0.45);
+  /* Primary Accent Glow & Subtle Backgrounds */
+  --accent-lime-glow: rgba(212, 255, 0, 0.45);
+  --accent-lime-subtle: rgba(212, 255, 0, 0.12);
+  --accent-lime-border: rgba(212, 255, 0, 0.45);
+  --accent-cyan-glow: rgba(212, 255, 0, 0.45);
+  --accent-cyan-subtle: rgba(212, 255, 0, 0.10);
+  --accent-cyan-border: rgba(212, 255, 0, 0.45);
+  --accent-amber-subtle: rgba(212, 255, 0, 0.12);
+  --accent-amber-border: rgba(212, 255, 0, 0.45);
+  --accent-purple-subtle: rgba(212, 255, 0, 0.12);
+  --accent-purple-border: rgba(212, 255, 0, 0.45);
+  --accent-mint-subtle: rgba(212, 255, 0, 0.12);
+  --accent-mint-border: rgba(212, 255, 0, 0.45);
 
-  /* GTA VI Secondary Accent: Solar Teletype Amber / Gold */
-  --accent-amber: #F59E0B;
-  --accent-gold: #FBBF24;
-  --accent-amber-light: #FCD34D;
-  --accent-amber-subtle: rgba(245, 158, 11, 0.12);
-  --accent-amber-border: rgba(245, 158, 11, 0.45);
+  /* ======================================================== */
+  /* SIGNATURE SECONDARY ACCENT: BRIGHT ORANGE-RED (#FF4D00)  */
+  /* Reserved EXCLUSIVELY for Danger / High-Drift States      */
+  /* ======================================================== */
+  --accent-danger: #FF4D00;
+  --accent-orange-red: #FF4D00;
+  --accent-crimson: #FF4D00;
+  --accent-pink: #FF4D00;
+  --accent-magenta: #FF4D00;
+  --accent-coral: #FF4D00;
 
-  /* Secondary Accents */
-  --accent-purple: #8B5CF6;
-  --accent-purple-light: #A78BFA;
-  --accent-purple-subtle: rgba(139, 92, 246, 0.12);
-  --accent-purple-border: rgba(139, 92, 246, 0.45);
-
-  --accent-mint: #00E676;
-  --accent-mint-light: #69F0AE;
-  --accent-mint-subtle: rgba(0, 230, 118, 0.12);
-  --accent-mint-border: rgba(0, 230, 118, 0.45);
+  /* Secondary Accent Glow & Subtle Backgrounds */
+  --accent-danger-glow: rgba(255, 77, 0, 0.45);
+  --accent-danger-subtle: rgba(255, 77, 0, 0.12);
+  --accent-danger-border: rgba(255, 77, 0, 0.45);
+  --accent-pink-glow: rgba(255, 77, 0, 0.45);
+  --accent-magenta-subtle: rgba(255, 77, 0, 0.12);
+  --accent-magenta-border: rgba(255, 77, 0, 0.45);
+  --accent-coral-subtle: rgba(255, 77, 0, 0.12);
+  --accent-coral-border: rgba(255, 77, 0, 0.45);
+  --accent-crimson-subtle: rgba(255, 77, 0, 0.12);
+  --accent-crimson-border: rgba(255, 77, 0, 0.45);
 
   /* Greyscale Architectural Borders */
   --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
   --border-medium: 1px solid rgba(255, 255, 255, 0.15);
-  --border-evidence: 1px dashed rgba(245, 158, 11, 0.5);
-  --border-evidence-strong: 1px solid rgba(245, 158, 11, 0.85);
-  --border-alert: 1px solid rgba(255, 0, 127, 0.55);
+  --border-evidence: 1px dashed rgba(212, 255, 0, 0.5);
+  --border-evidence-strong: 1px solid rgba(212, 255, 0, 0.85);
+  --border-alert: 1px solid rgba(255, 77, 0, 0.55);
 
   /* Status Stamps & Badges */
-  --stamp-verified: var(--accent-cyan);
-  --stamp-amber: var(--accent-amber);
-  --stamp-red: var(--accent-pink);
-  --stamp-cyan: var(--accent-cyan);
-  --stamp-purple: var(--accent-purple);
-  --stamp-mint: var(--accent-mint);
+  --stamp-verified: var(--accent-lime);
+  --stamp-amber: var(--accent-lime);
+  --stamp-red: var(--accent-danger);
+  --stamp-cyan: var(--accent-lime);
+  --stamp-purple: var(--accent-lime);
+  --stamp-mint: var(--accent-lime);
 
   /* ======================================================== */
   /* TYPOGRAPHY SCALE                                         */
@@ -104,12 +123,12 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
 
-  /* Shadows (Dark Neon Ambient Occlusion) */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.5);
-  --shadow-paper: 0 8px 24px -4px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
-  --shadow-lift: 0 16px 36px -4px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(255, 0, 127, 0.15);
+  /* Shadows (Dark Industrial Ambient Occlusion) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6);
+  --shadow-paper: 0 8px 24px -4px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 16px 36px -4px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(212, 255, 0, 0.15);
 
   /* Procedural & Mechanical Easing Curves */
   --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);
@@ -162,18 +181,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--accent-pink);
+  color: var(--accent-danger);
 }
 
 /* Universal Accessible Focus */
 :focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid var(--accent-lime);
   outline-offset: 2px;
 }
 
@@ -186,8 +205,8 @@ button, input, textarea, select {
 /* Tactile Utility: Oxford Double-Rule */
 .wire-oxford-rule {
   border: none;
-  border-top: 2px solid var(--accent-magenta);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.4);
+  border-top: 2px solid var(--accent-lime);
+  border-bottom: 1px solid rgba(212, 255, 0, 0.4);
   height: 5px;
   margin: var(--space-2) 0;
   width: 100%;
@@ -217,15 +236,15 @@ button, input, textarea, select {
 .wire-corner-reticles::before {
   top: 6px;
   left: 6px;
-  border-top: 2px solid var(--accent-cyan);
-  border-left: 2px solid var(--accent-cyan);
+  border-top: 2px solid var(--accent-lime);
+  border-left: 2px solid var(--accent-lime);
 }
 
 .wire-corner-reticles::after {
   bottom: 6px;
   right: 6px;
-  border-bottom: 2px solid var(--accent-cyan);
-  border-right: 2px solid var(--accent-cyan);
+  border-bottom: 2px solid var(--accent-lime);
+  border-right: 2px solid var(--accent-lime);
 }
 
 /* Procedural Mechanical Stamp Keyframe */
@@ -248,15 +267,15 @@ button, input, textarea, select {
 @keyframes systemLivePulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 77, 0, 0.7);
   }
   70% {
     transform: scale(1.05);
-    box-shadow: 0 0 0 6px rgba(255, 0, 127, 0);
+    box-shadow: 0 0 0 6px rgba(255, 77, 0, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 0, 127, 0);
+    box-shadow: 0 0 0 0 rgba(255, 77, 0, 0);
   }
 }
 
@@ -273,13 +292,13 @@ button, input, textarea, select {
   border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-magenta);
+  background: var(--accent-lime);
 }
 
 /* Selection Color */
 ::selection {
-  background: rgba(255, 0, 127, 0.35);
-  color: #FFFFFF;
+  background: rgba(212, 255, 0, 0.35);
+  color: #0A0B0E;
 }
 
 /* Reduced Motion */

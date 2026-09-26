@@ -19,7 +19,7 @@
 }
 
 .wire-button:focus-visible {
-  outline: 2px solid var(--accent-amber);
+  outline: 2px solid var(--accent-lime);
   outline-offset: 2px;
 }
 
@@ -42,23 +42,23 @@
 
 /* VARIANTS */
 .wire-button--primary {
-  background: var(--accent-gold);
-  color: #0F1115;
-  border: 1px solid #D97706;
-  box-shadow: 0 2px 10px rgba(217, 119, 6, 0.22);
+  background: var(--accent-lime);
+  color: #0A0B0E;
+  border: 1px solid #B8DE00;
+  box-shadow: 0 2px 10px rgba(212, 255, 0, 0.28);
   font-weight: 800;
 }
 
 .wire-button--primary:hover:not(:disabled) {
   background: var(--accent-amber-light);
-  border-color: #B45309;
+  border-color: var(--accent-lime);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.32);
+  box-shadow: 0 4px 16px rgba(212, 255, 0, 0.45);
 }
 
 .wire-button--primary:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.18);
+  box-shadow: 0 1px 4px rgba(212, 255, 0, 0.2);
 }
 
 .wire-button--secondary {
@@ -70,10 +70,10 @@
 
 .wire-button--secondary:hover:not(:disabled) {
   background: #1E2333;
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
   transform: translateY(-1px);
-  box-shadow: 0 3px 12px rgba(0, 240, 255, 0.2);
+  box-shadow: 0 3px 12px rgba(212, 255, 0, 0.2);
 }
 
 .wire-button--secondary:active:not(:disabled) {
@@ -82,73 +82,73 @@
 
 .wire-button--pink,
 .wire-button--magenta {
-  background: var(--accent-pink);
-  color: #FFFFFF;
-  border: 1px solid #FF007F;
-  box-shadow: 0 2px 12px rgba(255, 0, 127, 0.35);
+  background: var(--accent-lime);
+  color: #0A0B0E;
+  border: 1px solid #B8DE00;
+  box-shadow: 0 2px 12px rgba(212, 255, 0, 0.35);
   font-weight: 800;
 }
 
 .wire-button--pink:hover:not(:disabled),
 .wire-button--magenta:hover:not(:disabled) {
-  background: #FF2A8D;
-  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.55);
+  background: #E2FF4D;
+  box-shadow: 0 4px 20px rgba(212, 255, 0, 0.55);
   transform: translateY(-1px);
 }
 
 .wire-button--evidence {
   background: #121520;
-  color: var(--accent-amber);
-  border: 1px dashed var(--accent-amber);
+  color: var(--accent-lime);
+  border: 1px dashed var(--accent-lime);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .wire-button--evidence:hover:not(:disabled) {
-  background: var(--accent-amber);
-  color: #FFFFFF;
+  background: var(--accent-lime);
+  color: #0A0B0E;
   border-style: solid;
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(217, 119, 6, 0.25);
+  box-shadow: 0 3px 10px rgba(212, 255, 0, 0.25);
 }
 
 .wire-button--danger {
-  background: var(--accent-coral);
+  background: var(--accent-danger);
   color: #FFFFFF;
-  border: 1px solid #E11D48;
-  box-shadow: 0 2px 10px rgba(255, 42, 109, 0.25);
+  border: 1px solid #D63F00;
+  box-shadow: 0 2px 10px rgba(255, 77, 0, 0.35);
 }
 
 .wire-button--danger:hover:not(:disabled) {
-  filter: brightness(1.08);
+  filter: brightness(1.12);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(255, 42, 109, 0.35);
+  box-shadow: 0 4px 16px rgba(255, 77, 0, 0.5);
 }
 
 .wire-button--purple {
-  background: var(--accent-purple);
-  color: #FFFFFF;
-  border: 1px solid #4F46E5;
-  box-shadow: 0 2px 10px rgba(100, 66, 239, 0.25);
+  background: var(--accent-lime);
+  color: #0A0B0E;
+  border: 1px solid #B8DE00;
+  box-shadow: 0 2px 10px rgba(212, 255, 0, 0.25);
 }
 
 .wire-button--purple:hover:not(:disabled) {
-  background: var(--accent-purple-light);
+  background: #E2FF4D;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(100, 66, 239, 0.35);
+  box-shadow: 0 4px 14px rgba(212, 255, 0, 0.35);
 }
 
 .wire-button--cyan {
-  background: var(--accent-cyan);
-  color: #0F1115;
-  border: 1px solid #0284C7;
+  background: var(--accent-lime);
+  color: #0A0B0E;
+  border: 1px solid #B8DE00;
   font-weight: 800;
-  box-shadow: 0 2px 10px rgba(0, 184, 240, 0.25);
+  box-shadow: 0 2px 10px rgba(212, 255, 0, 0.25);
 }
 
 .wire-button--cyan:hover:not(:disabled) {
-  background: var(--accent-cyan-light);
+  background: #E2FF4D;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0, 184, 240, 0.35);
+  box-shadow: 0 4px 14px rgba(212, 255, 0, 0.35);
 }
 
 .wire-button:disabled {

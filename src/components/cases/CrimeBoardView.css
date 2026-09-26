@@ -141,7 +141,7 @@
   color: #2D3139;
   line-height: 1.4;
   margin-top: 10px;
-  border-left: 3px solid #F59E0B;
+  border-left: 3px solid var(--accent-lime);
 }
 
 .wire-pinboard-badge-footer {

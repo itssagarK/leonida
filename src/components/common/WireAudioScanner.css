@@ -1,6 +1,6 @@
 .wire-scanner {
   background: #090B0F;
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  border-bottom: 1px solid rgba(212, 255, 0, 0.2);
   font-family: var(--font-mono);
   user-select: none;
   position: relative;
@@ -44,15 +44,15 @@
 
 .wire-scanner__toggle-btn:hover {
   background: #191E2A;
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
 }
 
 .wire-scanner__toggle-btn.is-active {
-  background: var(--accent-pink);
-  color: #FFFFFF;
-  border-color: var(--accent-pink);
-  box-shadow: 0 0 14px rgba(255, 0, 127, 0.6);
+  background: var(--accent-lime);
+  color: #0A0B0E;
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 14px rgba(212, 255, 0, 0.6);
 }
 
 .wire-scanner__status-led {
@@ -63,8 +63,8 @@
 }
 
 .wire-scanner__toggle-btn.is-active .wire-scanner__status-led {
-  background: #00F0FF;
-  box-shadow: 0 0 8px #00F0FF;
+  background: #0A0B0E;
+  box-shadow: 0 0 8px var(--accent-lime);
   animation: systemLivePulse 1.4s infinite ease-in-out;
 }
 
@@ -86,8 +86,8 @@
 }
 
 .wire-scanner__spectrum.is-playing .wire-scanner__spectrum-bar {
-  background: var(--accent-cyan);
-  box-shadow: 0 0 6px rgba(0, 240, 255, 0.8);
+  background: var(--accent-lime);
+  box-shadow: 0 0 6px rgba(212, 255, 0, 0.8);
   animation: spectrumBounce 0.6s infinite alternate ease-in-out;
 }
 
@@ -140,21 +140,21 @@
 }
 
 .wire-scanner__chan-btn--pink.is-active {
-  border-color: var(--accent-pink);
-  color: var(--accent-pink);
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+  border-color: var(--accent-danger);
+  color: var(--accent-danger);
+  box-shadow: 0 0 10px rgba(255, 77, 0, 0.4);
 }
 
 .wire-scanner__chan-btn--cyan.is-active {
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+  box-shadow: 0 0 10px rgba(212, 255, 0, 0.4);
 }
 
 .wire-scanner__chan-btn--amber.is-active {
-  border-color: var(--accent-amber);
-  color: var(--accent-amber);
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+  box-shadow: 0 0 10px rgba(212, 255, 0, 0.4);
 }
 
 .wire-scanner__chan-code {
@@ -178,7 +178,7 @@
 }
 
 .wire-scanner__feed-code {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-weight: 800;
   white-space: nowrap;
 }
@@ -194,7 +194,7 @@
 /* Expanded Radio Info Bar */
 .wire-scanner__panel {
   background: #07080B;
-  border-top: 1px dashed rgba(255, 0, 127, 0.3);
+  border-top: 1px dashed rgba(212, 255, 0, 0.3);
   padding: 8px var(--space-3);
   font-size: 11px;
 }
@@ -210,7 +210,7 @@
 }
 
 .wire-scanner__panel-tag {
-  color: var(--accent-pink);
+  color: var(--accent-danger);
   font-weight: 800;
   letter-spacing: 0.08em;
 }
@@ -220,5 +220,5 @@
 }
 
 .wire-scanner__panel-status strong {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
 }

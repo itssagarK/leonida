@@ -3,7 +3,7 @@
   align-items: center;
   height: 38px;
   background-color: #06070A;
-  border-bottom: 1px solid rgba(255, 0, 127, 0.25);
+  border-bottom: 1px solid rgba(212, 255, 0, 0.2);
   overflow: hidden;
   font-family: var(--font-mono);
   font-size: 11px;
@@ -19,8 +19,8 @@
   align-items: center;
   gap: 8px;
   background: #0B0D12;
-  color: var(--accent-pink);
-  border-right: 1px solid rgba(255, 0, 127, 0.35);
+  color: var(--accent-danger);
+  border-right: 1px solid rgba(255, 77, 0, 0.35);
   padding: 0 16px;
   height: 100%;
   font-weight: 800;
@@ -33,9 +33,9 @@
 .wire-ticker__rec-dot {
   width: 7px;
   height: 7px;
-  background-color: var(--accent-pink);
+  background-color: var(--accent-danger);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.8);
+  box-shadow: 0 0 10px rgba(255, 77, 0, 0.8);
   animation: ticker-blink 1.2s infinite alternate ease-in-out;
 }
 
@@ -67,9 +67,9 @@
 }
 
 .wire-ticker__bullet {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-size: 8px;
-  text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+  text-shadow: 0 0 6px rgba(212, 255, 0, 0.6);
 }
 
 @keyframes ticker-slide {

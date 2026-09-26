@@ -1,6 +1,6 @@
 .wire-navbar {
   background-color: rgba(10, 11, 14, 0.95);
-  border-bottom: 1px solid rgba(255, 0, 127, 0.25);
+  border-bottom: 1px solid rgba(212, 255, 0, 0.2);
   position: sticky;
   top: 0;
   z-index: 90;
@@ -44,15 +44,15 @@
 }
 
 .wire-navbar__brand:hover .wire-navbar__brand-name {
-  color: var(--accent-pink);
-  text-shadow: 0 0 16px rgba(255, 0, 127, 0.7);
+  color: var(--accent-lime);
+  text-shadow: 0 0 16px var(--accent-lime-glow);
 }
 
 .wire-navbar__brand-sub {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.14em;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   text-transform: uppercase;
   font-weight: 800;
 }
@@ -81,7 +81,7 @@
 }
 
 .wire-navbar__link--active {
-  color: var(--accent-pink);
+  color: var(--accent-lime);
   font-weight: 800;
 }
 
@@ -92,8 +92,8 @@
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--accent-pink);
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.85);
+  background-color: var(--accent-lime);
+  box-shadow: 0 0 10px var(--accent-lime-glow);
 }
 
 /* Status / Active Case Group */
@@ -107,12 +107,12 @@
   align-items: center;
   gap: 8px;
   padding: 5px 12px;
-  background-color: rgba(0, 240, 255, 0.08);
-  border: 1px solid rgba(0, 240, 255, 0.35);
+  background-color: var(--accent-lime-subtle);
+  border: 1px solid var(--accent-lime-border);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-weight: 700;
 }
 
@@ -120,7 +120,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--accent-cyan);
+  background-color: var(--accent-lime);
   animation: systemLivePulse 2s infinite ease-in-out;
 }
 
@@ -129,23 +129,23 @@
   align-items: center;
   gap: 8px;
   padding: 5px 12px;
-  background-color: rgba(255, 0, 127, 0.12);
-  border: 1px solid var(--accent-pink);
+  background-color: var(--accent-lime-subtle);
+  border: 1px solid var(--accent-lime);
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
-  box-shadow: 0 0 12px rgba(255, 0, 127, 0.25);
+  box-shadow: 0 0 12px rgba(212, 255, 0, 0.25);
   transition: all var(--transition-fast);
 }
 
 .wire-navbar__case-badge:hover {
-  background-color: rgba(255, 0, 127, 0.22);
-  box-shadow: 0 0 16px rgba(255, 0, 127, 0.5);
+  background-color: rgba(212, 255, 0, 0.22);
+  box-shadow: 0 0 16px rgba(212, 255, 0, 0.5);
 }
 
 .wire-navbar__case-label {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-weight: 800;
 }
 

@@ -53,15 +53,15 @@
 }
 
 .wire-case-intro__switcher-btn:hover {
-  border-color: var(--accent-cyan);
+  border-color: var(--accent-lime);
   color: #FFFFFF;
 }
 
 .wire-case-intro__switcher-btn.is-active {
-  background: rgba(0, 240, 255, 0.15);
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 8px var(--accent-cyan-glow);
+  background: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 8px var(--accent-lime-glow);
 }
 
 /* Header */
@@ -82,7 +82,7 @@
 }
 
 .wire-case-intro__loc {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-weight: 700;
 }
 
@@ -103,7 +103,7 @@
 .wire-case-intro__reset-btn {
   background: transparent;
   border: none;
-  color: var(--accent-pink);
+  color: var(--accent-danger);
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
@@ -114,7 +114,7 @@
 }
 
 .wire-case-intro__reset-btn:hover {
-  background: rgba(255, 0, 127, 0.15);
+  background: var(--accent-danger-subtle);
   text-decoration: underline;
 }
 
@@ -203,30 +203,30 @@
 }
 
 .wire-gauge-node.is-witness .wire-gauge-node__dot {
-  background: var(--accent-amber);
-  box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+  background: var(--accent-lime);
+  box-shadow: 0 0 6px var(--accent-lime-glow);
 }
 
 .wire-gauge-node.is-player.is-complete {
-  border-color: var(--accent-cyan);
-  background: rgba(0, 240, 255, 0.12);
+  border-color: var(--accent-lime);
+  background: var(--accent-lime-subtle);
 }
 .wire-gauge-node.is-player.is-complete .wire-gauge-node__dot {
-  background: var(--accent-cyan);
-  box-shadow: 0 0 6px var(--accent-cyan-glow);
+  background: var(--accent-lime);
+  box-shadow: 0 0 6px var(--accent-lime-glow);
 }
 
 .wire-gauge-node.is-player.is-pending {
-  border-color: var(--accent-pink);
+  border-color: var(--accent-danger);
   border-style: dashed;
 }
 .wire-gauge-node.is-player.is-pending .wire-gauge-node__dot {
-  background: var(--accent-pink);
-  box-shadow: 0 0 6px var(--accent-pink-glow);
+  background: var(--accent-danger);
+  box-shadow: 0 0 6px var(--accent-danger-glow);
 }
 
 .wire-gauge-arrow {
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   opacity: 0.7;
   font-size: 12px;
 }
@@ -234,8 +234,8 @@
 /* Preview Card */
 .wire-case-intro__preview-card {
   background: var(--bg-card);
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  box-shadow: var(--shadow-paper), 0 0 20px rgba(0, 240, 255, 0.05);
+  border: 1px solid var(--accent-lime-border);
+  box-shadow: var(--shadow-paper), 0 0 20px rgba(212, 255, 0, 0.05);
   display: flex;
   flex-direction: column;
 }

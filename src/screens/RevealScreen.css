@@ -223,10 +223,10 @@
 }
 
 .wire-comp-mode-btn.is-active {
-  background-color: rgba(0, 240, 255, 0.14);
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 10px var(--accent-cyan-glow);
+  background-color: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 10px var(--accent-lime-glow);
 }
 
 /* ======================================================== */
@@ -237,9 +237,9 @@
   flex-direction: column;
   gap: var(--space-2);
   background-color: var(--bg-card);
-  border: 1px solid rgba(0, 240, 255, 0.25);
+  border: 1px solid var(--accent-lime-border);
   padding: var(--space-3);
-  box-shadow: var(--shadow-paper), 0 0 20px rgba(0, 240, 255, 0.05);
+  box-shadow: var(--shadow-paper), 0 0 20px rgba(212, 255, 0, 0.05);
 }
 
 .wire-wipe-frame {
@@ -566,17 +566,17 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   padding: 4px 8px;
-  background-color: rgba(0, 240, 255, 0.1);
+  background-color: var(--accent-lime-subtle);
   display: inline-block;
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  border: 1px solid var(--accent-lime-border);
 }
 
 .wire-comp-card__verdict-strip--alert {
-  color: var(--accent-pink);
-  background-color: rgba(255, 0, 127, 0.1);
-  border-color: rgba(255, 0, 127, 0.4);
+  color: var(--accent-danger);
+  background-color: var(--accent-danger-subtle);
+  border-color: var(--accent-danger-border);
 }
 
 /* Center Drift Divider Circle */
@@ -688,9 +688,9 @@
 }
 
 .wire-mutation-tag--highlight {
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  background-color: rgba(0, 240, 255, 0.12);
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+  background-color: var(--accent-lime-subtle);
   font-weight: 700;
 }
 
@@ -929,8 +929,8 @@
   gap: var(--space-3);
   padding: var(--space-4);
   background-color: var(--bg-card);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  box-shadow: var(--shadow-sm), 0 0 16px rgba(0, 240, 255, 0.05);
+  border: 1px solid var(--accent-lime-border);
+  box-shadow: var(--shadow-sm), 0 0 16px rgba(212, 255, 0, 0.05);
 }
 
 .wire-reveal__download-info {
@@ -957,11 +957,11 @@
 
 .wire-reveal__download-toast {
   padding: 10px 16px;
-  background-color: rgba(0, 240, 255, 0.12);
-  border: 1px solid var(--accent-cyan);
+  background-color: var(--accent-lime-subtle);
+  border: 1px solid var(--accent-lime);
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   font-weight: 700;
   animation: fadeIn 0.2s ease-in-out;
 }
@@ -1112,10 +1112,10 @@
 }
 
 .wire-stamp-preset-btn.is-active {
-  background: rgba(0, 240, 255, 0.15);
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 10px var(--accent-cyan-glow);
+  background: var(--accent-lime-subtle);
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 10px var(--accent-lime-glow);
 }
 
 .wire-stamp-colors {
@@ -1140,7 +1140,7 @@
 
 .wire-stamp-color-btn.is-active {
   transform: scale(1.2);
-  box-shadow: 0 0 0 2px var(--accent-cyan), 0 0 12px var(--accent-cyan-glow);
+  box-shadow: 0 0 0 2px var(--accent-lime), 0 0 12px var(--accent-lime-glow);
 }
 
 .wire-stamp-angle-row {
@@ -1151,7 +1151,7 @@
 
 .wire-stamp-angle-slider {
   flex: 1;
-  accent-color: var(--accent-cyan);
+  accent-color: var(--accent-lime);
   cursor: pointer;
 }
 
@@ -1159,7 +1159,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent-cyan);
+  color: var(--accent-lime);
   min-width: 36px;
 }
 
@@ -1171,7 +1171,7 @@
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  background: #080A0F;
+  background: var(--bg-base);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 2px;
   color: #FFFFFF;
@@ -1180,14 +1180,14 @@
 }
 
 .wire-stamp-input:focus {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.25);
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 2px var(--accent-lime-border);
 }
 
 /* Live Stamp Preview Stage */
 .wire-stamp-preview-stage {
   background: #06070A;
-  border: 1px dashed rgba(0, 240, 255, 0.3);
+  border: 1px dashed var(--accent-lime-border);
   border-radius: 4px;
   min-height: 180px;
   display: flex;
