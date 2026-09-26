@@ -2,8 +2,8 @@
 
 :root {
   /* ======================================================== */
-  /* COLOR SYSTEM: ARCHITECTURAL LIGHT & SUN-DRENCHED ACCENTS */
-  /* Directus.io inspired concrete/stone neutrals + Vice accents */
+  /* COLOR SYSTEM: ARCHITECTURAL LIGHT & BOLD DIRECTUS PALETTE*/
+  /* Peter Tarka Directus.io inspired saturated accents       */
   /* ======================================================== */
   --bg-base: #F0F1F4;
   --bg-primary: #F0F1F4;
@@ -19,38 +19,56 @@
   --text-secondary: #4A5060;
   --text-muted: #7E8597;
   --text-dark: #0F1115;
-  --text-gold: #B47209;
+  --text-gold: #D97706;
 
-  /* Signature Accent: Sun-Drenched Vice Amber / Gold */
+  /* Directus Core Bold Accent 1: Electric Violet / Purple */
+  --accent-purple: #6442EF;
+  --accent-purple-light: #8B5CF6;
+  --accent-purple-subtle: rgba(100, 66, 239, 0.08);
+  --accent-purple-border: rgba(100, 66, 239, 0.32);
+
+  /* Directus Core Bold Accent 2: High-Voltage Neon Coral */
+  --accent-coral: #FF2A6D;
+  --accent-crimson: #FF2A6D;
+  --accent-magenta: #EC4899;
+  --accent-coral-subtle: rgba(255, 42, 109, 0.08);
+  --accent-coral-border: rgba(255, 42, 109, 0.32);
+  --accent-crimson-subtle: rgba(255, 42, 109, 0.08);
+  --accent-crimson-border: rgba(255, 42, 109, 0.32);
+
+  /* Directus Core Bold Accent 3: Electric Cyber Cyan */
+  --accent-cyan: #00B8F0;
+  --accent-cyan-light: #38BDF8;
+  --accent-cyan-subtle: rgba(0, 184, 240, 0.08);
+  --accent-cyan-border: rgba(0, 184, 240, 0.32);
+
+  /* Directus Core Bold Accent 4: Solar Amber / Gold */
   --accent-amber: #D97706;
-  --accent-gold: #E29314;
-  --accent-amber-light: #F59E0B;
-  --accent-amber-subtle: rgba(217, 119, 6, 0.08);
-  --accent-amber-border: rgba(217, 119, 6, 0.32);
+  --accent-gold: #F59E0B;
+  --accent-amber-light: #FBBF24;
+  --accent-amber-subtle: rgba(245, 158, 11, 0.10);
+  --accent-amber-border: rgba(217, 119, 6, 0.35);
 
-  /* Secondary Accent: Vice Neon Coral / Crimson (Drift, Danger & Warnings) */
-  --accent-crimson: #EF2354;
-  --accent-coral: #EF2354;
-  --accent-magenta: #E11D48;
-  --accent-crimson-subtle: rgba(239, 35, 84, 0.08);
-  --accent-crimson-border: rgba(239, 35, 84, 0.32);
-
-  /* Vice Coastal Accent: Lagoon Cyan */
-  --accent-cyan: #0098A6;
-  --accent-cyan-subtle: rgba(0, 152, 166, 0.08);
+  /* Directus Core Bold Accent 5: Radioactive Mint / Emerald */
+  --accent-mint: #05DF72;
+  --accent-mint-light: #34D399;
+  --accent-mint-subtle: rgba(5, 223, 114, 0.08);
+  --accent-mint-border: rgba(5, 223, 114, 0.32);
 
   /* Greyscale Architectural Borders (Clean 1px Hairlines) */
   --border-subtle: 1px solid rgba(0, 0, 0, 0.08);
   --border-medium: 1px solid rgba(0, 0, 0, 0.14);
   --border-evidence: 1px dashed rgba(217, 119, 6, 0.4);
   --border-evidence-strong: 1px solid rgba(217, 119, 6, 0.75);
-  --border-alert: 1px solid rgba(239, 35, 84, 0.45);
+  --border-alert: 1px solid rgba(255, 42, 109, 0.45);
 
-  /* Status Stamps */
+  /* Status Stamps & Badges */
   --stamp-verified: var(--accent-gold);
   --stamp-amber: var(--accent-amber);
-  --stamp-red: var(--accent-crimson);
+  --stamp-red: var(--accent-coral);
   --stamp-cyan: var(--accent-cyan);
+  --stamp-purple: var(--accent-purple);
+  --stamp-mint: var(--accent-mint);
 
   /* ======================================================== */
   /* TYPOGRAPHY SCALE                                         */

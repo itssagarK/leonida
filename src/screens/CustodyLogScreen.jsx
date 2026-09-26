@@ -8,6 +8,7 @@ import Badge from '../components/common/Badge';
 import Divider from '../components/common/Divider';
 import RedactionBar from '../components/common/RedactionBar';
 import SceneFallback from '../components/3d/SceneFallback';
+import ForensicMetadataModal from '../components/common/ForensicMetadataModal';
 import './CustodyLogScreen.css';
 
 // Lazy-load 3D Custody Depth Stack
@@ -17,6 +18,7 @@ export default function CustodyLogScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [isForensicOpen, setIsForensicOpen] = useState(false);
 
   const caseObj = useMemo(() => getCaseById(id), [id]);
   const playerProgress = useMemo(
@@ -171,6 +173,31 @@ export default function CustodyLogScreen() {
             <div className="wire-custody__scrub-step-counter">
               LINK [{scrubberIndex} / {timelineStates.length - 1}]
             </div>
+
+            <button
+              type="button"
+              onClick={() => setIsForensicOpen(true)}
+              style={{
+                background: 'var(--accent-purple)',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '5px 12px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '11px',
+                fontWeight: 800,
+                letterSpacing: '0.06em',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                boxShadow: '0 2px 8px rgba(100, 66, 239, 0.35)',
+                transition: 'all 0.15s ease',
+              }}
+              title="Launch EXIF & Optical Analysis Modal"
+            >
+              <span>🔬</span> OPTICAL FORENSIC LAB
+            </button>
           </div>
         </div>
 
@@ -405,6 +432,13 @@ export default function CustodyLogScreen() {
           ))}
         </div>
       </section>
+
+      {/* Optical Forensic Diagnostic Lab Modal */}
+      <ForensicMetadataModal
+        isOpen={isForensicOpen}
+        onClose={() => setIsForensicOpen(false)}
+        caseData={caseObj}
+      />
     </motion.div>
   );
 }

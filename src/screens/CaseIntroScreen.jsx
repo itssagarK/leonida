@@ -5,12 +5,14 @@ import { getCaseById, getEffectiveChain, getAllCases } from '../data/cases';
 import { getCaseProgress, clearCaseProgress } from '../utils/storage';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
+import ForensicMetadataModal from '../components/common/ForensicMetadataModal';
 import './CaseIntroScreen.css';
 
 export default function CaseIntroScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [isForensicOpen, setIsForensicOpen] = useState(false);
 
   const caseObj = useMemo(() => getCaseById(id), [id]);
   const playerProgress = useMemo(() => getCaseProgress(caseObj.id), [caseObj.id, refreshTrigger]);
@@ -131,13 +133,33 @@ export default function CaseIntroScreen() {
       {/* Current Chain-Head Image Preview Card */}
       <div className="wire-case-intro__preview-card">
         <div className="wire-case-intro__preview-header">
-          <div className="wire-case-intro__preview-tag-group">
+          <div className="wire-case-intro__preview-tag-group" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span className="wire-case-intro__preview-tag">
               CURRENT CHAIN-HEAD // EVIDENCE BUFFER
             </span>
-            <span className="wire-case-intro__preview-sensor">
-              SENSOR: 35MM ARCHIVAL FRAME
-            </span>
+            <button
+              type="button"
+              onClick={() => setIsForensicOpen(true)}
+              style={{
+                background: 'var(--accent-purple)',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '4px 10px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '11px',
+                fontWeight: 800,
+                letterSpacing: '0.06em',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                boxShadow: '0 2px 8px rgba(100, 66, 239, 0.35)',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              <span>🔬</span> EXIF &amp; ELA OPTICAL LAB
+            </button>
           </div>
           <Badge variant={latestLink.isPlayerSubmission ? 'verified' : 'disputed'} size="sm">
             {latestLink.isPlayerSubmission ? 'PLAYER REPORT' : `WITNESS #${latestLink.step}`}
@@ -189,7 +211,7 @@ export default function CaseIntroScreen() {
       </div>
 
       {/* Bottom Dispatch Actions */}
-      <div className="wire-case-intro__actions">
+      <div className="wire-case-intro__actions" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
         <div className="wire-case-intro__action-group">
           <Button
             variant="primary"
@@ -197,23 +219,42 @@ export default function CaseIntroScreen() {
             onClick={() => navigate(`/case/${caseObj.id}/custody`)}
             icon={<span>→</span>}
           >
-            OPEN CUSTODY LOG &amp; SCRUB SLIDER
+            CUSTODY LOG &amp; SCRUBBER
           </Button>
           <span className="wire-case-intro__action-sub">AUDIT SUCCESSIVE WITNESS EDITS</span>
         </div>
 
         <div className="wire-case-intro__action-group">
           <Button
-            variant="secondary"
+            variant="purple"
+            size="lg"
+            onClick={() => setIsForensicOpen(true)}
+            icon={<span>🔬</span>}
+          >
+            FORENSIC LAB // ELA &amp; EXIF
+          </Button>
+          <span className="wire-case-intro__action-sub">RUN SENSOR DIAGNOSTIC TELEMETRY</span>
+        </div>
+
+        <div className="wire-case-intro__action-group">
+          <Button
+            variant="cyan"
             size="lg"
             onClick={() => navigate(`/case/${caseObj.id}/edit`)}
             icon={<span>✎</span>}
           >
-            ADD YOUR LINK (REACT IMAGE EDITOR)
+            ENTER WORKBENCH EDITOR
           </Button>
           <span className="wire-case-intro__action-sub">MOUNT EVIDENCE INTO WORKBENCH</span>
         </div>
       </div>
+
+      {/* Optical Forensic Modal */}
+      <ForensicMetadataModal
+        isOpen={isForensicOpen}
+        onClose={() => setIsForensicOpen(false)}
+        caseData={caseObj}
+      />
     </motion.div>
   );
 }

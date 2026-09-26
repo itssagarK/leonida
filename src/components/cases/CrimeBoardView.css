@@ -1,0 +1,154 @@
+.wire-crime-board {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  background-color: #E8E5DF;
+  background-image: 
+    radial-gradient(rgba(0, 0, 0, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(rgba(215, 205, 190, 0.4) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px;
+  border: 10px solid #D1C9BE;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.15), 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: var(--space-4);
+  overflow: hidden;
+  user-select: none;
+}
+
+.wire-crime-board__svg-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.wire-crime-board__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--space-5);
+  position: relative;
+  z-index: 3;
+}
+
+.wire-pinboard-item {
+  background: #FFFFFF;
+  padding: 12px 12px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-mechanical), box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.wire-pinboard-item:hover {
+  transform: scale(1.02) rotate(0deg) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+  z-index: 10;
+}
+
+.wire-pinboard-item:nth-child(1) {
+  transform: rotate(-1.5deg);
+}
+
+.wire-pinboard-item:nth-child(2) {
+  transform: rotate(2deg);
+}
+
+/* Pushpin Affordance */
+.wire-pinboard-pushpin {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+  z-index: 4;
+}
+
+.wire-pinboard-pushpin--coral {
+  background: radial-gradient(circle at 35% 35%, #FF7597, #FF2A6D);
+}
+
+.wire-pinboard-pushpin--purple {
+  background: radial-gradient(circle at 35% 35%, #9B82FF, #6442EF);
+}
+
+.wire-pinboard-photo-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #EAEBF0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 10px;
+}
+
+.wire-pinboard-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wire-pinboard-docket {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-purple);
+  margin-bottom: 4px;
+}
+
+.wire-pinboard-title {
+  font-family: var(--font-masthead);
+  font-size: 17px;
+  font-weight: 800;
+  color: #0F1115;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.wire-pinboard-snippet {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.wire-pinboard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: auto;
+}
+
+/* Post-it / Sticky Note */
+.wire-pinboard-sticky {
+  background: #FFF9C4;
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-masthead);
+  font-style: italic;
+  font-size: 13px;
+  color: #2D3139;
+  line-height: 1.4;
+  margin-top: 10px;
+  border-left: 3px solid #F59E0B;
+}
+
+.wire-pinboard-badge-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  margin-top: 8px;
+}

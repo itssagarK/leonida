@@ -116,6 +116,67 @@ function SculpturalEvidenceSlab({ onSelect }) {
   );
 }
 
+function DirectusSculpturalAccents() {
+  const torusRef = useRef();
+  const sphereRef = useRef();
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    if (torusRef.current) {
+      torusRef.current.rotation.x = t * 0.4;
+      torusRef.current.rotation.y = t * 0.6;
+      torusRef.current.position.y = 0.42 + Math.sin(t * 1.5) * 0.05;
+    }
+    if (sphereRef.current) {
+      sphereRef.current.position.y = 0.22 + Math.cos(t * 1.8) * 0.03;
+    }
+  });
+
+  return (
+    <group position={[0, 0, 0]}>
+      {/* Glossy Directus Electric Violet Torus Ring */}
+      <mesh ref={torusRef} position={[-1.75, 0.42, 0.4]} rotation={[0.4, 0.2, 0.5]} castShadow>
+        <torusGeometry args={[0.3, 0.1, 24, 48]} />
+        <meshStandardMaterial
+          color="#6442EF"
+          roughness={0.12}
+          metalness={0.25}
+        />
+      </mesh>
+
+      {/* Glossy High-Voltage Neon Coral Sphere */}
+      <mesh ref={sphereRef} position={[1.65, 0.22, 0.65]} castShadow>
+        <sphereGeometry args={[0.24, 32, 32]} />
+        <meshStandardMaterial
+          color="#FF2A6D"
+          roughness={0.15}
+          metalness={0.1}
+        />
+      </mesh>
+
+      {/* Cyber Cyan Architectural Pedestal Cylinder */}
+      <mesh position={[1.65, 0.04, -0.6]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.26, 0.26, 0.16, 32]} />
+        <meshStandardMaterial
+          color="#00B8F0"
+          roughness={0.2}
+          metalness={0.35}
+        />
+      </mesh>
+
+      {/* Solar Amber Beveled Cube */}
+      <mesh position={[-1.6, 0.12, -0.7]} rotation={[0.2, 0.5, 0]} castShadow>
+        <boxGeometry args={[0.24, 0.24, 0.24]} />
+        <meshStandardMaterial
+          color="#F59E0B"
+          roughness={0.18}
+          metalness={0.3}
+        />
+      </mesh>
+    </group>
+  );
+}
+
 function SculpturalVoidScene({ onSelect }) {
   const deskTexture = useMemo(() => getDeskSurfaceTexture(), []);
 
@@ -146,6 +207,9 @@ function SculpturalVoidScene({ onSelect }) {
 
       {/* 3D Floating Evidence Slab */}
       <SculpturalEvidenceSlab onSelect={onSelect} />
+
+      {/* Directus Bold 3D Sculptural Accents */}
+      <DirectusSculpturalAccents />
 
       {/* Realistic Soft Contact Shadow */}
       <ContactShadows

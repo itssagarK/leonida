@@ -92,6 +92,31 @@
   border: 2px solid var(--accent-crimson);
 }
 
+/* Bold Directus Colors */
+.wire-badge--purple {
+  background: var(--accent-purple-subtle);
+  color: var(--accent-purple);
+  border: 1px solid var(--accent-purple-border);
+}
+
+.wire-badge--cyan {
+  background: var(--accent-cyan-subtle);
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan-border);
+}
+
+.wire-badge--coral {
+  background: var(--accent-coral-subtle);
+  color: var(--accent-coral);
+  border: 1px solid var(--accent-coral-border);
+}
+
+.wire-badge--mint {
+  background: var(--accent-mint-subtle);
+  color: var(--accent-mint);
+  border: 1px solid var(--accent-mint-border);
+}
+
 /* STAMP STYLE */
 .wire-badge--stamp {
   font-family: var(--font-masthead);

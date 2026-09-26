@@ -188,6 +188,28 @@ export default function RevealScreen() {
   const driftResult = useMemo(() => computeDrift(caseObj, fullChain), [caseObj, fullChain]);
   const hasPlayerEdited = Boolean(playerProgress?.playerLink);
 
+  // Custom Dossier Stamp Studio
+  const [stampPreset, setStampPreset] = useState('drift');
+  const [customStampText, setCustomStampText] = useState('');
+  const [stampColor, setStampColor] = useState(driftResult.score > 60 ? '#FF2A6D' : '#6442EF');
+  const [stampAngle, setStampAngle] = useState(-3);
+  const [stampAnimated, setStampAnimated] = useState(false);
+
+  const effectiveStampText = useMemo(() => {
+    if (stampPreset === 'drift') return `★ ${driftResult.status.label.toUpperCase()} ★`;
+    if (stampPreset === 'confidential') return 'CONFIDENTIAL // BUREAU EYES ONLY';
+    if (stampPreset === 'tampered') return 'EVIDENCE TAMPERED // CERTIFIED';
+    if (stampPreset === 'debunked') return 'DEBUNKED TABLOID HOAX';
+    if (stampPreset === 'raw') return 'RAW TRUTH // LEVEL 1 ARCHIVE';
+    return (customStampText.trim().toUpperCase() || 'EVIDENCE VERIFIED');
+  }, [stampPreset, customStampText, driftResult.status.label]);
+
+  const handleSelectPreset = (key) => {
+    setStampPreset(key);
+    setStampAnimated(true);
+    setTimeout(() => setStampAnimated(false), 300);
+  };
+
   const handleResetThisCase = () => {
     if (window.confirm('Reset this case and remove your filed report?')) {
       clearCaseProgress(caseObj.id);
@@ -378,27 +400,27 @@ export default function RevealScreen() {
       ctx.fillText(`BYLINE: ${finalStep.author} (Stage #${fullChain.length})`, xRight, Math.max(nextYRight + 12, yImg + imgH + 98));
 
       // ==========================================
-      // STAMPED VERDICT IN CENTER BOTTOM
+      // STAMPED VERDICT IN CENTER BOTTOM (Using Stamp Studio)
       // ==========================================
-      const stampBoxW = 480;
+      const stampBoxW = Math.max(480, effectiveStampText.length * 15 + 60);
       const stampBoxH = 75;
       const stampX = (width - stampBoxW) / 2;
       const stampY = height - 165;
 
       ctx.save();
       ctx.translate(width / 2, stampY + stampBoxH / 2);
-      ctx.rotate(-0.04); // subtle physical stamp tilt
+      ctx.rotate((stampAngle * Math.PI) / 180); // custom physical stamp tilt
 
       ctx.fillStyle = '#0B0D12';
       ctx.fillRect(-stampBoxW / 2, -stampBoxH / 2, stampBoxW, stampBoxH);
-      ctx.strokeStyle = driftResult.score > 60 ? '#E63956' : '#D49A32';
+      ctx.strokeStyle = stampColor;
       ctx.lineWidth = 3;
       ctx.strokeRect(-stampBoxW / 2, -stampBoxH / 2, stampBoxW, stampBoxH);
 
-      ctx.fillStyle = driftResult.score > 60 ? '#E63956' : '#E5A93C';
-      ctx.font = 'bold 22px Georgia, serif';
+      ctx.fillStyle = stampColor;
+      ctx.font = 'bold 20px Georgia, serif';
       ctx.textAlign = 'center';
-      ctx.fillText(`★ ${driftResult.status.label.toUpperCase()} ★`, 0, -5);
+      ctx.fillText(effectiveStampText, 0, -5);
 
       ctx.font = 'bold 12px "Courier New", monospace';
       ctx.fillStyle = '#F5EFE6';
@@ -819,6 +841,156 @@ export default function RevealScreen() {
 
       {/* DOWNLOAD DOSSIER ACTION & REPLAY BUTTONS */}
       <section className="wire-reveal__actions-section" aria-label="Dossier Export and Actions">
+        {/* Bureau Rubber Stamp Studio */}
+        <div className="wire-stamp-studio">
+          <div className="wire-stamp-studio__header">
+            <div className="wire-stamp-studio__titles">
+              <span className="wire-stamp-studio__tag">DIRECTUS DOSSIER LAB // CERTIFICATION</span>
+              <h3 className="wire-stamp-studio__title">BUREAU RUBBER STAMP STUDIO</h3>
+              <p className="wire-stamp-studio__desc">
+                Customize the official evidentiary seal imprinted onto your exported composite wire dossier.
+              </p>
+            </div>
+            <Badge variant="purple" size="sm">
+              LIVE CERTIFICATION ENGINE
+            </Badge>
+          </div>
+
+          <div className="wire-stamp-studio__grid">
+            <div className="wire-stamp-studio__controls">
+              <div>
+                <span className="wire-stamp-group-label">1. SELECT EVIDENCE STAMP PRESET</span>
+                <div className="wire-stamp-presets">
+                  <button
+                    type="button"
+                    className={`wire-stamp-preset-btn ${stampPreset === 'drift' ? 'is-active' : ''}`}
+                    onClick={() => handleSelectPreset('drift')}
+                  >
+                    ★ {driftResult.status.label.toUpperCase()}
+                  </button>
+                  <button
+                    type="button"
+                    className={`wire-stamp-preset-btn ${stampPreset === 'confidential' ? 'is-active' : ''}`}
+                    onClick={() => handleSelectPreset('confidential')}
+                  >
+                    ⚠ CONFIDENTIAL
+                  </button>
+                  <button
+                    type="button"
+                    className={`wire-stamp-preset-btn ${stampPreset === 'tampered' ? 'is-active' : ''}`}
+                    onClick={() => handleSelectPreset('tampered')}
+                  >
+                    ⛔ EVIDENCE TAMPERED
+                  </button>
+                  <button
+                    type="button"
+                    className={`wire-stamp-preset-btn ${stampPreset === 'debunked' ? 'is-active' : ''}`}
+                    onClick={() => handleSelectPreset('debunked')}
+                  >
+                    ✖ TABLOID HOAX
+                  </button>
+                  <button
+                    type="button"
+                    className={`wire-stamp-preset-btn ${stampPreset === 'raw' ? 'is-active' : ''}`}
+                    onClick={() => handleSelectPreset('raw')}
+                  >
+                    ✓ RAW ARCHIVE
+                  </button>
+                  <button
+                    type="button"
+                    className={`wire-stamp-preset-btn ${stampPreset === 'custom' ? 'is-active' : ''}`}
+                    onClick={() => handleSelectPreset('custom')}
+                  >
+                    ✎ WRITE-IN
+                  </button>
+                </div>
+              </div>
+
+              {stampPreset === 'custom' && (
+                <div>
+                  <span className="wire-stamp-group-label">CUSTOM SEAL TEXT</span>
+                  <input
+                    type="text"
+                    value={customStampText}
+                    onChange={(e) => setCustomStampText(e.target.value)}
+                    placeholder="ENTER OFFICIAL BUREAU STAMP TEXT..."
+                    className="wire-stamp-input"
+                    maxLength={32}
+                  />
+                </div>
+              )}
+
+              <div>
+                <span className="wire-stamp-group-label">2. CHOOSE PIGMENT // DIRECTUS PALETTE</span>
+                <div className="wire-stamp-colors">
+                  {[
+                    { color: '#FF2A6D', name: 'Neon Coral' },
+                    { color: '#6442EF', name: 'Electric Purple' },
+                    { color: '#00B8F0', name: 'Cyber Cyan' },
+                    { color: '#FFAA00', name: 'Solar Amber' },
+                    { color: '#05DF72', name: 'Radioactive Mint' },
+                    { color: '#0F1115', name: 'Archival Ink' },
+                  ].map((c) => (
+                    <button
+                      key={c.color}
+                      type="button"
+                      className={`wire-stamp-color-btn ${stampColor === c.color ? 'is-active' : ''}`}
+                      style={{ background: c.color }}
+                      onClick={() => {
+                        setStampColor(c.color);
+                        setStampAnimated(true);
+                        setTimeout(() => setStampAnimated(false), 250);
+                      }}
+                      title={c.name}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <span className="wire-stamp-group-label">3. MECHANICAL STAMP TILT ({stampAngle}°)</span>
+                <div className="wire-stamp-angle-row">
+                  <input
+                    type="range"
+                    min="-12"
+                    max="12"
+                    step="1"
+                    value={stampAngle}
+                    onChange={(e) => setStampAngle(Number(e.target.value))}
+                    className="wire-stamp-angle-slider"
+                  />
+                  <span className="wire-stamp-angle-val">{stampAngle > 0 ? `+${stampAngle}` : stampAngle}°</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Live Interactive Stamp Preview */}
+            <div className="wire-stamp-preview-stage">
+              <span className="wire-stamp-preview-label">LIVE STAMP PREVIEW</span>
+              <div
+                className={`wire-stamp-box ${stampAnimated ? 'is-punching' : ''}`}
+                style={{
+                  borderColor: stampColor,
+                  color: stampColor,
+                  transform: `rotate(${stampAngle}deg)`,
+                  boxShadow: `0 4px 16px ${stampColor}33`,
+                  '--angle': `${stampAngle}deg`,
+                }}
+                onClick={() => {
+                  setStampAnimated(true);
+                  setTimeout(() => setStampAnimated(false), 250);
+                }}
+                title="Click to stamp"
+              >
+                <span className="wire-stamp-text-primary">{effectiveStampText}</span>
+                <span className="wire-stamp-text-secondary">
+                  TRUTH DRIFT: {driftResult.score}% • CERTIFIED RECORD
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="wire-reveal__download-card">
           <div className="wire-reveal__download-info">
             <h3>DOWNLOAD YOUR WIRE DOSSIER</h3>

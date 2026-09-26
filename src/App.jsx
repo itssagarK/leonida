@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { AnimatePresence } from 'framer-motion';
 import GrainOverlay from './components/common/GrainOverlay';
 import TickerHeader from './components/common/TickerHeader';
+import WireAudioScanner from './components/common/WireAudioScanner';
 import Navbar from './components/common/Navbar';
 import LandingScreen from './screens/LandingScreen';
 import CaseListScreen from './screens/CaseListScreen';
@@ -39,6 +40,9 @@ export default function App() {
 
       {/* Global wire-service ticker across all despatches */}
       <TickerHeader />
+
+      {/* Interactive Police Wire Audio Scanner */}
+      <WireAudioScanner />
 
       {/* Persistent classified desk navigation */}
       <Navbar />

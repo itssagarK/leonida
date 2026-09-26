@@ -991,3 +991,249 @@
     align-items: stretch;
   }
 }
+
+/* ==========================================================================
+   DOSSIER STAMP STUDIO // DIRECTUS BOLD PALETTE STYLING
+   ========================================================================== */
+.wire-stamp-studio {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.wire-stamp-studio__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: var(--space-2);
+}
+
+.wire-stamp-studio__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wire-stamp-studio__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent-purple);
+}
+
+.wire-stamp-studio__title {
+  font-family: var(--font-masthead);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.wire-stamp-studio__desc {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.wire-stamp-studio__grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .wire-stamp-studio__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wire-stamp-studio__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.wire-stamp-group-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.wire-stamp-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wire-stamp-preset-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #FAFAFB;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wire-stamp-preset-btn:hover {
+  background: #F0F1F5;
+  color: var(--text-primary);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.wire-stamp-preset-btn.is-active {
+  background: #0F1115;
+  color: #FFFFFF;
+  border-color: #0F1115;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.wire-stamp-colors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wire-stamp-color-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.wire-stamp-color-btn:hover {
+  transform: scale(1.15);
+}
+
+.wire-stamp-color-btn.is-active {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px #0F1115, 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.wire-stamp-angle-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wire-stamp-angle-slider {
+  flex: 1;
+  accent-color: var(--accent-purple);
+  cursor: pointer;
+}
+
+.wire-stamp-angle-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-width: 36px;
+}
+
+/* Custom Input */
+.wire-stamp-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #FAFAFB;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.wire-stamp-input:focus {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(100, 66, 239, 0.12);
+}
+
+/* Live Stamp Preview Stage */
+.wire-stamp-preview-stage {
+  background: #F4F5F8;
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.wire-stamp-preview-label {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.wire-stamp-box {
+  padding: 10px 22px;
+  border: 3px solid;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.wire-stamp-box.is-punching {
+  transform: scale(1.18) rotate(var(--angle, 0deg)) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.wire-stamp-text-primary {
+  font-family: var(--font-masthead);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.wire-stamp-text-secondary {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  text-align: center;
+}
+

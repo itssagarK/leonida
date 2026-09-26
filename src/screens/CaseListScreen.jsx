@@ -11,11 +11,12 @@ import './CaseListScreen.css';
 // Lazy-load 3D Case Scenes
 const CaseGalleryWall = lazy(() => import('../components/3d/CaseGalleryWall'));
 const CaseFoldersDesk = lazy(() => import('../components/3d/CaseFoldersDesk'));
+import CrimeBoardView from '../components/cases/CrimeBoardView';
 
 export default function CaseListScreen() {
   const navigate = useNavigate();
   const cases = getAllCases();
-  const [viewMode, setViewMode] = useState('gallery'); // 'gallery' | 'desk' | 'grid'
+  const [viewMode, setViewMode] = useState('gallery'); // 'gallery' | 'desk' | 'pinboard' | 'grid'
 
   const handleSelectCase = (caseId) => {
     navigate(`/case/${caseId}`);
@@ -52,7 +53,7 @@ export default function CaseListScreen() {
           tampering, and mount the image into the <strong>React Image Editor</strong> to file your transmission.
         </p>
 
-        {/* View Mode Toggle */}
+        {/* View Mode Toggle with Bold Directus Styling */}
         <div className="wire-caselist__view-toggle" style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button
             type="button"
@@ -62,12 +63,13 @@ export default function CaseListScreen() {
               padding: '6px 14px',
               fontFamily: 'var(--font-mono)',
               fontSize: '11px',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
+              fontWeight: 800,
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              background: viewMode === 'gallery' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
-              color: viewMode === 'gallery' ? '#0A0B0E' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === 'gallery' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
+              background: viewMode === 'gallery' ? 'var(--accent-purple)' : '#FFFFFF',
+              color: viewMode === 'gallery' ? '#FFFFFF' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === 'gallery' ? 'var(--accent-purple)' : 'rgba(0, 0, 0, 0.12)'),
+              boxShadow: viewMode === 'gallery' ? '0 2px 8px rgba(100, 66, 239, 0.25)' : 'none',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
@@ -82,17 +84,39 @@ export default function CaseListScreen() {
               padding: '6px 14px',
               fontFamily: 'var(--font-mono)',
               fontSize: '11px',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
+              fontWeight: 800,
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              background: viewMode === 'desk' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
-              color: viewMode === 'desk' ? '#0A0B0E' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === 'desk' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
+              background: viewMode === 'desk' ? 'var(--accent-amber)' : '#FFFFFF',
+              color: viewMode === 'desk' ? '#0F1115' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === 'desk' ? 'var(--accent-amber)' : 'rgba(0, 0, 0, 0.12)'),
+              boxShadow: viewMode === 'desk' ? '0 2px 8px rgba(217, 119, 6, 0.25)' : 'none',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
           >
             [ 📁 3D PHYSICAL DESK ]
+          </button>
+          <button
+            type="button"
+            className={`wire-view-toggle-btn ${viewMode === 'pinboard' ? 'is-active' : ''}`}
+            onClick={() => setViewMode('pinboard')}
+            style={{
+              padding: '6px 14px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              fontWeight: 800,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              background: viewMode === 'pinboard' ? 'var(--accent-coral)' : '#FFFFFF',
+              color: viewMode === 'pinboard' ? '#FFFFFF' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === 'pinboard' ? 'var(--accent-coral)' : 'rgba(0, 0, 0, 0.12)'),
+              boxShadow: viewMode === 'pinboard' ? '0 2px 8px rgba(255, 42, 109, 0.25)' : 'none',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            [ 📌 CRIME PINBOARD ]
           </button>
           <button
             type="button"
@@ -102,12 +126,13 @@ export default function CaseListScreen() {
               padding: '6px 14px',
               fontFamily: 'var(--font-mono)',
               fontSize: '11px',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
+              fontWeight: 800,
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              background: viewMode === 'grid' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
-              color: viewMode === 'grid' ? '#0A0B0E' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === 'grid' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
+              background: viewMode === 'grid' ? '#0F1115' : '#FFFFFF',
+              color: viewMode === 'grid' ? '#FFFFFF' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === 'grid' ? '#0F1115' : 'rgba(0, 0, 0, 0.12)'),
+              boxShadow: viewMode === 'grid' ? '0 2px 8px rgba(0, 0, 0, 0.15)' : 'none',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
@@ -117,16 +142,16 @@ export default function CaseListScreen() {
         </div>
       </header>
 
-      {/* 3D Depth Gallery View (Showcase-Images reference) */}
+      {/* 3D Depth Gallery View */}
       {viewMode === 'gallery' && (
         <div
           className="wire-caselist__3d-wrapper wire-corner-reticles"
           style={{
             width: '100%',
             marginBottom: 'var(--space-5)',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
-            boxShadow: 'var(--shadow-deep)',
-            background: '#07080A',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            boxShadow: 'var(--shadow-paper)',
+            background: '#EAEBF0',
           }}
         >
           <Suspense fallback={<SceneFallback label="LOADING 3D EVIDENCE DEPTH GALLERY..." />}>
@@ -142,14 +167,21 @@ export default function CaseListScreen() {
           style={{
             width: '100%',
             marginBottom: 'var(--space-5)',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
-            boxShadow: 'var(--shadow-deep)',
-            background: '#090A0D',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            boxShadow: 'var(--shadow-paper)',
+            background: '#EAEBF0',
           }}
         >
           <Suspense fallback={<SceneFallback label="ARRANGING EVIDENCE DESK..." />}>
             <CaseFoldersDesk cases={cases} onSelectCase={handleSelectCase} />
           </Suspense>
+        </div>
+      )}
+
+      {/* Crime Pinboard View */}
+      {viewMode === 'pinboard' && (
+        <div style={{ marginBottom: 'var(--space-5)' }}>
+          <CrimeBoardView cases={cases} onSelectCase={handleSelectCase} />
         </div>
       )}
 
