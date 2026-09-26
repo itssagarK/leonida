@@ -478,9 +478,12 @@ export default function RevealScreen() {
 
       {/* Screen Header with Peter Tarka Monumental Verdict Typography */}
       <header className="wire-reveal__header">
+        <div className="wire-kicker">
+          LSIB SPECIAL INVESTIGATION // FINAL VERDICT // DISCLOSURE BULLETIN
+        </div>
         <div className="wire-reveal__badge-row">
-          <Badge variant="wire">LEONIDA FORENSIC DISCLOSURE</Badge>
-          <span className="wire-reveal__archive-ref">CERTIFICATE #EX-{caseObj.id.toUpperCase()}-2026</span>
+          <Badge variant="wanted" size="sm">★ SPECIAL VERDICT ★</Badge>
+          <span className="wire-reveal__archive-ref">CERTIFICATE #EX-{caseObj.id.toUpperCase()}-2026 // LSIB CERTIFIED</span>
         </div>
 
         <div className="wire-reveal__hero-monument">
@@ -489,8 +492,10 @@ export default function RevealScreen() {
             <span
               className="wire-reveal__hero-status-pill"
               style={{
-                color: driftResult.score > 60 ? 'var(--accent-crimson)' : 'var(--accent-amber)',
-                borderColor: driftResult.score > 60 ? 'rgba(230, 57, 86, 0.4)' : 'rgba(212, 154, 50, 0.4)'
+                color: driftResult.score > 60 ? 'var(--accent-pink)' : 'var(--accent-cyan)',
+                borderColor: driftResult.score > 60 ? 'var(--accent-pink)' : 'var(--accent-cyan)',
+                background: driftResult.score > 60 ? 'rgba(255, 0, 127, 0.12)' : 'rgba(0, 240, 255, 0.12)',
+                boxShadow: driftResult.score > 60 ? '0 0 12px var(--accent-pink-glow)' : '0 0 12px var(--accent-cyan-glow)'
               }}
             >
               ★ {driftResult.status.label.toUpperCase()}

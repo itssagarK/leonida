@@ -120,17 +120,20 @@ export default function CustodyLogScreen() {
 
       {/* Screen Title */}
       <header className="wire-custody__header">
+        <div className="wire-kicker">
+          LSIB AUDIT LEDGER // CHRONOLOGICAL EVIDENCE TRAIL // PRECINCT 04
+        </div>
         <div className="wire-custody__badge-row">
-          <Badge variant="wire">CHAIN OF CUSTODY LOG</Badge>
+          <Badge variant="wanted" size="sm">★ CHAIN AUDIT ACTIVE ★</Badge>
           <span className="wire-custody__audit-tag">
-            AUDIT RECORD #CR-{caseObj.id.toUpperCase()}-2026
+            AUDIT RECORD #CR-{caseObj.id.toUpperCase()}-2026 // ENCRYPTED
           </span>
         </div>
         <h1 className="wire-custody__title">EVIDENTIARY DRIFT SCRUBBER</h1>
         <div className="wire-oxford-rule" aria-hidden="true" />
         <p className="wire-custody__desc">
           Drag the scrubber below to examine how each successive witness altered the photograph
-          and warped the narrative from the raw archival negative to the current wire state.
+          and warped the narrative from the raw archival negative to the current wire state. Then mount the evidence into the <strong>@unlayer/react-image-editor</strong> workbench to file your transmission.
         </p>
       </header>
 

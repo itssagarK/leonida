@@ -14,7 +14,7 @@
 }
 
 .wire-caselist__back {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   text-decoration: none;
   letter-spacing: 0.1em;
   font-weight: 700;
@@ -22,7 +22,7 @@
 }
 
 .wire-caselist__back:hover {
-  color: var(--accent-gold);
+  color: var(--accent-pink);
 }
 
 .wire-caselist__secure-tag {
@@ -33,6 +33,16 @@
 /* Screen Header */
 .wire-caselist__header {
   margin-bottom: var(--space-5);
+}
+
+.wire-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--accent-pink);
+  margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 .wire-caselist__header-badge {
@@ -46,17 +56,19 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
-  color: var(--text-muted);
+  color: var(--accent-amber);
 }
 
 .wire-caselist__title {
-  font-family: var(--font-masthead);
-  font-size: clamp(30px, 4.5vw, 44px);
+  font-family: var(--font-gta);
+  font-size: clamp(38px, 6vw, 64px);
   font-weight: 900;
-  color: var(--text-primary);
+  color: #FFFFFF;
   margin-bottom: var(--space-1);
-  letter-spacing: -0.015em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  line-height: 1.05;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
 .wire-caselist__lead {
@@ -64,11 +76,76 @@
   font-size: 13px;
   line-height: 1.7;
   color: var(--text-secondary);
-  max-width: 820px;
+  max-width: 860px;
 }
 
 .wire-caselist__lead strong {
-  color: var(--text-primary);
+  color: #FFFFFF;
+}
+
+/* View Mode Toggles */
+.wire-caselist__view-toggle {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: var(--space-3);
+}
+
+.wire-view-toggle-btn {
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.wire-view-toggle-btn:hover {
+  background: var(--bg-card-hover);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.wire-view-toggle-btn.is-active.is-gallery {
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+.wire-view-toggle-btn.is-active.is-desk {
+  background: rgba(245, 158, 11, 0.14);
+  color: var(--accent-amber);
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
+.wire-view-toggle-btn.is-active.is-pinboard {
+  background: rgba(255, 0, 127, 0.14);
+  color: var(--accent-pink);
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 12px var(--accent-pink-glow);
+}
+
+.wire-view-toggle-btn.is-active.is-grid {
+  background: #181C26;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 3D Scene Wrapper */
+.wire-caselist__3d-wrapper {
+  width: 100%;
+  margin-bottom: var(--space-5);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: var(--shadow-paper), 0 0 20px rgba(0, 240, 255, 0.05);
+  background: var(--bg-surface);
 }
 
 /* Folders Grid */
@@ -80,25 +157,25 @@
 
 /* Physical Evidence Folder Card */
 .wire-folder {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   cursor: pointer;
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   outline: none;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-md);
 }
 
 .wire-folder:hover {
-  border-color: var(--accent-amber-border);
+  border-color: var(--accent-cyan);
   transform: translateY(-4px);
   box-shadow: var(--shadow-lift);
 }
 
 .wire-folder:focus-visible {
-  outline: 2px solid var(--accent-amber);
+  outline: 2px solid var(--accent-cyan);
   outline-offset: 3px;
 }
 
@@ -107,8 +184,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0 12px;
 }
 
@@ -116,8 +193,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: none;
   padding: 8px 18px;
   font-family: var(--font-mono);
@@ -125,13 +202,11 @@
   margin-top: 4px;
   border-top-left-radius: 4px;
   border-top-right-radius: 8px;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.03);
   transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .wire-folder:hover .wire-folder__tab {
-  background-color: #FFFFFF;
-  border-color: rgba(217, 119, 6, 0.4);
+  border-color: var(--accent-cyan-border);
 }
 
 .wire-folder__paperclip {
@@ -142,7 +217,7 @@
 
 .wire-folder__tab-num {
   font-weight: 800;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   letter-spacing: 0.14em;
 }
 
@@ -155,12 +230,13 @@
 .wire-folder__tape {
   font-family: var(--font-mono);
   font-size: 9px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.16em;
-  color: var(--accent-crimson);
-  background-color: var(--accent-crimson-subtle);
-  border: 1px dashed var(--accent-crimson-border);
-  padding: 3px 8px;
+  color: #FFFFFF;
+  background-color: var(--accent-pink);
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 8px var(--accent-pink-glow);
+  padding: 4px 10px;
   text-transform: uppercase;
 }
 
@@ -170,7 +246,7 @@
   grid-template-columns: 240px 1fr;
   padding: var(--space-3);
   gap: var(--space-3);
-  background-color: #FFFFFF;
+  background-color: var(--bg-card);
 }
 
 /* Thumbnail Archival Mount Box */
@@ -179,8 +255,8 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background-color: #EAEBF0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #08090C;
+  border: 1px solid rgba(0, 240, 255, 0.25);
   padding: 4px;
 }
 
@@ -188,7 +264,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #F0F1F4;
+  background-color: #050608;
 }
 
 /* Desaturated evidence photo treatment that comes alive on hover */
@@ -197,12 +273,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(25%) contrast(102%) brightness(0.96);
+  filter: grayscale(30%) contrast(110%) brightness(0.92);
   transition: transform 300ms var(--ease-mechanical), filter 300ms var(--ease-mechanical);
 }
 
 .wire-folder:hover .wire-folder__thumb-img {
-  filter: grayscale(0%) contrast(100%) brightness(1);
+  filter: grayscale(0%) contrast(105%) brightness(1);
   transform: scale(1.04);
 }
 
@@ -217,15 +293,15 @@
   position: absolute;
   bottom: 8px;
   left: 8px;
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background-color: rgba(8, 9, 12, 0.92);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   padding: 2px 6px;
   font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--text-secondary);
+  color: var(--accent-cyan);
   z-index: 5;
 }
 
@@ -249,12 +325,12 @@
 }
 
 .wire-folder__evidence-count {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
 }
 
 .wire-folder__metric--volatility {
-  color: var(--accent-gold);
+  color: var(--accent-pink);
   font-weight: 700;
 }
 
@@ -264,10 +340,10 @@
 
 .wire-folder__title {
   font-family: var(--font-masthead);
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 800;
   line-height: 1.25;
-  color: var(--text-primary);
+  color: #FFFFFF;
   margin-bottom: 6px;
 }
 
@@ -286,8 +362,8 @@
   font-size: 11px;
   margin-bottom: var(--space-3);
   padding: 4px 8px;
-  background-color: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .wire-folder__loc-label {

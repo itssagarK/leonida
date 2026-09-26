@@ -80,10 +80,13 @@ export default function DriftStatusScreen() {
 
       {/* Screen Masthead */}
       <header className="wire-drift__header">
+        <div className="wire-kicker">
+          LSIB AUDIT REPORT // EDITORIAL DRIFT ENGINE // CLASSIFIED
+        </div>
         <div className="wire-drift__badge-row">
-          <Badge variant="wire">LEONIDA TRANSMISSION AUDIT</Badge>
+          <Badge variant="wanted" size="sm">★ TRANSMISSION AUDITED ★</Badge>
           <span className="wire-drift__chain-stages">
-            TOTAL CHAIN LENGTH: {fullChain.length} STAGES
+            TOTAL CHAIN LENGTH: {fullChain.length} STAGES // LSIB TELEMETRY
           </span>
         </div>
         <h1 className="wire-drift__title">
@@ -91,7 +94,7 @@ export default function DriftStatusScreen() {
         </h1>
         <p className="wire-drift__lead">
           Forensic measurement of factual narrative decay between the baseline crime-scene 
-          negative and the final headline filed to the Leonida wire.
+          negative and the final headline filed to the Leonida wire via the <strong>@unlayer/react-image-editor</strong> workbench.
         </p>
         <div className="wire-oxford-rule" aria-hidden="true" />
 

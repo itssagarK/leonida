@@ -25,15 +25,15 @@ export default function LandingScreen() {
     >
       {/* Editorial Folio / Dateline */}
       <div className="wire-landing__folio">
-        <span className="wire-landing__folio-item">BUREAU ARCHIVE // DECLASSIFIED DIVISION</span>
+        <span className="wire-landing__folio-item">LEONIDA STATE INVESTIGATIVE BUREAU // VICE PRECINCT 04</span>
         <span className="wire-landing__folio-sep">•</span>
         <span className="wire-landing__folio-item">VOL. LXXIV NO. 28,491</span>
         <span className="wire-landing__folio-sep">•</span>
-        <span className="wire-landing__folio-item">LEONIDA NIGHT DESPATCH</span>
+        <span className="wire-landing__folio-item">CLASSIFIED METRO DISPATCH</span>
       </div>
 
       <div className="wire-landing__masthead-tag">
-        CONFIDENTIAL EVIDENCE DESPATCH // BUREAU ARCHIVE
+        WANTED LEVEL: ★★★☆☆ // LSIB EVIDENCE LOCKER ARCHIVE
       </div>
 
       <h1 className="wire-landing__title">
@@ -41,7 +41,7 @@ export default function LandingScreen() {
       </h1>
 
       <p className="wire-landing__subtitle">
-        UNOFFICIAL PRESS &amp; EVIDENTIARY DESPATCH
+        LEONIDA STATE INVESTIGATIVE BUREAU // EVIDENCE DESPATCH &amp; TAMPERING SUITE
       </p>
 
       {/* Oxford Double-Rule */}
@@ -53,8 +53,8 @@ export default function LandingScreen() {
         <div className="wire-landing__hero-left">
           <div className="wire-landing__epigraph-box">
             <div className="wire-landing__memo-bar">
-              <span className="wire-landing__memo-title">MEMORANDUM // EVIDENTIARY PROTOCOL</span>
-              <span className="wire-landing__memo-stamp">UNFILTERED RECORD</span>
+              <span className="wire-landing__memo-title">MEMORANDUM // LSIB CRIME LAB PROTOCOL</span>
+              <span className="wire-landing__memo-stamp">UNRESOLVED // LEVEL 4</span>
             </div>
 
             <blockquote className="wire-landing__quote">
@@ -63,44 +63,61 @@ export default function LandingScreen() {
             </blockquote>
 
             <p className="wire-landing__lead-summary">
-              Track the forensic distortion of photographic evidence as it travels through 
-              anonymous witnesses and midnight tabloids. Use the embedded <strong>React Image Editor</strong> to file your own link in the chain and expose the drift between fact and public folklore.
+              Track the forensic distortion of crime-scene photographic evidence across consecutive witness links. 
+              Deploy the embedded <strong>@unlayer/react-image-editor</strong> to file your own report, alter the negative, and compute the mathematical drift between raw fact and public folklore.
             </p>
 
             <div className="wire-landing__memo-meta">
-              <span>CHAIN VOLATILITY: <strong>ACTIVE</strong></span>
-              <span>CLEARANCE: <strong>RESTRICTED // LEVEL 4</strong></span>
-              <span>ENGINE: <strong>REACT IMAGE EDITOR V1.0</strong></span>
+              <span>CHAIN VOLATILITY: <strong className="wire-meta-pink">ACTIVE MUTATION</strong></span>
+              <span>CLEARANCE: <strong className="wire-meta-cyan">LSIB BUREAU LEVEL 4</strong></span>
+              <span>ENGINE: <strong className="wire-meta-amber">@UNLAYER/REACT-IMAGE-EDITOR</strong></span>
             </div>
           </div>
 
           <div className="wire-landing__cta-wrap">
             <Button
-              variant="primary"
+              variant="pink"
               size="lg"
               onClick={handleOpenCase}
               icon={<span className="wire-cta-arrow">→</span>}
             >
-              OPEN CASE FILES
+              OPEN CRIME FILES &amp; EVIDENCE
             </Button>
             <span className="wire-landing__cta-note">
-              ACCESS UNRESTRICTED CRIME-SCENE DOSSIERS
+              ACCESS UNRESTRICTED LSIB INCIDENT DOSSIERS
             </span>
           </div>
         </div>
 
         {/* Right Column: 3D Physical Evidence Desk Scene */}
         <div className="wire-landing__hero-3d-box wire-corner-reticles">
-          <Suspense fallback={<SceneFallback label="LOADING 3D EVIDENCE DESK..." />}>
+          <Suspense fallback={<SceneFallback label="LOADING LSIB EVIDENCE WORKBENCH..." />}>
             <HeroEvidenceDesk onSelectFolder={handleOpenCase} />
           </Suspense>
         </div>
       </div>
 
+      {/* Dedicated Editor Engine Showcase Callout (Item 3) */}
+      <div className="wire-landing__editor-banner wire-corner-reticles">
+        <div className="wire-editor-banner__top">
+          <div className="wire-editor-banner__badge">
+            <span className="wire-editor-banner__dot" />
+            <span>CORE INTEGRATION // @UNLAYER/REACT-IMAGE-EDITOR</span>
+          </div>
+          <span className="wire-editor-banner__tag">8 FORENSIC TOOLS // ZERO-LATENCY BROWSER ENGINE</span>
+        </div>
+        <h3 className="wire-editor-banner__heading">
+          Professional In-Browser Photographic Manipulation
+        </h3>
+        <p className="wire-editor-banner__text">
+          8 professional editing tools — <strong>crop, filter, draw, text, shapes, stickers, frame &amp; resize</strong> — applied directly to the evidence photograph, in real time, in your browser to simulate realistic witness tampering.
+        </p>
+      </div>
+
       {/* Connected Evidentiary Protocol Pipeline */}
       <section className="wire-landing__pipeline-section" aria-label="Evidentiary Protocol Pipeline">
         <div className="wire-landing__section-header">
-          <span className="wire-landing__section-tag">INVESTIGATIVE WORKFLOW</span>
+          <span className="wire-landing__section-tag">INVESTIGATIVE PROTOCOL</span>
           <h2 className="wire-landing__section-title">THE EVIDENTIARY CHAIN OF CUSTODY</h2>
         </div>
 
@@ -109,12 +126,12 @@ export default function LandingScreen() {
           <div className="wire-landing__card wire-corner-reticles">
             <div className="wire-landing__card-badge">PHASE 01 // BASELINE</div>
             <div className="wire-landing__card-num">01 / RECEIVE</div>
-            <h3 className="wire-landing__card-title">Raw Photographic Record</h3>
+            <h3 className="wire-landing__card-title">Raw Photographic Negative</h3>
             <p className="wire-landing__card-desc">
-              Inspect pristine crime-scene negative captures preserved before viral tabloid sensationalism and witness tampering.
+              Inspect pristine crime-scene negative captures preserved by LSIB field units before viral tabloid sensationalism.
             </p>
             <div className="wire-landing__card-foot">
-              <span className="wire-landing__card-metric">DRIFT: 0.0% BASE</span>
+              <span className="wire-landing__card-metric">DRIFT: 0.0% ARCHIVE BASE</span>
             </div>
           </div>
 
@@ -123,16 +140,32 @@ export default function LandingScreen() {
             <span>➔</span>
           </div>
 
-          {/* Step 02 */}
-          <div className="wire-landing__card wire-landing__card--highlight wire-corner-reticles">
-            <div className="wire-landing__card-badge wire-landing__card-badge--amber">PHASE 02 // TOOLKIT</div>
-            <div className="wire-landing__card-num">02 / ALTER</div>
-            <h3 className="wire-landing__card-title">Manipulate via React Image Editor</h3>
+          {/* Step 02: Centerpiece with maximum prominence */}
+          <div className="wire-landing__card wire-landing__card--centerpiece wire-corner-reticles">
+            <div className="wire-landing__card-badge wire-landing__card-badge--centerpiece">
+              ★ CENTERPIECE PHASE // THE IMAGE EDITOR
+            </div>
+            <div className="wire-landing__card-num wire-landing__card-num--pink">02 / ALTER &amp; FILE</div>
+            <h3 className="wire-landing__card-title wire-landing__card-title--centerpiece">
+              Manipulate via @unlayer/react-image-editor
+            </h3>
             <p className="wire-landing__card-desc">
-              Deploy the 8-tool forensic suite—crop, filter, draw, text, shapes, and frame—to craft and seal your own narrative claim.
+              Deploy the 8-tool forensic suite — <strong>crop, filter, draw, text, shapes, stickers, frame &amp; resize</strong> — to directly alter the evidence photo in real time and stamp your narrative link into the chain.
             </p>
+            <div className="wire-landing__card-action">
+              <Button
+                variant="cyan"
+                size="sm"
+                onClick={() => navigate('/case/case-01/edit')}
+                icon={<span>✎</span>}
+              >
+                TEST IMAGE WORKBENCH
+              </Button>
+            </div>
             <div className="wire-landing__card-foot">
-              <span className="wire-landing__card-metric wire-landing__card-metric--amber">PUBLIC RECORD MUTATION</span>
+              <span className="wire-landing__card-metric wire-landing__card-metric--pink">
+                ★ POWERED BY @UNLAYER/REACT-IMAGE-EDITOR
+              </span>
             </div>
           </div>
 
@@ -159,12 +192,12 @@ export default function LandingScreen() {
       {/* Live Wire Signals Strip */}
       <div className="wire-landing__signals-bar">
         <div className="wire-landing__signal-item">
-          <span className="wire-landing__signal-code">#01-A VICE BEACH</span>
+          <span className="wire-landing__signal-code">#01-A VICE BEACH MARINA</span>
           <span className="wire-landing__signal-desc">Supercar Submersible (86% Drift Logged)</span>
         </div>
         <span className="wire-landing__status-sep">■</span>
         <div className="wire-landing__signal-item">
-          <span className="wire-landing__signal-code">#02-B AMBROSIA SWAMP</span>
+          <span className="wire-landing__signal-code">#02-B AMBROSIA SWAMP ROADS</span>
           <span className="wire-landing__signal-desc">Marshland Anomaly (High Volatility Chain)</span>
         </div>
       </div>
@@ -173,18 +206,18 @@ export default function LandingScreen() {
       <footer className="wire-landing__status-footer">
         <div className="wire-landing__status-item">
           <span className="wire-landing__status-dot wire-landing__status-dot--green" />
-          <span className="wire-landing__status-label">WIRE TELEMETRY:</span>
-          <span className="wire-landing__status-val">ONLINE</span>
+          <span className="wire-landing__status-label">LSIB WIRE TELEMETRY:</span>
+          <span className="wire-landing__status-val">ONLINE // ENCRYPTED</span>
         </div>
         <div className="wire-landing__status-sep">■</div>
         <div className="wire-landing__status-item">
-          <span className="wire-landing__status-label">ACTIVE CASES:</span>
+          <span className="wire-landing__status-label">ACTIVE DOSSIERS:</span>
           <span className="wire-landing__status-val">02 ON FILE</span>
         </div>
         <div className="wire-landing__status-sep">■</div>
         <div className="wire-landing__status-item">
           <span className="wire-landing__status-label">CUSTODY INTEGRITY:</span>
-          <span className="wire-landing__status-val">COMPROMISED (DRIFT ACTIVE)</span>
+          <span className="wire-landing__status-val wire-meta-pink">MUTATION ACTIVE</span>
         </div>
       </footer>
     </motion.div>

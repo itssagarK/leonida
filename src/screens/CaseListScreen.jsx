@@ -36,106 +36,53 @@ export default function CaseListScreen() {
           ← BACK TO WIRE DESPATCH
         </Link>
         <span className="wire-caselist__secure-tag">
-          EVIDENTIARY ARCHIVE // 2 UNRESTRICTED DOSSIERS
+          LSIB ARCHIVE // 04TH PRECINCT EVIDENCE LOCKER // 2 ACTIVE DOSSIERS
         </span>
       </div>
 
       {/* Screen Title & Description */}
       <header className="wire-caselist__header">
+        <div className="wire-kicker">
+          LSIB FORENSIC ARCHIVE // VICE CITY METRO EVIDENCE LOCKER // PRECINCT 04
+        </div>
         <div className="wire-caselist__header-badge">
-          <Badge variant="wire">LEONIDA EVIDENCE ARCHIVE</Badge>
-          <span className="wire-caselist__header-freq">CLASSIFIED REPOSITORY // SECTOR 04</span>
+          <Badge variant="wanted" size="sm">★ RESTRICTED ACCESS ★</Badge>
+          <span className="wire-caselist__header-freq">POLICE WIRE: 154.600 MHz // ENCRYPTED LSIB FEED</span>
         </div>
         <h1 className="wire-caselist__title">ACTIVE EVIDENCE DOSSIERS</h1>
         <div className="wire-oxford-rule" aria-hidden="true" />
         <p className="wire-caselist__lead">
-          Select an evidentiary folder to review raw police negatives, audit the chain of witness 
-          tampering, and mount the image into the <strong>React Image Editor</strong> to file your transmission.
+          Select an evidentiary folder to review raw police negatives, audit the chronological chain of witness 
+          tampering, and mount the evidence into the <strong>@unlayer/react-image-editor</strong> workbench to file your transmission.
         </p>
 
-        {/* View Mode Toggle with Bold Directus Styling */}
-        <div className="wire-caselist__view-toggle" style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {/* View Mode Toggle with Sleek Dark GTA Styling */}
+        <div className="wire-caselist__view-toggle">
           <button
             type="button"
-            className={`wire-view-toggle-btn ${viewMode === 'gallery' ? 'is-active' : ''}`}
+            className={`wire-view-toggle-btn ${viewMode === 'gallery' ? 'is-active is-gallery' : ''}`}
             onClick={() => setViewMode('gallery')}
-            style={{
-              padding: '6px 14px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              background: viewMode === 'gallery' ? 'var(--accent-purple)' : '#FFFFFF',
-              color: viewMode === 'gallery' ? '#FFFFFF' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === 'gallery' ? 'var(--accent-purple)' : 'rgba(0, 0, 0, 0.12)'),
-              boxShadow: viewMode === 'gallery' ? '0 2px 8px rgba(100, 66, 239, 0.25)' : 'none',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
           >
             [ ◈ 3D DEPTH GALLERY ]
           </button>
           <button
             type="button"
-            className={`wire-view-toggle-btn ${viewMode === 'desk' ? 'is-active' : ''}`}
+            className={`wire-view-toggle-btn ${viewMode === 'desk' ? 'is-active is-desk' : ''}`}
             onClick={() => setViewMode('desk')}
-            style={{
-              padding: '6px 14px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              background: viewMode === 'desk' ? 'var(--accent-amber)' : '#FFFFFF',
-              color: viewMode === 'desk' ? '#0F1115' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === 'desk' ? 'var(--accent-amber)' : 'rgba(0, 0, 0, 0.12)'),
-              boxShadow: viewMode === 'desk' ? '0 2px 8px rgba(217, 119, 6, 0.25)' : 'none',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
           >
             [ 📁 3D PHYSICAL DESK ]
           </button>
           <button
             type="button"
-            className={`wire-view-toggle-btn ${viewMode === 'pinboard' ? 'is-active' : ''}`}
+            className={`wire-view-toggle-btn ${viewMode === 'pinboard' ? 'is-active is-pinboard' : ''}`}
             onClick={() => setViewMode('pinboard')}
-            style={{
-              padding: '6px 14px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              background: viewMode === 'pinboard' ? 'var(--accent-coral)' : '#FFFFFF',
-              color: viewMode === 'pinboard' ? '#FFFFFF' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === 'pinboard' ? 'var(--accent-coral)' : 'rgba(0, 0, 0, 0.12)'),
-              boxShadow: viewMode === 'pinboard' ? '0 2px 8px rgba(255, 42, 109, 0.25)' : 'none',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
           >
             [ 📌 CRIME PINBOARD ]
           </button>
           <button
             type="button"
-            className={`wire-view-toggle-btn ${viewMode === 'grid' ? 'is-active' : ''}`}
+            className={`wire-view-toggle-btn ${viewMode === 'grid' ? 'is-active is-grid' : ''}`}
             onClick={() => setViewMode('grid')}
-            style={{
-              padding: '6px 14px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              background: viewMode === 'grid' ? '#0F1115' : '#FFFFFF',
-              color: viewMode === 'grid' ? '#FFFFFF' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === 'grid' ? '#0F1115' : 'rgba(0, 0, 0, 0.12)'),
-              boxShadow: viewMode === 'grid' ? '0 2px 8px rgba(0, 0, 0, 0.15)' : 'none',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
           >
             [ ☷ ARCHIVAL DOSSIER CARDS ]
           </button>
@@ -144,16 +91,7 @@ export default function CaseListScreen() {
 
       {/* 3D Depth Gallery View */}
       {viewMode === 'gallery' && (
-        <div
-          className="wire-caselist__3d-wrapper wire-corner-reticles"
-          style={{
-            width: '100%',
-            marginBottom: 'var(--space-5)',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            boxShadow: 'var(--shadow-paper)',
-            background: '#EAEBF0',
-          }}
-        >
+        <div className="wire-caselist__3d-wrapper wire-corner-reticles">
           <Suspense fallback={<SceneFallback label="LOADING 3D EVIDENCE DEPTH GALLERY..." />}>
             <CaseGalleryWall cases={cases} onSelectCase={handleSelectCase} />
           </Suspense>
@@ -162,16 +100,7 @@ export default function CaseListScreen() {
 
       {/* 3D Physical Desk View */}
       {viewMode === 'desk' && (
-        <div
-          className="wire-caselist__3d-wrapper wire-corner-reticles"
-          style={{
-            width: '100%',
-            marginBottom: 'var(--space-5)',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            boxShadow: 'var(--shadow-paper)',
-            background: '#EAEBF0',
-          }}
-        >
+        <div className="wire-caselist__3d-wrapper wire-corner-reticles">
           <Suspense fallback={<SceneFallback label="ARRANGING EVIDENCE DESK..." />}>
             <CaseFoldersDesk cases={cases} onSelectCase={handleSelectCase} />
           </Suspense>

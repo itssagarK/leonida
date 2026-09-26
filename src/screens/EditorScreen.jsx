@@ -157,9 +157,23 @@ export default function EditorScreen() {
     return () => hostEl.removeEventListener('click', handleInteraction, true);
   }, [editorImageUrl]);
 
-  // Prepare initial image for the editor
+  // Prepare initial image for the editor with safety timeout and auto-recovery
   useEffect(() => {
     let isCancelled = false;
+
+    // Safety timeout: ensure loading state never persists indefinitely (item 0)
+    const safetyTimer = setTimeout(() => {
+      if (!isCancelled) {
+        setIsPreparingImage((loading) => {
+          if (loading) {
+            console.warn('[Leonida Wire] Image decode safety timeout fired — falling back to raw negative');
+            setEditorImageUrl((curr) => curr || getAbsoluteImageUrl(caseObj.originalImage));
+            return false;
+          }
+          return loading;
+        });
+      }
+    }, 4000);
 
     async function prepareImage() {
       setIsPreparingImage(true);
@@ -174,17 +188,19 @@ export default function EditorScreen() {
           return;
         }
 
+        const rawUrl = getAbsoluteImageUrl(caseObj.originalImage);
         const bakedDataUrl = await renderFilteredImageToDataUrl(
-          caseObj.originalImage,
+          rawUrl,
           lastWitness?.filterStyle || 'none'
         );
 
         if (!isCancelled) {
-          setEditorImageUrl(bakedDataUrl);
+          // If bakedDataUrl returned valid data, use it; otherwise fallback to rawUrl
+          setEditorImageUrl(bakedDataUrl || rawUrl);
           setIsPreparingImage(false);
         }
       } catch (err) {
-        console.error('[Leonida Wire] Error preparing editor image:', err);
+        console.error('[Leonida Wire] Error preparing editor image, falling back to raw:', err);
         if (!isCancelled) {
           setEditorImageUrl(getAbsoluteImageUrl(caseObj.originalImage));
           setIsPreparingImage(false);
@@ -196,6 +212,7 @@ export default function EditorScreen() {
 
     return () => {
       isCancelled = true;
+      clearTimeout(safetyTimer);
     };
   }, [caseObj, lastWitness, playerProgress]);
 
@@ -223,9 +240,17 @@ export default function EditorScreen() {
     navigate(`/case/${caseObj.id}/custody`);
   };
 
-  // Handler when ImageEditor fails to load image
+  // Handler when ImageEditor fails to load image (item 0)
   const handleEditorLoadError = () => {
     console.error('[Leonida Wire] Unlayer ImageEditor onLoadError triggered');
+    const rawUrl = getAbsoluteImageUrl(caseObj.originalImage);
+    // If we weren't already using rawUrl, auto-recover by switching to rawUrl
+    if (editorImageUrl !== rawUrl) {
+      console.warn('[Leonida Wire] Auto-recovering from onLoadError: switching to raw image URL', rawUrl);
+      setEditorImageUrl(rawUrl);
+      setEditorLoadError(false);
+      return;
+    }
     setEditorLoadError(true);
   };
 
@@ -332,14 +357,17 @@ export default function EditorScreen() {
         </Link>
         <div className="wire-editor__terminal-id">
           <span className="wire-editor__live-dot" />
-          <span>EVIDENTIARY WORKBENCH // TERMINAL #01</span>
+          <span>LSIB EVIDENTIARY WORKBENCH // TERMINAL #01</span>
         </div>
       </div>
 
       {/* Screen Title & Context */}
       <header className="wire-editor__masthead">
+        <div className="wire-kicker">
+          LSIB FORENSIC METRO LAB // EVIDENCE TAMPERING TERMINAL #01
+        </div>
         <div className="wire-editor__badge-row">
-          <Badge variant="wire">{caseObj.caseNumber}</Badge>
+          <Badge variant="wanted" size="sm">★ CLASSIFIED DOSSIER ★</Badge>
           <span className="wire-editor__scene-tag">SCENE: {caseObj.location}</span>
           <span className="wire-editor__clock">{caseObj.dateLogged}</span>
         </div>
@@ -347,11 +375,32 @@ export default function EditorScreen() {
           VISUAL EVIDENCE WORKBENCH
         </h1>
         <p className="wire-editor__sublead">
-          Your edit becomes part of the public record. Manipulate the image using the React Image Editor,
-          save your edit, and file your claim to expose cumulative drift.
+          Your visual alterations become part of the official wire record. Manipulate the raw evidence negative
+          using the integrated <strong>@unlayer/react-image-editor</strong> workbench, save your buffer, and file your claim to expose cumulative drift.
         </p>
         <div className="wire-oxford-rule" aria-hidden="true" />
       </header>
+
+      {/* Explicit @unlayer/react-image-editor Spotlight Callout (Item 3) */}
+      <div className="wire-editor__unlayer-callout" role="region" aria-label="Unlayer React Image Editor Workbench">
+        <div className="wire-unlayer-callout__pill">
+          <span className="wire-unlayer-callout__dot" />
+          <span>POWERED BY @UNLAYER/REACT-IMAGE-EDITOR ENGINE</span>
+        </div>
+        <div className="wire-unlayer-callout__body">
+          <p className="wire-unlayer-callout__text">
+            <strong>8 REAL-TIME FORENSIC TOOLS:</strong> Crop • Filter • Draw • Text • Shapes • Stickers • Frame • Resize.
+            Modify the photographic evidence below to alter public perception. When satisfied, click <strong>&ldquo;Save&rdquo;</strong> in the editor toolbar, then file your headline to compute editorial drift.
+          </p>
+          <div className="wire-unlayer-callout__tools-badges">
+            {ALL_EDITOR_TOOLS.map((t) => (
+              <span key={t} className={`wire-unlayer-tool-pill ${usedTools.has(t) ? 'is-active' : ''}`}>
+                {usedTools.has(t) ? `✓ ${t}` : t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* THREE-ZONE WORKBENCH LAYOUT */}
       <div className="wire-editor__three-zone">
@@ -416,10 +465,15 @@ export default function EditorScreen() {
             <div className="wire-canvas-frame__header">
               <div className="wire-canvas-frame__badge">
                 <span className="wire-canvas-frame__bullet">■</span>
-                <span>REACT IMAGE EDITOR // CANVAS</span>
+                <span>@UNLAYER/REACT-IMAGE-EDITOR // CANVAS</span>
               </div>
-              <div className="wire-canvas-frame__tools-indicator">
-                8 TOOLS LOADED
+              <div className="wire-canvas-frame__meta-pills">
+                <span className="wire-canvas-frame__meta-pill">
+                  {hasSavedImage ? '● BUFFER READY' : '○ LIVE VIEW'}
+                </span>
+                <span className="wire-canvas-frame__tools-indicator">
+                  [{usedTools.size}/8 TOOLS APPLIED]
+                </span>
               </div>
             </div>
 
@@ -427,7 +481,7 @@ export default function EditorScreen() {
             <div className="wire-canvas-frame__lore-bar">
               <span className="wire-lore-icon">⚡</span>
               <span className="wire-lore-text">
-                Your edit becomes part of the public record. Use the tools below to modify the image, then click &ldquo;Save&rdquo;.
+                Your edit becomes part of the public record. Use the tools below to modify the image, then click &ldquo;Save&rdquo; in the toolbar.
               </span>
             </div>
 

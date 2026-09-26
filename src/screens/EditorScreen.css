@@ -13,12 +13,12 @@
   align-items: center;
   font-family: var(--font-mono);
   font-size: 11px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: var(--space-2);
 }
 
 .wire-editor__back-link {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
   text-decoration: none;
   letter-spacing: 0.08em;
@@ -26,7 +26,7 @@
 }
 
 .wire-editor__back-link:hover {
-  color: var(--accent-gold);
+  color: var(--accent-pink);
 }
 
 .wire-editor__terminal-id {
@@ -41,9 +41,9 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--accent-amber);
-  box-shadow: 0 0 6px var(--accent-amber);
-  animation: ticker-blink 1.5s infinite alternate ease-in-out;
+  background-color: var(--accent-pink);
+  box-shadow: 0 0 8px var(--accent-pink-glow);
+  animation: systemLivePulse 2s infinite ease-in-out;
 }
 
 /* Header Masthead */
@@ -63,8 +63,8 @@
 }
 
 .wire-editor__scene-tag {
-  color: var(--accent-amber);
-  font-weight: 600;
+  color: var(--accent-cyan);
+  font-weight: 700;
 }
 
 .wire-editor__clock {
@@ -72,19 +72,100 @@
 }
 
 .wire-editor__page-title {
-  font-family: var(--font-masthead);
-  font-size: clamp(24px, 3.5vw, 36px);
+  font-family: var(--font-gta);
+  font-size: clamp(34px, 5.5vw, 56px);
   font-weight: 900;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  line-height: 1.05;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
 .wire-editor__sublead {
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--text-secondary);
   max-width: 900px;
+}
+
+.wire-editor__sublead strong {
+  color: #FFFFFF;
+}
+
+/* Explicit @unlayer/react-image-editor Spotlight Callout */
+.wire-editor__unlayer-callout {
+  background: rgba(0, 240, 255, 0.04);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wire-unlayer-callout__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+}
+
+.wire-unlayer-callout__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan-glow);
+}
+
+.wire-unlayer-callout__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wire-unlayer-callout__text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.wire-unlayer-callout__text strong {
+  color: #FFFFFF;
+}
+
+.wire-unlayer-callout__tools-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wire-unlayer-tool-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: all var(--transition-fast);
+}
+
+.wire-unlayer-tool-pill.is-active {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan-glow);
 }
 
 /* ======================================================== */
@@ -104,11 +185,11 @@
 }
 
 .wire-context-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-md);
 }
 
 .wire-context-card__header {
@@ -116,8 +197,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 14px;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -125,7 +206,7 @@
 .wire-context-card__title {
   font-weight: 800;
   letter-spacing: 0.1em;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-context-card__id {
@@ -165,6 +246,7 @@
   font-family: var(--font-masthead);
   font-weight: 700;
   font-size: 14px;
+  color: #FFFFFF;
 }
 
 .wire-context-desc {
@@ -172,9 +254,9 @@
   font-size: 11px;
   color: var(--text-secondary);
   line-height: 1.5;
-  background-color: #F8F9FA;
+  background-color: var(--bg-surface);
   padding: 8px;
-  border-left: 2px solid var(--accent-amber);
+  border-left: 2px solid var(--accent-pink);
 }
 
 .wire-context-tags {
@@ -187,10 +269,10 @@
 .wire-context-tag {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--text-secondary);
-  background: #F0F1F4;
+  color: var(--accent-cyan);
+  background: var(--bg-elevated);
   padding: 2px 6px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
 }
 
 /* ZONE 2 (CENTER): IMAGE EDITOR CANVAS */
@@ -201,16 +283,16 @@
 }
 
 .wire-canvas-frame {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: var(--shadow-paper);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: var(--shadow-paper), 0 0 24px rgba(0, 240, 255, 0.08);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
 }
 
-/* Examination desk lamp spotlight overlay */
+/* Subtle cyan ambient lighting overlay */
 .wire-canvas-frame::before {
   content: "";
   position: absolute;
@@ -218,7 +300,7 @@
   left: 0;
   right: 0;
   height: 240px;
-  background: radial-gradient(ellipse at 50% -20%, rgba(217, 119, 6, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% -20%, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 1;
 }
@@ -228,8 +310,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 16px;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
   font-size: 11px;
   position: relative;
@@ -240,21 +322,35 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--text-primary);
+  color: #FFFFFF;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .wire-canvas-frame__bullet {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-size: 8px;
 }
 
+.wire-canvas-frame__meta-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wire-canvas-frame__meta-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+}
+
 .wire-canvas-frame__tools-indicator {
-  color: var(--accent-amber);
+  color: var(--accent-pink);
   font-size: 10px;
   letter-spacing: 0.1em;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* Lore Notice on Canvas Frame */
@@ -263,11 +359,11 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background-color: rgba(217, 119, 6, 0.06);
-  border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+  background-color: rgba(0, 240, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   position: relative;
   z-index: 2;
 }
@@ -280,20 +376,20 @@
   letter-spacing: 0.04em;
 }
 
-/* Success Banner Right on Canvas Frame - Physical Stamp Effect */
+/* Success Banner */
 .wire-canvas-frame__success-banner {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  background-color: rgba(217, 119, 6, 0.1);
-  border-bottom: 2px solid var(--accent-amber);
-  border-left: 4px solid var(--accent-amber);
+  background-color: rgba(0, 240, 255, 0.12);
+  border-bottom: 2px solid var(--accent-cyan);
+  border-left: 4px solid var(--accent-cyan);
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   animation: stampIn 250ms var(--ease-stamp) forwards;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 16px var(--accent-cyan-glow);
   position: relative;
   z-index: 2;
 }
@@ -305,13 +401,14 @@
 
 .wire-success-text strong {
   letter-spacing: 0.06em;
+  color: #FFFFFF;
 }
 
 /* Host Container for the Real Unlayer ImageEditor */
 .wire-editor__host {
   position: relative;
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #12151D;
   min-height: 640px;
 }
 
@@ -322,15 +419,15 @@
   align-items: center;
   justify-content: center;
   min-height: 640px;
-  background-color: #F8F9FA;
+  background-color: var(--bg-surface);
   gap: var(--space-2);
 }
 
 .wire-loading-spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(217, 119, 6, 0.2);
-  border-top-color: var(--accent-amber);
+  border: 3px solid rgba(0, 240, 255, 0.2);
+  border-top-color: var(--accent-cyan);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -345,14 +442,14 @@
 /* Error panel */
 .wire-editor__error-panel {
   padding: var(--space-4);
-  background-color: rgba(239, 35, 84, 0.06);
-  border: 1px solid var(--accent-crimson-border);
+  background-color: rgba(255, 0, 127, 0.08);
+  border: 1px solid var(--accent-pink);
   margin: var(--space-3);
   text-align: center;
 }
 
 .wire-editor__error-panel h3 {
-  color: var(--accent-crimson);
+  color: var(--accent-pink);
   margin-bottom: var(--space-1);
 }
 
@@ -374,8 +471,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  background-color: #F8F9FA;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
   font-size: 10px;
   color: var(--text-muted);
@@ -383,6 +480,7 @@
 
 .wire-canvas-engine-tag {
   letter-spacing: 0.1em;
+  color: var(--accent-cyan);
 }
 
 .wire-canvas-hint {
@@ -396,20 +494,20 @@
 }
 
 .wire-impact-panel {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding: 14px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-md);
 }
 
 .wire-impact-panel__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: 8px;
 }
 
@@ -418,14 +516,15 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-impact-panel__dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--accent-gold);
+  background-color: var(--accent-pink);
+  box-shadow: 0 0 6px var(--accent-pink-glow);
 }
 
 .wire-impact-section {
@@ -452,11 +551,11 @@
 .wire-impact-section__count {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
 }
 
-/* Tools Used List (Used vs Muted) */
+/* Tools Used List */
 .wire-impact-tools-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -475,26 +574,26 @@
 }
 
 .wire-tool-row.is-used {
-  background-color: rgba(217, 119, 6, 0.12);
-  border-color: rgba(217, 119, 6, 0.4);
-  color: var(--accent-amber);
+  background-color: rgba(0, 240, 255, 0.12);
+  border-color: rgba(0, 240, 255, 0.45);
+  color: var(--accent-cyan);
   font-weight: 700;
-  animation: stampIn 200ms var(--ease-stamp) backwards;
+  box-shadow: 0 0 6px var(--accent-cyan-glow);
 }
 
 .wire-tool-row.is-used .wire-tool-status-mark {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 900;
 }
 
 .wire-tool-row.is-muted {
-  background-color: #F8F9FA;
-  border-color: rgba(0, 0, 0, 0.06);
+  background-color: var(--bg-surface);
+  border-color: rgba(255, 255, 255, 0.06);
   color: var(--text-muted);
 }
 
 .wire-tool-row.is-muted .wire-tool-status-mark {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 /* Signals List */
@@ -502,9 +601,9 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background-color: #F8F9FA;
+  background-color: var(--bg-surface);
   padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-signal-row {
@@ -525,17 +624,17 @@
 .wire-signal-meter {
   width: 100%;
   height: 6px;
-  background-color: #E2E4E9;
+  background-color: #151822;
   background-image: repeating-linear-gradient(
     90deg,
     transparent,
     transparent 6px,
-    rgba(0, 0, 0, 0.08) 6px,
-    rgba(0, 0, 0, 0.08) 8px
+    rgba(255, 255, 255, 0.05) 6px,
+    rgba(255, 255, 255, 0.05) 8px
   );
   overflow: hidden;
   border-radius: 0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-signal-meter-fill {
@@ -544,28 +643,29 @@
 }
 
 .wire-signal-meter-fill--amber {
-  background-color: var(--accent-amber);
-  box-shadow: 0 0 6px rgba(217, 119, 6, 0.4);
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan-glow);
 }
 
 .wire-signal-meter-fill--ivory {
-  background-color: #0F1115;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
 }
 
 .wire-signal-meter-fill--crimson {
-  background-color: var(--accent-crimson);
-  box-shadow: 0 0 6px rgba(239, 35, 84, 0.4);
+  background-color: var(--accent-pink);
+  box-shadow: 0 0 8px var(--accent-pink-glow);
 }
 
 .wire-signal-meter-fill--gold {
-  background-color: var(--accent-gold);
-  box-shadow: 0 0 8px rgba(226, 147, 20, 0.5);
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
 }
 
 .wire-signal-row--highlight {
   padding-top: 8px;
   margin-top: 4px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.12);
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
   font-weight: 700;
 }
 
@@ -574,34 +674,34 @@
 }
 
 .wire-signal-val--amber {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
 }
 
 .wire-signal-val--crimson {
-  color: var(--accent-crimson);
+  color: var(--accent-pink);
   font-weight: 700;
 }
 
 .wire-signal-val--ivory {
-  color: var(--text-primary);
+  color: #FFFFFF;
   font-weight: 700;
 }
 
 .wire-signal-val--gold {
-  color: var(--accent-gold);
+  color: var(--accent-amber);
   font-weight: 800;
 }
 
-/* Evidence State Flow (Strictly One Active) */
+/* Evidence State Flow */
 .wire-state-flow {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   padding: 8px;
-  background: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -612,8 +712,8 @@
   gap: 8px;
   width: 100%;
   padding: 6px 10px;
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all var(--transition-fast);
 }
 
@@ -624,33 +724,32 @@
   background: currentColor;
 }
 
-/* Single Active State Styling */
 .wire-state-step.is-active-step.is-raw {
-  color: var(--accent-amber);
-  border-color: var(--accent-amber);
-  background: var(--accent-amber-subtle);
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  background: rgba(0, 240, 255, 0.1);
   font-weight: 700;
 }
 
 .wire-state-step.is-active-step.is-saved {
-  color: var(--accent-gold);
-  border-color: var(--accent-gold);
-  background: rgba(217, 119, 6, 0.12);
+  color: var(--accent-amber);
+  border-color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.12);
   font-weight: 700;
-  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.15);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.25);
 }
 
 .wire-state-step.is-active-step.is-filed {
-  color: var(--accent-amber-light);
-  border-color: var(--accent-amber);
-  background: rgba(226, 147, 20, 0.18);
+  color: var(--accent-pink);
+  border-color: var(--accent-pink);
+  background: rgba(255, 0, 127, 0.15);
   font-weight: 800;
-  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.2);
+  box-shadow: 0 0 10px var(--accent-pink-glow);
 }
 
 .wire-state-step.is-dormant {
   color: var(--text-muted);
-  opacity: 0.5;
+  opacity: 0.4;
   border-color: transparent;
 }
 
@@ -674,9 +773,9 @@
 }
 
 .wire-filing-card {
-  background-color: #FFFFFF;
-  border: 1px solid var(--accent-amber-border);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 0, 127, 0.35);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(255, 0, 127, 0.06);
 }
 
 .wire-filing-card__header {
@@ -684,23 +783,23 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--space-2) var(--space-4);
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-filing-card__seq {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.12em;
-  color: var(--accent-amber);
-  font-weight: 700;
+  color: var(--accent-pink);
+  font-weight: 800;
 }
 
 .wire-filing-card__title {
   font-family: var(--font-masthead);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .wire-filing-form {
@@ -727,7 +826,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--text-secondary);
+  color: var(--accent-cyan);
 }
 
 .wire-form-label-row {
@@ -743,9 +842,9 @@
 }
 
 .wire-form-input, .wire-form-textarea {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  color: var(--text-primary);
+  background-color: #080A0F;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
   font-family: var(--font-mono);
   font-size: 13px;
   padding: 10px 14px;
@@ -755,14 +854,14 @@
 }
 
 .wire-form-input:focus, .wire-form-textarea:focus {
-  border-color: var(--accent-amber);
-  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.25);
 }
 
 .wire-form-input--readonly {
-  background-color: #F0F1F4;
+  background-color: var(--bg-surface);
   color: var(--text-muted);
-  border-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(255, 255, 255, 0.08);
   cursor: not-allowed;
 }
 
@@ -777,8 +876,8 @@
   gap: var(--space-4);
   flex-wrap: wrap;
   padding: 10px 14px;
-  background-color: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -791,7 +890,8 @@
 }
 
 .wire-checklist-item.is-valid {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
+  font-weight: 700;
 }
 
 .wire-checklist-mark {
@@ -804,8 +904,8 @@
   align-items: center;
   gap: var(--space-3);
   padding: 12px;
-  background-color: rgba(217, 119, 6, 0.06);
-  border: 1px solid var(--accent-amber-border);
+  background-color: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.3);
 }
 
 .wire-filing-preview-thumb-box {
@@ -813,9 +913,9 @@
   width: 90px;
   height: 68px;
   flex-shrink: 0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.35);
   overflow: hidden;
-  background-color: #EAEBF0;
+  background-color: #080A0F;
 }
 
 .wire-filing-preview-thumb {
@@ -829,11 +929,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--accent-amber);
-  color: #FFFFFF;
+  background: var(--accent-cyan);
+  color: #080A0F;
   font-family: var(--font-mono);
   font-size: 8px;
-  font-weight: 800;
+  font-weight: 900;
   text-align: center;
   padding: 1px 0;
 }
@@ -848,7 +948,7 @@
 .wire-filing-preview-author {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
 }
 
@@ -874,7 +974,7 @@
 .wire-filing-pending-tip {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-crimson);
+  color: var(--accent-pink);
   letter-spacing: 0.05em;
 }
 

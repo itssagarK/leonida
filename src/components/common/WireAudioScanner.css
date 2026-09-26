@@ -1,11 +1,11 @@
 .wire-scanner {
-  background: #FFFFFF;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #090B0F;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
   font-family: var(--font-mono);
   user-select: none;
   position: relative;
   z-index: 85;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
   transition: all 0.25s ease;
 }
 
@@ -30,9 +30,9 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #F0F1F4;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: var(--text-primary);
+  background: #11141C;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 800;
@@ -43,27 +43,28 @@
 }
 
 .wire-scanner__toggle-btn:hover {
-  background: #EAEBF0;
-  border-color: rgba(0, 0, 0, 0.2);
+  background: #191E2A;
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
 }
 
 .wire-scanner__toggle-btn.is-active {
-  background: var(--accent-purple);
+  background: var(--accent-pink);
   color: #FFFFFF;
-  border-color: #4F46E5;
-  box-shadow: 0 2px 8px rgba(100, 66, 239, 0.3);
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 14px rgba(255, 0, 127, 0.6);
 }
 
 .wire-scanner__status-led {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #7E8597;
+  background: #5D667A;
 }
 
 .wire-scanner__toggle-btn.is-active .wire-scanner__status-led {
-  background: #00E599;
-  box-shadow: 0 0 6px #00E599;
+  background: #00F0FF;
+  box-shadow: 0 0 8px #00F0FF;
   animation: systemLivePulse 1.4s infinite ease-in-out;
 }
 
@@ -79,13 +80,14 @@
 
 .wire-scanner__spectrum-bar {
   flex: 1;
-  background: #D0D3DC;
+  background: #252A38;
   height: 3px;
   transition: height 0.15s ease;
 }
 
 .wire-scanner__spectrum.is-playing .wire-scanner__spectrum-bar {
-  background: var(--accent-coral);
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.8);
   animation: spectrumBounce 0.6s infinite alternate ease-in-out;
 }
 
@@ -100,7 +102,7 @@
   100% { height: 16px; }
 }
 
-/* Channel Pills */
+/* Frequency Channel Buttons */
 .wire-scanner__channels {
   display: flex;
   align-items: center;
@@ -112,85 +114,111 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  background: #11141C;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
   padding: 3px 8px;
-  background: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: var(--text-secondary);
   cursor: pointer;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   transition: all 0.15s ease;
 }
 
 .wire-scanner__chan-btn:hover {
-  background: #FFFFFF;
-  border-color: rgba(0, 0, 0, 0.2);
-  color: var(--text-primary);
+  background: #181C28;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .wire-scanner__chan-btn.is-active {
-  background: #FFFFFF;
-  font-weight: 800;
-  color: #0F1115;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  background: #1E2332;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.wire-scanner__chan-btn--purple.is-active {
-  border-color: var(--accent-purple);
-  color: var(--accent-purple);
-}
-
-.wire-scanner__chan-btn--coral.is-active {
-  border-color: var(--accent-coral);
-  color: var(--accent-coral);
+.wire-scanner__chan-btn--pink.is-active {
+  border-color: var(--accent-pink);
+  color: var(--accent-pink);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
 }
 
 .wire-scanner__chan-btn--cyan.is-active {
   border-color: var(--accent-cyan);
   color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
 }
 
 .wire-scanner__chan-btn--amber.is-active {
   border-color: var(--accent-amber);
   color: var(--accent-amber);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
 }
 
-/* Transcript Teletype */
+.wire-scanner__chan-code {
+  opacity: 0.7;
+}
+
+.wire-scanner__chan-name {
+  font-weight: 800;
+}
+
+/* Live Radio Transcript Feed */
 .wire-scanner__feed {
-  flex: 1;
-  min-width: 220px;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 11px;
+  flex: 1;
+  min-width: 260px;
+  justify-content: flex-end;
   overflow: hidden;
-  background: #F8F9FA;
-  padding: 3px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.wire-scanner__feed-freq {
+.wire-scanner__feed-code {
+  color: var(--accent-cyan);
   font-weight: 800;
-  font-size: 10px;
-  color: var(--accent-purple);
-  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .wire-scanner__feed-text {
-  font-size: 11px;
-  color: var(--text-secondary);
+  color: #C5CEE0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 480px;
 }
 
-.wire-scanner__feed-text strong {
-  color: var(--text-primary);
+/* Expanded Radio Info Bar */
+.wire-scanner__panel {
+  background: #07080B;
+  border-top: 1px dashed rgba(255, 0, 127, 0.3);
+  padding: 8px var(--space-3);
+  font-size: 11px;
 }
 
-@media (max-width: 768px) {
-  .wire-scanner__feed {
-    display: none;
-  }
+.wire-scanner__panel-inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.wire-scanner__panel-tag {
+  color: var(--accent-pink);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.wire-scanner__panel-status {
+  color: var(--text-secondary);
+}
+
+.wire-scanner__panel-status strong {
+  color: var(--accent-cyan);
 }

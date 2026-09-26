@@ -13,12 +13,12 @@
   align-items: center;
   font-family: var(--font-mono);
   font-size: 11px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: var(--space-2);
 }
 
 .wire-reveal__back-link {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
   text-decoration: none;
   letter-spacing: 0.08em;
@@ -26,7 +26,7 @@
 }
 
 .wire-reveal__back-link:hover {
-  color: var(--accent-gold);
+  color: var(--accent-pink);
 }
 
 .wire-reveal__case-stat {
@@ -37,11 +37,11 @@
 }
 
 .wire-reveal__case-stat strong {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-reveal__sep {
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 /* Header */
@@ -60,7 +60,8 @@
 }
 
 .wire-reveal__archive-ref {
-  color: var(--text-muted);
+  color: var(--accent-amber);
+  font-weight: 700;
 }
 
 /* Peter Tarka Monumental Verdict Typography */
@@ -83,19 +84,19 @@
 .wire-reveal__hero-tag {
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   color: var(--text-muted);
 }
 
 .wire-reveal__hero-status-pill {
-  padding: 4px 12px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 4px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.12em;
-  background: #FFFFFF;
+  background: var(--bg-card);
 }
 
 .wire-reveal__hero-score-lockup {
@@ -106,17 +107,18 @@
 }
 
 .wire-reveal__hero-numeral {
-  font-family: var(--font-masthead);
-  font-size: clamp(68px, 11vw, 128px);
+  font-family: var(--font-gta);
+  font-size: clamp(84px, 12vw, 136px);
   font-weight: 900;
   line-height: 0.85;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
   margin: 0;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
 }
 
 .wire-reveal__hero-pct {
   font-size: 0.52em;
-  opacity: 0.72;
+  opacity: 0.75;
   margin-left: 2px;
 }
 
@@ -124,22 +126,23 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-width: 660px;
+  max-width: 680px;
 }
 
 .wire-reveal__hero-label {
-  font-family: var(--font-masthead);
-  font-size: clamp(24px, 3.6vw, 40px);
+  font-family: var(--font-gta);
+  font-size: clamp(28px, 4vw, 44px);
   font-weight: 900;
-  letter-spacing: -0.025em;
-  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
   line-height: 1;
+  text-transform: uppercase;
 }
 
 .wire-reveal__hero-desc {
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--text-secondary);
   margin: 0;
 }
@@ -147,8 +150,8 @@
 .wire-reveal__lock-banner {
   margin-top: var(--space-2);
   padding: 12px 16px;
-  background-color: var(--accent-amber-subtle);
-  border: 1px solid var(--accent-amber-border);
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.4);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -186,18 +189,20 @@
 }
 
 .wire-reveal__comp-title {
-  font-family: var(--font-masthead);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--text-primary);
+  font-family: var(--font-gta);
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  text-transform: uppercase;
 }
 
 /* View Mode Switcher */
 .wire-comp-mode-toggle {
   display: inline-flex;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 2px;
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 3px;
 }
 
 .wire-comp-mode-btn {
@@ -206,7 +211,7 @@
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.08em;
   padding: 5px 12px;
   cursor: pointer;
@@ -214,13 +219,14 @@
 }
 
 .wire-comp-mode-btn:hover {
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .wire-comp-mode-btn.is-active {
-  background-color: var(--accent-amber-subtle);
-  color: var(--accent-amber);
-  border-color: var(--accent-amber-border);
+  background-color: rgba(0, 240, 255, 0.14);
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan-glow);
 }
 
 /* ======================================================== */
@@ -230,22 +236,22 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.25);
   padding: var(--space-3);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-paper), 0 0 20px rgba(0, 240, 255, 0.05);
 }
 
 .wire-wipe-frame {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background-color: #EAEBF0;
+  background-color: #08090C;
   overflow: hidden;
   cursor: ew-resize;
   user-select: none;
   touch-action: none;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .wire-wipe-layer {
@@ -282,27 +288,27 @@
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: rgba(8, 9, 12, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
   pointer-events: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .wire-wipe-stamp-tag--raw {
   left: 12px;
-  border-left: 3px solid var(--accent-amber);
-  color: var(--accent-amber);
+  border-left: 3px solid var(--accent-cyan);
+  color: var(--accent-cyan);
 }
 
 .wire-wipe-stamp-tag--final {
   right: 12px;
-  border-right: 3px solid var(--accent-crimson);
-  color: var(--accent-crimson);
+  border-right: 3px solid var(--accent-pink);
+  color: var(--accent-pink);
 }
 
 .wire-wipe-tag-dot {
@@ -312,13 +318,13 @@
 }
 
 .wire-wipe-tag-dot--amber {
-  background-color: var(--accent-amber);
-  box-shadow: 0 0 6px var(--accent-amber);
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan-glow);
 }
 
 .wire-wipe-tag-dot--crimson {
-  background-color: var(--accent-crimson);
-  box-shadow: 0 0 6px var(--accent-crimson);
+  background-color: var(--accent-pink);
+  box-shadow: 0 0 6px var(--accent-pink-glow);
 }
 
 /* Vertical Divider Line with Grab Handle */
@@ -327,11 +333,11 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: var(--accent-amber);
+  background-color: var(--accent-cyan);
   z-index: 3;
   transform: translateX(-50%);
   pointer-events: none;
-  box-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
+  box-shadow: 0 0 10px var(--accent-cyan-glow);
 }
 
 .wire-wipe-handle {
@@ -343,13 +349,13 @@
   align-items: center;
   gap: 4px;
   padding: 6px 10px;
-  background-color: #FFFFFF;
-  border: 1.5px solid var(--accent-amber);
-  color: var(--accent-amber);
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--accent-cyan);
+  color: var(--accent-cyan);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 800;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12), 0 0 8px rgba(217, 119, 6, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 10px var(--accent-cyan-glow);
   pointer-events: auto;
   cursor: ew-resize;
   transition: transform 150ms var(--ease-mechanical), background-color 150ms ease;
@@ -358,7 +364,7 @@
 .wire-wipe-handle:hover,
 .wire-wipe-frame:active .wire-wipe-handle {
   transform: translate(-50%, -50%) scale(1.08);
-  background-color: #F8F9FA;
+  background-color: var(--bg-card);
 }
 
 .wire-wipe-handle-arrow {
@@ -385,7 +391,7 @@
 }
 
 .wire-wipe-hint {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
 }
 
@@ -400,24 +406,24 @@
   gap: var(--space-3);
   margin-top: 6px;
   padding-top: 12px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 .wire-wipe-narrative-col {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background-color: #F8F9FA;
+  background-color: var(--bg-surface);
   padding: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .wire-wipe-narrative-col--raw {
-  border-left: 3px solid var(--accent-amber);
+  border-left: 3px solid var(--accent-cyan);
 }
 
 .wire-wipe-narrative-col--final {
-  border-left: 3px solid var(--accent-crimson);
+  border-left: 3px solid var(--accent-pink);
 }
 
 .wire-wipe-col-header {
@@ -431,11 +437,11 @@
 .wire-wipe-col-tag {
   font-weight: 800;
   letter-spacing: 0.1em;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-wipe-col-tag--alert {
-  color: var(--accent-crimson);
+  color: var(--accent-pink);
 }
 
 .wire-wipe-col-byline {
@@ -446,7 +452,7 @@
   font-family: var(--font-masthead);
   font-size: 14px;
   font-style: italic;
-  color: var(--text-primary);
+  color: #FFFFFF;
   line-height: 1.45;
   margin: 0;
 }
@@ -462,19 +468,19 @@
 }
 
 .wire-comp-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: var(--shadow-sm);
 }
 
 .wire-comp-card--original {
-  border-top: 3px solid var(--accent-amber);
+  border-top: 3px solid var(--accent-cyan);
 }
 
 .wire-comp-card--final {
-  border-top: 3px solid var(--accent-crimson);
+  border-top: 3px solid var(--accent-pink);
 }
 
 .wire-comp-card__tag {
@@ -482,13 +488,13 @@
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .wire-comp-dot {
@@ -498,18 +504,18 @@
 }
 
 .wire-comp-dot--amber {
-  background-color: var(--accent-amber);
-  box-shadow: 0 0 6px var(--accent-amber);
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan-glow);
 }
 
 .wire-comp-dot--green {
-  background-color: var(--accent-amber);
-  box-shadow: 0 0 6px var(--accent-amber);
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan-glow);
 }
 
 .wire-comp-dot--red {
-  background-color: var(--accent-crimson);
-  box-shadow: 0 0 6px var(--accent-crimson);
+  background-color: var(--accent-pink);
+  box-shadow: 0 0 6px var(--accent-pink-glow);
 }
 
 .wire-comp-card__img-wrap {
@@ -517,7 +523,7 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background-color: #EAEBF0;
+  background-color: #08090C;
 }
 
 .wire-comp-card__img {
@@ -544,14 +550,15 @@
 .wire-comp-card__byline {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--accent-cyan);
+  font-weight: 700;
 }
 
 .wire-comp-card__caption {
   font-family: var(--font-masthead);
   font-size: 15px;
   font-style: italic;
-  color: var(--text-primary);
+  color: #FFFFFF;
   line-height: 1.45;
 }
 
@@ -559,17 +566,17 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   padding: 4px 8px;
-  background-color: rgba(217, 119, 6, 0.1);
+  background-color: rgba(0, 240, 255, 0.1);
   display: inline-block;
-  border: 1px solid rgba(217, 119, 6, 0.3);
+  border: 1px solid rgba(0, 240, 255, 0.3);
 }
 
 .wire-comp-card__verdict-strip--alert {
-  color: var(--accent-crimson);
-  background-color: rgba(239, 35, 84, 0.08);
-  border-color: rgba(239, 35, 84, 0.3);
+  color: var(--accent-pink);
+  background-color: rgba(255, 0, 127, 0.1);
+  border-color: rgba(255, 0, 127, 0.4);
 }
 
 /* Center Drift Divider Circle */
@@ -583,20 +590,20 @@
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  background-color: #FFFFFF;
-  border: 2px solid var(--accent-amber);
+  background-color: var(--bg-card);
+  border: 2px solid var(--accent-cyan);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 12px rgba(217, 119, 6, 0.2);
+  box-shadow: 0 0 16px var(--accent-cyan-glow);
 }
 
 .wire-comp-drift-val {
-  font-family: var(--font-masthead);
-  font-size: 18px;
+  font-family: var(--font-gta);
+  font-size: 20px;
   font-weight: 900;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   line-height: 1;
 }
 
@@ -616,9 +623,9 @@
 }
 
 .wire-changes-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-sm);
 }
 
 .wire-changes-card__header {
@@ -626,8 +633,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 16px;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-changes-card__header h3 {
@@ -635,7 +642,7 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.1em;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-changes-card__sub {
@@ -675,15 +682,15 @@
   font-family: var(--font-mono);
   font-size: 11px;
   padding: 3px 8px;
-  background-color: #F0F1F4;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-secondary);
 }
 
 .wire-mutation-tag--highlight {
-  border-color: var(--accent-amber-border);
-  color: var(--accent-amber);
-  background-color: var(--accent-amber-subtle);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  background-color: rgba(0, 240, 255, 0.12);
   font-weight: 700;
 }
 
@@ -701,7 +708,7 @@
   gap: var(--space-3);
   margin-top: 8px;
   padding-top: 12px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
 }
 
 .wire-narrative-col {
@@ -719,30 +726,30 @@
 }
 
 .wire-narrative-tag--public {
-  color: var(--accent-crimson);
+  color: var(--accent-pink);
 }
 
 .wire-narrative-tag--record {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-narrative-quote {
   font-family: var(--font-masthead);
   font-size: 14px;
   font-style: italic;
-  color: var(--text-primary);
+  color: #FFFFFF;
   line-height: 1.45;
-  background-color: #F8F9FA;
+  background-color: var(--bg-surface);
   padding: 8px 12px;
-  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .wire-narrative-col:first-child .wire-narrative-quote {
-  border-left-color: var(--accent-crimson);
+  border-left-color: var(--accent-pink);
 }
 
 .wire-narrative-col:last-child .wire-narrative-quote {
-  border-left-color: var(--accent-amber);
+  border-left-color: var(--accent-cyan);
 }
 
 @media (max-width: 680px) {
@@ -767,16 +774,17 @@
 }
 
 .wire-reveal__sequence-header h2 {
-  font-family: var(--font-masthead);
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--text-primary);
+  font-family: var(--font-gta);
+  font-size: 24px;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-transform: uppercase;
 }
 
 .wire-reveal__seq-count {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--accent-amber);
 }
 
 .wire-reveal__timeline {
@@ -800,31 +808,31 @@
 .wire-reveal-step__bullet {
   width: 28px;
   height: 28px;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 800;
-  color: var(--accent-amber);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan-glow);
 }
 
 .wire-reveal-step__line {
   flex: 1;
   width: 2px;
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.08);
   margin-top: 4px;
 }
 
 .wire-reveal-step__content {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: var(--shadow-sm);
 }
 
 .wire-reveal-step__top {
@@ -832,8 +840,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 14px;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-reveal-step__id {
@@ -846,7 +854,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 800;
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .wire-reveal-step__time {
@@ -866,8 +874,8 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background-color: #EAEBF0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #08090C;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .wire-reveal-step__img {
@@ -886,14 +894,15 @@
 .wire-reveal-step__byline {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
+  font-weight: 700;
 }
 
 .wire-reveal-step__caption {
   font-family: var(--font-masthead);
   font-size: 14px;
   font-style: italic;
-  color: var(--text-primary);
+  color: #FFFFFF;
   line-height: 1.45;
 }
 
@@ -919,9 +928,9 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-4);
-  background-color: #FFFFFF;
-  border: 1px solid var(--accent-amber-border);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: var(--shadow-sm), 0 0 16px rgba(0, 240, 255, 0.05);
 }
 
 .wire-reveal__download-info {
@@ -932,10 +941,11 @@
 }
 
 .wire-reveal__download-info h3 {
-  font-family: var(--font-masthead);
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-primary);
+  font-family: var(--font-gta);
+  font-size: 22px;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-transform: uppercase;
 }
 
 .wire-reveal__download-info p {
@@ -947,11 +957,11 @@
 
 .wire-reveal__download-toast {
   padding: 10px 16px;
-  background-color: var(--accent-amber-subtle);
-  border: 1px solid var(--accent-amber);
+  background-color: rgba(0, 240, 255, 0.12);
+  border: 1px solid var(--accent-cyan);
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
   animation: fadeIn 0.2s ease-in-out;
 }
@@ -993,12 +1003,12 @@
 }
 
 /* ==========================================================================
-   DOSSIER STAMP STUDIO // DIRECTUS BOLD PALETTE STYLING
+   DOSSIER STAMP STUDIO // GTA VI NOIR STYLING
    ========================================================================== */
 .wire-stamp-studio {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
   padding: var(--space-4);
   box-shadow: var(--shadow-card);
   display: flex;
@@ -1013,7 +1023,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding-bottom: var(--space-2);
 }
 
@@ -1028,15 +1038,16 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: var(--accent-purple);
+  color: var(--accent-pink);
 }
 
 .wire-stamp-studio__title {
-  font-family: var(--font-masthead);
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+  font-family: var(--font-gta);
+  font-size: 20px;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .wire-stamp-studio__desc {
@@ -1086,25 +1097,25 @@
   font-size: 11px;
   font-weight: 700;
   padding: 6px 12px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: #FAFAFB;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-surface);
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .wire-stamp-preset-btn:hover {
-  background: #F0F1F5;
-  color: var(--text-primary);
-  border-color: rgba(0, 0, 0, 0.25);
+  background: var(--bg-card-hover);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .wire-stamp-preset-btn.is-active {
-  background: #0F1115;
-  color: #FFFFFF;
-  border-color: #0F1115;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan-glow);
 }
 
 .wire-stamp-colors {
@@ -1118,7 +1129,7 @@
   height: 32px;
   border-radius: 50%;
   border: 2px solid #FFFFFF;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -1129,7 +1140,7 @@
 
 .wire-stamp-color-btn.is-active {
   transform: scale(1.2);
-  box-shadow: 0 0 0 2px #0F1115, 0 3px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 2px var(--accent-cyan), 0 0 12px var(--accent-cyan-glow);
 }
 
 .wire-stamp-angle-row {
@@ -1140,7 +1151,7 @@
 
 .wire-stamp-angle-slider {
   flex: 1;
-  accent-color: var(--accent-purple);
+  accent-color: var(--accent-cyan);
   cursor: pointer;
 }
 
@@ -1148,7 +1159,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-secondary);
+  color: var(--accent-cyan);
   min-width: 36px;
 }
 
@@ -1160,24 +1171,24 @@
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  background: #FAFAFB;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  color: var(--text-primary);
+  background: #080A0F;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  color: #FFFFFF;
   outline: none;
   transition: border-color 0.15s ease;
 }
 
 .wire-stamp-input:focus {
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 0 3px rgba(100, 66, 239, 0.12);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.25);
 }
 
 /* Live Stamp Preview Stage */
 .wire-stamp-preview-stage {
-  background: #F4F5F8;
-  border: 1px dashed rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
+  background: #06070A;
+  border: 1px dashed rgba(0, 240, 255, 0.3);
+  border-radius: 4px;
   min-height: 180px;
   display: flex;
   flex-direction: column;
@@ -1203,12 +1214,12 @@
 .wire-stamp-box {
   padding: 10px 22px;
   border: 3px solid;
-  border-radius: 4px;
+  border-radius: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(14, 16, 22, 0.92);
   backdrop-filter: blur(4px);
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
@@ -1216,16 +1227,17 @@
 
 .wire-stamp-box.is-punching {
   transform: scale(1.18) rotate(var(--angle, 0deg)) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
 .wire-stamp-text-primary {
-  font-family: var(--font-masthead);
-  font-size: 16px;
+  font-family: var(--font-gta);
+  font-size: 18px;
   font-weight: 900;
   letter-spacing: 0.05em;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
 .wire-stamp-text-secondary {
@@ -1236,4 +1248,3 @@
   color: var(--text-secondary);
   text-align: center;
 }
-

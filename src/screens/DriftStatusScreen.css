@@ -13,12 +13,12 @@
   align-items: center;
   font-family: var(--font-mono);
   font-size: 11px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: var(--space-2);
 }
 
 .wire-drift__back-link {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
   text-decoration: none;
   letter-spacing: 0.08em;
@@ -26,7 +26,7 @@
 }
 
 .wire-drift__back-link:hover {
-  color: var(--accent-gold);
+  color: var(--accent-pink);
 }
 
 .wire-drift__case-tag {
@@ -34,12 +34,12 @@
 }
 
 .wire-drift__case-tag strong {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-drift__sep {
   margin: 0 8px;
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 /* Header */
@@ -58,30 +58,37 @@
 }
 
 .wire-drift__chain-stages {
-  color: var(--text-muted);
+  color: var(--accent-amber);
 }
 
 .wire-drift__title {
-  font-family: var(--font-masthead);
-  font-size: clamp(26px, 3.8vw, 38px);
+  font-family: var(--font-gta);
+  font-size: clamp(34px, 5.5vw, 56px);
   font-weight: 900;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  line-height: 1.05;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
 .wire-drift__lead {
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--text-secondary);
   max-width: 860px;
+}
+
+.wire-drift__lead strong {
+  color: #FFFFFF;
 }
 
 .wire-drift__unsealed-alert {
   margin-top: var(--space-2);
   padding: 12px 16px;
-  background-color: var(--accent-amber-subtle);
-  border: 1px solid var(--accent-amber-border);
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.4);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -101,11 +108,11 @@
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: var(--space-4);
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.25);
   padding: var(--space-4);
   align-items: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-paper), 0 0 20px rgba(0, 240, 255, 0.05);
 }
 
 .wire-drift-hero__score-box {
@@ -114,8 +121,8 @@
   align-items: center;
   text-align: center;
   padding: var(--space-3);
-  background-color: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-drift-hero__metric {
@@ -126,23 +133,27 @@
 }
 
 .wire-drift-hero__number {
-  font-family: var(--font-masthead);
-  font-size: clamp(48px, 6vw, 68px);
+  font-family: var(--font-gta);
+  font-size: clamp(56px, 7vw, 84px);
   font-weight: 900;
   line-height: 1;
   transition: color 300ms ease;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
 .wire-drift-hero__number--amber {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
+  text-shadow: 0 0 24px var(--accent-cyan-glow);
 }
 
 .wire-drift-hero__number--gold {
-  color: var(--accent-gold);
+  color: var(--accent-amber);
+  text-shadow: 0 0 24px rgba(245, 158, 11, 0.5);
 }
 
 .wire-drift-hero__number--crimson {
-  color: var(--accent-crimson);
+  color: var(--accent-pink);
+  text-shadow: 0 0 24px var(--accent-pink-glow);
 }
 
 .wire-drift-hero__label {
@@ -187,10 +198,10 @@
 
 .wire-drift-hero__tone {
   font-family: var(--font-masthead);
-  font-size: 20px;
+  font-size: 22px;
   font-style: italic;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #FFFFFF;
   line-height: 1.4;
 }
 
@@ -209,10 +220,10 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: var(--space-3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: var(--shadow-sm);
 }
 
 .wire-progression-step {
@@ -221,316 +232,115 @@
   flex-direction: column;
   gap: 4px;
   padding: 10px;
-  background-color: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .wire-progression-step--active {
-  border-color: var(--accent-amber-border);
-  background-color: rgba(217, 119, 6, 0.08);
+  border-color: var(--accent-cyan);
+  background-color: rgba(0, 240, 255, 0.08);
+  box-shadow: 0 0 10px var(--accent-cyan-glow);
 }
 
 .wire-progression-step__badge {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 800;
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   letter-spacing: 0.1em;
 }
 
-.wire-progression-step__title {
-  font-family: var(--font-masthead);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.wire-progression-step__desc {
+.wire-progression-step__author {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--text-secondary);
-  line-height: 1.4;
+  font-weight: 700;
+}
+
+.wire-progression-step__drift {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
 }
 
 .wire-progression-arrow {
-  font-family: var(--font-mono);
-  color: var(--text-muted);
+  color: var(--accent-cyan);
   font-size: 14px;
-  user-select: none;
+  opacity: 0.7;
 }
 
 /* ======================================================== */
-/* BREAKDOWN FACTORS & LEXICAL FORENSICS                    */
+/* DETAILED DRIFT VECTOR BREAKDOWN                          */
 /* ======================================================== */
-.wire-drift-breakdown-grid {
+.wire-drift-breakdown {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
 }
 
-.wire-breakdown-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+.wire-drift-vector-card {
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--space-3);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  gap: 8px;
 }
 
-.wire-breakdown-card__header {
+.wire-drift-vector-card__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.wire-breakdown-card__header h3 {
   font-family: var(--font-mono);
   font-size: 11px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 6px;
+}
+
+.wire-drift-vector-card__title {
+  color: var(--accent-cyan);
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: var(--text-primary);
+  letter-spacing: 0.08em;
 }
 
-.wire-breakdown-card__tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--text-muted);
+.wire-drift-vector-card__score {
+  color: var(--accent-pink);
+  font-weight: 900;
 }
 
-.wire-breakdown-card__factors {
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.wire-breakdown-factor {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
+.wire-drift-vector-card__desc {
   font-family: var(--font-mono);
   font-size: 12px;
-  padding-bottom: 4px;
-}
-
-.wire-factor-name {
   color: var(--text-secondary);
-  white-space: nowrap;
+  line-height: 1.5;
 }
 
-.wire-factor-dots {
-  flex: 1;
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.15);
-  margin-bottom: 4px;
-}
-
-.wire-factor-val {
-  color: var(--accent-amber);
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-/* Lexical Forensics */
-.wire-breakdown-card__lexical {
-  padding: 14px;
+/* Actions */
+.wire-drift__actions {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.wire-lexical-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.wire-lexical-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-
-.wire-lexical-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.wire-drift-pill {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 0;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.wire-drift-pill--retained {
-  background-color: rgba(217, 119, 6, 0.1);
-  border: 1px solid rgba(217, 119, 6, 0.35);
-  color: var(--accent-amber);
-}
-
-.wire-drift-pill--mutated {
-  background-color: rgba(239, 35, 84, 0.08);
-  border: 1px solid rgba(239, 35, 84, 0.3);
-  color: var(--accent-crimson);
-}
-
-.wire-drift-empty {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-/* ======================================================== */
-/* FILED EVIDENCE RECORD SUMMARY CARD                       */
-/* ======================================================== */
-.wire-drift-summary-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-}
-
-.wire-drift-summary-card__header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.wire-summary-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: var(--accent-amber);
-}
-
-.wire-drift-summary-card__body {
-  display: grid;
-  grid-template-columns: 200px 1fr;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: var(--space-3);
-  padding: var(--space-3);
+  margin-top: var(--space-2);
 }
 
-.wire-drift-summary-card__thumb-box {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background-color: #EAEBF0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.wire-drift-summary-card__thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.wire-drift-summary-card__content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.wire-summary-byline {
-  display: flex;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-}
-
-.wire-summary-label {
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.wire-summary-val {
-  color: var(--accent-amber);
-  font-weight: 700;
-}
-
-.wire-summary-quote {
-  font-family: var(--font-masthead);
-  font-size: 16px;
-  font-style: italic;
-  color: var(--text-primary);
-  line-height: 1.45;
-}
-
-.wire-summary-baseline-comp {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-top: 6px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.08);
-}
-
-.wire-summary-baseline-text {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-/* ======================================================== */
-/* ACTION FOOTER                                            */
-/* ======================================================== */
-.wire-drift__action-footer {
+.wire-drift__actions-left {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: var(--space-2);
   flex-wrap: wrap;
-  gap: var(--space-2);
-  padding-top: var(--space-2);
 }
 
-.wire-drift__sub-buttons {
-  display: flex;
-  gap: var(--space-2);
-}
-
-/* Responsive */
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .wire-drift-hero {
     grid-template-columns: 1fr;
   }
-
   .wire-drift-progression {
     flex-direction: column;
     align-items: stretch;
   }
-
-  .wire-progression-arrow {
-    text-align: center;
-    transform: rotate(90deg);
-  }
-
-  .wire-drift-breakdown-grid {
+  .wire-drift-breakdown {
     grid-template-columns: 1fr;
-  }
-
-  .wire-drift-summary-card__body {
-    grid-template-columns: 1fr;
-  }
-
-  .wire-drift__action-footer {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .wire-drift__sub-buttons {
-    flex-direction: column;
   }
 }

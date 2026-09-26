@@ -67,8 +67,11 @@ export default function CaseIntroScreen() {
 
       {/* Main Dossier Header Banner */}
       <header className="wire-case-intro__header">
+        <div className="wire-kicker">
+          LSIB FORENSIC ARCHIVE // CASE DOSSIER BRIEFING // PRECINCT 04
+        </div>
         <div className="wire-case-intro__meta-strip">
-          <Badge variant="wire">{caseObj.caseNumber}</Badge>
+          <Badge variant="wanted" size="sm">★ CLASSIFIED RECORD ★</Badge>
           <span className="wire-case-intro__loc">SCENE: {caseObj.location}</span>
           <span className="wire-case-intro__sep">•</span>
           <span className="wire-case-intro__timestamp">{caseObj.dateLogged}</span>

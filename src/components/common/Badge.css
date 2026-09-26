@@ -92,7 +92,15 @@
   border: 2px solid var(--accent-crimson);
 }
 
-/* Bold Directus Colors */
+/* GTA VI & Neon Accents */
+.wire-badge--pink,
+.wire-badge--magenta {
+  background: var(--accent-magenta-subtle);
+  color: var(--accent-pink);
+  border: 1px solid var(--accent-pink);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.25);
+}
+
 .wire-badge--purple {
   background: var(--accent-purple-subtle);
   color: var(--accent-purple);
@@ -102,7 +110,8 @@
 .wire-badge--cyan {
   background: var(--accent-cyan-subtle);
   color: var(--accent-cyan);
-  border: 1px solid var(--accent-cyan-border);
+  border: 1px solid var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
 }
 
 .wire-badge--coral {
@@ -115,6 +124,15 @@
   background: var(--accent-mint-subtle);
   color: var(--accent-mint);
   border: 1px solid var(--accent-mint-border);
+}
+
+.wire-badge--wanted {
+  background: rgba(255, 0, 127, 0.18);
+  color: #FFFFFF;
+  border: 1px solid var(--accent-pink);
+  font-family: var(--font-gta);
+  letter-spacing: 0.14em;
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.3);
 }
 
 /* STAMP STYLE */

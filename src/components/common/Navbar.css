@@ -1,19 +1,19 @@
 .wire-navbar {
-  background-color: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(10, 11, 14, 0.95);
+  border-bottom: 1px solid rgba(255, 0, 127, 0.25);
   position: sticky;
   top: 0;
   z-index: 90;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
 }
 
 .wire-navbar__inner {
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--space-3);
-  height: 56px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,25 +34,27 @@
 }
 
 .wire-navbar__brand-name {
-  font-family: var(--font-masthead);
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--text-primary);
-  transition: color var(--transition-fast);
+  font-family: var(--font-gta);
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-fast);
 }
 
 .wire-navbar__brand:hover .wire-navbar__brand-name {
-  color: var(--accent-amber);
+  color: var(--accent-pink);
+  text-shadow: 0 0 16px rgba(255, 0, 127, 0.7);
 }
 
 .wire-navbar__brand-sub {
   font-family: var(--font-mono);
   font-size: 9px;
-  letter-spacing: 0.12em;
-  color: var(--accent-amber);
+  letter-spacing: 0.14em;
+  color: var(--accent-cyan);
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* Navigation Links */
@@ -65,8 +67,8 @@
 .wire-navbar__link {
   font-family: var(--font-mono);
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   color: var(--text-secondary);
   text-decoration: none;
   padding: var(--space-1) 0;
@@ -79,18 +81,19 @@
 }
 
 .wire-navbar__link--active {
-  color: var(--accent-amber);
-  font-weight: 700;
+  color: var(--accent-pink);
+  font-weight: 800;
 }
 
 .wire-navbar__link--active::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--accent-amber);
+  background-color: var(--accent-pink);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.85);
 }
 
 /* Status / Active Case Group */
@@ -103,61 +106,63 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 10px;
-  background-color: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 5px 12px;
+  background-color: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.35);
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+  font-weight: 700;
 }
 
 .wire-navbar__system-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--stamp-verified);
+  background-color: var(--accent-cyan);
   animation: systemLivePulse 2s infinite ease-in-out;
 }
 
 .wire-navbar__case-badge {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  background-color: var(--accent-amber-subtle);
-  border: 1px solid var(--accent-amber-border);
+  gap: 8px;
+  padding: 5px 12px;
+  background-color: rgba(255, 0, 127, 0.12);
+  border: 1px solid var(--accent-pink);
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.25);
   transition: all var(--transition-fast);
 }
 
 .wire-navbar__case-badge:hover {
-  background-color: rgba(217, 119, 6, 0.16);
-  border-color: var(--accent-amber);
+  background-color: rgba(255, 0, 127, 0.22);
+  box-shadow: 0 0 16px rgba(255, 0, 127, 0.5);
 }
 
 .wire-navbar__case-label {
-  color: var(--accent-amber);
-  font-weight: 700;
+  color: var(--accent-cyan);
+  font-weight: 800;
 }
 
 .wire-navbar__case-val {
-  color: var(--text-primary);
-  font-weight: 600;
+  color: #FFFFFF;
+  font-weight: 800;
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .wire-navbar__inner {
-    height: 50px;
+    height: 52px;
     padding: 0 var(--space-2);
   }
 
   .wire-navbar__brand-name {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .wire-navbar__brand-sub {

@@ -62,29 +62,45 @@
 }
 
 .wire-button--secondary {
-  background: #FFFFFF;
-  color: var(--text-primary);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  background: #141722;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .wire-button--secondary:hover:not(:disabled) {
-  background: #F8F9FA;
-  border-color: #0F1115;
-  color: #0F1115;
+  background: #1E2333;
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
   transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 12px rgba(0, 240, 255, 0.2);
 }
 
 .wire-button--secondary:active:not(:disabled) {
   transform: translateY(0);
 }
 
+.wire-button--pink,
+.wire-button--magenta {
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  border: 1px solid #FF007F;
+  box-shadow: 0 2px 12px rgba(255, 0, 127, 0.35);
+  font-weight: 800;
+}
+
+.wire-button--pink:hover:not(:disabled),
+.wire-button--magenta:hover:not(:disabled) {
+  background: #FF2A8D;
+  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.55);
+  transform: translateY(-1px);
+}
+
 .wire-button--evidence {
-  background: #FFFFFF;
+  background: #121520;
   color: var(--accent-amber);
   border: 1px dashed var(--accent-amber);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .wire-button--evidence:hover:not(:disabled) {

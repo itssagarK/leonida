@@ -17,9 +17,9 @@ export default function Navbar() {
       <div className="wire-navbar__inner">
         {/* Brand / Logo */}
         <div className="wire-navbar__brand-group">
-          <Link to="/" className="wire-navbar__brand" title="The Leonida Wire — Home">
+          <Link to="/" className="wire-navbar__brand" title="The Leonida Wire — LSIB Terminal">
             <span className="wire-navbar__brand-name">THE LEONIDA WIRE</span>
-            <span className="wire-navbar__brand-sub">PRESS & EVIDENCE DESPATCH</span>
+            <span className="wire-navbar__brand-sub">LEONIDA STATE INVESTIGATIVE BUREAU // VICE METRO DESPATCH</span>
           </Link>
         </div>
 

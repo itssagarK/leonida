@@ -13,12 +13,12 @@
   align-items: center;
   font-size: 11px;
   font-family: var(--font-mono);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: var(--space-2);
 }
 
 .wire-custody__back-link {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-decoration: none;
@@ -26,7 +26,7 @@
 }
 
 .wire-custody__back-link:hover {
-  color: var(--accent-gold);
+  color: var(--accent-pink);
 }
 
 .wire-custody__case-ref {
@@ -37,7 +37,7 @@
 }
 
 .wire-custody__case-ref strong {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-custody__sep {
@@ -46,8 +46,8 @@
 
 .wire-custody__reset-link {
   background: transparent;
-  border: 1px dashed var(--accent-crimson-border);
-  color: var(--accent-crimson);
+  border: 1px dashed rgba(255, 0, 127, 0.4);
+  color: var(--accent-pink);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
@@ -59,8 +59,8 @@
 }
 
 .wire-custody__reset-link:hover {
-  background: var(--accent-crimson-subtle);
-  border-color: var(--accent-crimson);
+  background: rgba(255, 0, 127, 0.15);
+  border-color: var(--accent-pink);
 }
 
 /* Header */
@@ -82,17 +82,19 @@
 .wire-custody__audit-tag {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--accent-amber);
   letter-spacing: 0.12em;
 }
 
 .wire-custody__title {
-  font-family: var(--font-masthead);
-  font-size: clamp(28px, 4vw, 42px);
+  font-family: var(--font-gta);
+  font-size: clamp(34px, 5.5vw, 56px);
   font-weight: 900;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
   text-transform: uppercase;
+  line-height: 1.05;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
 .wire-custody__desc {
@@ -103,22 +105,26 @@
   max-width: 860px;
 }
 
+.wire-custody__desc strong {
+  color: #FFFFFF;
+}
+
 /* SCRUBBER STAGE */
 .wire-custody__stage {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: var(--shadow-md);
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: var(--shadow-paper), 0 0 20px rgba(0, 240, 255, 0.05);
   display: flex;
   flex-direction: column;
 }
 
 .wire-custody__scrub-controls {
-  background: #F8F9FA;
+  background: var(--bg-surface);
   padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
   font-size: 11px;
 }
@@ -136,148 +142,121 @@
 }
 
 .wire-custody__scrub-curr {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 800;
   letter-spacing: 0.08em;
 }
 
 .wire-custody__scrub-step-counter {
-  color: var(--accent-gold);
-  font-weight: 700;
+  color: var(--accent-pink);
+  font-weight: 800;
   letter-spacing: 0.1em;
 }
 
 /* Range Slider */
 .wire-custody__slider-wrapper {
-  background: #F0F1F4;
+  background: #090B10;
   padding: 18px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-custody__slider-ticks {
   display: flex;
   justify-content: space-between;
-  padding: 0 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
 }
 
 .wire-custody__tick {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
   cursor: pointer;
-  padding: 3px 8px;
-  border: 1px solid transparent;
+  padding: 2px 6px;
   transition: all var(--transition-fast);
 }
 
 .wire-custody__tick:hover {
-  color: var(--accent-amber);
-  border-color: rgba(217, 119, 6, 0.4);
+  color: #FFFFFF;
 }
 
 .wire-custody__tick.is-active {
-  color: #FFFFFF;
-  background: var(--accent-amber);
-  border-color: var(--accent-gold);
+  color: var(--accent-cyan);
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 8px var(--accent-cyan-glow);
 }
 
-/* Custom styled Range Slider */
 .wire-custody__range-input {
   -webkit-appearance: none;
-  appearance: none;
   width: 100%;
-  height: 8px;
-  background: #D8DADC;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0;
+  height: 6px;
+  background: #181C26;
   outline: none;
-  cursor: ew-resize;
+  border-radius: 0;
+  cursor: pointer;
 }
 
 .wire-custody__range-input::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  background: var(--accent-amber);
-  border: 2px solid #FFFFFF;
+  width: 18px;
+  height: 18px;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan-glow);
+  cursor: pointer;
   border-radius: 0;
-  cursor: ew-resize;
-  box-shadow: 0 0 10px rgba(217, 119, 6, 0.6), 0 2px 4px rgba(0, 0, 0, 0.15);
-  transition: transform 0.1s ease;
-}
-
-.wire-custody__range-input::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  background: var(--accent-amber-light);
-}
-
-.wire-custody__range-input::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  background: var(--accent-amber);
   border: 2px solid #FFFFFF;
-  border-radius: 0;
-  cursor: ew-resize;
-  box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
 }
 
 .wire-custody__scrub-endpoints {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9px;
   color: var(--text-muted);
-  letter-spacing: 0.12em;
-  font-weight: 600;
+  letter-spacing: 0.1em;
 }
 
-/* Viewport with Dynamic Chromatic Drift */
+/* 2D Viewport */
 .wire-custody__viewport {
   position: relative;
   width: 100%;
   height: 480px;
-  background: #EAEBF0;
-  overflow: hidden;
+  background: #08090C;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 8px;
+  align-items: center;
+  overflow: hidden;
 }
 
-/* Subtle CRT Scanline overlay that scales with drift */
 .wire-custody__viewport::before {
   content: '';
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.15) 0px,
-    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 0, 0, 0.25) 0px,
+    rgba(0, 0, 0, 0.25) 1px,
     transparent 1px,
     transparent 3px
   );
   opacity: var(--drift-grain-opacity, 0.02);
   pointer-events: none;
   z-index: 3;
-  transition: opacity 250ms var(--ease-mechanical);
 }
 
 .wire-custody__viewport-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: filter 0.25s ease-out, transform 0.25s ease-out;
 }
 
-/* Chromatic aberration effect when degraded */
 .wire-custody__viewport.is-drift-degraded .wire-custody__viewport-img {
-  filter: drop-shadow(calc(-1 * var(--drift-aberration, 2px)) 0 0 rgba(239, 35, 84, 0.35))
-          drop-shadow(var(--drift-aberration, 2px) 0 0 rgba(217, 119, 6, 0.35));
+  filter: drop-shadow(calc(-1 * var(--drift-aberration, 2px)) 0 0 rgba(255, 0, 127, 0.5))
+          drop-shadow(var(--drift-aberration, 2px) 0 0 rgba(0, 240, 255, 0.5));
 }
 
 .wire-custody__viewport-stamp {
@@ -296,9 +275,9 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  background: rgba(8, 9, 12, 0.92);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   padding: 6px 12px;
   font-family: var(--font-mono);
   font-size: 10px;
@@ -308,11 +287,11 @@
 }
 
 .wire-degradation-badge {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
 }
 
 .wire-degradation-badge strong {
-  color: var(--accent-gold);
+  color: var(--accent-pink);
 }
 
 .wire-degradation-state {
@@ -322,12 +301,12 @@
 
 /* Scrub Meta Panel */
 .wire-custody__scrub-meta-panel {
-  background: #FFFFFF;
+  background: var(--bg-card);
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wire-custody__scrub-witness-bar {
@@ -339,7 +318,7 @@
 }
 
 .wire-custody__witness-name {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 800;
 }
 
@@ -360,7 +339,7 @@
   font-family: var(--font-masthead);
   font-size: 20px;
   line-height: 1.4;
-  color: var(--text-primary);
+  color: #FFFFFF;
   font-style: italic;
   font-weight: 700;
   padding: 4px 0;
@@ -371,13 +350,13 @@
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 12px;
-  background: var(--accent-crimson-subtle);
-  border-left: 3px solid var(--accent-crimson);
+  background: rgba(255, 0, 127, 0.1);
+  border-left: 3px solid var(--accent-pink);
   padding: 8px 12px;
 }
 
 .wire-custody__distortion-label {
-  color: var(--accent-crimson);
+  color: var(--accent-pink);
   font-weight: 800;
   white-space: nowrap;
   letter-spacing: 0.08em;
@@ -411,15 +390,15 @@
 
 .wire-custody__cta-card {
   width: 100%;
-  background: #FFFFFF;
-  border: 1px solid var(--accent-amber-border);
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 0, 127, 0.35);
   padding: var(--space-4);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(255, 0, 127, 0.06);
 }
 
 .wire-custody__cta-info {
@@ -429,9 +408,9 @@
 
 .wire-custody__cta-info h3 {
   font-family: var(--font-masthead);
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 900;
+  color: #FFFFFF;
   margin-bottom: 6px;
   letter-spacing: -0.01em;
 }
@@ -461,21 +440,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: var(--space-1);
 }
 
 .wire-custody__ledger-header h2 {
-  font-family: var(--font-masthead);
-  font-size: 20px;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
+  font-family: var(--font-gta);
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  text-transform: uppercase;
 }
 
 .wire-custody__ledger-stamp {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--accent-pink);
+  font-weight: 800;
   letter-spacing: 0.1em;
 }
 
@@ -486,26 +467,26 @@
 }
 
 .wire-ledger-entry {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: var(--space-3);
   cursor: pointer;
   transition: all var(--transition-fast);
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: var(--shadow-sm);
 }
 
 .wire-ledger-entry:hover {
-  background: #FBFBFC;
-  border-color: rgba(0, 0, 0, 0.18);
+  background: var(--bg-card-hover);
+  border-color: rgba(0, 240, 255, 0.3);
 }
 
 .wire-ledger-entry.is-active-entry {
-  border-left: 4px solid var(--accent-amber);
-  background: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid var(--accent-cyan);
+  background: #141724;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 12px var(--accent-cyan-glow);
 }
 
 .wire-ledger-entry__head {
@@ -523,7 +504,7 @@
 }
 
 .wire-ledger-entry__num {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 800;
   letter-spacing: 0.1em;
 }
@@ -546,14 +527,14 @@
 }
 
 .wire-ledger-entry__author strong {
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .wire-ledger-entry__quote {
   font-family: var(--font-masthead);
   font-size: 16px;
   font-style: italic;
-  color: var(--text-primary);
+  color: #FFFFFF;
   margin: 4px 0;
   line-height: 1.4;
 }
@@ -561,19 +542,19 @@
 .wire-ledger-entry__audit {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .wire-ledger-entry__drift-tag {
-  color: var(--accent-crimson);
-  font-weight: 700;
+  color: var(--accent-pink);
+  font-weight: 800;
 }
 
 .wire-ledger-entry__footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
   padding-top: 6px;
   margin-top: 4px;
   font-family: var(--font-mono);
@@ -585,7 +566,7 @@
 }
 
 .wire-ledger-entry__sync-hint {
-  color: var(--accent-amber);
+  color: var(--accent-cyan);
   font-weight: 700;
   letter-spacing: 0.05em;
 }
