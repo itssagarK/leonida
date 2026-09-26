@@ -240,7 +240,7 @@ export default function DriftShatterScene({
         width: '100%',
         height: '460px',
         position: 'relative',
-        background: '#EAEBF0',
+        background: '#0D0F14',
         userSelect: 'none',
       }}
     >
@@ -270,12 +270,12 @@ export default function DriftShatterScene({
           left: '16px',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: 'var(--text-secondary, #4A5060)',
+          color: '#E8E8E8',
           letterSpacing: '0.1em',
-          background: 'rgba(255, 255, 255, 0.92)',
+          background: 'rgba(10, 11, 14, 0.92)',
           padding: '4px 10px',
-          border: '1px solid rgba(0, 0, 0, 0.12)',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
         }}
       >
@@ -289,12 +289,12 @@ export default function DriftShatterScene({
           right: '16px',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: driftScore > 70 ? 'var(--accent-crimson, #EF2354)' : 'var(--accent-amber, #D97706)',
+          color: driftScore > 70 ? 'var(--accent-danger, #FF4D00)' : 'var(--accent-lime, #D4FF00)',
           letterSpacing: '0.1em',
-          background: 'rgba(255, 255, 255, 0.92)',
+          background: 'rgba(10, 11, 14, 0.92)',
           padding: '4px 10px',
-          border: `1px solid ${driftScore > 70 ? 'var(--accent-crimson)' : 'var(--accent-amber)'}`,
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+          border: `1px solid ${driftScore > 70 ? 'var(--accent-danger)' : 'var(--accent-lime)'}`,
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
         }}
       >
@@ -309,14 +309,14 @@ export default function DriftShatterScene({
           transform: 'translateX(-50%)',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '10px',
-          color: 'var(--accent-amber, #D97706)',
+          color: 'var(--accent-lime, #D4FF00)',
           letterSpacing: '0.12em',
           pointerEvents: 'none',
           opacity: 0.95,
-          background: 'rgba(255, 255, 255, 0.92)',
+          background: 'rgba(10, 11, 14, 0.92)',
           padding: '4px 12px',
-          border: '1px solid rgba(217, 119, 6, 0.3)',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+          border: '1px solid rgba(212, 255, 0, 0.4)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
         }}
       >
         [ 3D VOLUMETRIC FRACTURE // MOVE CURSOR TO INSPECT SEAM ]

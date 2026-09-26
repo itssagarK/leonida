@@ -248,7 +248,7 @@ export default function HeroEvidenceDesk({ onSelectFolder }) {
         minHeight: '440px',
         position: 'relative',
         userSelect: 'none',
-        background: '#EAEBF0',
+        background: '#0D0F14',
       }}
     >
       <Canvas
@@ -267,15 +267,15 @@ export default function HeroEvidenceDesk({ onSelectFolder }) {
           transform: 'translateX(-50%)',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: '11px',
-          color: 'var(--accent-amber, #D97706)',
+          color: 'var(--accent-lime, #D4FF00)',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
           pointerEvents: 'none',
           opacity: 0.95,
-          background: 'rgba(255, 255, 255, 0.92)',
+          background: 'rgba(10, 11, 14, 0.92)',
           padding: '4px 12px',
-          border: '1px solid rgba(0, 0, 0, 0.12)',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+          border: '1px solid rgba(212, 255, 0, 0.4)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
         }}
       >
         [ 3D VOLUMETRIC DOSSIER // CURSOR PARALLAX ACTIVE ]
