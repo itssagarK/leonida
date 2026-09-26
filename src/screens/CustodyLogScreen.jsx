@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getCaseById, getEffectiveChain } from '../data/cases';
 import { getCaseProgress, clearCaseProgress } from '../utils/storage';
 import Button from '../components/common/Button';
@@ -82,7 +83,13 @@ export default function CustodyLogScreen() {
   };
 
   return (
-    <div className="wire-custody wire-page-container">
+    <motion.div
+      className="wire-custody wire-page-container"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Top Ledger Navigation */}
       <div className="wire-custody__nav">
         <Link to={`/case/${caseObj.id}`} className="wire-custody__back-link">
@@ -349,6 +356,6 @@ export default function CustodyLogScreen() {
           ))}
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

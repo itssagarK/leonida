@@ -145,7 +145,29 @@ To eliminate the "flat digital dashboard" feeling, six physical artifacts are wo
 - Interactive draggable splitter with handle `[ ◀ || ▶ ]` and keyboard arrow support.
 - Mode toggle between **`[ ⇄ INTERACTIVE WIPE REVEAL ]`** and **`[ ☷ SIDE-BY-SIDE ]`**.
 
-### 7.4 Certified Dossier Canvas Generator
+### 7.4 3D Volumetric Engine & Spatial Scenes (R3F + Drei + Postprocessing)
+The application employs targeted WebGL 3D rendering powered by React Three Fiber, Drei, and Post-Processing to create dimensional, physical reality at critical narrative moments, while keeping operational UI lightweight and accessible:
+
+1. **Hero Evidence Desk (`HeroEvidenceDesk.jsx`)**:
+   - A physical 3D manila case file resting under a 1980s desk lamp on a dark slate examination table.
+   - PBR materials with procedural canvas normal maps, fiber grain, brass paperclips, and distressed classification stamps.
+   - Dual-light noir contrast: Warm incandescent key light (`#F8B342`, 5.5 intensity) and cool steel rim light (`#5A88B0`).
+   - Smooth pointer parallax tracking (`THREE.MathUtils.lerp`) creating responsive physical depth.
+2. **Case Selection 3D Desk (`CaseFoldersDesk.jsx`)**:
+   - Case folders rendered as real 3D objects resting side-by-side on the evidence desk.
+   - Physical Lift-and-Open animation: Hovering lifts the folder off the desk; clicking initiates a physical lift into camera focus while the top flap swings open 100° revealing the evidence document inside.
+3. **Editor Workbench 3D Framing (`WorkbenchScene.jsx`)**:
+   - The central 2D DOM React Image Editor is framed inside an authentic darkroom workbench.
+   - An articulated 3D metallic examination desk lamp perches at the top corner, casting real-time downward directional illumination with filament micro-flicker across the workspace.
+4. **Drift Reveal 3D Volumetric Shatter (`DriftShatterScene.jsx`)**:
+   - A literal 3D fracture seam splitting the raw photo negative from the sensational public claim.
+   - Jagged fault line with emissive red core and floating geometric fragment shards peeling away proportional to drift %.
+   - Real-time post-processing `ChromaticAberration` that intensifies dynamically with the editorial drift percentage.
+5. **Framer Motion Editorial Page Transitions**:
+   - `AnimatePresence mode="wait"` wraps all routes with mechanical easing (`cubic-bezier(0.16, 1, 0.3, 1)`).
+   - Tactile button micro-interactions (`whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}`).
+
+### 7.5 Certified Dossier Canvas Generator
 - Client-side 1400x940 high-resolution HTML5 canvas rendering engine.
 - Generates printable evidence sheet with Oxford double rules, corner registration crosshairs (`+`), classified classification headers, and distressed rubber stamp seals.
 

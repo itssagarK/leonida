@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import ImageEditor from '@unlayer/react-image-editor';
 import { getCaseById, getEffectiveChain } from '../data/cases';
 import { getCaseProgress, saveCaseProgress } from '../utils/storage';
@@ -8,6 +9,9 @@ import { computeDrift } from '../lib/driftEngine';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
 import './EditorScreen.css';
+
+// Lazy-load 3D Workbench Environment
+const WorkbenchScene = lazy(() => import('../components/3d/WorkbenchScene'));
 
 const ALL_EDITOR_TOOLS = [
   'Crop',
@@ -309,7 +313,18 @@ export default function EditorScreen() {
   const isRawActive = !hasSavedImage;
 
   return (
-    <div className="wire-editor-screen wire-page-container">
+    <motion.div
+      className="wire-editor-screen wire-page-container"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {/* 3D Physical Evidence Examination Lamp & Lit Surface */}
+      <Suspense fallback={null}>
+        <WorkbenchScene />
+      </Suspense>
+
       {/* Top Header / Breadcrumb */}
       <div className="wire-editor__topbar">
         <Link to={`/case/${caseObj.id}/custody`} className="wire-editor__back-link">
@@ -744,6 +759,6 @@ export default function EditorScreen() {
           </form>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

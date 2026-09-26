@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Button from '../components/common/Button';
+import SceneFallback from '../components/3d/SceneFallback';
 import './LandingScreen.css';
+
+// Lazy-load 3D Hero Evidence Desk
+const HeroEvidenceDesk = lazy(() => import('../components/3d/HeroEvidenceDesk'));
 
 export default function LandingScreen() {
   const navigate = useNavigate();
@@ -11,71 +16,86 @@ export default function LandingScreen() {
   };
 
   return (
-    <div className="wire-landing wire-page-container">
-      {/* Editorial Masthead Hero */}
-      <section className="wire-landing__hero" aria-label="Hero Masthead">
-        {/* Top Folio / Dateline */}
-        <div className="wire-landing__folio">
-          <span className="wire-landing__folio-item">BUREAU ARCHIVE // DECLASSIFIED DIVISION</span>
-          <span className="wire-landing__folio-sep">•</span>
-          <span className="wire-landing__folio-item">VOL. LXXIV NO. 28,491</span>
-          <span className="wire-landing__folio-sep">•</span>
-          <span className="wire-landing__folio-item">LEONIDA NIGHT DESPATCH</span>
-        </div>
+    <motion.div
+      className="wire-landing wire-page-container"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {/* Editorial Folio / Dateline */}
+      <div className="wire-landing__folio">
+        <span className="wire-landing__folio-item">BUREAU ARCHIVE // DECLASSIFIED DIVISION</span>
+        <span className="wire-landing__folio-sep">•</span>
+        <span className="wire-landing__folio-item">VOL. LXXIV NO. 28,491</span>
+        <span className="wire-landing__folio-sep">•</span>
+        <span className="wire-landing__folio-item">LEONIDA NIGHT DESPATCH</span>
+      </div>
 
-        <div className="wire-landing__masthead-tag">
-          CONFIDENTIAL EVIDENCE DESPATCH // BUREAU ARCHIVE
-        </div>
+      <div className="wire-landing__masthead-tag">
+        CONFIDENTIAL EVIDENCE DESPATCH // BUREAU ARCHIVE
+      </div>
 
-        <h1 className="wire-landing__title">
-          THE LEONIDA WIRE
-        </h1>
+      <h1 className="wire-landing__title">
+        THE LEONIDA WIRE
+      </h1>
 
-        <p className="wire-landing__subtitle">
-          UNOFFICIAL PRESS &amp; EVIDENTIARY DESPATCH
-        </p>
+      <p className="wire-landing__subtitle">
+        UNOFFICIAL PRESS &amp; EVIDENTIARY DESPATCH
+      </p>
 
-        {/* Oxford Double-Rule */}
-        <div className="wire-landing__double-rule" aria-hidden="true" />
+      {/* Oxford Double-Rule */}
+      <div className="wire-landing__double-rule" aria-hidden="true" />
 
-        {/* Editorial Briefing Dossier */}
-        <div className="wire-landing__epigraph-box">
-          <div className="wire-landing__memo-bar">
-            <span className="wire-landing__memo-title">MEMORANDUM FOR WIRE OPERATIVES // EVIDENTIARY PROTOCOL</span>
-            <span className="wire-landing__memo-stamp">UNFILTERED RECORD</span>
+      {/* 2-Column Hero Grid: Left Editorial Memo + Right 3D Evidence Desk */}
+      <div className="wire-landing__hero-grid">
+        {/* Left Column: Briefing & CTAs */}
+        <div className="wire-landing__hero-left">
+          <div className="wire-landing__epigraph-box">
+            <div className="wire-landing__memo-bar">
+              <span className="wire-landing__memo-title">MEMORANDUM // EVIDENTIARY PROTOCOL</span>
+              <span className="wire-landing__memo-stamp">UNFILTERED RECORD</span>
+            </div>
+
+            <blockquote className="wire-landing__quote">
+              “Every image tells a story.<br />
+              Every edit changes what survives.”
+            </blockquote>
+
+            <p className="wire-landing__lead-summary">
+              Track the forensic distortion of photographic evidence as it travels through 
+              anonymous witnesses and midnight tabloids. Use the embedded <strong>React Image Editor</strong> to file your own link in the chain and expose the drift between fact and public folklore.
+            </p>
+
+            <div className="wire-landing__memo-meta">
+              <span>CHAIN VOLATILITY: <strong>ACTIVE</strong></span>
+              <span>CLEARANCE: <strong>RESTRICTED // LEVEL 4</strong></span>
+              <span>ENGINE: <strong>REACT IMAGE EDITOR V1.0</strong></span>
+            </div>
           </div>
 
-          <blockquote className="wire-landing__quote">
-            “Every image tells a story.<br />
-            Every edit changes what survives.”
-          </blockquote>
-
-          <p className="wire-landing__lead-summary">
-            Track the forensic distortion of photographic evidence as it travels through 
-            anonymous witnesses and midnight tabloids. Use the embedded <strong>React Image Editor</strong> to file your own link in the chain and expose the drift between fact and public folklore.
-          </p>
-
-          <div className="wire-landing__memo-meta">
-            <span>CHAIN VOLATILITY: <strong>ACTIVE</strong></span>
-            <span>CLEARANCE: <strong>RESTRICTED // LEVEL 4</strong></span>
-            <span>ENGINE: <strong>REACT IMAGE EDITOR V1.0</strong></span>
+          <div className="wire-landing__cta-wrap">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={handleOpenCase}
+              icon={<span className="wire-cta-arrow">→</span>}
+            >
+              OPEN CASE FILES
+            </Button>
+            <span className="wire-landing__cta-note">
+              ACCESS UNRESTRICTED CRIME-SCENE DOSSIERS
+            </span>
           </div>
         </div>
 
-        <div className="wire-landing__cta-wrap">
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={handleOpenCase}
-            icon={<span className="wire-cta-arrow">→</span>}
-          >
-            OPEN CASE FILES
-          </Button>
-          <span className="wire-landing__cta-note">
-            ACCESS UNRESTRICTED CRIME-SCENE DOSSIERS
-          </span>
+        {/* Right Column: 3D Physical Evidence Desk Scene */}
+        <div className="wire-landing__hero-3d-box wire-corner-reticles">
+          <Suspense fallback={<SceneFallback label="LOADING 3D EVIDENCE DESK..." />}>
+            <HeroEvidenceDesk onSelectFolder={handleOpenCase} />
+          </Suspense>
         </div>
-      </section>
+      </div>
 
       {/* Connected Evidentiary Protocol Pipeline */}
       <section className="wire-landing__pipeline-section" aria-label="Evidentiary Protocol Pipeline">
@@ -158,17 +178,15 @@ export default function LandingScreen() {
         </div>
         <div className="wire-landing__status-sep">■</div>
         <div className="wire-landing__status-item">
-          <span className="wire-landing__status-dot wire-landing__status-dot--amber" />
-          <span className="wire-landing__status-label">ACTIVE DOSSIERS:</span>
-          <span className="wire-landing__status-val">2 UNSEALED</span>
+          <span className="wire-landing__status-label">ACTIVE CASES:</span>
+          <span className="wire-landing__status-val">02 ON FILE</span>
         </div>
         <div className="wire-landing__status-sep">■</div>
         <div className="wire-landing__status-item">
-          <span className="wire-landing__status-dot wire-landing__status-dot--cyan" />
-          <span className="wire-landing__status-label">UNLAYER EDITOR:</span>
-          <span className="wire-landing__status-val">INITIALIZED</span>
+          <span className="wire-landing__status-label">CUSTODY INTEGRITY:</span>
+          <span className="wire-landing__status-val">COMPROMISED (DRIFT ACTIVE)</span>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
 }

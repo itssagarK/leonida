@@ -1,12 +1,17 @@
-import React, { useMemo, useState, useRef, useEffect } from 'react';
+import React, { useMemo, useState, useRef, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getCaseById, getEffectiveChain } from '../data/cases';
 import { getCaseProgress, clearCaseProgress } from '../utils/storage';
 import { computeDrift } from '../lib/driftEngine';
 import { getAbsoluteImageUrl } from '../utils/imageHelpers';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
+import SceneFallback from '../components/3d/SceneFallback';
 import './RevealScreen.css';
+
+// Lazy-load 3D Drift Shatter Scene
+const DriftShatterScene = lazy(() => import('../components/3d/DriftShatterScene'));
 
 /**
  * Interactive Wipe Reveal Viewer:
@@ -175,7 +180,7 @@ export default function RevealScreen() {
   const navigate = useNavigate();
   const [isGeneratingDownload, setIsGeneratingDownload] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
-  const [comparisonMode, setComparisonMode] = useState('wipe'); // 'wipe' | 'split'
+  const [comparisonMode, setComparisonMode] = useState('3d'); // '3d' | 'wipe' | 'split'
 
   const caseObj = useMemo(() => getCaseById(id), [id]);
   const playerProgress = useMemo(() => getCaseProgress(caseObj.id), [caseObj.id]);
@@ -428,7 +433,13 @@ export default function RevealScreen() {
   };
 
   return (
-    <div className="wire-reveal wire-page-container">
+    <motion.div
+      className="wire-reveal wire-page-container"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Top Nav */}
       <div className="wire-reveal__nav">
         <Link to="/cases" className="wire-reveal__back-link">
@@ -482,12 +493,20 @@ export default function RevealScreen() {
         )}
       </header>
 
-      {/* FORENSIC COMPARISON: INTERACTIVE WIPE REVEAL OR SIDE-BY-SIDE */}
+      {/* FORENSIC COMPARISON: 3D VOLUMETRIC SHATTER, INTERACTIVE WIPE, OR SIDE-BY-SIDE */}
       <section className="wire-reveal__comparison-section" aria-label="Split Photographic Comparison">
         <div className="wire-reveal__comp-header">
           <div className="wire-reveal__comp-heading-group">
             <h2 className="wire-reveal__comp-title">FORENSIC COMPARISON</h2>
             <div className="wire-comp-mode-toggle" role="tablist">
+              <button
+                type="button"
+                className={`wire-comp-mode-btn ${comparisonMode === '3d' ? 'is-active' : ''}`}
+                onClick={() => setComparisonMode('3d')}
+                title="3D volumetric fracture simulation with dynamic chromatic aberration"
+              >
+                ◈ 3D VOLUMETRIC SHATTER
+              </button>
               <button
                 type="button"
                 className={`wire-comp-mode-btn ${comparisonMode === 'wipe' ? 'is-active' : ''}`}
@@ -517,7 +536,51 @@ export default function RevealScreen() {
           </Badge>
         </div>
 
-        {comparisonMode === 'wipe' ? (
+        {comparisonMode === '3d' ? (
+          <div
+            className="wire-reveal__3d-wrapper wire-corner-reticles"
+            style={{
+              marginBottom: 'var(--space-4)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              boxShadow: 'var(--shadow-deep)',
+              background: '#090A0D',
+            }}
+          >
+            <Suspense fallback={<SceneFallback label="SIMULATING 3D VOLUMETRIC FRACTURE..." />}>
+              <DriftShatterScene
+                rawImageUrl={getAbsoluteImageUrl(caseObj.originalImage)}
+                editedImageUrl={finalStep.imageDataUrl || getAbsoluteImageUrl(caseObj.originalImage)}
+                filterStyle={finalStep.imageDataUrl ? 'none' : (finalStep.filterStyle || 'none')}
+                driftScore={driftResult.score}
+              />
+            </Suspense>
+
+            {/* Synchronized Narrative Juxtaposition */}
+            <div
+              className="wire-wipe-narratives"
+              style={{
+                marginTop: 0,
+                borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              }}
+            >
+              <div className="wire-wipe-narrative-col wire-wipe-narrative-col--raw">
+                <div className="wire-wipe-col-header">
+                  <span className="wire-wipe-col-tag">ARCHIVAL BASELINE</span>
+                  <span className="wire-wipe-col-byline">{caseObj.originalPhotographer}</span>
+                </div>
+                <p className="wire-wipe-col-quote">&ldquo;{caseObj.originalCaption}&rdquo;</p>
+              </div>
+
+              <div className="wire-wipe-narrative-col wire-wipe-narrative-col--final">
+                <div className="wire-wipe-col-header">
+                  <span className="wire-wipe-col-tag wire-wipe-col-tag--final">MUTATED WIRE CLAIM</span>
+                  <span className="wire-wipe-col-byline">{finalStep.author}</span>
+                </div>
+                <p className="wire-wipe-col-quote">&ldquo;{finalStep.caption}&rdquo;</p>
+              </div>
+            </div>
+          </div>
+        ) : comparisonMode === 'wipe' ? (
           <WipeRevealViewer
             rawImage={caseObj.originalImage}
             rawCaption={caseObj.originalCaption}
@@ -789,7 +852,7 @@ export default function RevealScreen() {
           )}
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }
 

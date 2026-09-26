@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getAllCases, getEffectiveChain } from '../data/cases';
 import { getCaseProgress } from '../utils/storage';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
+import SceneFallback from '../components/3d/SceneFallback';
 import './CaseListScreen.css';
+
+// Lazy-load 3D Case Folders Desk
+const CaseFoldersDesk = lazy(() => import('../components/3d/CaseFoldersDesk'));
 
 export default function CaseListScreen() {
   const navigate = useNavigate();
   const cases = getAllCases();
+  const [viewMode, setViewMode] = useState('3d'); // '3d' | 'grid'
+
+  const handleSelectCase = (caseId) => {
+    navigate(`/case/${caseId}`);
+  };
 
   return (
-    <div className="wire-caselist wire-page-container">
+    <motion.div
+      className="wire-caselist wire-page-container"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Top Breadcrumb & Metadata */}
       <div className="wire-caselist__topbar">
         <Link to="/" className="wire-caselist__back">
@@ -34,9 +50,71 @@ export default function CaseListScreen() {
           Select an evidentiary folder to review raw police negatives, audit the chain of witness 
           tampering, and mount the image into the <strong>React Image Editor</strong> to file your transmission.
         </p>
+
+        {/* View Mode Toggle */}
+        <div className="wire-caselist__view-toggle" style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
+          <button
+            type="button"
+            className={`wire-view-toggle-btn ${viewMode === '3d' ? 'is-active' : ''}`}
+            onClick={() => setViewMode('3d')}
+            style={{
+              padding: '6px 14px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              background: viewMode === '3d' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
+              color: viewMode === '3d' ? '#0A0B0E' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === '3d' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            [ 3D EVIDENCE DESK ]
+          </button>
+          <button
+            type="button"
+            className={`wire-view-toggle-btn ${viewMode === 'grid' ? 'is-active' : ''}`}
+            onClick={() => setViewMode('grid')}
+            style={{
+              padding: '6px 14px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              background: viewMode === 'grid' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
+              color: viewMode === 'grid' ? '#0A0B0E' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === 'grid' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            [ ☷ ARCHIVAL DOSSIER CARDS ]
+          </button>
+        </div>
       </header>
 
-      {/* Evidence Folders Grid */}
+      {/* 3D Physical Desk View */}
+      {viewMode === '3d' && (
+        <div
+          className="wire-caselist__3d-wrapper wire-corner-reticles"
+          style={{
+            width: '100%',
+            marginBottom: 'var(--space-5)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
+            boxShadow: 'var(--shadow-deep)',
+            background: '#090A0D',
+          }}
+        >
+          <Suspense fallback={<SceneFallback label="ARRANGING EVIDENCE DESK..." />}>
+            <CaseFoldersDesk cases={cases} onSelectCase={handleSelectCase} />
+          </Suspense>
+        </div>
+      )}
+
+      {/* Evidence Folders Grid (shown in grid view or as ledger below) */}
       <div className="wire-caselist__folders">
         {cases.map((c, index) => {
           const progress = getCaseProgress(c.id);
@@ -50,12 +128,12 @@ export default function CaseListScreen() {
             <article
               key={c.id}
               className="wire-folder"
-              onClick={() => navigate(`/case/${c.id}`)}
+              onClick={() => handleSelectCase(c.id)}
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  navigate(`/case/${c.id}`);
+                  handleSelectCase(c.id);
                 }
               }}
               role="button"
@@ -127,7 +205,7 @@ export default function CaseListScreen() {
                       size="md"
                       onClick={(e) => {
                         e.stopPropagation();
-                        navigate(`/case/${c.id}`);
+                        handleSelectCase(c.id);
                       }}
                       icon={<span>→</span>}
                     >
@@ -143,6 +221,6 @@ export default function CaseListScreen() {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }

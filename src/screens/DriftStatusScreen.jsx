@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getCaseById, getEffectiveChain } from '../data/cases';
 import { getCaseProgress } from '../utils/storage';
 import { computeDrift } from '../lib/driftEngine';
@@ -58,7 +59,13 @@ export default function DriftStatusScreen() {
       : 'wire-drift-hero__number--amber';
 
   return (
-    <div className="wire-drift wire-page-container">
+    <motion.div
+      className="wire-drift wire-page-container"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Top Breadcrumb & Status */}
       <div className="wire-drift__topbar">
         <Link to={`/case/${caseObj.id}/custody`} className="wire-drift__back-link">
@@ -308,6 +315,6 @@ export default function DriftStatusScreen() {
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

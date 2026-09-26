@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getCaseById, getEffectiveChain, getAllCases } from '../data/cases';
 import { getCaseProgress, clearCaseProgress } from '../utils/storage';
 import Button from '../components/common/Button';
@@ -34,7 +35,13 @@ export default function CaseIntroScreen() {
   };
 
   return (
-    <div className="wire-case-intro wire-page-container">
+    <motion.div
+      className="wire-case-intro wire-page-container"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Top Dossier Breadcrumb Navigation */}
       <div className="wire-case-intro__nav">
         <Link to="/cases" className="wire-case-intro__back-link">
@@ -207,6 +214,6 @@ export default function CaseIntroScreen() {
           <span className="wire-case-intro__action-sub">MOUNT EVIDENCE INTO WORKBENCH</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

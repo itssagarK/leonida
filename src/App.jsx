@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import GrainOverlay from './components/common/GrainOverlay';
 import TickerHeader from './components/common/TickerHeader';
 import Navbar from './components/common/Navbar';
@@ -10,6 +11,25 @@ import CustodyLogScreen from './screens/CustodyLogScreen';
 import EditorScreen from './screens/EditorScreen';
 import DriftStatusScreen from './screens/DriftStatusScreen';
 import RevealScreen from './screens/RevealScreen';
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<LandingScreen />} />
+        <Route path="/cases" element={<CaseListScreen />} />
+        <Route path="/case/:id" element={<CaseIntroScreen />} />
+        <Route path="/case/:id/custody" element={<CustodyLogScreen />} />
+        <Route path="/case/:id/edit" element={<EditorScreen />} />
+        <Route path="/case/:id/status" element={<DriftStatusScreen />} />
+        <Route path="/case/:id/reveal" element={<RevealScreen />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 export default function App() {
   return (
@@ -24,16 +44,7 @@ export default function App() {
       <Navbar />
 
       <main className="wire-app-content">
-        <Routes>
-          <Route path="/" element={<LandingScreen />} />
-          <Route path="/cases" element={<CaseListScreen />} />
-          <Route path="/case/:id" element={<CaseIntroScreen />} />
-          <Route path="/case/:id/custody" element={<CustodyLogScreen />} />
-          <Route path="/case/:id/edit" element={<EditorScreen />} />
-          <Route path="/case/:id/status" element={<DriftStatusScreen />} />
-          <Route path="/case/:id/reveal" element={<RevealScreen />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <AnimatedRoutes />
       </main>
     </BrowserRouter>
   );
