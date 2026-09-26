@@ -2,68 +2,77 @@
 
 > **“Every image tells a story. Every edit changes what survives.”**
 > 
-> *The Leonida Wire* is a classified investigative newsroom and forensic evidence terminal in a neon coastal city. This document establishes the strict aesthetic, spatial, typographic, and component contract for the entire interface, grounded in the principles of high-taste digital craft and tactile analog authenticity.
+> *The Leonida Wire* is a classified investigative newsroom and forensic evidence terminal in a neon coastal city (inspired by the Leonida / GTA VI setting). This document establishes the strict aesthetic, spatial, typographic, motion, and component contract for the entire interface, grounded in the **taste-skill** (Anti-Slop frontend framework) and **Google Stitch / awesome-design-md** design specifications.
 
 ---
 
-## 1. Design Vision & Philosophy
+## 1. Taste-Skill Dials & Framework Alignment
 
-### 1.1 The Metaphor
-The interface does **not** mimic a generic SaaS dashboard, modern tech startup, or flat card grid. It operates as a late-night, clandestine wire room terminal combining:
-1. **The Investigative Press Masthead**: High-dignity serif display headlines, engraved Oxford double-rules, datelines, and editorial memoranda.
+| Dial | Setting | Implementation in The Leonida Wire |
+| :--- | :---: | :--- |
+| **DESIGN VARIANCE** | **8 / 10** | Every single screen has a bespoke editorial layout suited to its narrative purpose (Landing broadsheet unroll, Manila folder archives, analog scrubber timeline, 3-zone photo workbench, forensic teletype drift meter, interactive wipe reveal). Zero cookie-cutter card grids. |
+| **MOTION INTENSITY** | **7 / 10** | Purposeful physical transitions: `@keyframes stampIn` with mechanical deceleration & rotation, unrolling broadsheet reveal, live teletype ticker ticker, tense 0% → N% countup meter, dynamic optical chromatic aberration degradation. |
+| **VISUAL DENSITY** | **8 / 10** | High-density investigative terminal: docket numbers, custody chain steps, sensor readouts, Oxford double-rules, corner photo-mounting reticles, teletype ledgers with dotted leader lines, analog ruler ticks. |
+
+---
+
+## 2. Core Metaphor & Anti-Slop Rules
+
+### 2.1 The Metaphor: Classified Archival Noir
+The interface is **not** a generic modern web dashboard. It operates as a clandestine late-night investigative wire room terminal:
+1. **The Press Masthead**: Authoritative serif display headlines, engraved Oxford double-rules, datelines, and editorial memoranda.
 2. **The Forensic Chain-of-Custody Terminal**: Monospace teletype, classified rubber stamps, evidence docket numbers, photo mounting corners, and lexical decay tracking.
-3. **The Photo-Editing Workbench**: The `@unlayer/react-image-editor` integrated directly as a physical darkroom/workbench where visual evidence is manipulated to warp public perception.
+3. **The Photo-Editing Workbench**: The `@unlayer/react-image-editor` integrated directly as an evidentiary darkroom table with a radial lamp spotlight where visual evidence is altered to sway public perception.
 
-### 1.2 Core Anti-Patterns (What We Ban)
-- ❌ **No generic SaaS gradients**: No purple/blue/violet blurry mesh or neon glow washes.
-- ❌ **No cookie-cutter 3-card templates**: No floating rounded cards with centered icons and generic marketing copy.
-- ❌ **No playful or cartoonish gamification**: Every interaction must feel heavy, consequence-driven, and authentic to classified evidentiary archives.
-- ❌ **No ungrounded floating elements**: Every section has clear border discipline, tactile rules, and spatial grounding.
+### 2.2 Anti-Slop Strict Rules (Enforced Throughout Codebase)
+- ❌ **NO Generic SaaS Gradients**: No purple/blue/violet blurry mesh or neon glow washes. All depth is created with crisp 1px borders, subtle opacity layering, and physical drop shadows.
+- ❌ **NO Off-Palette Colors**: No green, cyan, or generic SaaS colors. The application enforces a strict **2-Accent Color Rule**.
+- ❌ **NO Cookie-Cutter 3-Card Templates**: Every section has intentional, content-tailored hierarchy.
+- ❌ **NO Decorative Icons Without Function**: Every symbol (crosshairs `+`, reticles `⌜ ⌝`, arrows `→`, bullets `●`) carries semantic evidentiary meaning.
+- ❌ **NO Floating Soft Glassmorphism**: Cards and panels have tactile physical grounding with borders and drop shadows (`--shadow-lift`, `--shadow-deep`).
 
 ---
 
-## 2. Color System & Semantic Tokens
+## 3. Color System: Strict 2-Accent Palette
 
-Our palette is strictly disciplined: dark near-black archival slate, warm ivory editorial text, muted amber for primary actions and evidence, controlled crimson for distortion, and subtle cyan for forensic telemetry.
+The interface adheres to a strict 2-accent palette. Everything else is tonal black, charcoal, or warm ivory.
 
 | Token | Hex / Value | Semantic Role |
 | :--- | :--- | :--- |
-| `--bg-base` | `#08090C` | Deepest root canvas; cathode darkroom tone |
-| `--bg-surface` | `#0E1017` | Card, container, and docket folder backgrounds |
-| `--bg-elevated` | `#151822` | Active panels, modal surfaces, toolbar backings |
-| `--bg-card` | `#11141C` | Dossier cards and custody ledger entries |
-| `--bg-card-hover` | `#181B26` | Hover state for interactive dossier elements |
-| `--bg-paper` | `#F4EFE6` | Newsprint / physical paper tone for light dossiers |
+| `--bg-base` | `#0A0B0E` | Deepest root canvas; cathode darkroom tone |
+| `--bg-surface` | `#101217` | Card, container, and docket folder backgrounds |
+| `--bg-elevated` | `#161922` | Active panels, modal surfaces, toolbar backings |
+| `--bg-card` | `#12141A` | Dossier cards and custody ledger entries |
+| `--bg-card-hover` | `#191C25` | Hover state for interactive dossier elements |
+| `--bg-panel` | `#0D0F14` | Editor panel and evidence workbench backdrop |
+| `--bg-paper` | `#F3ECE1` | Physical paper tone for light dossiers |
 | `--text-primary` | `#F5EFE6` | High-readability warm ivory for headlines and primary copy |
-| `--text-secondary` | `#B4B9C7` | Soft titanium gray for subheadings, captions, and descriptions |
-| `--text-muted` | `#636B7B` | Muted slate for peripheral metadata, timestamps, and rules |
+| `--text-secondary` | `#B4B9C7` | Titanium gray for subheadings, captions, and descriptions |
+| `--text-muted` | `#656C7D` | Muted slate for peripheral metadata, timestamps, and rules |
 | `--text-gold` | `#DDA236` | Masthead highlights and epigraph text |
-| `--accent-amber` | `#D49A32` | Core brand amber; primary buttons, evidence links, focus rings |
-| `--accent-gold` | `#E8A838` | Highlight amber; hover states and active indicators |
-| `--accent-amber-subtle` | `rgba(212, 154, 50, 0.12)` | Tinted background for wire tags and active tabs |
-| `--accent-amber-border` | `rgba(212, 154, 50, 0.40)` | Highlighting borders for selected items |
-| `--accent-crimson` | `#E63956` | Warning crimson; witness distortion, manipulation, critical alerts |
-| `--accent-crimson-subtle`| `rgba(230, 57, 86, 0.12)` | Background tint for fabricated claims and drift warnings |
-| `--accent-cyan` | `#38B2AC` | Subtle technical cyan; sensor tags, frequency readouts, verified logs |
-| `--accent-cyan-subtle` | `rgba(56, 178, 172, 0.12)` | Background tint for raw archival negative badges |
-| `--stamp-green` | `#10B981` | Uncorrupted baseline verification |
-| `--stamp-amber` | `#D49A32` | Disputed / pending evidence stamp |
-| `--stamp-red` | `#E63956` | Fabricated / total distortion stamp |
+| **`--accent-amber`** | **`#D49A32`** | **Signature Accent 1**: Teletype cursor, evidence stamps, primary CTAs, active tools |
+| **`--accent-gold`** | **`#E5A93C`** | **Signature Accent 1 Highlight**: Hover states, active links, verified chain nodes |
+| `--accent-amber-subtle` | `rgba(212, 154, 50, 0.10)` | Tinted background for wire tags, badges, and active tabs |
+| `--accent-amber-border` | `rgba(212, 154, 50, 0.35)` | Highlighting borders for selected items |
+| **`--accent-crimson`** | **`#E63956`** | **Secondary Accent 2 (STRICTLY Danger/Drift)**: Tampered evidence, drift score > 70%, reset prompts |
+| `--accent-crimson-subtle`| `rgba(230, 57, 86, 0.10)` | Background tint for fabricated claims and drift warnings |
+| `--stamp-verified` | `var(--accent-gold)` | Authenticated chain-of-custody stamp |
+| `--stamp-amber` | `var(--accent-amber)` | Disputed / pending evidence stamp |
+| `--stamp-red` | `var(--accent-crimson)`| Fabricated / high-drift tamper stamp |
 
 ---
 
-## 3. Typography Scale & Hierarchy
+## 4. Typography Scale & Hierarchy
 
-We pair two high-character typefaces:
+We pair two high-character typefaces with clear contrast:
 - **Serif Masthead**: `Zilla Slab` (Google Fonts) — Authoritative, journalistic, commanding display.
 - **Teletype Monospace**: `JetBrains Mono` (Google Fonts) — Precision forensic ledger, timestamps, metadata, and buttons.
+- **Clean Sans**: System UI (`-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`) — High-legibility narrative body.
 
 ```css
-/* Masthead Headline Display */
 --font-masthead: 'Zilla Slab', Georgia, serif;
-
-/* Teletype & Ledger Monospace */
 --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+--font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 ```
 
 ### Typographic Ranks:
@@ -76,7 +85,7 @@ We pair two high-character typefaces:
 
 ---
 
-## 4. Spacing System (8px Strict Rhythm)
+## 5. Spacing System (8px Strict Spatial Grid)
 
 All margins, paddings, gaps, and heights follow a strict 8px spatial grid:
 
@@ -91,70 +100,63 @@ All margins, paddings, gaps, and heights follow a strict 8px spatial grid:
 | `--space-8` | `64px` | Page boundary padding |
 | `--space-10` | `80px` | Hero section vertical padding |
 
-Max Content Container: `1320px` centered with fluid horizontal padding.
+Max Content Container: `1320px` centered with fluid horizontal padding (`padding: 0 var(--space-3)`).
 
 ---
 
-## 5. Tactile Artifacts & Textures
+## 6. Tactile Artifacts & Physical Textures
 
-To remove the "flat web app" feel, five physical artifacts are woven through the interface:
+To eliminate the "flat digital dashboard" feeling, six physical artifacts are woven across every screen:
 
-1. **Oxford Newspaper Rules**:
-   - Double-rule border styling: a `2px solid` amber or light border accompanied by a parallel `1px solid` hairline rule, separating headlines from bylines.
-2. **Manila / Slate Dossier Tabs**:
-   - Physical folder tabs with 45-degree angled corner notches (`clip-path: polygon(...)`), docket index numbers (`DOSSIER #01-A`), and paper-clip accents.
+1. **Oxford Broadsheet Double Rules**:
+   - Double-rule border styling: a `2px solid` amber or light border accompanied by a parallel `1px solid` hairline rule, separating headlines from datelines.
+2. **Manila / Slate Dossier Folders**:
+   - Physical folder tabs with 45-degree angled corner notches (`clip-path: polygon(...)`), docket index numbers (`CASE FILE // 01`), and paperclip accents.
+   - Archive photograph thumbnails desaturated (`grayscale(45%)`) with archival contrast, restoring to full saturation on hover.
 3. **Forensic Photo Mounting Brackets**:
    - Corner reticles (`⌜ ⌝ ⌞ ⌟`) surrounding evidence photographs, simulating archival photo mounts.
-4. **Authentic Classified Stamps**:
-   - Distressed, angled rubber stamps (`transform: rotate(-3deg)`) with stamped ink borders (`border: 2px dashed` / `double`) in crimson (`TOTAL FABRICATION`) and amber (`UNRESOLVED`).
-5. **Cathode Scanline & Halftone Texture**:
-   - Non-intrusive CSS grain overlay (`GrainOverlay.jsx`) running at 0.035 opacity with CRT scanlines to evoke 1990s darkroom terminals.
+4. **Physical Ink Rubber Stamps (`stampIn`)**:
+   - Distressed, angled rubber stamps (`transform: rotate(-3deg)`) slamming down with mechanical spring deceleration (`cubic-bezier(0.175, 0.885, 0.32, 1.275)`), double-borders, and box shadows.
+5. **Dynamic Optical Degradation & Artifacting**:
+   - In the Custody Scrubber, chromatic aberration (`drop-shadow(2px 0 red) drop-shadow(-2px 0 blue)`) and CRT scanline density scale live with the scrubber position, accompanied by an `OPTICAL ARTIFACTING` telemetry HUD.
+6. **Cathode Scanline & Halftone Texture**:
+   - Subtle grain overlay (`GrainOverlay.jsx`) running at 0.035 opacity with CRT scanlines to evoke 1990s darkroom terminals.
 
 ---
 
-## 6. Component Contracts & State Machines
+## 7. Key Interactive Workbenches & Features
 
-### 6.1 Buttons (`Button.jsx`)
-- **Primary (`variant="primary"`)**: High-contrast amber background (`#D49A32`), rich dark text (`#0D0E12`), crisp 1px borders, subtle hover lift (`translateY(-1px)`), and a physical pressed depression (`translateY(1px)`).
-- **Secondary / Wire (`variant="secondary"`)**: Dark charcoal surface (`#151822`), amber border (`rgba(212, 154, 50, 0.4)`), warm ivory text, amber glow on hover.
-- **Danger (`variant="danger"`)**: Controlled crimson (`#E63956`) for destructive resets or evidence purging.
-- **Ghost (`variant="ghost"`)**: Subtle borderless monospace link button with hover underline and arrow translation.
+### 7.1 React Image Editor Workbench (`EditorScreen`)
+- **Center Examination Table**: Radial spotlight effect behind the canvas simulating a darkroom lamp (`radial-gradient(circle at 50% 45%, rgba(212, 154, 50, 0.08) 0%, transparent 70%)`).
+- **Telemetry Ruler Ticks**: Stepped tick marks along the right-hand panel measuring editorial signal values.
+- **Dynamic Tool Used Checklist**: Live audit marks punching in with `@keyframes stampIn` (`✓ CROP`, `✓ FILTER`, etc.) when tools are activated.
+- **Live Metric Count-Up**: Smooth `requestAnimationFrame` counters for Visibility, Focus, Manipulation, and Base Drift.
 
-### 6.2 Dossier Folders (`CaseListScreen`)
-- Folders must display:
-  - Physical tab with docket number and case classification category.
-  - 35mm archival contact print photo mount with corner reticles.
-  - Live custody chain link count badge (`3 EVIDENCE LINKS`).
-  - Volatility rating (`MODERATE` vs `HIGH DRIFT`).
-  - Direct CTA button (`INSPECT DOSSIER ➔`).
+### 7.2 Drift Status Screen (`DriftStatusScreen`)
+- **Tense 0% → Final Score Count-Up**: 1.2s decelerating countup with live color transition:
+  - 0–40%: Amber (`#D49A32`)
+  - 41–70%: Gold (`#E5A93C`)
+  - 71–100%: Danger Crimson (`#E63956`) with pulsating glow.
+- **Stamped Rating Badge**: Slams into position on count-up completion (`TOTAL FABRICATION`, `SUBSTANTIAL REWRITE`, etc.).
+- **Teletype Ledger**: Dotted leader lines (`. . . . . . . .`) connecting evidentiary decay factors to percentage impacts.
 
-### 6.3 Custody Scrubber (`CustodyLogScreen`)
-- An interactive analog timeline scrubber:
-  - Step ticks for every custody stage (`RAW BASELINE`, `W1`, `W2`, `W3`, `YOUR LINK`).
-  - Active scrubbing needle with teletype position readout (`LINK [3 / 3]`).
-  - Direct bi-directional synchronization between the slider, the photo display, and the audit ledger rows below.
+### 7.3 Interactive Wipe Reveal Slider (`RevealScreen`)
+- Hardware-accelerated split-view comparison using CSS `clip-path: polygon()`.
+- Interactive draggable splitter with handle `[ ◀ || ▶ ]` and keyboard arrow support.
+- Mode toggle between **`[ ⇄ INTERACTIVE WIPE REVEAL ]`** and **`[ ☷ SIDE-BY-SIDE ]`**.
 
-### 6.4 React Image Editor Workbench (`EditorScreen`)
-- A 3-zone command workbench:
-  - **Left Wing (`Case Context`)**: Docket metadata, witness briefing, baseline hashtags, and archival negative status.
-  - **Center Stage (`React Image Editor`)**: 620px high canvas container with custom forensic chrome, camera lens reticles, and tool status indicator.
-  - **Right Wing (`Edit Impact Telemetry`)**: Real-time tool usage checklist (`Crop`, `Filter`, `Draw`, `Text`, etc.), live impact score meters (`Visibility`, `Focus`, `Manipulation`, `Base Drift`), and evidence state machine progression (`RAW` ➔ `EDIT SAVED` ➔ `FILED`).
-  - **Bottom Dock (`File Wire Despatch`)**: Gated filing form requiring an active saved edit before transmission.
-
-### 6.5 Drift Status & Forensic Reveal (`DriftStatusScreen` & `RevealScreen`)
-- Split-screen comparison displaying the uncorrupted archival baseline against the player's manipulated public wire claim.
-- Interactive drift meter displaying cumulative narrative deviation percentage.
-- Lexical forensic tag clouds highlighting surviving baseline terminology vs. fabricated sensational buzzwords.
-- Certified Dossier export generation using the client-side canvas engine.
+### 7.4 Certified Dossier Canvas Generator
+- Client-side 1400x940 high-resolution HTML5 canvas rendering engine.
+- Generates printable evidence sheet with Oxford double rules, corner registration crosshairs (`+`), classified classification headers, and distressed rubber stamp seals.
 
 ---
 
-## 7. Accessibility & Performance Standards
+## 8. Accessibility & Performance Standards
 
 - **Contrast Ratios**: All primary text maintains a minimum contrast ratio of `7:1` against `--bg-base` and `--bg-surface`, exceeding WCAG AAA standards.
-- **Keyboard Navigation**: All interactive elements (folders, scrubbers, buttons, links) have a high-visibility `2px solid var(--accent-amber)` focus outline with `2px` offset.
+- **Keyboard Navigation**: All interactive elements (folders, scrubbers, buttons, links, wipe slider) have a high-visibility `2px solid var(--accent-amber)` focus outline with `2px` offset.
 - **Motion Reduction**: Respects `@media (prefers-reduced-motion: reduce)` by disabling transitions and animations for users with vestibular sensitivities.
-- **Responsive Adaptability**: Layouts seamlessly re-stack from 3-column workbenches into intuitive single-column flows on tablet and mobile viewports (`<= 900px`).
+- **Responsive Adaptability**: Layouts seamlessly re-stack into intuitive single-column flows on mobile and tablet viewports (`<= 860px`).
 
 ---
 *The Leonida Wire Design System Contract — Maintained for Competition Quality & High-Taste Craft.*

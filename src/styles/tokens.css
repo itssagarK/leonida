@@ -43,9 +43,9 @@
   --border-alert: 1px solid rgba(230, 57, 86, 0.5);
 
   /* Status Stamps */
-  --stamp-verified: #10B981;
-  --stamp-amber: #D49A32;
-  --stamp-red: #E63956;
+  --stamp-verified: var(--accent-gold);
+  --stamp-amber: var(--accent-amber);
+  --stamp-red: var(--accent-crimson);
 
   /* ======================================================== */
   /* TYPOGRAPHY SCALE                                         */

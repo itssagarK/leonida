@@ -877,11 +877,11 @@
 
 .wire-reveal__download-toast {
   padding: 10px 16px;
-  background-color: rgba(16, 185, 129, 0.12);
-  border: 1px solid var(--stamp-green);
+  background-color: var(--accent-amber-subtle);
+  border: 1px solid var(--accent-amber);
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--stamp-green);
+  color: var(--accent-gold);
   font-weight: 700;
   animation: fadeIn 0.2s ease-in-out;
 }

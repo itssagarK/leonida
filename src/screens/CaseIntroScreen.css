@@ -196,8 +196,8 @@
 }
 
 .wire-gauge-node.is-original .wire-gauge-node__dot {
-  background: var(--stamp-green);
-  box-shadow: 0 0 6px var(--stamp-green);
+  background: var(--text-secondary);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
 .wire-gauge-node.is-witness .wire-gauge-node__dot {
@@ -206,12 +206,12 @@
 }
 
 .wire-gauge-node.is-player.is-complete {
-  border-color: var(--stamp-green);
-  background: rgba(16, 185, 129, 0.12);
+  border-color: var(--accent-gold);
+  background: var(--accent-amber-subtle);
 }
 .wire-gauge-node.is-player.is-complete .wire-gauge-node__dot {
-  background: var(--stamp-green);
-  box-shadow: 0 0 6px var(--stamp-green);
+  background: var(--accent-gold);
+  box-shadow: 0 0 6px var(--accent-gold);
 }
 
 .wire-gauge-node.is-player.is-pending {
