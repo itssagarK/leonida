@@ -454,22 +454,49 @@ export default function RevealScreen() {
         </div>
       </div>
 
-      {/* Screen Header */}
+      {/* Screen Header with Peter Tarka Monumental Verdict Typography */}
       <header className="wire-reveal__header">
         <div className="wire-reveal__badge-row">
-          <Badge variant="wire">LEONIDA WIRE INVESTIGATION EXPOSED</Badge>
-          <span className="wire-reveal__archive-ref">AUDIT CERTIFICATE #EX-2026</span>
+          <Badge variant="wire">LEONIDA FORENSIC DISCLOSURE</Badge>
+          <span className="wire-reveal__archive-ref">CERTIFICATE #EX-{caseObj.id.toUpperCase()}-2026</span>
         </div>
 
-        <h1 className="wire-reveal__title">
-          THE WIRE IS EXPOSED
-        </h1>
+        <div className="wire-reveal__hero-monument">
+          <div className="wire-reveal__hero-topline">
+            <span className="wire-reveal__hero-tag">FINAL EDITORIAL DRIFT VERDICT</span>
+            <span
+              className="wire-reveal__hero-status-pill"
+              style={{
+                color: driftResult.score > 60 ? 'var(--accent-crimson)' : 'var(--accent-amber)',
+                borderColor: driftResult.score > 60 ? 'rgba(230, 57, 86, 0.4)' : 'rgba(212, 154, 50, 0.4)'
+              }}
+            >
+              ★ {driftResult.status.label.toUpperCase()}
+            </span>
+          </div>
 
-        <p className="wire-reveal__desc">
-          Compare the unvarnished raw truth against what the public was led to believe. 
-          Inspect the full chain of distortion, review what changed, and export your 
-          certified evidentiary dossier.
-        </p>
+          <div className="wire-reveal__hero-score-lockup">
+            <h1
+              className="wire-reveal__hero-numeral"
+              style={{
+                color: driftResult.score > 60 ? 'var(--accent-crimson)' : 'var(--accent-amber)'
+              }}
+            >
+              {driftResult.score}<span className="wire-reveal__hero-pct">%</span>
+            </h1>
+            <div className="wire-reveal__hero-title-group">
+              <span className="wire-reveal__hero-label">EDITORIAL DRIFT</span>
+              <p className="wire-reveal__hero-desc">
+                {driftResult.score >= 60 
+                  ? 'IRREVERSIBLE NARRATIVE MUTATION: The photographic evidence has been heavily distorted from the raw archival negative into sensational public disinformation.' 
+                  : driftResult.score >= 30
+                  ? 'MODERATE EDITORIAL DRIFT: Substantial narrative framing and selective alterations diverge from the factual baseline negative.'
+                  : 'NEGLIGIBLE EDITORIAL DRIFT: The filed transmission maintains fidelity to the original archival negative.'}
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="wire-oxford-rule" aria-hidden="true" />
 
         {!hasPlayerEdited && (

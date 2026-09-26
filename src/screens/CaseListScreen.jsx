@@ -8,13 +8,14 @@ import Badge from '../components/common/Badge';
 import SceneFallback from '../components/3d/SceneFallback';
 import './CaseListScreen.css';
 
-// Lazy-load 3D Case Folders Desk
+// Lazy-load 3D Case Scenes
+const CaseGalleryWall = lazy(() => import('../components/3d/CaseGalleryWall'));
 const CaseFoldersDesk = lazy(() => import('../components/3d/CaseFoldersDesk'));
 
 export default function CaseListScreen() {
   const navigate = useNavigate();
   const cases = getAllCases();
-  const [viewMode, setViewMode] = useState('3d'); // '3d' | 'grid'
+  const [viewMode, setViewMode] = useState('gallery'); // 'gallery' | 'desk' | 'grid'
 
   const handleSelectCase = (caseId) => {
     navigate(`/case/${caseId}`);
@@ -52,11 +53,11 @@ export default function CaseListScreen() {
         </p>
 
         {/* View Mode Toggle */}
-        <div className="wire-caselist__view-toggle" style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
+        <div className="wire-caselist__view-toggle" style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button
             type="button"
-            className={`wire-view-toggle-btn ${viewMode === '3d' ? 'is-active' : ''}`}
-            onClick={() => setViewMode('3d')}
+            className={`wire-view-toggle-btn ${viewMode === 'gallery' ? 'is-active' : ''}`}
+            onClick={() => setViewMode('gallery')}
             style={{
               padding: '6px 14px',
               fontFamily: 'var(--font-mono)',
@@ -64,14 +65,34 @@ export default function CaseListScreen() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              background: viewMode === '3d' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
-              color: viewMode === '3d' ? '#0A0B0E' : 'var(--text-secondary)',
-              border: '1px solid ' + (viewMode === '3d' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
+              background: viewMode === 'gallery' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
+              color: viewMode === 'gallery' ? '#0A0B0E' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === 'gallery' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
           >
-            [ 3D EVIDENCE DESK ]
+            [ ◈ 3D DEPTH GALLERY ]
+          </button>
+          <button
+            type="button"
+            className={`wire-view-toggle-btn ${viewMode === 'desk' ? 'is-active' : ''}`}
+            onClick={() => setViewMode('desk')}
+            style={{
+              padding: '6px 14px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              background: viewMode === 'desk' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.05)',
+              color: viewMode === 'desk' ? '#0A0B0E' : 'var(--text-secondary)',
+              border: '1px solid ' + (viewMode === 'desk' ? 'var(--accent-amber)' : 'rgba(255, 255, 255, 0.15)'),
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            [ 📁 3D PHYSICAL DESK ]
           </button>
           <button
             type="button"
@@ -96,8 +117,26 @@ export default function CaseListScreen() {
         </div>
       </header>
 
+      {/* 3D Depth Gallery View (Showcase-Images reference) */}
+      {viewMode === 'gallery' && (
+        <div
+          className="wire-caselist__3d-wrapper wire-corner-reticles"
+          style={{
+            width: '100%',
+            marginBottom: 'var(--space-5)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
+            boxShadow: 'var(--shadow-deep)',
+            background: '#07080A',
+          }}
+        >
+          <Suspense fallback={<SceneFallback label="LOADING 3D EVIDENCE DEPTH GALLERY..." />}>
+            <CaseGalleryWall cases={cases} onSelectCase={handleSelectCase} />
+          </Suspense>
+        </div>
+      )}
+
       {/* 3D Physical Desk View */}
-      {viewMode === '3d' && (
+      {viewMode === 'desk' && (
         <div
           className="wire-caselist__3d-wrapper wire-corner-reticles"
           style={{

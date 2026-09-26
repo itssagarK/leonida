@@ -11,7 +11,9 @@ function useSplitTexture(url, isRightHalf = false, filterStyle = 'none') {
   useEffect(() => {
     if (!url) return;
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      img.crossOrigin = 'anonymous';
+    }
 
     img.onload = () => {
       try {
@@ -131,12 +133,12 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
       {/* LEFT HALF: THE RAW ARCHIVAL RECORD */}
       <group ref={leftPlateRef} position={[-0.74, 0, 0]}>
         {/* Archival Photographic Print */}
-        <mesh position={[0, 0, 0.01]}>
+        <mesh position={[0, 0, 0.02]}>
           <planeGeometry args={[1.42, 1.62]} />
           {leftTexture ? (
-            <meshBasicMaterial map={leftTexture} />
+            <meshBasicMaterial key="left-tex" map={leftTexture} />
           ) : (
-            <meshBasicMaterial color="#CDB686" />
+            <meshBasicMaterial key="left-notex" color="#CDB686" />
           )}
         </mesh>
         {/* Backing Mounting Slab */}
@@ -145,8 +147,10 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
           <meshBasicMaterial color="#10131A" />
         </mesh>
         {/* Photo Mount Border */}
-        <lineSegments position={[0, 0, 0.012]}>
-          <edgesGeometry args={[new THREE.BoxGeometry(1.46, 1.66, 0.005)]} />
+        <lineSegments
+          geometry={useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(1.46, 1.66, 0.005)), [])}
+          position={[0, 0, 0.025]}
+        >
           <lineBasicMaterial color="#D49A32" opacity={0.85} transparent />
         </lineSegments>
       </group>
@@ -154,12 +158,12 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
       {/* RIGHT HALF: THE MANIPULATED WIRE CLAIM */}
       <group ref={rightPlateRef} position={[0.74, 0, 0]}>
         {/* Mutated Photographic Print */}
-        <mesh position={[0, 0, 0.01]}>
+        <mesh position={[0, 0, 0.02]}>
           <planeGeometry args={[1.42, 1.62]} />
           {rightTexture ? (
-            <meshBasicMaterial map={rightTexture} />
+            <meshBasicMaterial key="right-tex" map={rightTexture} />
           ) : (
-            <meshBasicMaterial color="#D8C28E" />
+            <meshBasicMaterial key="right-notex" color="#D8C28E" />
           )}
         </mesh>
         {/* Backing Mounting Slab */}
@@ -168,8 +172,10 @@ function ShatterPlates({ rawImageUrl, editedImageUrl, filterStyle = 'none', drif
           <meshBasicMaterial color="#10131A" />
         </mesh>
         {/* Tamper Border */}
-        <lineSegments position={[0, 0, 0.012]}>
-          <edgesGeometry args={[new THREE.BoxGeometry(1.46, 1.66, 0.005)]} />
+        <lineSegments
+          geometry={useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(1.46, 1.66, 0.005)), [])}
+          position={[0, 0, 0.025]}
+        >
           <lineBasicMaterial
             color={driftScore > 65 ? '#E63956' : '#E5A93C'}
             opacity={0.9}

@@ -101,14 +101,14 @@
 
 .wire-landing__title {
   font-family: var(--font-masthead);
-  font-size: clamp(48px, 7.5vw, 84px);
+  font-size: clamp(56px, 8.5vw, 104px);
   font-weight: 900;
-  letter-spacing: -0.025em;
-  line-height: 1.02;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
   color: var(--text-primary);
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--space-2);
   text-transform: uppercase;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
 }
 
 .wire-landing__subtitle {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, Suspense, lazy } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getCaseById, getEffectiveChain } from '../data/cases';
@@ -7,7 +7,11 @@ import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
 import Divider from '../components/common/Divider';
 import RedactionBar from '../components/common/RedactionBar';
+import SceneFallback from '../components/3d/SceneFallback';
 import './CustodyLogScreen.css';
+
+// Lazy-load 3D Custody Depth Stack
+const CustodyDepthStack = lazy(() => import('../components/3d/CustodyDepthStack'));
 
 export default function CustodyLogScreen() {
   const { id } = useParams();
@@ -60,6 +64,7 @@ export default function CustodyLogScreen() {
 
   // Scrubber index state: default to latest link
   const [scrubberIndex, setScrubberIndex] = useState(timelineStates.length - 1);
+  const [viewMode, setViewMode] = useState('3d'); // '3d' | 'flat'
 
   // Keep scrubber within bounds when timeline shrinks (e.g. after reset)
   useEffect(() => {
@@ -142,8 +147,30 @@ export default function CustodyLogScreen() {
             </span>
           </div>
 
-          <div className="wire-custody__scrub-step-counter">
-            LINK [{scrubberIndex} / {timelineStates.length - 1}]
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            {/* View Mode Switcher */}
+            <div className="wire-comp-mode-toggle" role="tablist">
+              <button
+                type="button"
+                className={`wire-comp-mode-btn ${viewMode === '3d' ? 'is-active' : ''}`}
+                onClick={() => setViewMode('3d')}
+                title="3D witness depth stack in true photographic space"
+              >
+                ◈ 3D DEPTH STACK
+              </button>
+              <button
+                type="button"
+                className={`wire-comp-mode-btn ${viewMode === 'flat' ? 'is-active' : ''}`}
+                onClick={() => setViewMode('flat')}
+                title="2D chromatic degradation viewport"
+              >
+                ☷ 2D FLAT VIEW
+              </button>
+            </div>
+
+            <div className="wire-custody__scrub-step-counter">
+              LINK [{scrubberIndex} / {timelineStates.length - 1}]
+            </div>
           </div>
         </div>
 
@@ -178,58 +205,80 @@ export default function CustodyLogScreen() {
           </div>
         </div>
 
-        {/* Live Scrubber Image Viewport with Dynamic Chromatic Degradation */}
-        <div 
-          className={`wire-custody__viewport wire-corner-reticles ${
-            scrubberIndex > 0 ? 'is-drift-degraded' : 'is-raw-clean'
-          }`}
-          style={{
-            '--drift-aberration': `${scrubberIndex * 2}px`,
-            '--drift-grain-opacity': 0.03 + (scrubberIndex * 0.05)
-          }}
-        >
-          {activeState.imageDataUrl ? (
-            <img
-              src={activeState.imageDataUrl}
-              alt={activeState.caption}
-              className="wire-custody__viewport-img"
-            />
-          ) : (
-            <img
-              src={caseObj.originalImage}
-              alt={activeState.caption}
-              className="wire-custody__viewport-img"
-              style={{ filter: activeState.filterStyle || 'none' }}
-            />
-          )}
-
-          {/* Dynamic Optical Degradation HUD Indicator */}
-          <div className="wire-custody__degradation-hud">
-            <span className="wire-degradation-badge">
-              OPTICAL ARTIFACTING: <strong>+{Math.round((scrubberIndex / Math.max(1, timelineStates.length - 1)) * 86)}%</strong>
-            </span>
-            <span className="wire-degradation-state">
-              {scrubberIndex === 0 ? 'CLEAN ARCHIVAL SENSOR' : 'CHROMATIC DRIFT DETECTED'}
-            </span>
+        {/* 3D Depth Stack or 2D Viewport */}
+        {viewMode === '3d' ? (
+          <div
+            className="wire-custody__3d-wrapper wire-corner-reticles"
+            style={{
+              width: '100%',
+              marginBottom: 'var(--space-4)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              boxShadow: 'var(--shadow-deep)',
+              background: '#07080A',
+            }}
+          >
+            <Suspense fallback={<SceneFallback label="ASSEMBLING 3D CUSTODY DEPTH STACK..." />}>
+              <CustodyDepthStack
+                timelineStates={timelineStates}
+                activeIndex={scrubberIndex}
+                rawImageUrl={caseObj.originalImage}
+                onSelectIndex={setScrubberIndex}
+              />
+            </Suspense>
           </div>
-
-          {/* Stamped Badge in viewport */}
-          <div className="wire-custody__viewport-stamp">
-            {activeState.isRaw ? (
-              <Badge variant="verified" stamp rotate={-2} size="md">
-                UNALTERED NEGATIVE
-              </Badge>
-            ) : activeState.isPlayerSubmission ? (
-              <Badge variant="developing" stamp rotate={3} size="md">
-                YOUR FILED EDIT
-              </Badge>
+        ) : (
+          <div 
+            className={`wire-custody__viewport wire-corner-reticles ${
+              scrubberIndex > 0 ? 'is-drift-degraded' : 'is-raw-clean'
+            }`}
+            style={{
+              '--drift-aberration': `${scrubberIndex * 2}px`,
+              '--drift-grain-opacity': 0.03 + (scrubberIndex * 0.05)
+            }}
+          >
+            {activeState.imageDataUrl ? (
+              <img
+                src={activeState.imageDataUrl}
+                alt={activeState.caption}
+                className="wire-custody__viewport-img"
+              />
             ) : (
-              <Badge variant="disputed" stamp rotate={-4} size="md">
-                WITNESS #{activeState.step} FILTER
-              </Badge>
+              <img
+                src={caseObj.originalImage}
+                alt={activeState.caption}
+                className="wire-custody__viewport-img"
+                style={{ filter: activeState.filterStyle || 'none' }}
+              />
             )}
+
+            {/* Dynamic Optical Degradation HUD Indicator */}
+            <div className="wire-custody__degradation-hud">
+              <span className="wire-degradation-badge">
+                OPTICAL ARTIFACTING: <strong>+{Math.round((scrubberIndex / Math.max(1, timelineStates.length - 1)) * 86)}%</strong>
+              </span>
+              <span className="wire-degradation-state">
+                {scrubberIndex === 0 ? 'CLEAN ARCHIVAL SENSOR' : 'CHROMATIC DRIFT DETECTED'}
+              </span>
+            </div>
+
+            {/* Stamped Badge in viewport */}
+            <div className="wire-custody__viewport-stamp">
+              {activeState.isRaw ? (
+                <Badge variant="verified" stamp rotate={-2} size="md">
+                  UNALTERED NEGATIVE
+                </Badge>
+              ) : activeState.isPlayerSubmission ? (
+                <Badge variant="developing" stamp rotate={3} size="md">
+                  YOUR FILED EDIT
+                </Badge>
+              ) : (
+                <Badge variant="disputed" stamp rotate={-4} size="md">
+                  WITNESS #{activeState.step} FILTER
+                </Badge>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Dynamic Caption & Metadata for Current Scrub Position */}
         <div className="wire-custody__scrub-meta-panel" key={activeState.id}>

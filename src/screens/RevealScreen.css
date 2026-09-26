@@ -63,20 +63,86 @@
   color: var(--text-muted);
 }
 
-.wire-reveal__title {
-  font-family: var(--font-masthead);
-  font-size: clamp(28px, 4.2vw, 42px);
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
+/* Peter Tarka Monumental Verdict Typography */
+.wire-reveal__hero-monument {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+  margin-bottom: 8px;
 }
 
-.wire-reveal__desc {
+.wire-reveal__hero-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.wire-reveal__hero-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.wire-reveal__hero-status-pill {
+  padding: 4px 12px;
+  border: 1px solid;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.wire-reveal__hero-score-lockup {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(18px, 3.5vw, 42px);
+  flex-wrap: wrap;
+}
+
+.wire-reveal__hero-numeral {
+  font-family: var(--font-masthead);
+  font-size: clamp(68px, 11vw, 128px);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  margin: 0;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.wire-reveal__hero-pct {
+  font-size: 0.52em;
+  opacity: 0.72;
+  margin-left: 2px;
+}
+
+.wire-reveal__hero-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 660px;
+}
+
+.wire-reveal__hero-label {
+  font-family: var(--font-masthead);
+  font-size: clamp(24px, 3.6vw, 40px);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.wire-reveal__hero-desc {
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-secondary);
-  max-width: 860px;
+  margin: 0;
 }
 
 .wire-reveal__lock-banner {
