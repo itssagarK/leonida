@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getCaseById, getEffectiveChain } from '../data/cases';
 import { getCaseProgress, clearCaseProgress } from '../utils/storage';
@@ -8,11 +8,174 @@ import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
 import './RevealScreen.css';
 
+/**
+ * Interactive Wipe Reveal Viewer:
+ * Provides a draggable before/after divider comparing the raw truth negative
+ * against the final public headline manipulation.
+ */
+function WipeRevealViewer({
+  rawImage,
+  rawCaption,
+  rawAuthor,
+  finalImage,
+  finalFilter,
+  finalCaption,
+  finalAuthor,
+  driftScore,
+  statusLabel
+}) {
+  const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef(null);
+
+  const updatePosition = (clientX) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const pct = Math.max(2, Math.min(98, (x / rect.width) * 100));
+    setSliderPos(pct);
+  };
+
+  const handlePointerDown = (e) => {
+    setIsDragging(true);
+    const clientX = e.clientX ?? (e.touches && e.touches[0]?.clientX);
+    if (clientX !== undefined) {
+      updatePosition(clientX);
+    }
+  };
+
+  useEffect(() => {
+    const handlePointerMove = (e) => {
+      if (!isDragging) return;
+      const clientX = e.clientX ?? (e.touches && e.touches[0]?.clientX);
+      if (clientX !== undefined) {
+        updatePosition(clientX);
+      }
+    };
+
+    const handlePointerUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener('mousemove', handlePointerMove);
+      window.addEventListener('mouseup', handlePointerUp);
+      window.addEventListener('touchmove', handlePointerMove);
+      window.addEventListener('touchend', handlePointerUp);
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handlePointerMove);
+      window.removeEventListener('mouseup', handlePointerUp);
+      window.removeEventListener('touchmove', handlePointerMove);
+      window.removeEventListener('touchend', handlePointerUp);
+    };
+  }, [isDragging]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      setSliderPos((p) => Math.max(0, p - 5));
+    } else if (e.key === 'ArrowRight') {
+      setSliderPos((p) => Math.min(100, p + 5));
+    }
+  };
+
+  return (
+    <div className="wire-wipe-viewer">
+      <div
+        className="wire-wipe-frame wire-corner-reticles"
+        ref={containerRef}
+        onMouseDown={handlePointerDown}
+        onTouchStart={handlePointerDown}
+        role="slider"
+        aria-label="Wipe between raw truth and public claim"
+        aria-valuenow={Math.round(sliderPos)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+      >
+        {/* Layer 1: Final Manipulated Public Claim (Full Container) */}
+        <div className="wire-wipe-layer wire-wipe-layer--final">
+          <img
+            src={finalImage}
+            alt="What the public saw"
+            className="wire-wipe-img"
+            style={{ filter: finalFilter }}
+          />
+          <div className="wire-wipe-stamp-tag wire-wipe-stamp-tag--final">
+            <span className="wire-wipe-tag-dot wire-wipe-tag-dot--crimson" />
+            <span>EXHIBIT B: PUBLIC WIRE CLAIM</span>
+          </div>
+        </div>
+
+        {/* Layer 2: Raw Archive Record (Clipped via clip-path polygon) */}
+        <div
+          className="wire-wipe-layer wire-wipe-layer--raw"
+          style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
+        >
+          <img
+            src={rawImage}
+            alt="The Raw Truth"
+            className="wire-wipe-img"
+          />
+          <div className="wire-wipe-stamp-tag wire-wipe-stamp-tag--raw">
+            <span className="wire-wipe-tag-dot wire-wipe-tag-dot--amber" />
+            <span>EXHIBIT A: RAW RECORD NEGATIVE</span>
+          </div>
+        </div>
+
+        {/* Vertical Divider Line with Grab Handle */}
+        <div
+          className="wire-wipe-divider"
+          style={{ left: `${sliderPos}%` }}
+        >
+          <div className="wire-wipe-handle" title="Drag to wipe between raw record and public claim">
+            <span className="wire-wipe-handle-arrow">◀</span>
+            <span className="wire-wipe-handle-bar">||</span>
+            <span className="wire-wipe-handle-arrow">▶</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Scrub Helper Bar */}
+      <div className="wire-wipe-instructions">
+        <span className="wire-wipe-hint">
+          ← DRAG DIVIDER TO REVEAL PIXEL DRIFT →
+        </span>
+        <span className="wire-wipe-split-ratio">
+          {Math.round(sliderPos)}% RAW / {100 - Math.round(sliderPos)}% MUTATED
+        </span>
+      </div>
+
+      {/* Synchronized Narrative Juxtaposition */}
+      <div className="wire-wipe-narratives">
+        <div className="wire-wipe-narrative-col wire-wipe-narrative-col--raw">
+          <div className="wire-wipe-col-header">
+            <span className="wire-wipe-col-tag">ARCHIVAL BASELINE</span>
+            <span className="wire-wipe-col-byline">{rawAuthor}</span>
+          </div>
+          <p className="wire-wipe-col-quote">&ldquo;{rawCaption}&rdquo;</p>
+        </div>
+
+        <div className="wire-wipe-narrative-col wire-wipe-narrative-col--final">
+          <div className="wire-wipe-col-header">
+            <span className="wire-wipe-col-tag wire-wipe-col-tag--alert">FINAL PUBLIC WIRE</span>
+            <span className="wire-wipe-col-byline">{finalAuthor}</span>
+          </div>
+          <p className="wire-wipe-col-quote">&ldquo;{finalCaption}&rdquo;</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function RevealScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isGeneratingDownload, setIsGeneratingDownload] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+  const [comparisonMode, setComparisonMode] = useState('wipe'); // 'wipe' | 'split'
 
   const caseObj = useMemo(() => getCaseById(id), [id]);
   const playerProgress = useMemo(() => getCaseProgress(caseObj.id), [caseObj.id]);
@@ -70,8 +233,8 @@ export default function RevealScreen() {
 
     try {
       const canvas = document.createElement('canvas');
-      const width = 1200;
-      const height = 800;
+      const width = 1400;
+      const height = 940;
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
@@ -80,30 +243,42 @@ export default function RevealScreen() {
         throw new Error('Canvas 2D context not available');
       }
 
-      // Background
-      ctx.fillStyle = '#090A0D';
+      // Background - Dark Noir Terminal
+      ctx.fillStyle = '#07080B';
       ctx.fillRect(0, 0, width, height);
 
-      // Border rule
+      // Outer border rule
       ctx.strokeStyle = '#D49A32';
       ctx.lineWidth = 3;
-      ctx.strokeRect(16, 16, width - 32, height - 32);
+      ctx.strokeRect(20, 20, width - 40, height - 40);
+
+      // Inner hairline rule
+      ctx.strokeStyle = 'rgba(212, 154, 50, 0.35)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(28, 28, width - 56, height - 56);
 
       // Top banner
-      ctx.fillStyle = '#11141B';
-      ctx.fillRect(16, 16, width - 32, 70);
+      ctx.fillStyle = '#10131A';
+      ctx.fillRect(28, 28, width - 56, 85);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.strokeRect(28, 28, width - 56, 85);
 
-      ctx.fillStyle = '#F4EFE6';
-      ctx.font = 'bold 22px Georgia, serif';
-      ctx.fillText('THE LEONIDA WIRE // OFFICIAL EVIDENTIARY DOSSIER', 36, 56);
+      // Top Banner Typography
+      ctx.fillStyle = '#F5EFE6';
+      ctx.font = 'bold 24px Georgia, serif';
+      ctx.fillText('THE LEONIDA WIRE // FORENSIC EVIDENTIARY DOSSIER', 50, 65);
 
       ctx.fillStyle = '#D49A32';
       ctx.font = 'bold 12px "Courier New", monospace';
-      ctx.fillText(`${caseObj.caseNumber} • ${caseObj.location}`, width - 420, 48);
+      ctx.fillText(`CASE: ${caseObj.caseNumber} • SCENE: ${caseObj.location.toUpperCase()}`, 50, 95);
 
+      ctx.textAlign = 'right';
       ctx.fillStyle = '#A0A7B5';
       ctx.font = '11px "Courier New", monospace';
-      ctx.fillText(`VERDICT: ${driftResult.status.label} (${driftResult.score}% DRIFT)`, width - 420, 68);
+      ctx.fillText(`AUDITED: ${caseObj.dateLogged}`, width - 50, 65);
+      ctx.fillStyle = '#E5A93C';
+      ctx.fillText(`VERDICT: ${driftResult.status.label.toUpperCase()} (${driftResult.score}% DRIFT)`, width - 50, 95);
+      ctx.textAlign = 'left';
 
       // Helper to load image
       const loadImage = (src) => {
@@ -129,75 +304,109 @@ export default function RevealScreen() {
         loadImage(finalImgSrc)
       ]);
 
-      // Draw Left Column: Original
-      const colW = 540;
-      const imgH = 340;
-      const yImg = 130;
+      // Dual Column Layout
+      const colW = 620;
+      const imgH = 390;
+      const yImg = 165;
 
-      // Left Image Box
+      // ==========================================
+      // EXHIBIT A: ORIGINAL
+      // ==========================================
+      const xLeft = 50;
       ctx.fillStyle = '#11141B';
-      ctx.fillRect(36, yImg - 30, colW, 30);
-      ctx.fillStyle = '#10B981';
-      ctx.font = 'bold 12px "Courier New", monospace';
-      ctx.fillText('ORIGINAL BASELINE // THE RAW TRUTH', 46, yImg - 10);
+      ctx.fillRect(xLeft, yImg - 34, colW, 34);
+      ctx.strokeStyle = 'rgba(212, 154, 50, 0.4)';
+      ctx.strokeRect(xLeft, yImg - 34, colW, 34);
 
-      ctx.drawImage(origImg, 36, yImg, colW, imgH);
-      ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+      ctx.fillStyle = '#E5A93C';
+      ctx.font = 'bold 12px "Courier New", monospace';
+      ctx.fillText('[EXHIBIT A] ARCHIVAL SCENE NEGATIVE (RAW RECORD)', xLeft + 14, yImg - 12);
+
+      ctx.drawImage(origImg, xLeft, yImg, colW, imgH);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
       ctx.lineWidth = 1;
-      ctx.strokeRect(36, yImg, colW, imgH);
+      ctx.strokeRect(xLeft, yImg, colW, imgH);
+
+      // Registration crosshairs
+      ctx.strokeStyle = '#D49A32';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      // Top-left
+      ctx.moveTo(xLeft + 8, yImg + 16); ctx.lineTo(xLeft + 24, yImg + 16);
+      ctx.moveTo(xLeft + 16, yImg + 8); ctx.lineTo(xLeft + 16, yImg + 24);
+      ctx.stroke();
 
       // Left Caption
-      ctx.fillStyle = '#F4EFE6';
+      ctx.fillStyle = '#F5EFE6';
       ctx.font = 'italic 15px Georgia, serif';
-      const nextYLeft = wrapText(ctx, `"${caseObj.originalCaption}"`, 36, yImg + imgH + 26, colW, 20, 3);
+      const nextYLeft = wrapText(ctx, `"${caseObj.originalCaption}"`, xLeft, yImg + imgH + 28, colW, 22, 3);
 
       ctx.fillStyle = '#A0A7B5';
       ctx.font = '11px "Courier New", monospace';
-      ctx.fillText(`SOURCE: ${caseObj.originalPhotographer}`, 36, Math.max(nextYLeft + 10, yImg + imgH + 95));
+      ctx.fillText(`SOURCE: ${caseObj.originalPhotographer}`, xLeft, Math.max(nextYLeft + 12, yImg + imgH + 98));
 
-      // Draw Right Column: Final Filed Report
-      const xRight = 624;
+      // ==========================================
+      // EXHIBIT B: FINAL TRANSMITTED REPORT
+      // ==========================================
+      const xRight = width - colW - 50;
       ctx.fillStyle = '#11141B';
-      ctx.fillRect(xRight, yImg - 30, colW, 30);
+      ctx.fillRect(xRight, yImg - 34, colW, 34);
+      ctx.strokeStyle = 'rgba(230, 57, 86, 0.5)';
+      ctx.strokeRect(xRight, yImg - 34, colW, 34);
+
       ctx.fillStyle = '#E63956';
       ctx.font = 'bold 12px "Courier New", monospace';
-      ctx.fillText(`FINAL TRANSMISSION // WHAT THE PUBLIC SAW`, xRight + 10, yImg - 10);
+      ctx.fillText('[EXHIBIT B] FINAL TRANSMITTED WIRE CLAIM', xRight + 14, yImg - 12);
 
       ctx.drawImage(finalImg, xRight, yImg, colW, imgH);
-      ctx.strokeStyle = 'rgba(230, 57, 86, 0.4)';
+      ctx.strokeStyle = 'rgba(230, 57, 86, 0.5)';
       ctx.lineWidth = 2;
       ctx.strokeRect(xRight, yImg, colW, imgH);
 
       // Right Caption
-      ctx.fillStyle = '#F4EFE6';
+      ctx.fillStyle = '#F5EFE6';
       ctx.font = 'italic 15px Georgia, serif';
-      const nextYRight = wrapText(ctx, `"${finalStep.caption}"`, xRight, yImg + imgH + 26, colW, 20, 3);
+      const nextYRight = wrapText(ctx, `"${finalStep.caption}"`, xRight, yImg + imgH + 28, colW, 22, 3);
 
-      ctx.fillStyle = '#D49A32';
+      ctx.fillStyle = '#E5A93C';
       ctx.font = 'bold 11px "Courier New", monospace';
-      ctx.fillText(`BYLINE: ${finalStep.author} (Link #${fullChain.length})`, xRight, Math.max(nextYRight + 10, yImg + imgH + 95));
+      ctx.fillText(`BYLINE: ${finalStep.author} (Stage #${fullChain.length})`, xRight, Math.max(nextYRight + 12, yImg + imgH + 98));
 
-      // Big Stamped Verdict in Center Bottom
-      ctx.fillStyle = '#090A0D';
-      ctx.fillRect(width / 2 - 180, height - 120, 360, 60);
-      ctx.strokeStyle = '#D49A32';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(width / 2 - 180, height - 120, 360, 60);
+      // ==========================================
+      // STAMPED VERDICT IN CENTER BOTTOM
+      // ==========================================
+      const stampBoxW = 480;
+      const stampBoxH = 75;
+      const stampX = (width - stampBoxW) / 2;
+      const stampY = height - 165;
 
-      ctx.fillStyle = '#D49A32';
-      ctx.font = 'bold 20px Georgia, serif';
+      ctx.save();
+      ctx.translate(width / 2, stampY + stampBoxH / 2);
+      ctx.rotate(-0.04); // subtle physical stamp tilt
+
+      ctx.fillStyle = '#0B0D12';
+      ctx.fillRect(-stampBoxW / 2, -stampBoxH / 2, stampBoxW, stampBoxH);
+      ctx.strokeStyle = driftResult.score > 60 ? '#E63956' : '#D49A32';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(-stampBoxW / 2, -stampBoxH / 2, stampBoxW, stampBoxH);
+
+      ctx.fillStyle = driftResult.score > 60 ? '#E63956' : '#E5A93C';
+      ctx.font = 'bold 22px Georgia, serif';
       ctx.textAlign = 'center';
-      ctx.fillText(driftResult.status.label, width / 2, height - 88);
+      ctx.fillText(`★ ${driftResult.status.label.toUpperCase()} ★`, 0, -5);
 
-      ctx.font = 'bold 11px "Courier New", monospace';
-      ctx.fillStyle = '#F4EFE6';
-      ctx.fillText(`COMPUTED TRUTH DRIFT: ${driftResult.score}%`, width / 2, height - 70);
+      ctx.font = 'bold 12px "Courier New", monospace';
+      ctx.fillStyle = '#F5EFE6';
+      ctx.fillText(`COMPUTED TRUTH DRIFT: ${driftResult.score}% • LEONIDA INVESTIGATIVE BUREAU`, 0, 18);
+      ctx.restore();
 
-      // Footer
+      // Official Footer
       ctx.textAlign = 'left';
       ctx.fillStyle = '#6C7280';
       ctx.font = '10px "Courier New", monospace';
-      ctx.fillText('LEONIDA WIRE INVESTIGATIVE BUREAU // POWERED BY @UNLAYER/REACT-IMAGE-EDITOR', 36, height - 26);
+      ctx.fillText('LEONIDA WIRE FORENSIC DESPATCH // MANIPULATED VIA @UNLAYER/REACT-IMAGE-EDITOR ENGINE', 50, height - 42);
+      ctx.textAlign = 'right';
+      ctx.fillText(`CERTIFICATE #LW-${caseObj.id.toUpperCase()}-2026`, width - 50, height - 42);
 
       // Trigger download
       const dataUrl = canvas.toDataURL('image/png');
@@ -273,10 +482,31 @@ export default function RevealScreen() {
         )}
       </header>
 
-      {/* SIDE-BY-SIDE: THE RAW TRUTH vs. WHAT THE PUBLIC SAW */}
+      {/* FORENSIC COMPARISON: INTERACTIVE WIPE REVEAL OR SIDE-BY-SIDE */}
       <section className="wire-reveal__comparison-section" aria-label="Split Photographic Comparison">
         <div className="wire-reveal__comp-header">
-          <h2 className="wire-reveal__comp-title">FORENSIC COMPARISON</h2>
+          <div className="wire-reveal__comp-heading-group">
+            <h2 className="wire-reveal__comp-title">FORENSIC COMPARISON</h2>
+            <div className="wire-comp-mode-toggle" role="tablist">
+              <button
+                type="button"
+                className={`wire-comp-mode-btn ${comparisonMode === 'wipe' ? 'is-active' : ''}`}
+                onClick={() => setComparisonMode('wipe')}
+                title="Wipe transition between raw truth and public claim"
+              >
+                ⇄ INTERACTIVE WIPE REVEAL
+              </button>
+              <button
+                type="button"
+                className={`wire-comp-mode-btn ${comparisonMode === 'split' ? 'is-active' : ''}`}
+                onClick={() => setComparisonMode('split')}
+                title="Side-by-side photographic ledger"
+              >
+                ☷ SIDE-BY-SIDE
+              </button>
+            </div>
+          </div>
+
           <Badge
             variant={driftResult.status.variant}
             stamp
@@ -287,74 +517,88 @@ export default function RevealScreen() {
           </Badge>
         </div>
 
-        <div className="wire-reveal__comp-grid">
-          {/* Left: Original */}
-          <div className="wire-comp-card wire-comp-card--original">
-            <div className="wire-comp-card__tag">
-              <span className="wire-comp-dot wire-comp-dot--green" />
-              <span>THE RAW TRUTH</span>
-            </div>
+        {comparisonMode === 'wipe' ? (
+          <WipeRevealViewer
+            rawImage={caseObj.originalImage}
+            rawCaption={caseObj.originalCaption}
+            rawAuthor={caseObj.originalPhotographer}
+            finalImage={finalStep.imageDataUrl || caseObj.originalImage}
+            finalFilter={finalStep.imageDataUrl ? 'none' : (finalStep.filterStyle || 'none')}
+            finalCaption={finalStep.caption}
+            finalAuthor={finalStep.author}
+            driftScore={driftResult.score}
+            statusLabel={driftResult.status.label}
+          />
+        ) : (
+          <div className="wire-reveal__comp-grid">
+            {/* Left: Original */}
+            <div className="wire-comp-card wire-comp-card--original">
+              <div className="wire-comp-card__tag">
+                <span className="wire-comp-dot wire-comp-dot--amber" />
+                <span>THE RAW TRUTH (ARCHIVE RECORD)</span>
+              </div>
 
-            <div className="wire-comp-card__img-wrap wire-corner-reticles">
-              <img
-                src={caseObj.originalImage}
-                alt="The Raw Truth"
-                className="wire-comp-card__img"
-              />
-              <div className="wire-comp-card__stamp-pos">
-                <Badge variant="verified" stamp rotate={-3} size="sm">
-                  ORIGINAL
-                </Badge>
+              <div className="wire-comp-card__img-wrap wire-corner-reticles">
+                <img
+                  src={caseObj.originalImage}
+                  alt="The Raw Truth"
+                  className="wire-comp-card__img"
+                />
+                <div className="wire-comp-card__stamp-pos">
+                  <Badge variant="verified" stamp rotate={-3} size="sm">
+                    ORIGINAL
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="wire-comp-card__body">
+                <span className="wire-comp-card__byline">SOURCE: {rawStep.author}</span>
+                <p className="wire-comp-card__caption">&ldquo;{rawStep.caption}&rdquo;</p>
+                <div className="wire-comp-card__verdict-strip">
+                  <span>VERIFIED FACTUAL RECORD</span>
+                </div>
               </div>
             </div>
 
-            <div className="wire-comp-card__body">
-              <span className="wire-comp-card__byline">SOURCE: {rawStep.author}</span>
-              <p className="wire-comp-card__caption">&ldquo;{rawStep.caption}&rdquo;</p>
-              <div className="wire-comp-card__verdict-strip">
-                <span>VERIFIED FACTUAL RECORD</span>
+            {/* Center Drift Meter Indicator */}
+            <div className="wire-comp-divider">
+              <div className="wire-comp-drift-circle">
+                <span className="wire-comp-drift-val">{driftResult.score}%</span>
+                <span className="wire-comp-drift-lbl">DRIFT</span>
+              </div>
+            </div>
+
+            {/* Right: Final */}
+            <div className="wire-comp-card wire-comp-card--final">
+              <div className="wire-comp-card__tag">
+                <span className="wire-comp-dot wire-comp-dot--red" />
+                <span>WHAT THE PUBLIC SAW (FILED CLAIM)</span>
+              </div>
+
+              <div className="wire-comp-card__img-wrap wire-corner-reticles">
+                <img
+                  src={finalStep.imageDataUrl || caseObj.originalImage}
+                  alt="What the public saw"
+                  className="wire-comp-card__img"
+                  style={{ filter: finalStep.imageDataUrl ? 'none' : (finalStep.filterStyle || 'none') }}
+                />
+                <div className="wire-comp-card__stamp-pos">
+                  <Badge variant="fabrication" stamp rotate={3} size="sm">
+                    FINAL MUTATION
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="wire-comp-card__body">
+                <span className="wire-comp-card__byline">BYLINE: {finalStep.author}</span>
+                <p className="wire-comp-card__caption">&ldquo;{finalStep.caption}&rdquo;</p>
+                <div className="wire-comp-card__verdict-strip wire-comp-card__verdict-strip--alert">
+                  <span>RATING: {driftResult.status.label}</span>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Center Drift Meter Indicator */}
-          <div className="wire-comp-divider">
-            <div className="wire-comp-drift-circle">
-              <span className="wire-comp-drift-val">{driftResult.score}%</span>
-              <span className="wire-comp-drift-lbl">DRIFT</span>
-            </div>
-          </div>
-
-          {/* Right: Final */}
-          <div className="wire-comp-card wire-comp-card--final">
-            <div className="wire-comp-card__tag">
-              <span className="wire-comp-dot wire-comp-dot--red" />
-              <span>WHAT THE PUBLIC SAW</span>
-            </div>
-
-            <div className="wire-comp-card__img-wrap wire-corner-reticles">
-              <img
-                src={finalStep.imageDataUrl || caseObj.originalImage}
-                alt="What the public saw"
-                className="wire-comp-card__img"
-                style={{ filter: finalStep.imageDataUrl ? 'none' : (finalStep.filterStyle || 'none') }}
-              />
-              <div className="wire-comp-card__stamp-pos">
-                <Badge variant="fabrication" stamp rotate={3} size="sm">
-                  FINAL MUTATION
-                </Badge>
-              </div>
-            </div>
-
-            <div className="wire-comp-card__body">
-              <span className="wire-comp-card__byline">BYLINE: {finalStep.author}</span>
-              <p className="wire-comp-card__caption">&ldquo;{finalStep.caption}&rdquo;</p>
-              <div className="wire-comp-card__verdict-strip wire-comp-card__verdict-strip--alert">
-                <span>RATING: {driftResult.status.label}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
       </section>
 
       {/* "WHAT CHANGED?" MUTATION TAGS & NARRATIVE DIVERGENCE */}

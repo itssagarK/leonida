@@ -129,7 +129,20 @@
   font-size: clamp(48px, 6vw, 68px);
   font-weight: 900;
   line-height: 1;
+  transition: color 300ms ease, text-shadow 300ms ease;
+}
+
+.wire-drift-hero__number--amber {
+  color: var(--accent-amber);
+}
+
+.wire-drift-hero__number--gold {
   color: var(--accent-gold);
+}
+
+.wire-drift-hero__number--crimson {
+  color: var(--accent-crimson);
+  text-shadow: 0 0 24px rgba(230, 57, 86, 0.45);
 }
 
 .wire-drift-hero__label {
@@ -145,6 +158,18 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  min-height: 52px;
+}
+
+.wire-drift-hero__stamp-wrap.is-pending {
+  opacity: 0;
+  transform: scale(1.35);
+  pointer-events: none;
+}
+
+.wire-drift-hero__stamp-wrap.is-stamped {
+  opacity: 1;
+  animation: stampIn 280ms var(--ease-stamp) forwards;
 }
 
 .wire-drift-hero__stamp-caption {
@@ -281,21 +306,29 @@
 
 .wire-breakdown-factor {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding-bottom: 4px;
 }
 
 .wire-factor-name {
   color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.wire-factor-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+  margin-bottom: 4px;
 }
 
 .wire-factor-val {
   color: var(--accent-amber);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 /* Lexical Forensics */
@@ -331,12 +364,13 @@
   padding: 3px 8px;
   border-radius: 0;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .wire-drift-pill--retained {
-  background-color: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  color: var(--stamp-green);
+  background-color: rgba(212, 154, 50, 0.12);
+  border: 1px solid rgba(212, 154, 50, 0.4);
+  color: var(--accent-gold);
 }
 
 .wire-drift-pill--mutated {

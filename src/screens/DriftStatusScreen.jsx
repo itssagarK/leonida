@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getCaseById, getEffectiveChain } from '../data/cases';
 import { getCaseProgress } from '../utils/storage';
@@ -23,6 +23,39 @@ export default function DriftStatusScreen() {
 
   const hasPlayerLink = Boolean(fullChain.find((l) => l.isPlayerSubmission));
   const playerLink = fullChain.find((l) => l.isPlayerSubmission) || fullChain[fullChain.length - 1];
+
+  // Tense count-up score animation with mechanical deceleration
+  const [animatedScore, setAnimatedScore] = useState(0);
+  const [stampLanded, setStampLanded] = useState(false);
+
+  useEffect(() => {
+    const target = driftResult.score;
+    const duration = 1200; // ms
+    const startTime = performance.now();
+
+    const frame = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Deceleration curve
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setAnimatedScore(Math.round(eased * target));
+
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        setTimeout(() => setStampLanded(true), 120);
+      }
+    };
+
+    const animId = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(animId);
+  }, [driftResult.score]);
+
+  const scoreColorClass = animatedScore > 70 
+    ? 'wire-drift-hero__number--crimson' 
+    : animatedScore > 35 
+      ? 'wire-drift-hero__number--gold' 
+      : 'wire-drift-hero__number--amber';
 
   return (
     <div className="wire-drift wire-page-container">
@@ -78,11 +111,11 @@ export default function DriftStatusScreen() {
       <section className="wire-drift-hero" aria-label="Drift Verdict">
         <div className="wire-drift-hero__score-box">
           <div className="wire-drift-hero__metric">
-            <span className="wire-drift-hero__number">{driftResult.score}%</span>
+            <span className={`wire-drift-hero__number ${scoreColorClass}`}>{animatedScore}%</span>
             <span className="wire-drift-hero__label">EDITORIAL DRIFT</span>
           </div>
 
-          <div className="wire-drift-hero__stamp-wrap">
+          <div className={`wire-drift-hero__stamp-wrap ${stampLanded ? 'is-stamped' : 'is-pending'}`}>
             <Badge
               variant={driftResult.status.variant}
               stamp
@@ -148,18 +181,22 @@ export default function DriftStatusScreen() {
           <div className="wire-breakdown-card__factors">
             <div className="wire-breakdown-factor">
               <span className="wire-factor-name">Chain Length Drag ({driftResult.chainLength} links)</span>
+              <span className="wire-factor-dots" aria-hidden="true" />
               <span className="wire-factor-val">+{driftResult.breakdown.lengthFactor} pts</span>
             </div>
             <div className="wire-breakdown-factor">
               <span className="wire-factor-name">Original Semantic Decay</span>
+              <span className="wire-factor-dots" aria-hidden="true" />
               <span className="wire-factor-val">+{driftResult.breakdown.originalDecay} pts</span>
             </div>
             <div className="wire-breakdown-factor">
               <span className="wire-factor-name">Inter-Witness Volatility</span>
+              <span className="wire-factor-dots" aria-hidden="true" />
               <span className="wire-factor-val">+{driftResult.breakdown.stepVolatility} pts</span>
             </div>
             <div className="wire-breakdown-factor">
               <span className="wire-factor-name">Sensational Buzzword Amplification</span>
+              <span className="wire-factor-dots" aria-hidden="true" />
               <span className="wire-factor-val">+{driftResult.breakdown.sensationalBonus} pts</span>
             </div>
           </div>

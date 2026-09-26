@@ -20,6 +20,39 @@ const ALL_EDITOR_TOOLS = [
   'Frame'
 ];
 
+function AnimatedNumber({ value, prefix = '+', suffix = '' }) {
+  const [displayVal, setDisplayVal] = useState(value);
+  const prevValRef = useRef(value);
+
+  useEffect(() => {
+    const startVal = prevValRef.current;
+    const endVal = value;
+    if (startVal === endVal) return;
+
+    const duration = 380;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 2);
+      const current = Math.round(startVal + (endVal - startVal) * eased);
+      setDisplayVal(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        prevValRef.current = endVal;
+      }
+    };
+
+    const animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
+  }, [value]);
+
+  return <span>{prefix}{displayVal}{suffix}</span>;
+}
+
 export default function EditorScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -487,7 +520,9 @@ export default function EditorScreen() {
                 <div className="wire-signal-row">
                   <div className="wire-signal-meta">
                     <span className="wire-signal-name">Visibility</span>
-                    <span className="wire-signal-val wire-signal-val--amber">+{liveSignals.visibility}</span>
+                    <span className="wire-signal-val wire-signal-val--amber">
+                      <AnimatedNumber value={liveSignals.visibility} prefix="+" />
+                    </span>
                   </div>
                   <div className="wire-signal-meter">
                     <div 
@@ -500,11 +535,13 @@ export default function EditorScreen() {
                 <div className="wire-signal-row">
                   <div className="wire-signal-meta">
                     <span className="wire-signal-name">Focus</span>
-                    <span className="wire-signal-val wire-signal-val--cyan">+{liveSignals.focus}</span>
+                    <span className="wire-signal-val wire-signal-val--ivory">
+                      <AnimatedNumber value={liveSignals.focus} prefix="+" />
+                    </span>
                   </div>
                   <div className="wire-signal-meter">
                     <div 
-                      className="wire-signal-meter-fill wire-signal-meter-fill--cyan" 
+                      className="wire-signal-meter-fill wire-signal-meter-fill--ivory" 
                       style={{ width: `${Math.min(100, Math.max(10, liveSignals.focus))}%` }} 
                     />
                   </div>
@@ -513,7 +550,9 @@ export default function EditorScreen() {
                 <div className="wire-signal-row">
                   <div className="wire-signal-meta">
                     <span className="wire-signal-name">Manipulation</span>
-                    <span className="wire-signal-val wire-signal-val--crimson">+{liveSignals.manipulation}</span>
+                    <span className="wire-signal-val wire-signal-val--crimson">
+                      <AnimatedNumber value={liveSignals.manipulation} prefix="+" />
+                    </span>
                   </div>
                   <div className="wire-signal-meter">
                     <div 
@@ -526,7 +565,9 @@ export default function EditorScreen() {
                 <div className="wire-signal-row wire-signal-row--highlight">
                   <div className="wire-signal-meta">
                     <span className="wire-signal-name">Base Drift</span>
-                    <span className="wire-signal-val wire-signal-val--gold">+{liveSignals.baseDrift}%</span>
+                    <span className="wire-signal-val wire-signal-val--gold">
+                      <AnimatedNumber value={liveSignals.baseDrift} prefix="+" suffix="%" />
+                    </span>
                   </div>
                   <div className="wire-signal-meter">
                     <div 

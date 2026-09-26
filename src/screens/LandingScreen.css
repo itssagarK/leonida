@@ -27,14 +27,26 @@
   opacity: 0.6;
 }
 
-/* Hero Section */
+/* Hero Section with Broadsheet Load Reveal */
+@keyframes broadsheetReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .wire-landing__hero {
-  max-width: 920px;
+  max-width: 940px;
   width: 100%;
   margin: 0 auto var(--space-6);
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: broadsheetReveal 0.5s var(--ease-mechanical) both;
 }
 
 .wire-landing__masthead-tag {
@@ -52,7 +64,7 @@
 
 .wire-landing__title {
   font-family: var(--font-masthead);
-  font-size: clamp(42px, 6.5vw, 76px);
+  font-size: clamp(48px, 7.5vw, 84px);
   font-weight: 900;
   letter-spacing: -0.025em;
   line-height: 1.02;
@@ -119,7 +131,8 @@
   padding: 2px 6px;
   letter-spacing: 0.1em;
   font-weight: 700;
-  transform: rotate(-1deg);
+  display: inline-block;
+  animation: stampIn 0.35s var(--ease-stamp) 0.25s both;
 }
 
 .wire-landing__quote {
@@ -239,9 +252,9 @@
 }
 
 .wire-landing__card:hover {
-  border-color: rgba(255, 255, 255, 0.24);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-paper);
 }
 
 .wire-landing__card--highlight {
@@ -251,7 +264,7 @@
 
 .wire-landing__card--highlight:hover {
   border-color: var(--accent-amber);
-  box-shadow: 0 6px 20px rgba(212, 154, 50, 0.15);
+  box-shadow: var(--shadow-lift);
 }
 
 .wire-landing__card-badge {
@@ -383,18 +396,16 @@
 }
 
 .wire-landing__status-dot--green {
-  background-color: var(--stamp-green);
-  box-shadow: 0 0 6px var(--stamp-green);
+  background-color: var(--stamp-verified);
+  animation: systemLivePulse 2s infinite ease-in-out;
 }
 
 .wire-landing__status-dot--amber {
   background-color: var(--accent-amber);
-  box-shadow: 0 0 6px var(--accent-amber);
 }
 
 .wire-landing__status-dot--cyan {
-  background-color: var(--accent-cyan);
-  box-shadow: 0 0 6px var(--accent-cyan);
+  background-color: var(--text-secondary);
 }
 
 .wire-landing__status-label {

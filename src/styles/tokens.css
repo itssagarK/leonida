@@ -1,61 +1,61 @@
-/* THE LEONIDA WIRE — REFINED DESIGN SYSTEM TOKENS (DESIGN.MD CONTRACT) */
+/* THE LEONIDA WIRE — REFINED DESIGN SYSTEM TOKENS (PREMIUM EDITORIAL NOIR) */
 
 :root {
-  /* Color Palette: Forensic Dark & Muted Amber Wire-Room */
-  --bg-base: #08090C;
-  --bg-primary: #08090C;
-  --bg-surface: #0E1017;
-  --bg-elevated: #151822;
-  --bg-card: #11141C;
-  --bg-card-hover: #181B26;
-  --bg-panel: #0D0F15;
+  /* ======================================================== */
+  /* COLOR SYSTEM: STRICT 2-ACCENT TERMINAL PALETTE           */
+  /* Base: Near-Black | Accent 1: Amber/Gold | Accent 2: Crimson */
+  /* ======================================================== */
+  --bg-base: #0A0B0E;
+  --bg-primary: #0A0B0E;
+  --bg-surface: #101217;
+  --bg-elevated: #161922;
+  --bg-card: #12141A;
+  --bg-card-hover: #191C25;
+  --bg-panel: #0D0F14;
   --bg-paper: #F3ECE1;
 
-  /* Typography Colors: Warm Ivory Primary & Muted Tones */
+  /* Typography Colors: Warm Ivory Primary & Grayscale Secondary */
   --text-primary: #F5EFE6;
   --text-secondary: #B4B9C7;
-  --text-muted: #636B7B;
-  --text-dark: #0D0E12;
+  --text-muted: #656C7D;
+  --text-dark: #0A0B0E;
   --text-gold: #DDA236;
 
-  /* Accent: Muted Amber / Gold (Evidence, Metadata, Primary Actions) */
+  /* Signature Accent: Muted Amber / Gold (Teletype Cursor, Evidence, Actions) */
   --accent-amber: #D49A32;
-  --accent-gold: #E8A838;
+  --accent-gold: #E5A93C;
   --accent-amber-light: #F7C668;
-  --accent-amber-subtle: rgba(212, 154, 50, 0.12);
-  --accent-amber-border: rgba(212, 154, 50, 0.38);
+  --accent-amber-subtle: rgba(212, 154, 50, 0.10);
+  --accent-amber-border: rgba(212, 154, 50, 0.35);
 
-  /* Controlled Crimson / Magenta (Warnings, Manipulation, Critical State) */
+  /* Secondary Accent: Danger Crimson (ONLY for Drift, Fabrication & Warnings) */
   --accent-crimson: #E63956;
   --accent-coral: #E63956;
   --accent-magenta: #D62846;
-  --accent-crimson-subtle: rgba(230, 57, 86, 0.12);
-  --accent-crimson-border: rgba(230, 57, 86, 0.38);
+  --accent-crimson-subtle: rgba(230, 57, 86, 0.10);
+  --accent-crimson-border: rgba(230, 57, 86, 0.35);
 
-  /* Subtle Editorial Cyan / Blue (Technical & Diagnostic Info) */
-  --accent-cyan: #38B2AC;
-  --accent-cyan-subtle: rgba(56, 178, 172, 0.12);
-  --accent-cyan-border: rgba(56, 178, 172, 0.32);
-
-  /* Status Stamps */
-  --stamp-green: #10B981;
-  --stamp-amber: #D49A32;
-  --stamp-legend: #D946EF;
-  --stamp-red: #E63956;
-
-  /* Borders & Rules */
+  /* Greyscale Borders & Rules (Shadow & Border, Not Gradients) */
   --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
   --border-medium: 1px solid rgba(255, 255, 255, 0.14);
   --border-evidence: 1px dashed rgba(212, 154, 50, 0.35);
   --border-evidence-strong: 1px solid rgba(212, 154, 50, 0.6);
   --border-alert: 1px solid rgba(230, 57, 86, 0.5);
 
-  /* Typography */
+  /* Status Stamps */
+  --stamp-verified: #10B981;
+  --stamp-amber: #D49A32;
+  --stamp-red: #E63956;
+
+  /* ======================================================== */
+  /* TYPOGRAPHY SCALE                                         */
+  /* Serif Masthead + Monospace Teletype + Clean Sans Body    */
+  /* ======================================================== */
   --font-masthead: 'Zilla Slab', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-  /* 8px Spacing Scale */
+  /* 8px Strict Spatial Grid */
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -74,14 +74,21 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
 
-  /* Shadows & Depth */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.75);
-  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.9);
+  /* Mechanical Shadows (Depth via Sharp Layering) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.7);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.85);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.95);
+  --shadow-paper: 0 8px 24px -4px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 14px 32px -4px rgba(0, 0, 0, 0.9), 0 4px 10px rgba(212, 154, 50, 0.08);
 
-  /* Transitions */
-  --transition-fast: 0.15s ease-out;
-  --transition-normal: 0.22s ease-in-out;
+  /* Procedural & Mechanical Easing Curves */
+  --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-snap: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --transition-fast: 160ms var(--ease-snap);
+  --transition-normal: 240ms var(--ease-mechanical);
+  --transition-stamp: 200ms var(--ease-stamp);
 
   /* Layout Container */
   --container-max-width: 1320px;
@@ -96,11 +103,10 @@
 html, body {
   background-color: var(--bg-base);
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(8, 9, 12, 0.98), rgba(8, 9, 12, 1));
-  background-size: 24px 24px, 100% 100%;
+    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 20px 20px;
   color: var(--text-primary);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -151,7 +157,7 @@ button, input, textarea, select {
 .wire-oxford-rule {
   border: none;
   border-top: 2px solid var(--accent-amber);
-  border-bottom: 1px solid rgba(212, 154, 50, 0.4);
+  border-bottom: 1px solid rgba(212, 154, 50, 0.35);
   height: 5px;
   margin: var(--space-2) 0;
   width: 100%;
@@ -159,7 +165,7 @@ button, input, textarea, select {
 
 .wire-oxford-rule--subtle {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   height: 4px;
 }
 
@@ -190,6 +196,38 @@ button, input, textarea, select {
   right: 6px;
   border-bottom: 2px solid var(--accent-amber);
   border-right: 2px solid var(--accent-amber);
+}
+
+/* Procedural Mechanical Stamp Keyframe */
+@keyframes stampIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.6) rotate(-4deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.95) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Real Live Pulse Keyframe */
+@keyframes systemLivePulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 /* Custom Scrollbar */

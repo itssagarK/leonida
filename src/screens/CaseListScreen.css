@@ -93,8 +93,8 @@
 
 .wire-folder:hover {
   border-color: var(--accent-amber-border);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 154, 50, 0.08);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
 }
 
 .wire-folder:focus-visible {
@@ -102,7 +102,7 @@
   outline-offset: 3px;
 }
 
-/* Tab Row & Manila Tab */
+/* Tab Row & Manila Tab Affordance */
 .wire-folder__tab-row {
   display: flex;
   align-items: center;
@@ -116,20 +116,27 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: #171A24;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #181B26;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-bottom: none;
-  padding: 8px 16px;
+  padding: 8px 18px;
   font-family: var(--font-mono);
   font-size: 11px;
   margin-top: 4px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 8px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.5);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.wire-folder:hover .wire-folder__tab {
+  background-color: #1F2332;
+  border-color: rgba(212, 154, 50, 0.4);
 }
 
 .wire-folder__paperclip {
   font-size: 14px;
-  opacity: 0.8;
+  opacity: 0.85;
   transform: rotate(-15deg);
 }
 
@@ -184,15 +191,18 @@
   background-color: #000;
 }
 
+/* Desaturated evidence photo treatment that comes alive on hover */
 .wire-folder__thumb-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: grayscale(45%) contrast(105%) brightness(0.92);
+  transition: transform 300ms var(--ease-mechanical), filter 300ms var(--ease-mechanical);
 }
 
 .wire-folder:hover .wire-folder__thumb-img {
+  filter: grayscale(0%) contrast(100%) brightness(1);
   transform: scale(1.04);
 }
 

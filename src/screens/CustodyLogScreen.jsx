@@ -171,8 +171,16 @@ export default function CustodyLogScreen() {
           </div>
         </div>
 
-        {/* Live Scrubber Image Viewport */}
-        <div className="wire-custody__viewport wire-corner-reticles">
+        {/* Live Scrubber Image Viewport with Dynamic Chromatic Degradation */}
+        <div 
+          className={`wire-custody__viewport wire-corner-reticles ${
+            scrubberIndex > 0 ? 'is-drift-degraded' : 'is-raw-clean'
+          }`}
+          style={{
+            '--drift-aberration': `${scrubberIndex * 2}px`,
+            '--drift-grain-opacity': 0.03 + (scrubberIndex * 0.05)
+          }}
+        >
           {activeState.imageDataUrl ? (
             <img
               src={activeState.imageDataUrl}
@@ -187,6 +195,16 @@ export default function CustodyLogScreen() {
               style={{ filter: activeState.filterStyle || 'none' }}
             />
           )}
+
+          {/* Dynamic Optical Degradation HUD Indicator */}
+          <div className="wire-custody__degradation-hud">
+            <span className="wire-degradation-badge">
+              OPTICAL ARTIFACTING: <strong>+{Math.round((scrubberIndex / Math.max(1, timelineStates.length - 1)) * 86)}%</strong>
+            </span>
+            <span className="wire-degradation-state">
+              {scrubberIndex === 0 ? 'CLEAN ARCHIVAL SENSOR' : 'CHROMATIC DRIFT DETECTED'}
+            </span>
+          </div>
 
           {/* Stamped Badge in viewport */}
           <div className="wire-custody__viewport-stamp">
@@ -207,7 +225,7 @@ export default function CustodyLogScreen() {
         </div>
 
         {/* Dynamic Caption & Metadata for Current Scrub Position */}
-        <div className="wire-custody__scrub-meta-panel">
+        <div className="wire-custody__scrub-meta-panel" key={activeState.id}>
           <div className="wire-custody__scrub-witness-bar">
             <div>
               <span className="wire-custody__witness-name">{activeState.author}</span>

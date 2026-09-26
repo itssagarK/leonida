@@ -97,6 +97,7 @@
 }
 
 /* ======================================================== */
+/* ======================================================== */
 /* FORENSIC COMPARISON (SPLIT RAW vs. PUBLIC)              */
 /* ======================================================== */
 .wire-reveal__comparison-section {
@@ -109,6 +110,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.wire-reveal__comp-heading-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .wire-reveal__comp-title {
@@ -118,6 +128,268 @@
   color: var(--text-primary);
 }
 
+/* View Mode Switcher */
+.wire-comp-mode-toggle {
+  display: inline-flex;
+  background-color: #07080B;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px;
+}
+
+.wire-comp-mode-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.wire-comp-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.wire-comp-mode-btn.is-active {
+  background-color: rgba(212, 154, 50, 0.18);
+  color: var(--accent-gold);
+  border-color: rgba(212, 154, 50, 0.4);
+}
+
+/* ======================================================== */
+/* INTERACTIVE WIPE VIEWER                                  */
+/* ======================================================== */
+.wire-wipe-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-deep);
+}
+
+.wire-wipe-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #07080B;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.wire-wipe-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wire-wipe-layer--final {
+  z-index: 1;
+}
+
+.wire-wipe-layer--raw {
+  z-index: 2;
+  will-change: clip-path;
+}
+
+.wire-wipe-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Stamp tags in top corners */
+.wire-wipe-stamp-tag {
+  position: absolute;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background-color: rgba(9, 10, 13, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.wire-wipe-stamp-tag--raw {
+  left: 12px;
+  border-left: 3px solid var(--accent-amber);
+  color: var(--accent-gold);
+}
+
+.wire-wipe-stamp-tag--final {
+  right: 12px;
+  border-right: 3px solid var(--accent-crimson);
+  color: var(--accent-crimson);
+}
+
+.wire-wipe-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.wire-wipe-tag-dot--amber {
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 6px var(--accent-amber);
+}
+
+.wire-wipe-tag-dot--crimson {
+  background-color: var(--accent-crimson);
+  box-shadow: 0 0 6px var(--accent-crimson);
+}
+
+/* Vertical Divider Line with Grab Handle */
+.wire-wipe-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--accent-gold);
+  z-index: 3;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(212, 154, 50, 0.8);
+}
+
+.wire-wipe-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background-color: #07080B;
+  border: 1.5px solid var(--accent-gold);
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.9), 0 0 8px rgba(212, 154, 50, 0.5);
+  pointer-events: auto;
+  cursor: ew-resize;
+  transition: transform 150ms var(--ease-mechanical), background-color 150ms ease;
+}
+
+.wire-wipe-handle:hover,
+.wire-wipe-frame:active .wire-wipe-handle {
+  transform: translate(-50%, -50%) scale(1.08);
+  background-color: #141720;
+}
+
+.wire-wipe-handle-arrow {
+  font-size: 8px;
+  opacity: 0.8;
+}
+
+.wire-wipe-handle-bar {
+  letter-spacing: -2px;
+  font-weight: 900;
+  margin: 0 2px;
+}
+
+/* Scrub Helper Bar */
+.wire-wipe-instructions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  padding: 4px 2px;
+}
+
+.wire-wipe-hint {
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.wire-wipe-split-ratio {
+  color: var(--text-secondary);
+}
+
+/* Synchronized Narrative Juxtaposition */
+.wire-wipe-narratives {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.wire-wipe-narrative-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wire-wipe-narrative-col--raw {
+  border-left: 3px solid var(--accent-amber);
+}
+
+.wire-wipe-narrative-col--final {
+  border-left: 3px solid var(--accent-crimson);
+}
+
+.wire-wipe-col-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.wire-wipe-col-tag {
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+}
+
+.wire-wipe-col-tag--alert {
+  color: var(--accent-crimson);
+}
+
+.wire-wipe-col-byline {
+  color: var(--text-muted);
+}
+
+.wire-wipe-col-quote {
+  font-family: var(--font-masthead);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ======================================================== */
+/* SIDE-BY-SIDE LEDGER (FALLBACK/COMPARE MODE)              */
+/* ======================================================== */
 .wire-reveal__comp-grid {
   display: grid;
   grid-template-columns: 1fr 80px 1fr;
@@ -133,7 +405,7 @@
 }
 
 .wire-comp-card--original {
-  border-top: 3px solid var(--stamp-green);
+  border-top: 3px solid var(--accent-amber);
 }
 
 .wire-comp-card--final {
@@ -160,9 +432,14 @@
   border-radius: 50%;
 }
 
+.wire-comp-dot--amber {
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 6px var(--accent-amber);
+}
+
 .wire-comp-dot--green {
-  background-color: var(--stamp-green);
-  box-shadow: 0 0 6px var(--stamp-green);
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 6px var(--accent-amber);
 }
 
 .wire-comp-dot--red {
@@ -217,15 +494,17 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: var(--stamp-green);
+  color: var(--accent-amber);
   padding: 4px 8px;
-  background-color: rgba(16, 185, 129, 0.1);
+  background-color: rgba(212, 154, 50, 0.12);
   display: inline-block;
+  border: 1px solid rgba(212, 154, 50, 0.3);
 }
 
 .wire-comp-card__verdict-strip--alert {
   color: var(--accent-crimson);
-  background-color: rgba(230, 57, 86, 0.1);
+  background-color: rgba(230, 57, 86, 0.12);
+  border-color: rgba(230, 57, 86, 0.3);
 }
 
 /* Center Drift Divider Circle */
@@ -377,7 +656,7 @@
 }
 
 .wire-narrative-tag--record {
-  color: var(--stamp-green);
+  color: var(--accent-amber);
 }
 
 .wire-narrative-quote {
@@ -396,7 +675,7 @@
 }
 
 .wire-narrative-col:last-child .wire-narrative-quote {
-  border-left-color: var(--stamp-green);
+  border-left-color: var(--accent-amber);
 }
 
 @media (max-width: 680px) {
